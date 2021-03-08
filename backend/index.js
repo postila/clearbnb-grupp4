@@ -14,10 +14,9 @@ global.mongoose.connect(atlasUrl, {
 
 const models = require('./models.js')
 
-const janeDoe = new users({
-  name: 'Jane Doe',
-  email: 'janedoe@haha.se',
-  password: '123'
+app.get('/api/users', async (req, res) => {
+  let docs = await users.find()
+  await res.json(docs)
 })
 
 app.post('/api/users', async (req, res) => {
@@ -25,5 +24,10 @@ app.post('/api/users', async (req, res) => {
   await doc.save()
   res.json(doc)
 })
+
+// app.get('/api/login', async (req, res) => {
+//   let doc = await users.findById(req.body.users._id)
+//   res.json(doc)
+// })
 
 app.listen(3001, () => console.log('Server stated on port 3001'))
