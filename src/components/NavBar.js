@@ -1,36 +1,50 @@
 import { Link, useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
 import Radium from 'radium'
-
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 function NavBar() {
+  const history = useHistory()
+  const [anchorEl, setAnchorEl] = useState(null);
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    //<div style={{ width: '100%', margin: '0 auto', backgroundColor: 'red' }}>
-    /* <div style={styles.container}>
-    <nav style={styles.navbar}>
-      <div style={styles.left}>12343</div>
-      <div style={styles.button}>
-        <Link to="/Om-oss ">Om oss</Link>
-        <Link to="/">Hem </Link>
-        <Link to="/Platser">Platser</Link>
-      </div>
-      <div style={styles.dropdown}>
-        <Link  to="/Mina-sidor">Mina sidor</Link>
-      </div>
-      </nav> 
-      </div> */
+
     <div>
-    <nav style={styles.navbar}>
-      <Link style={styles.button} to="/Om-oss">Om oss</Link>
-      <Link style={styles.button} to="/">Hem</Link>
-      <Link style={styles.button} to="/Platser">Platser</Link>
-    
-      <div style={styles.mypage}>
-          <Link style={{ color: 'white' }} to="/Mina-sidor">Mina sidor</Link>
-      </div>
-    
+      <nav style={styles.navbar}>
+        <Link style={styles.button} to="/Om-oss">Om oss</Link>
+        <Link style={styles.button} to="/">Hem</Link>
+        <Link style={styles.button} to="/Platser">Platser</Link>
+
+        <div style={styles.mypage}>
+          <div>
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+              Mina sidor
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={() => { history.push('/Platser'); handleClose() }}>Platser</MenuItem>
+              <MenuItem onClick={() => { history.push('/'); handleClose() }}>Hem</MenuItem>
+              <MenuItem onClick={() => { history.push('/Om-oss'); handleClose() }}>Om oss</MenuItem>
+            </Menu>
+          </div >
+
+        </div>
+
       </nav>
     </div>
 
@@ -38,30 +52,30 @@ function NavBar() {
 }
 
 const styles = {
-navbar: {
-  //display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
-  fontFamily: 'Verdana',
-  textDecoration: 'none',
-  color: '#eee',
-  marginRight: '40px',
-  paddingTop: '15px'
-  
+  navbar: {
+    //display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    fontFamily: 'Verdana',
+    textDecoration: 'none',
+    color: '#eee',
+    marginRight: '40px',
+    paddingTop: '15px'
+
   },
-button: {
-  marginRight: '40px',
-  color: '#eee',
+  button: {
+    marginRight: '40px',
+    color: '#eee',
   },
-mypage: {
-  color: '#eee',
-  float: 'right',
-  
+  mypage: {
+    color: '#eee',
+    float: 'right',
+
   },
 
 
-} 
+}
 
 
 const navDropDown = {
