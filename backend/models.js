@@ -1,6 +1,6 @@
 const mongoose = global.mongoose
 
-const Register = mongoose.model('Register', {
+const User = mongoose.model('User', {
   name: String,
   email: {
     type: String,
@@ -13,18 +13,6 @@ const Register = mongoose.model('Register', {
   }
 })
 
-const User = mongoose.model('User', {
-  email: {
-    type: String,
-    require: true
-  },
-  password: {
-    type: String,
-    require: true
-  }
-})
-
 module.exports = {
-  register: Register,
   users: User
 }
