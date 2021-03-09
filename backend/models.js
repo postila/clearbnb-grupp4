@@ -13,6 +13,12 @@ const User = mongoose.model('User', {
   }
 })
 
+const Location = mongoose.model('Location', {
+  name: String,
+  imageUrl: String
+})
+
 module.exports = {
-  users: User
+  users: User,
+  locations: Location
 }
