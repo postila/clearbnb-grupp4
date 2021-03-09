@@ -30,7 +30,13 @@ const Accommodation = mongoose.model('Accommodation', {
   }
 })
 
+const Location = mongoose.model('Location', {
+  name: String,
+  imageUrl: String
+})
+
 module.exports = {
   users: User,
-  accommodations: Accommodation
+  accommodations: Accommodation,
+  locations: Location
 }

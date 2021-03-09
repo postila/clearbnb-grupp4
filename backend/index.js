@@ -1,6 +1,6 @@
 global.mongoose = require('mongoose')
 const express = require('express')
-const { users } = require('./models.js')
+const { users, locations } = require('./models.js')
 const app = express()
 const session = require('express-session')
 
@@ -14,6 +14,7 @@ global.mongoose.connect(atlasUrl, {
 })
 
 const models = require('./models.js')
+const { useParams } = require('react-router-dom')
 
 app.get('/api/users', async (req, res) => {
   let docs = await users.find()
@@ -25,6 +26,17 @@ app.post('/api/users', async (req, res) => {
   await doc.save()
   res.json(doc)
 })
+
+app.get('/rest/locations', async (req, res) => {
+  let docs = await locations.find()
+  await res.json(docs)
+})
+
+//app.get('/rest/locations/:id', async (req, res) => {
+  //let id = useParams.id
+  //let doc = await users.findById(id)
+  //await res.json(doc)
+//})
 
 app.get('/api/login', async (req, res) => {
   if (session("current-member") != null) {
@@ -38,7 +50,7 @@ app.get('/api/login', async (req, res) => {
 
   // User = collection("User").findOne(ObjectFilters.eq("email", user.getEmail()));
   // if (userInColl == null) {
-    // No user with matching email
+  // No user with matching email
   // res.json(User);
   // await doc.save()
   res.json(doc);
