@@ -18,6 +18,7 @@ const Accommodation = mongoose.model('Accommodation', {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  title: String,
   imageUrl: String,
   amenitiesList: Array,
   maxGuest: Number,
