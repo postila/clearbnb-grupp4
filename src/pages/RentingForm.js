@@ -3,21 +3,36 @@ import Radium from 'radium'
 
 const RentingForm = (props) => {
   return (
-    <form style={styles.form}>
-      <label style={styles.label} for="fname">Titel</label>
-      <input style={styles.input} type="text" placeholder="..." required></input>
+    <form key="1" style={styles.form} >
 
-      <label style={styles.label} for="fname">Ort</label>
-      <input style={styles.input} type="text" placeholder="..." required></input>
+      <h1 style={{ color: '#839cc1' }}>Uthyrningsformulär</h1>
+
+      <label style={styles.label} form="rentingform" for="fname">Titel (max 80 tecken)</label>
+      <input key="2" style={styles.input} form="rentingform" type="text" placeholder="Mysig stuga" required></input>
+
+      <label style={styles.label} form="rentingform" for="fname">Ort</label>
+      <input key="3" style={styles.input} form="rentingform" maxlength="100" type="text" placeholder="Lund" required></input>
       
-      <label style={styles.label} for="fname">Beskrivning (max 500 bokstäver)</label>
+      <label style={styles.label} form="rentingform" for="fname">Beskrivning (max 500 tecken)</label>
       <textarea style={styles.description} form="rentingform" maxlength="500" type="text" placeholder="..." required></textarea>
 
-      <label style={styles.label} for="fname">Bild</label>
-      <input style={styles.input} type="text" placeholder="Länk till bild" required></input>
-      <div>
+      <label style={styles.label} form="rentingform" for="fname">Bild</label>
+      <input key="4" style={styles.input} form="rentingform" type="text" placeholder="http://din.url.här" required></input>
+      
+      <div style={styles.date_container} >
+        <label style={styles.label} form="rentingform" for="fname">Startdatum</label>
+        <input key="5" style={styles.date} form="rentingform" type="text" placeholder="2021/01/01" required></input>
+
+        <label style={styles.label} form="rentingform" for="fname">Slutdatum</label>
+        <input key="6" style={styles.date} form="rentingform" type="text" placeholder="2021/01/02" required></input>
+      </div>
+
+      <h3 style={{ color: '#839cc1' }}>Bekvämligheter</h3>
+      <br></br>
+
+      <div style={styles.buttons_container}>
       <button style={styles.button}>Färdig</button> 
-        <button style={styles.button}>Avbryt</button>
+        <button style={styles.button}>Rensa</button>
       </div>
     </form>
   );
@@ -29,11 +44,34 @@ const styles = {
     gridGap: '3px',
     maxWidth: '500px',
     margin: '20px auto',
+    textAlign: 'left',
     padding: '10px'
   },
   input: {
     textAlign: 'left',
-    height: '50px'
+    height: '50px',
+    borderRadius: '7px',
+    ':focus': {
+      outline: 'none'
+    }
+  },
+  date_container: {
+    textAlign: 'center',
+    height: '50px',
+    width: '100%',
+    marginTop: '10px',
+    marginBottom: '40px'
+  },
+  
+  date: {
+    textAlign: 'center',
+    height: '50px',
+    width: '90px',
+    borderRadius: '7px',
+    margin: '10px 20px 0px 20px',
+    ':focus': {
+      outline: 'none'
+    }
   },
 
   label: {
@@ -51,6 +89,12 @@ const styles = {
     verticalAlign: 'text-top',
     resize: 'none',
   },
+  buttons_container: {
+    textAlign: 'center',
+    height: '100px',
+    verticalAlign: 'text-top',
+    width: '100%',
+  },
 
   button: {
     width: '120px',
@@ -63,7 +107,7 @@ const styles = {
     borderRadius: '7px',
     color: 'white',
     fontWeight: 'bold',
-    backgroundColor: '#ed3333'
+    backgroundColor: '#596982'
   },
   register: {
     cursor: 'pointer',
