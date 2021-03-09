@@ -39,7 +39,7 @@ function NavBar() {
             >
               <MenuItem onClick={() => { history.push('/Platser'); handleClose() }}>Platser</MenuItem>
               <MenuItem onClick={() => { history.push('/'); handleClose() }}>Hem</MenuItem>
-              <MenuItem onClick={() => { history.push('/Om-oss'); handleClose() }}>Om oss</MenuItem>
+              <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Uthyrning</MenuItem>
             </Menu>
           </div >
 

@@ -1,14 +1,14 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import NavBar from './components/NavBar'
 
 // pages
 import AboutUs from './pages/AboutUs'
 import Home from './pages/Home'
 import Locations from './pages/Locations'
 import MyPage from './pages/MyPage'
+import RentingForm from './pages/RentingForm'
 
-
-import NavBar from './components/NavBar'
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
             <Route exact path="/Om-oss" component={AboutUs} />
             <Route exact path="/Platser" component={Locations} />
             <Route exact path="/Mina-sidor" component={MyPage} />
+            <Route exact path="/Uthyrning" component={RentingForm} />
           </Switch>
         </main>
 
