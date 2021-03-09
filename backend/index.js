@@ -32,11 +32,10 @@ app.get('/rest/locations', async (req, res) => {
   await res.json(docs)
 })
 
-//app.get('/rest/locations/:id', async (req, res) => {
-  //let id = useParams.id
-  //let doc = await users.findById(id)
-  //await res.json(doc)
-//})
+app.get('/rest/locations/:id', async (req, res) => {
+  let doc = await locations.findById(req.params.id)
+  await res.json(doc)
+})
 
 app.get('/api/login', async (req, res) => {
   if (session("current-member") != null) {
