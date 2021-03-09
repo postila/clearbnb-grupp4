@@ -13,6 +13,24 @@ const User = mongoose.model('User', {
   }
 })
 
+const Accommodation = mongoose.model('Accommodation', {
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  imageUrl: String,
+  amenitiesList: Array,
+  maxGuest: Number,
+  pricePerNight: Number,
+  description: String,
+  bookedDatesList: Array,
+  location: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Location'
+  }
+})
+
 module.exports = {
-  users: User
+  users: User,
+  accommodations: Accommodation
 }
