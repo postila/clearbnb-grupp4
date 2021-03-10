@@ -88,6 +88,9 @@ const styles = {
     height: '100px',
     verticalAlign: 'text-top',
     resize: 'none',
+    ':focus': {
+      outline: 'none'
+    }
   },
   buttons_container: {
     textAlign: 'center',
