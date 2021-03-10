@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import Radium from 'radium'
 import { useHistory } from 'react-router-dom'
@@ -10,6 +11,11 @@ const Locations = () => {
   const goToDetailsPage = (id) => {
     history.push('/AccommodationDetails/' + id)
   }
+  const { id } = useParams()
+  console.log(id + ' im ID hey')
+  const accommodationList = accommodations.filter(a => a.location === id)
+  console.log(accommodationList)
+
 
   const card = accommodation => (
     <div
@@ -28,7 +34,7 @@ const Locations = () => {
 
   return (
     <div>
-      {accommodations.map(accommodation => card(accommodation))}
+      {accommodationList.map(accommodation => card(accommodation))}
     </div >
   );
 }
