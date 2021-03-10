@@ -13,7 +13,7 @@ export default function LocationsContextProvider(props) {
 
   useEffect(() => {
     fetchLocations()
-  }, ([]))
+  }, [])
 
   const values = {
     locations

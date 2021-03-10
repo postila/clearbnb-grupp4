@@ -10,3 +10,5 @@ const LocationListItem = () => {
 }
 
 export default LocationListItem;
+
+// SHOULD THIS COMPONENT BE DELETED??

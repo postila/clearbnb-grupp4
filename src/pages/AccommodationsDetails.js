@@ -32,7 +32,7 @@ const AccommodationsDetails = () => {
     <div style={styles.box} key="1">
       { accommodation &&
         <div>
-          <img style={styles.img} key="2" src={ accommodation.imageUrl } />
+        <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id } />
           <h1>{ accommodation.title }</h1>
           <p>Antal gäster: { accommodation.maxGuest }</p>
           <p>Ort: { locationName }</p>
