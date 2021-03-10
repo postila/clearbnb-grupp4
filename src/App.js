@@ -12,6 +12,7 @@ import NavBar from './components/NavBar'
 
 // contexts
 import AccommodationsContextProvider from './contexts/AccommodationsContext'
+import AccommodationsDetails from './pages/AccommodationsDetails';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route exact path="/Om-oss" component={AboutUs} />
               <Route exact path="/Platser" component={Locations} />
               <Route exact path="/Mina-sidor" component={MyPage} />
+              <Route exact path="/AccommodationDetails/:id" component={AccommodationsDetails} />
             </Switch>
           </main>
 

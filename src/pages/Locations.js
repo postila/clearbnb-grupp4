@@ -8,7 +8,7 @@ const Locations = () => {
   const history = useHistory()
 
   const goToDetailsPage = (id) => {
-    history.push('/accommodationsDetails/' + id)
+    history.push('/AccommodationDetails/' + id)
   }
 
   const card = accommodation => (
