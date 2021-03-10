@@ -52,6 +52,25 @@ app.get('/rest/amenities', async (req, res) => {
   await res.json(docs)
 })
 
+app.put('/api/accommodation/:id', async (req, res) => {
+  let accommodation = await accommodations.findById(req.params.id)
+
+  if (req.body.amenetiesList) {
+    accommodation.amenitiesList = [...accommodation.amenetiesList, ...req.body.amenetiesList]
+    delete req.body.amenetiesList
+  }
+
+  Object.assign(accommodation, req.body)
+  await accommodation.save()
+  res.json(accommodation)
+})
+
+app.get('/rest/accommodation/:id', async (req, res) => {
+  let doc = await accommodations.findById(req.params.id).populate(['amenitiesList']).exec()
+  res.json(doc)
+
+})
+
 app.get('/api/login', async (req, res) => {
   if (session("current-member") != null) {
     res.send("Already logged in");

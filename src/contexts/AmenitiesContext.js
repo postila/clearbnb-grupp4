@@ -13,7 +13,7 @@ export default function AmenitiesContextProvider(props) {
 
   useEffect(() => {
     fetchAmenities()
-  }, ([]))
+  }, [])
 
   const values = {
     amenities

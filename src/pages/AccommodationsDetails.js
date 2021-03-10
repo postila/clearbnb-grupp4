@@ -19,7 +19,7 @@ const AccommodationsDetails = (props) => {
       <h1>Details Page</h1>
       <h1>{accommodation.title}</h1>
       <div>
-        <Amenities></Amenities>
+        <Amenities />
       </div>
 
     </div>

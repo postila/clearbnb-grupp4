@@ -11,7 +11,6 @@ function Amenities() {
       className="amenityItem"
       key={amenity._id}
       style={amenityItemStyle}
-
     >
       <div style={{
         float: 'left',

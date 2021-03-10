@@ -20,7 +20,10 @@ const Accommodation = mongoose.model('Accommodation', {
   },
   title: String,
   imageUrl: String,
-  amenitiesList: Array,
+  amenitiesList: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Amenity'
+  }],
   maxGuest: Number,
   pricePerNight: Number,
   description: String,
