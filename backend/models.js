@@ -35,9 +35,14 @@ const Location = mongoose.model('Location', {
   name: String,
   imageUrl: String
 })
+const Amenity = mongoose.model('Amenity', {
+  name: String,
+  icronUrl: String
+})
 
 module.exports = {
   users: User,
   accommodations: Accommodation,
-  locations: Location
+  locations: Location,
+  amenities: Amenity
 }

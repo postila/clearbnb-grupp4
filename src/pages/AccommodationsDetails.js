@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { useParams } from 'react-router-dom';
 import Radium from 'radium'
+import Amenities from '../components/Amenities'
 
 
 const AccommodationsDetails = (props) => {
@@ -16,9 +17,14 @@ const AccommodationsDetails = (props) => {
   return (
     <div>
       <h1>Details Page</h1>
-      <h1>{ accommodation.title }</h1>
+      <h1>{accommodation.title}</h1>
+      <div>
+        <Amenities></Amenities>
+      </div>
+
     </div>
+
   );
 }
- 
+
 export default AccommodationsDetails;
