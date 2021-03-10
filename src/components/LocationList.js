@@ -6,51 +6,56 @@ import Radium from 'radium'
 function LocationList() {
   const { locations } = useContext(LocationContext)
   const history = useHistory()
+
   const locationItem = location => (
     <div
       className="locationItem"
-      key={location._id}
-      style={cardStyle}
+      key={ location._id }
+      style={ styles.card }
       onClick={() => history.push('/Platser/' + location._id)}
     >
-      <img style={{
-        height: '150px'
-      }}
-        src={location.imageUrl}
+      <img style={ styles.img }
+        src={ location.imageUrl }
         alt={'picture ' + location._id}
       />
-      <h3>{location.name}</h3>
-
+      <h3>{ location.name }</h3>
     </div>
   )
+
   return (
-    <div style={testListStyle}>
+    <div style={ styles.itemsPositions }>
       {locations.map(location => locationItem(location))}
     </div>
   )
 }
-const cardStyle = {
-  backgroundColor: '#202329',
-  padding: '10px',
-  marginBottom: '15px',
-  flex: '1 0 21%',
-  borderRadius: '10px',
-  cursor: 'pointer',
-  transition: '200ms',
-  boxShadow: '0 0 6px 2px rgb(22, 22, 22)',
-  ':hover': {
-    transform: 'scale(1.03)',
-    backgroundColor: '#353a44'
+
+const styles = {
+  img: {
+    height: '150px',
+    borderRadius: '10px',
+    maxWidth: '12vw'
+    },
+  card: {
+    backgroundColor: '#202329',
+    padding: '10px',
+    marginBottom: '15px',
+    flex: '1 0 21%',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    transition: '200ms',
+    boxShadow: '0 0 6px 2px rgb(22, 22, 22)',
+      ':hover': {
+        transform: 'scale(1.03)',
+        backgroundColor: '#252c36'
+        // opacity: '40%'
+      }
+    },
+  itemsPositions: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridGap: '25px',
+    color: 'white'
   }
-}
-const testListStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)',
-  gridGap: '10px',
-  color: 'white'
-  //justifyContent: 'space-between',
-  //flexWrap: 'wrap',
-  //width: '100%'
 }
 
 export default Radium(LocationList)

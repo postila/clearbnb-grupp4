@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { LocationContext } from '../contexts/locationContextProvider'
 import Radium from 'radium'
-import { useHistory } from 'react-router-dom'
 
 const Locations = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -29,17 +28,15 @@ const Locations = () => {
         <div style={styles.text}>
           <h3>{accommodation.title}</h3>
           <p>Gäster {accommodation.maxGuest} | {accommodation.pricePerNight} SEK</p>
-          <p>{locations.find(location => location._id === accommodation.location).name}</p>
+          <p>{ locations.find(location => location._id === accommodation.location).name }</p>
         </div>
       </div>
-    )
-  
+      )
 
   return (
     <div>
       {accommodationList.map(accommodation => card(accommodation))}
-      
-    </div >
+    </div>
   );
 }
 

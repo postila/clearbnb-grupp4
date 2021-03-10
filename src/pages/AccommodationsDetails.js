@@ -13,6 +13,8 @@ const AccommodationsDetails = () => {
   const history = useHistory()
   
   let accommodation = accommodations.find(accommodation => accommodation._id === id)
+
+  let locationName = locations.find(location => location._id === accommodation.location).name
     
   const [item, setItem] = useState(accommodation)
 
@@ -24,15 +26,16 @@ const AccommodationsDetails = () => {
     history.go(-1)
   }
 
+  // locations.find(location => location._id = accommodation.location).name
 
   return (
-    <div style={styles.box}>
+    <div style={styles.box} key="1">
       { accommodation &&
         <div>
-          <img style={styles.img} src={ accommodation.imageUrl } />
+          <img style={styles.img} key="2" src={ accommodation.imageUrl } />
           <h1>{ accommodation.title }</h1>
           <p>Antal gäster: { accommodation.maxGuest }</p>
-          <p>Ort: { locations.find(location => location._id = accommodation.location).name }</p>
+          <p>Ort: { locationName }</p>
           <p>Pris per natt: { accommodation.pricePerNight }</p>
             <div className="description-content">
               <h4>Beskrivning:</h4>
