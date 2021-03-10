@@ -25,7 +25,8 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/Om-oss" component={AboutUs} />
-              <Route exact path="/Platser" component={Locations} />
+                <Route exact path="/Platser" component={Locations} />
+                <Route exact path="/Platser/:id" component={Locations} />
               <Route exact path="/Mina-sidor" component={MyPage} />
             </Switch>
           </main>

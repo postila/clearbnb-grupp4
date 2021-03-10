@@ -5,20 +5,23 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 const Locations = () => {
   const { accommodations } = useContext(AccommodationsContext)
   const { id } = useParams()
-  accommodations.find(a => a._id === id)
+  console.log(id + ' im ID hey')
+  const accommodationList = accommodations.filter(a => a.location === id)
+  console.log(accommodationList)
 
-  const card = accommodation => ( 
+
+  const card = accommodation => (
     <div
       className="card"
       key={accommodation._id}
     >
-      <h1>{ accommodation.location }</h1>
+      <h1>{accommodation.location}</h1>
     </div>
   )
 
   return (
     <div>
-      {accommodations.map(accommodation => card(accommodation))}
+      {accommodationList.map(accommodation => card(accommodation))}
     </div >
   );
 }
