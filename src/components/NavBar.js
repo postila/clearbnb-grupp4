@@ -1,25 +1,85 @@
 import { Link, useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
+import Radium from 'radium'
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
+function NavBar() {
+  const history = useHistory()
+  const [anchorEl, setAnchorEl] = useState(null);
 
-export default function NavBar() {
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    <nav style={styles}>
-      <Link style={{ textDecoration: 'none', color: '#eee', marginRight: '40px' }} to="/Om-oss">Om oss</Link>
-      <Link style={{ textDecoration: 'none', color: '#eee', marginRight: '40px' }} to="/">Hem</Link>
-      <Link style={{ textDecoration: 'none', color: '#eee', marginRight: '40px' }} to="/Platser">Platser</Link>
-      <Link style={{ textDecoration: 'none', color: '#eee', marginRight: '40px' }} to="/Mina-sidor">Mina sidor</Link>
 
-    </nav>
+    <div>
+      <nav style={styles.navbar}>
+        <Link style={styles.button} to="/Om-oss">Om oss</Link>
+        <Link style={styles.button} to="/">Hem</Link>
+        <Link style={styles.button} to="/Platser">Platser</Link>
+
+        <div style={styles.mypage}>
+          <div>
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+              Mina sidor
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={() => { history.push('/Platser'); handleClose() }}>Platser</MenuItem>
+              <MenuItem onClick={() => { history.push('/'); handleClose() }}>Hem</MenuItem>
+              <MenuItem onClick={() => { history.push('/Om-oss'); handleClose() }}>Om oss</MenuItem>
+            </Menu>
+          </div >
+
+        </div>
+
+      </nav>
+    </div>
+
   )
 }
 
 const styles = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
-  fontFamily: 'Verdana'
+  navbar: {
+    //display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    fontFamily: 'Verdana',
+    textDecoration: 'none',
+    color: '#eee',
+    marginRight: '40px',
+    paddingTop: '15px'
+
+  },
+  button: {
+    marginRight: '40px',
+    color: '#eee',
+  },
+  mypage: {
+    color: '#eee',
+    float: 'right',
+
+  },
+
+
 }
+
+
+const navDropDown = {
+
+}
+
+export default Radium(NavBar);

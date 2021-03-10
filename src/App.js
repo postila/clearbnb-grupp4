@@ -10,10 +10,14 @@ import LocationContext from './contexts/locationContextProvider'
 
 import NavBar from './components/NavBar'
 
+// contexts
+import AccommodationsContextProvider from './contexts/AccommodationsContext'
+
 function App() {
   return (
     <div className="App">
-      <LocationContext>
+      <AccommodationsContextProvider>
+      <LocationContext> 
         <Router>
           <header className="App-header"><NavBar /></header>
 
@@ -29,6 +33,7 @@ function App() {
           <footer>&copy; Copyright 2021 Group 4</footer>
         </Router>
       </LocationContext>
+      </AccommodationsContextProvider>
     </div>
   );
 }

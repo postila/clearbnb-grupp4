@@ -1,10 +1,13 @@
 import React from 'react';
 import Login from '../components/Login'
 
+
 const AboutUs = () => {
+
+  // const handleClick = useState()
   return (
     <div>
-      <h1>Om oss</h1>
+      <h1>om oss</h1>
     </div >
   );
 }
