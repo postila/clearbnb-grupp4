@@ -48,6 +48,11 @@ app.post('/api/accommodations', async (req, res) => {
   res.json(doc)
 })
 
+app.get('/api/accommodationDetails/:id'), async (req, res) => {
+  let doc = await accommodations.findById(req.params.id)
+  res.json(doc)
+} 
+
 app.get('/api/login', async (req, res) => {
   if (session("current-member") != null) {
     res.send("Already logged in");

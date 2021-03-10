@@ -12,7 +12,7 @@ const Locations = () => {
   const history = useHistory()
   
   const goToDetailsPage = (id) => {
-    history.push('/AccommodationDetails/' + id)
+    history.push('/accommodationDetails/' + id)
   }
   const { id } = useParams()
   const accommodationList = id ? accommodations.filter(a => a.location === id) : accommodations

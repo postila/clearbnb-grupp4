@@ -29,7 +29,7 @@ function App() {
                 <Route exact path="/Platser" component={Locations} />
                 <Route exact path="/Platser/:id" component={Locations} />
               <Route exact path="/Mina-sidor" component={MyPage} />
-              <Route exact path="/AccommodationDetails/:id" component={AccommodationsDetails} />
+              <Route exact path="/accommodationDetails/:id" component={AccommodationsDetails} />
             </Switch>
           </main>
 
