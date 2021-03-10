@@ -27,7 +27,7 @@ const AccommodationsDetails = () => {
 
   return (
     <div style={styles.box}>
-      { !accommodation &&
+      { accommodation &&
         <div>
           <img style={styles.img} src={ accommodation.imageUrl } />
           <h1>{ accommodation.title }</h1>
@@ -39,7 +39,7 @@ const AccommodationsDetails = () => {
               <p>{ accommodation.description }</p>
             </div>
         </div> }
-      { accommodation &&
+      { !accommodation &&
         <div>
           <h3>Accommodation not found</h3>
           <button onClick={goBack}>Tillbaka</button>
