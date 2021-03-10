@@ -10,33 +10,43 @@ function Amenities() {
     <div
       className="amenityItem"
       key={amenity._id}
-      style={amenityStyle}
+      style={amenityItemStyle}
 
     >
-      <img style={{
-        height: '150px'
-      }}
-        src={amenity.iconUrl}
-        alt={'picture ' + amenity._id}
-      />
-      <h3>{amenity.name}</h3>
+      <div style={{
+        float: 'left',
+        paddingBottom: '10px'
+      }}>
+        <img style={{
+          height: '30px'
+        }}
+          src={amenity.iconUrl}
+          alt={'picture ' + amenity._id}
+        />
+      </div>
+      <div style={{
+        float: 'left',
+        paddingLeft: '10px'
+      }}>
+        <p>{amenity.name}</p>
+      </div>
 
     </div>
   )
   return (
-    <div style={testListStyle}>
+    <div className="amenitiesMap" style={amenitiesListStyle}>
       {amenities.map(amenity => amenityItem(amenity))}
     </div>
   )
 }
-const amenityStyle = {
-  backgroundColor: 'red'
+const amenityItemStyle = {
+  width: '150px',
+  fontSize: '10px'
 }
-const testListStyle = {
+const amenitiesListStyle = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)',
-  gridGap: '10px',
-  color: 'white'
+  color: 'white',
+  justifyContent: 'center'
   //justifyContent: 'space-between',
   //flexWrap: 'wrap',
   //width: '100%'
