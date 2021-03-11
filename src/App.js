@@ -17,34 +17,36 @@ import NavBar from './components/NavBar'
 import AccommodationsContextProvider from './contexts/AccommodationsContext'
 import LocationContext from './contexts/locationContextProvider'
 import AmenitiesContextProvider from './contexts/AmenitiesContext'
+import UserContextProvider, { UserContext } from './contexts/UserContextProvider'
 
 function App() {
   return (
     <div className="App">
-      <AccommodationsContextProvider>
+      <UserContextProvider>
         <LocationContext>
-        <AmenitiesContextProvider>
-        <Router>
-          <header className="App-header"><NavBar /></header>
+          <AccommodationsContextProvider>
+            <AmenitiesContextProvider>
+              <Router>
+                <header className="App-header"><NavBar /></header>
 
-          <main>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/Om-oss" component={AboutUs} />
-                <Route exact path="/Platser" component={Locations} />
-                <Route exact path="/Platser/:id" component={Locations} />
-              <Route exact path="/Mina-sidor" component={MyPage} />
-              <Route exact path="/Uthyrning" component={RentingForm} />
-              <Route exact path="/accommodationDetails/:id" component={AccommodationsDetails} />
-            </Switch>
-          </main>
+                <main>
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/Om-oss" component={AboutUs} />
+                    <Route exact path="/Platser" component={Locations} />
+                    <Route exact path="/Platser/:id" component={Locations} />
+                    <Route exact path="/Mina-sidor" component={MyPage} />
+                    <Route exact path="/Uthyrning" component={RentingForm} />
+                    <Route exact path="/accommodationDetails/:id" component={AccommodationsDetails} />
+                  </Switch>
+                </main>
 
-          <footer>&copy; Copyright 2021 Group 4</footer>
-        </Router>
-        </AmenitiesContextProvider>
+                <footer>&copy; Copyright 2021 Group 4</footer>
+              </Router>
+            </AmenitiesContextProvider>
+          </AccommodationsContextProvider>
         </LocationContext>
-      </AccommodationsContextProvider>
-
+      </UserContextProvider>
     </div>
   );
 }
