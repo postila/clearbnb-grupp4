@@ -1,20 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
-import { LocationContext } from '../contexts/locationContextProvider'
 import { useParams, useHistory } from 'react-router-dom';
 
 import Radium from 'radium'
 
-
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
-  const { locations } = useContext(LocationContext)
   const { id } = useParams()
   const history = useHistory()
   
   let accommodation = accommodations.find(accommodation => accommodation._id === id)
 
-  let locationName = locations.find(location => location._id === accommodation.location).name
     
   const [item, setItem] = useState(accommodation)
 
@@ -26,8 +22,6 @@ const AccommodationsDetails = () => {
     history.go(-1)
   }
 
-  // locations.find(location => location._id = accommodation.location).name
-
   return (
     <div style={styles.box} key="1">
       { accommodation &&
@@ -35,7 +29,7 @@ const AccommodationsDetails = () => {
         <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id } />
           <h1>{ accommodation.title }</h1>
           <p>Antal gäster: { accommodation.maxGuest }</p>
-          <p>Ort: { locationName }</p>
+          <p>Ort: { accommodation.location.name }</p>
           <p>Pris per natt: { accommodation.pricePerNight }</p>
             <div className="description-content">
               <h4>Beskrivning:</h4>
