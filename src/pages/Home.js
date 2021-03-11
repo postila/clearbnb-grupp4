@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Login from '../components/Login'
 import Register from '../components/Register';
-import { LocationContext } from '../contexts/locationContextProvider'
 import LocationList from '../components/LocationList'
+
 const Home = () => {
   const [register, setRegister] = useState(false)
 
@@ -22,6 +22,7 @@ const Home = () => {
     </div >
   );
 }
+
 const locationListStyle = {
   display: 'grid',
   gridGap: '10px 10px',
