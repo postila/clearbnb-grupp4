@@ -8,10 +8,14 @@ function Amenities() {
   const history = useHistory()
   const amenityItem = amenity => (
     <div className="amenityItem" key={amenity._id} style={amenityItemStyle}>
+      <input
+      type="checkbox"
+      value={amenity._id}
+      style={checkBoxStyle}></input>
       <div style={{float: 'left', paddingBottom: '10px'}}>
         <img style={{ height: '30px'}} src={amenity.iconUrl} alt={'picture ' + amenity._id} />
       </div>
-
+      
       <div style={{ float: 'left', paddingLeft: '10px' }}>
         <p>{amenity.name}</p>
       </div>
@@ -32,6 +36,10 @@ const amenitiesListStyle = {
   display: 'grid',
   color: 'white',
   justifyContent: 'center'
+}
+const checkBoxStyle = {
+  float: 'left',
+  marginRight: '10px',
 }
 
 
