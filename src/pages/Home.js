@@ -6,15 +6,15 @@ import LocationList from '../components/LocationList'
 const Home = () => {
   const [register, setRegister] = useState(false)
 
-  const displayRegisterForm = () => {
-    setRegister(true)
+  const toggleRegisterForm = () => {
+    setRegister(valueOf.register = !valueOf.register)
   }
 
   return (
     <div style={{ width: '100%' }}>
       <div className="login-register-form">
-        {!register && <Login displayRegisterForm={displayRegisterForm} />}
-        {register && <Register />}
+        {!register && <Login displayRegisterForm={toggleRegisterForm} />}
+        {register && <Register displayRegisterForm={toggleRegisterForm}/>}
       </div>
       <div style={locationListStyle}>
         <LocationList />

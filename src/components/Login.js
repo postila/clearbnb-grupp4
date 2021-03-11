@@ -33,8 +33,8 @@ form: {
   },
   button: {
     maxWidth: '100px',
-    margin: '0 auto',
-    marginTop: '10px',
+    margin: '10px auto',
+    // marginTop: '10px',
     cursor: 'pointer',
     border: 'none',
     padding: '10px',

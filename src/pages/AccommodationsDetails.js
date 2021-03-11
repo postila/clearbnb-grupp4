@@ -16,7 +16,7 @@ const AccommodationsDetails = () => {
 
   useEffect(() => {
     setItem(accommodation)
-  }, [item])
+  }, [item, accommodation])
 
   const goBack = () => {
     history.go(-1)

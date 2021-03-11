@@ -17,7 +17,7 @@ import NavBar from './components/NavBar'
 import AccommodationsContextProvider from './contexts/AccommodationsContext'
 import LocationContext from './contexts/locationContextProvider'
 import AmenitiesContextProvider from './contexts/AmenitiesContext'
-import UserContextProvider, { UserContext } from './contexts/UserContextProvider'
+import UserContextProvider from './contexts/UserContextProvider'
 
 function App() {
   return (

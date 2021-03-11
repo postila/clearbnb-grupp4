@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import Radium from 'radium'
@@ -22,7 +22,7 @@ const Locations = () => {
     key={ accommodation._id }
     onClick={() => goToDetailsPage(accommodation._id)}
     >
-        <img style={ styles.pictures } src={ accommodation.imageUrl } />
+        <img style={ styles.pictures } src={ accommodation.imageUrl } alt={'picture' + accommodation._id} />
         <div style={ styles.text }>
           <h3>{ accommodation.title }</h3>
           <p>Gäster {accommodation.maxGuest} | { accommodation.pricePerNight } SEK</p>

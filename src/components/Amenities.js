@@ -1,11 +1,9 @@
 import React, { useContext } from 'react'
 import { AmenitiesContext } from '../contexts/AmenitiesContext'
-import { useHistory } from 'react-router-dom'
 import Radium from 'radium'
 
 function Amenities() {
   const { amenities } = useContext(AmenitiesContext)
-  const history = useHistory()
   const amenityItem = amenity => (
     <div className="amenityItem" key={amenity._id} style={amenityItemStyle}>
       <div style={{float: 'left', paddingBottom: '10px'}}>

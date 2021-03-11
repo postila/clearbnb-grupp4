@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from 'react';
 import { UserContext } from '../contexts/UserContextProvider'
 
-const Register = () => {
+const Register = (props) => {
   const { addUser } = useContext(UserContext)
   const [error, setError] = useState(false)
 
@@ -36,8 +36,11 @@ const Register = () => {
       <input key="3" ref={ email } style={ styles.input } type="text" placeholder="E-mail" required></input>
       <input key="4" ref={ password } style={ styles.input } type="password" placeholder="Lösenord" required></input>
       <input key="5" ref={confirmPassword} style={styles.input} type="password" placeholder="Bekräfta lösenord" required></input>
-      {error && <p style={ styles.error }>Lösenordet matchar inte</p>}
-      <button style={ styles.button }>Skapa konto</button>
+      {error && <p style={styles.error}>Lösenordet matchar inte</p>}
+      <div>
+        <button style={styles.button}>Skapa konto</button>
+        <p style={styles.logIn} onClick={props.displayRegisterForm}>Har du redan ett konto? Logga in här</p>
+      </div>
     </form>
   );
 }
@@ -61,7 +64,7 @@ const styles = {
   },
   button: {
     maxWidth: '150px',
-    margin: '5px auto',
+    margin: '10px',
     cursor: 'pointer',
     border: 'none',
     padding: '10px',
@@ -80,6 +83,15 @@ const styles = {
     maxWidth: '250px',
     margin: '10px auto',
     borderRadius: '10px'
+  },
+  logIn: {
+    cursor: 'pointer',
+    fontSize: '12px',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    ':hover': {
+      opacity: '50%'
+    }
   }
 }
 
