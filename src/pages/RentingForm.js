@@ -4,6 +4,8 @@ import { useRef, useContext } from 'react'
 import Amenities from '../components/Amenities'
 import AmenitiesContext from '../contexts/AmenitiesContext'
 import { useHistory } from 'react-router-dom'
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from '../components/DatePicker'
 
 function CreateRentingForm() {
   //const history = useHistory()
@@ -40,8 +42,8 @@ function CreateRentingForm() {
     endDate.current.value = ''
   }
 
- //const RentingForm = (props) => {
-  
+  //const RentingForm = (props) => {
+
   return (
     <form key="1" style={styles.form} onSubmit={createRentingForm}>
 
@@ -54,7 +56,7 @@ function CreateRentingForm() {
       <label style={styles.label} form="rentingform">Ort</label>
       <input key="3" required ref={location} style={styles.input}
         form="rentingform" maxLength="100" type="text" placeholder="Lund" required></input>
-      
+
       <label style={styles.label} form="rentingform">Beskrivning (max 500 tecken)</label>
       <textarea style={styles.description} required ref={description}
         form="rentingform" maxLength="500" type="text" placeholder="..." required></textarea>
@@ -62,23 +64,22 @@ function CreateRentingForm() {
       <label style={styles.label} form="rentingform">Bild</label>
       <input key="4" style={styles.input} required ref={imageUrl}
         form="rentingform" type="text" placeholder="http://din.url.här" required></input>
-      
+
       <div style={styles.date_container} >
         <label style={styles.label} form="rentingform">Startdatum</label>
         <input key="5" style={styles.date} required ref={startDate}
           form="rentingform" type="text" placeholder="2021/01/01" required></input>
 
         <label style={styles.label} form="rentingform">Slutdatum</label>
-        <input key="6" style={styles.date} required ref={endDate}
-          form="rentingform" type="text" placeholder="2021/01/02" required></input>
-      </div>
 
+      </div>
+      <DatePicker></DatePicker>
       <h3 style={{ color: '#839cc1' }}>Bekvämligheter</h3>
-      
+
       <br></br>
-      <Amenities/>
+      <Amenities />
       <div style={styles.buttons_container}>
-      <button style={styles.button}>Färdig</button> 
+        <button style={styles.button}>Färdig</button>
         <button style={styles.button}>Rensa</button>
       </div>
     </form>
@@ -111,7 +112,7 @@ const styles = {
     marginTop: '10px',
     marginBottom: '40px'
   },
-  
+
   date: {
     textAlign: 'center',
     height: '50px',
@@ -162,7 +163,7 @@ const styles = {
     fontWeight: 'bold',
     backgroundColor: '#596982'
   },
-  
+
   register: {
     cursor: 'pointer',
     fontSize: '10px',
@@ -173,4 +174,4 @@ const styles = {
   }
 }
 
-  export default Radium(CreateRentingForm)
+export default Radium(CreateRentingForm)
