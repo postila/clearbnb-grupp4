@@ -38,7 +38,7 @@ app.get('/rest/locations/:id', async (req, res) => {
 })
 
 app.get('/rest/accommodations', async (req, res) => {
-  let docs = await accommodations.find().populate(['amenitiesList', 'location']).exec()
+  let docs = await accommodations.find().populate(['amenitiesList', 'location', 'user']).exec()
   res.json(docs)
 })
 
