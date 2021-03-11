@@ -1,5 +1,6 @@
-import React from 'react';
+import React from 'react'
 import Radium from 'radium'
+import Amenities from '../components/Amenities'
 
 const RentingForm = (props) => {
   return (
@@ -28,6 +29,7 @@ const RentingForm = (props) => {
       </div>
 
       <h3 style={{ color: '#839cc1' }}>Bekvämligheter</h3>
+      <Amenities />
       <br></br>
 
       <div style={styles.buttons_container}>
