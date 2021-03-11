@@ -9,25 +9,43 @@ import Locations from './pages/Locations'
 import MyPage from './pages/MyPage'
 import RentingForm from './pages/RentingForm'
 
+import AccommodationsDetails from './pages/AccommodationsDetails';
+
+// components
+import NavBar from './components/NavBar'
+
+// contexts
+import AccommodationsContextProvider from './contexts/AccommodationsContext'
+import LocationContext from './contexts/locationContextProvider'
+import AmenitiesContextProvider from './contexts/AmenitiesContext'
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <header className="App-header"><NavBar /></header>
+      <AccommodationsContextProvider>
+        <LocationContext>
+          <AmenitiesContextProvider>
+            <Router>
+              <header className="App-header"><NavBar /></header>
 
-        <main>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/Om-oss" component={AboutUs} />
-            <Route exact path="/Platser" component={Locations} />
-            <Route exact path="/Mina-sidor" component={MyPage} />
-            <Route exact path="/Uthyrning" component={RentingForm} />
-          </Switch>
-        </main>
+              <main>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/Om-oss" component={AboutUs} />
+                  <Route exact path="/Platser" component={Locations} />
+                  <Route exact path="/Platser/:id" component={Locations} />
+                  <Route exact path="/Mina-sidor" component={MyPage} />
+                  <Route exact path="/Uthyrning" component={RentingForm} />
+                  <Route exact path="/AccommodationDetails/:id" component={AccommodationsDetails} />
+                </Switch>
+              </main>
 
-        <footer>&copy; Copyright 2021 Group 4</footer>
-      </Router>
+              <footer>&copy; Copyright 2021 Group 4</footer>
+            </Router>
+          </AmenitiesContextProvider>
+        </LocationContext>
+      </AccommodationsContextProvider>
+
     </div>
   );
 }
