@@ -1,43 +1,88 @@
-import React from 'react'
 import Radium from 'radium'
+import React from 'react'
+import { useRef, useContext } from 'react'
 import Amenities from '../components/Amenities'
+import AmenitiesContext from '../contexts/AmenitiesContext'
+import { useHistory } from 'react-router-dom'
 
-const RentingForm = (props) => {
+function CreateRentingForm() {
+  //const history = useHistory()
+  const { addRentingForm } = useContext(AmenitiesContext)
+
+  const title = useRef()
+  const location = useRef()
+  const description = useRef()
+  const imageUrl = useRef()
+  const startDate = useRef()
+  const endDate = useRef()
+
+  const createRentingForm = async e => {
+    e.preventDefault()
+
+    const rentingForm = {
+      title: title.current.value,
+      location: location.current.value,
+      description: description.current.value,
+      imageUrl: imageUrl.current.value,
+      startDate: startDate.current.value,
+      endDate: endDate.current.value,
+    }
+
+    addRentingForm(rentingForm)
+
+    //history.push('/AccommodationDetails/' + .id)
+
+    title.current.value = ''
+    location.current.value = ''
+    description.current.value = ''
+    imageUrl.current.value = ''
+    startDate.current.value = ''
+    endDate.current.value = ''
+  }
+
+ //const RentingForm = (props) => {
+  
   return (
-    <form key="1" style={styles.form} >
+    <form key="1" style={styles.form} onSubmit={createRentingForm}>
 
       <h1 style={{ color: '#839cc1' }}>Uthyrningsformulär</h1>
 
       <label style={styles.label} form="rentingform" for="fname">Titel (max 80 tecken)</label>
-      <input key="2" style={styles.input} form="rentingform" type="text" placeholder="Mysig stuga" required></input>
+      <input key="2" required ref={title} style={styles.input}
+        form="rentingform" type="text" placeholder="Mysig stuga" required></input>
 
       <label style={styles.label} form="rentingform" for="fname">Ort</label>
-      <input key="3" style={styles.input} form="rentingform" maxlength="100" type="text" placeholder="Lund" required></input>
+      <input key="3" required ref={location} style={styles.input}
+        form="rentingform" maxlength="100" type="text" placeholder="Lund" required></input>
       
       <label style={styles.label} form="rentingform" for="fname">Beskrivning (max 500 tecken)</label>
-      <textarea style={styles.description} form="rentingform" maxlength="500" type="text" placeholder="..." required></textarea>
+      <textarea style={styles.description} required ref={description}
+        form="rentingform" maxlength="500" type="text" placeholder="..." required></textarea>
 
       <label style={styles.label} form="rentingform" for="fname">Bild</label>
-      <input key="4" style={styles.input} form="rentingform" type="text" placeholder="http://din.url.här" required></input>
+      <input key="4" style={styles.input} required ref={imageUrl}
+        form="rentingform" type="text" placeholder="http://din.url.här" required></input>
       
       <div style={styles.date_container} >
         <label style={styles.label} form="rentingform" for="fname">Startdatum</label>
-        <input key="5" style={styles.date} form="rentingform" type="text" placeholder="2021/01/01" required></input>
+        <input key="5" style={styles.date} required ref={startDate}
+          form="rentingform" type="text" placeholder="2021/01/01" required></input>
 
         <label style={styles.label} form="rentingform" for="fname">Slutdatum</label>
-        <input key="6" style={styles.date} form="rentingform" type="text" placeholder="2021/01/02" required></input>
+        <input key="6" style={styles.date} required ref={endDate}
+          form="rentingform" type="text" placeholder="2021/01/02" required></input>
       </div>
 
       <h3 style={{ color: '#839cc1' }}>Bekvämligheter</h3>
-      <Amenities />
+      
       <br></br>
-
+      <Amenities/>
       <div style={styles.buttons_container}>
       <button style={styles.button}>Färdig</button> 
         <button style={styles.button}>Rensa</button>
       </div>
     </form>
-  );
+  )
 }
 
 const styles = {
@@ -49,6 +94,7 @@ const styles = {
     textAlign: 'left',
     padding: '10px'
   },
+
   input: {
     textAlign: 'left',
     height: '50px',
@@ -57,6 +103,7 @@ const styles = {
       outline: 'none'
     }
   },
+
   date_container: {
     textAlign: 'center',
     height: '50px',
@@ -94,6 +141,7 @@ const styles = {
       outline: 'none'
     }
   },
+
   buttons_container: {
     textAlign: 'center',
     height: '100px',
@@ -114,6 +162,7 @@ const styles = {
     fontWeight: 'bold',
     backgroundColor: '#596982'
   },
+  
   register: {
     cursor: 'pointer',
     fontSize: '10px',
@@ -124,4 +173,4 @@ const styles = {
   }
 }
 
-export default Radium(RentingForm);
+  export default Radium(CreateRentingForm)
