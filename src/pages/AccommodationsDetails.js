@@ -4,8 +4,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
 import Amenities from '../components/Amenities'
 
-import Radium from 'radium'
-
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
   const { id } = useParams()
