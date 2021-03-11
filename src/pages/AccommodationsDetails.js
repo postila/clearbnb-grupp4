@@ -48,13 +48,14 @@ const AccommodationsDetails = () => {
 
 const styles = {
   box: {
-    display: 'inline-block',
+    // display: 'inline-block',
+    margin: '0 auto',
     maxWidth: '800px',
     color: 'white'
   },
   img: {
     maxWidth: '50vw',
-    margin: '50px',
+    marginTop: '50px',
     borderRadius: '10px',
     boxShadow: '1px 1px 10px 10px #202329'
   }
