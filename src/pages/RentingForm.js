@@ -2,10 +2,12 @@ import Radium from 'radium'
 import React from 'react'
 import { useRef, useContext } from 'react'
 import Amenities from '../components/Amenities'
+import {AccommodationsContext} from '../contexts/AccommodationsContext'
 import AmenitiesContext from '../contexts/AmenitiesContext'
 import { useHistory } from 'react-router-dom'
 
 function CreateRentingForm() {
+  const { addAccommodation } = useContext(AccommodationsContext)
   //const history = useHistory()
   // const { addRentingForm } = useContext(AmenitiesContext)
 
@@ -24,9 +26,11 @@ function CreateRentingForm() {
       location: location.current.value,
       description: description.current.value,
       imageUrl: imageUrl.current.value,
-      startDate: startDate.current.value,
-      endDate: endDate.current.value,
+      //startDate: startDate.current.value,
+      //endDate: endDate.current.value,
     }
+
+    await addAccommodation(rentingForm)
 
     // addRentingForm(rentingForm)
 
@@ -36,8 +40,8 @@ function CreateRentingForm() {
     location.current.value = ''
     description.current.value = ''
     imageUrl.current.value = ''
-    startDate.current.value = ''
-    endDate.current.value = ''
+    //startDate.current.value = ''
+    //endDate.current.value = ''
   }
 
  //const RentingForm = (props) => {
@@ -63,7 +67,7 @@ function CreateRentingForm() {
       <input key="4" style={styles.input} required ref={imageUrl}
         form="rentingform" type="text" placeholder="http://din.url.här" required></input>
       
-      <div style={styles.date_container} >
+      {/* <div style={styles.date_container} >
         <label style={styles.label} form="rentingform">Startdatum</label>
         <input key="5" style={styles.date} required ref={startDate}
           form="rentingform" type="text" placeholder="2021/01/01" required></input>
@@ -71,15 +75,18 @@ function CreateRentingForm() {
         <label style={styles.label} form="rentingform">Slutdatum</label>
         <input key="6" style={styles.date} required ref={endDate}
           form="rentingform" type="text" placeholder="2021/01/02" required></input>
-      </div>
+      </div> */}
 
       <h3 style={{ color: '#839cc1' }}>Bekvämligheter</h3>
       
       <br></br>
       <Amenities/>
       <div style={styles.buttons_container}>
-      <button style={styles.button}>Färdig</button> 
-        <button style={styles.button}>Rensa</button>
+      <button 
+      style={styles.button}
+      key="7"
+      >Färdig</button> 
+        
       </div>
     </form>
   )

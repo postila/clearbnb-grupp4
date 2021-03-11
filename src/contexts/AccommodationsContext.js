@@ -11,12 +11,24 @@ export default function AccommodationsContextProvider(props) {
     setAccommodations(res)
   }
 
+  const addAccommodation = async accommodation => {
+    let res = await fetch('/api/accommodations', {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify(accommodation)
+    })
+
+    res = await res.json()
+    setAccommodations([...accommodations, accommodation])
+  }
+
   useEffect(() => {
     fetchAccommodations()
   }, [])
   
   const values = {
-    accommodations
+    accommodations,
+    addAccommodation
   }
   
   return (
