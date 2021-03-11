@@ -26,7 +26,6 @@ const locationListStyle = {
   display: 'grid',
   gridGap: '10px 10px',
   justifyContent: 'center',
-  //flexWrap: 'wrap',
   width: '100%'
 }
 
