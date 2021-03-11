@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 
 function CreateRentingForm() {
   //const history = useHistory()
-  const { addRentingForm } = useContext(AmenitiesContext)
+  // const { addRentingForm } = useContext(AmenitiesContext)
 
   const title = useRef()
   const location = useRef()
@@ -28,7 +28,7 @@ function CreateRentingForm() {
       endDate: endDate.current.value,
     }
 
-    addRentingForm(rentingForm)
+    // addRentingForm(rentingForm)
 
     //history.push('/AccommodationDetails/' + .id)
 
@@ -47,28 +47,28 @@ function CreateRentingForm() {
 
       <h1 style={{ color: '#839cc1' }}>Uthyrningsformulär</h1>
 
-      <label style={styles.label} form="rentingform" for="fname">Titel (max 80 tecken)</label>
+      <label style={styles.label} form="rentingform">Titel (max 80 tecken)</label>
       <input key="2" required ref={title} style={styles.input}
         form="rentingform" type="text" placeholder="Mysig stuga" required></input>
 
-      <label style={styles.label} form="rentingform" for="fname">Ort</label>
+      <label style={styles.label} form="rentingform">Ort</label>
       <input key="3" required ref={location} style={styles.input}
-        form="rentingform" maxlength="100" type="text" placeholder="Lund" required></input>
+        form="rentingform" maxLength="100" type="text" placeholder="Lund" required></input>
       
-      <label style={styles.label} form="rentingform" for="fname">Beskrivning (max 500 tecken)</label>
+      <label style={styles.label} form="rentingform">Beskrivning (max 500 tecken)</label>
       <textarea style={styles.description} required ref={description}
-        form="rentingform" maxlength="500" type="text" placeholder="..." required></textarea>
+        form="rentingform" maxLength="500" type="text" placeholder="..." required></textarea>
 
-      <label style={styles.label} form="rentingform" for="fname">Bild</label>
+      <label style={styles.label} form="rentingform">Bild</label>
       <input key="4" style={styles.input} required ref={imageUrl}
         form="rentingform" type="text" placeholder="http://din.url.här" required></input>
       
       <div style={styles.date_container} >
-        <label style={styles.label} form="rentingform" for="fname">Startdatum</label>
+        <label style={styles.label} form="rentingform">Startdatum</label>
         <input key="5" style={styles.date} required ref={startDate}
           form="rentingform" type="text" placeholder="2021/01/01" required></input>
 
-        <label style={styles.label} form="rentingform" for="fname">Slutdatum</label>
+        <label style={styles.label} form="rentingform">Slutdatum</label>
         <input key="6" style={styles.date} required ref={endDate}
           form="rentingform" type="text" placeholder="2021/01/02" required></input>
       </div>
