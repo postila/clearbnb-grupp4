@@ -1,45 +1,40 @@
-import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
-import { LocationContext } from '../contexts/locationContextProvider'
 import Radium from 'radium'
-import { useHistory } from 'react-router-dom'
 
 const Locations = () => {
   const { accommodations } = useContext(AccommodationsContext)
-  const { locations } = useContext(LocationContext)
   
   const history = useHistory()
   
   const goToDetailsPage = (id) => {
-    history.push('/AccommodationDetails/' + id)
+    history.push('/accommodationDetails/' + id)
   }
   const { id } = useParams()
-  const accommodationList = id ? accommodations.filter(a => a.location === id) : accommodations
+  const accommodationList = id ? accommodations.filter(a => a.location._id === id) : accommodations
   
   const card = accommodation => 
-    (
-      <div
-        style={styles.box}
-        className="card"
-        key={accommodation._id}
-        onClick={() => goToDetailsPage(accommodation._id)}
-      >
-        <img style={styles.pictures} src={accommodation.imageUrl} />
-        <div style={styles.text}>
-          <h3>{accommodation.title}</h3>
-          <p>Gäster {accommodation.maxGuest} | {accommodation.pricePerNight} SEK</p>
-          <p>{locations.find(location => location._id === accommodation.location).name}</p>
+  (
+    <div
+    style={ styles.box }
+    className="card"
+    key={ accommodation._id }
+    onClick={() => goToDetailsPage(accommodation._id)}
+    >
+        <img style={ styles.pictures } src={ accommodation.imageUrl } />
+        <div style={ styles.text }>
+          <h3>{ accommodation.title }</h3>
+          <p>Gäster {accommodation.maxGuest} | { accommodation.pricePerNight } SEK</p>
+          <p>{ accommodation.location.name }</p>
         </div>
       </div>
-    )
+  )
   
-
   return (
     <div>
-      {accommodationList.map(accommodation => card(accommodation))}
-      
-    </div >
+      { accommodationList.map(accommodation => card(accommodation)) }
+    </div>
   );
 }
 

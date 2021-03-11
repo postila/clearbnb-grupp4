@@ -17,7 +17,7 @@ const Home = () => {
         {register && <Register />}
       </div>
       <div style={locationListStyle}>
-        <LocationList  ></LocationList>
+        <LocationList />
       </div>
     </div >
   );

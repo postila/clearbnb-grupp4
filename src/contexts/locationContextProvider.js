@@ -7,15 +7,13 @@ export default function LocationsContextProvider(props) {
 
   const fetchLocations = async () => {
     let res = await fetch('/rest/locations')
-    console.log(res, 'look at me');
     res = await res.json()
-    console.log(res, 'look at me again');
     setLocations(res)
   }
 
   useEffect(() => {
     fetchLocations()
-  }, ([]))
+  }, [])
 
   const values = {
     locations

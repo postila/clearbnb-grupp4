@@ -13,7 +13,7 @@ export default function AccommodationsContextProvider(props) {
 
   useEffect(() => {
     fetchAccommodations()
-  }, ([]))
+  }, [])
   
   const values = {
     accommodations

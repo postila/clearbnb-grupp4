@@ -38,7 +38,7 @@ app.get('/rest/locations/:id', async (req, res) => {
 })
 
 app.get('/rest/accommodations', async (req, res) => {
-  let docs = await accommodations.find()
+  let docs = await accommodations.find().populate(['amenitiesList', 'location']).exec()
   res.json(docs)
 })
 
@@ -70,6 +70,11 @@ app.get('/rest/accommodation/:id', async (req, res) => {
   res.json(doc)
 
 })
+
+app.get('/api/accommodationDetails/:id'), async (req, res) => {
+  let doc = await accommodations.findById(req.params.id)
+  res.json(doc)
+} 
 
 app.get('/api/login', async (req, res) => {
   if (session("current-member") != null) {
