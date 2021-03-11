@@ -2,7 +2,8 @@ import Radium from 'radium'
 import React from 'react'
 import { useRef, useContext } from 'react'
 import Amenities from '../components/Amenities'
-import {AccommodationsContext} from '../contexts/AccommodationsContext'
+import { AccommodationsContext } from '../contexts/AccommodationsContext'
+import { LocationContext } from '../contexts/locationContextProvider'
 import AmenitiesContext from '../contexts/AmenitiesContext'
 import { useHistory } from 'react-router-dom'
 
@@ -14,6 +15,8 @@ function CreateRentingForm() {
   const title = useRef()
   const location = useRef()
   const description = useRef()
+  const maxGuests = useRef()
+  const pricePerNight = useRef()
   const imageUrl = useRef()
   const startDate = useRef()
   const endDate = useRef()
@@ -25,7 +28,10 @@ function CreateRentingForm() {
       title: title.current.value,
       location: location.current.value,
       description: description.current.value,
+      maxGuests: maxGuests.current.value,
+      pricePerNight: pricePerNight.current.value,
       imageUrl: imageUrl.current.value,
+
       //startDate: startDate.current.value,
       //endDate: endDate.current.value,
     }
@@ -40,9 +46,19 @@ function CreateRentingForm() {
     location.current.value = ''
     description.current.value = ''
     imageUrl.current.value = ''
+    maxGuests.current.value = ''
+    pricePerNight.current.value = ''
     //startDate.current.value = ''
     //endDate.current.value = ''
   }
+
+    const { locations } = useContext(LocationContext)
+    
+    const locationItem = location => (
+      
+        <option value={location._id}> {location.name}</option>
+      
+    )
 
  //const RentingForm = (props) => {
   
@@ -56,8 +72,13 @@ function CreateRentingForm() {
         form="rentingform" type="text" placeholder="Mysig stuga" required></input>
 
       <label style={styles.label} form="rentingform">Ort</label>
-      <input key="3" required ref={location} style={styles.input}
-        form="rentingform" maxLength="100" type="text" placeholder="Lund" required></input>
+
+      <select key="3" required ref={location} style={styles.input}
+        form="rentingform" required>
+      
+        {locations.map(location => locationItem(location))}
+      
+      </select>
       
       <label style={styles.label} form="rentingform">Beskrivning (max 500 tecken)</label>
       <textarea style={styles.description} required ref={description}
@@ -66,6 +87,16 @@ function CreateRentingForm() {
       <label style={styles.label} form="rentingform">Bild</label>
       <input key="4" style={styles.input} required ref={imageUrl}
         form="rentingform" type="text" placeholder="http://din.url.här" required></input>
+      
+      <div style={styles.date_container} >
+      <label style={styles.label} form="rentingform">Max antal gäster</label>
+        <input key="5" style={styles.date} required ref={maxGuests}
+        form="rentingform" type="text" placeholder="8" required></input>
+
+      <label style={styles.label} form="rentingform">Pris per natt</label>
+        <input key="6" style={styles.date} required ref={pricePerNight}
+        form="rentingform" type="text" placeholder="500" required></input>
+      </div>
       
       {/* <div style={styles.date_container} >
         <label style={styles.label} form="rentingform">Startdatum</label>
