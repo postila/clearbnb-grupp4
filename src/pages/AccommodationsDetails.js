@@ -3,6 +3,7 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
 import Amenities from '../components/Amenities'
+import BookingForm from '../components/BookingForm';
 
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -16,6 +17,7 @@ const AccommodationsDetails = () => {
 
   useEffect(() => {
     setItem(accommodation)
+    console.log(item, 'item från detailj');
   }, [item])
 
   const goBack = () => {
@@ -35,7 +37,8 @@ const AccommodationsDetails = () => {
               <h4>Beskrivning:</h4>
               <p>{ accommodation.description }</p>
           </div>
-          <Amenities />
+        <Amenities />
+        <BookingForm accommodation={item} />
         </div> }
       { !accommodation &&
         <div>

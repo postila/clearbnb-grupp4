@@ -17,13 +17,15 @@ import NavBar from './components/NavBar'
 import AccommodationsContextProvider from './contexts/AccommodationsContext'
 import LocationContext from './contexts/locationContextProvider'
 import AmenitiesContextProvider from './contexts/AmenitiesContext'
+import BookingContextProvider from './contexts/BookingContextProvider'
 
 function App() {
   return (
     <div className="App">
       <AccommodationsContextProvider>
         <LocationContext>
-        <AmenitiesContextProvider>
+          <AmenitiesContextProvider>
+            <BookingContextProvider>
         <Router>
           <header className="App-header"><NavBar /></header>
 
@@ -40,7 +42,8 @@ function App() {
           </main>
 
           <footer>&copy; Copyright 2021 Group 4</footer>
-        </Router>
+              </Router>
+            </BookingContextProvider>
         </AmenitiesContextProvider>
         </LocationContext>
       </AccommodationsContextProvider>

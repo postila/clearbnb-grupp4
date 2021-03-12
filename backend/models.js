@@ -43,9 +43,25 @@ const Amenity = mongoose.model('Amenity', {
   icronUrl: String
 })
 
+const Booking = mongoose.model('Booking', {
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  accommodation: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Accommodation'
+  },
+  startDate: Number,
+  endDate: Number,
+  guests: Number,
+  totalPrice: Number
+})
+
 module.exports = {
   users: User,
   accommodations: Accommodation,
   locations: Location,
-  amenities: Amenity
+  amenities: Amenity,
+  bookings: Booking
 }
