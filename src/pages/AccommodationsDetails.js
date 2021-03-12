@@ -28,7 +28,7 @@ const AccommodationsDetails = () => {
         <div>
         <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id } />
           <h1>{ accommodation.title }</h1>
-          <p>Antal gäster: { accommodation.maxGuest }</p>
+          <p>Antal gäster: { accommodation.maxGuests }</p>
           <p>Ort: { accommodation.location.name }</p>
           <p>Pris per natt: { accommodation.pricePerNight }</p>
             <div className="description-content">
