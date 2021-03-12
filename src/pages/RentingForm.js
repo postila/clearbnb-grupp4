@@ -1,6 +1,6 @@
 import Radium from 'radium'
 import React from 'react'
-import { useRef, useContext } from 'react'
+import { useRef, useContext, useState } from 'react'
 import Amenities from '../components/Amenities'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { LocationContext } from '../contexts/locationContextProvider'
@@ -60,6 +60,15 @@ function CreateRentingForm() {
       
     )
 
+    const [amenitiesList, setAmenities] = useState([
+      
+    ])
+
+    const addToList = (amenity) => {
+      setAmenities([...amenitiesList, {amenity}])
+      console.log(amenitiesList, 'list')
+    }
+
  //const RentingForm = (props) => {
   
   return (
@@ -91,7 +100,7 @@ function CreateRentingForm() {
       <div style={styles.date_container} >
       <label style={styles.label} form="rentingform">Max antal gäster</label>
         <input key="5" style={styles.date} required ref={maxGuests}
-        form="rentingform" type="text" placeholder="8" required></input>
+        form="rentingform" type="number" placeholder="8" required></input>
 
       <label style={styles.label} form="rentingform">Pris per natt</label>
         <input key="6" style={styles.date} required ref={pricePerNight}
@@ -111,7 +120,7 @@ function CreateRentingForm() {
       <h3 style={{ color: '#839cc1' }}>Bekvämligheter</h3>
       
       <br></br>
-      <Amenities/>
+      <Amenities addToList={addToList}/>
       <div style={styles.buttons_container}>
       <button 
       style={styles.button}
@@ -189,7 +198,6 @@ const styles = {
 
   button: {
     width: '120px',
-    margin: '0 auto',
     marginTop: '10px',
     marginLeft: '10px',
     cursor: 'pointer',
