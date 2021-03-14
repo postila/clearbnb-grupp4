@@ -21,7 +21,7 @@ const Accommodation = mongoose.model('Accommodation', {
   title: String,
   imageUrl: String,
   amenitiesList: [{
-    type: mongoose.Schema.Types.ObjectId,
+    type: Boolean,
     ref: 'Amenity'
   }],
   maxGuests: Number,
