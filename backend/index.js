@@ -86,6 +86,8 @@ app.post('/api/booking', async (req, res) => {
 app.get('/rest/bookings', async (req, res) => {
   let docs = await bookings.find().populate(['user', 'accommodation']).exec()
   res.json(docs)
+})
+
 app.post('/rest/dates', async (req, res) => {
   let doc = new rentaldates(req.body)
   await doc.save()

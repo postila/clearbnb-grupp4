@@ -12,13 +12,13 @@ const AccommodationsDetails = () => {
   const history = useHistory()
   
   let accommodation = accommodations.find(accommodation => accommodation._id === id)
-  console.log(accommodation, 'accommodation')
+  // console.log(accommodation, 'accommodation')
 
   const [item, setItem] = useState(accommodation)
 
   useEffect(() => {
     setItem(accommodation)
-    console.log(item, 'item från detailj');
+    // console.log(item, 'item från detailj');
   }, [item])
 
   const goBack = () => {
