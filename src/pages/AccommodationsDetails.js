@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
 import Amenities from '../components/Amenities'
 import BookingForm from '../components/BookingForm';
+import shadows from '@material-ui/core/styles/shadows';
 
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -11,8 +12,8 @@ const AccommodationsDetails = () => {
   const history = useHistory()
   
   let accommodation = accommodations.find(accommodation => accommodation._id === id)
+  console.log(accommodation, 'accommodation')
 
-    
   const [item, setItem] = useState(accommodation)
 
   useEffect(() => {
@@ -30,15 +31,24 @@ const AccommodationsDetails = () => {
         <div>
         <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id } />
           <h1>{ accommodation.title }</h1>
-          <p>Max antal gäster: { accommodation.maxGuests }</p>
+          <p>Antal gäster: { accommodation.maxGuests }</p>
           <p>Ort: { accommodation.location.name }</p>
           <p>Pris per natt: { accommodation.pricePerNight }</p>
             <div className="description-content">
               <h4>Beskrivning:</h4>
               <p>{ accommodation.description }</p>
           </div>
-        <Amenities />
         <BookingForm accommodation={item} />
+          
+          <div>
+            <h4>Bekvämligheter:</h4>
+            {accommodation.amenitiesList.map((a) => (
+              <div key={a._id}>
+                {a.Tvättmaskin?'Tvättmaskin, ':''} {a.WiFi?'WiFi, ':''} {a.Väsentligheter?'Väsentligheter, ':''} {a.Kök?'Kök, ':''} {a.TV?'TV, ':''} {a.Luftkonditionering?'Luftkonditionering, ':''} {a.Strykjärn?'Strykjärn, ':''} {a.LåstSkåp?'Låst Skåp, ':''}
+              </div>
+           ))}
+          </div>
+
         </div> }
       { !accommodation &&
         <div>
