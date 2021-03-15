@@ -1,7 +1,7 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import Radium from 'radium'
 import { BookingContext } from '../contexts/BookingContextProvider';
-import DatePicker from '../components/DatePicker'
+import DatePicker from "react-datepicker";
 
 
 const BookingForm = (props) => {
@@ -23,26 +23,23 @@ const BookingForm = (props) => {
   const createBooking = async e => {
     e.preventDefault()
 
-  }
+    console.log(arrDate.getTime(), 'ankomst');
+    console.log(depDate.getTime(), 'avresa');
 
-  useEffect(() => {
-    setArrDate(props.startDate)
-    setDepDate(props.endDate)
-    console.log(arrDate, 'arrival');
-    console.log(depDate, 'departure');
-  }, [arrDate, depDate])
+  }
 
   return (
     <div>
-      <form>
+      <form onSubmit={createBooking}>
         <input
           type="number"
           placeholder="Antal gäster"
           max={accommodationMaxGuests}
           min="1"
           style={styles.input} />
-
-        <DatePicker arrDate={arrDate} depDate={depDate} />
+        <DatePicker selected={arrDate} onChange={data => setArrDate(data)} />
+        <DatePicker selected={depDate} onChange={data => setDepDate(data)} />
+        <button>Boka</button>
       </form>
     </div>
    );

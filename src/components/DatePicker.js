@@ -1,27 +1,24 @@
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
-import { date } from "check-types";
-import { addDays } from "date-fns";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import DatePicker from "react-datepicker";
 
-const DatePickerr = (props) => {
+const DatePickerr = () => {
 
   const { accommodationId } = useContext(AccommodationsContext)
 
-  const [startDate, setStartDate] = useState(props.arrDate);
-  const [endDate, setEndDate] = useState(props.depDate);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null);
+
+
 
 
   const onChange = dates => {
-    let [start, end] = dates;
+    const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
-    console.log(start + 'this is the new start date')
-    console.log(end + 'this is the new end date')
-    // console.log(dates)
+    console.log(start, 'start datum');
+    console.log(end, 'slut datum');
 
-    console.log(startDate, 'start')
-    console.log(endDate, 'end')
     //Here we handle how we set the start and stop date 
 
     Date.prototype.addDays = function (days) {
@@ -45,12 +42,9 @@ const DatePickerr = (props) => {
     for (let i = 0; i < dateArray.length; i++) {
       // console.log(Date.parse(dateArray[i]) + ' this is date ' + i + ' in the array');  
     }
-  };
 
-  useEffect(() => {
-    // setStartDate(props.arrDate)
-    // setEndDate(props.depDate)
-  }, [start, end])
+
+  };
 
   return (
     <div>
