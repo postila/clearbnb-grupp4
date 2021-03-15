@@ -24,9 +24,9 @@ function NavBar() {
       
       <nav style={styles.navbar}>
         <div>
-        <Link style={styles.button} to="/Om-oss">Om oss</Link>
-        <Link style={styles.button} to="/">Hem</Link>
         <Link style={styles.button} to="/Platser">Platser</Link>
+        <Link style={styles.button} to="/">Hem</Link>
+        <Link style={styles.button} to="/Om-oss">Om oss</Link>
         </div>
               </nav>
 
@@ -37,7 +37,8 @@ function NavBar() {
               aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
             </Button>
 
-            <Menu
+          <Menu
+              style={styles.dropdown}
               id="simple-menu"
               anchorEl={anchorEl}
               keepMounted
@@ -63,34 +64,35 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     fontFamily: 'Verdana',
-    textDecoration: 'none',
     color: '#eee',
     paddingTop: '15px',
+    paddingRight: '40px'
 
   },
   button: {
+    fontFamily: 'Quicksand',
     float: 'left',
-    marginRight: '40px',
+    paddingLeft: '20px',
+    textDecoration: 'none',
     color: '#eee',
   },
   mypage: {
     color: '#eee',
     float: 'right',
     marginTop: '-35px'
-    
-
   },
-
   img: {
     width: '40px'
-  }
-
-
+  },
+  dropdown: {
+    marginTop: '30px',
+    paddingRight: '25px'
+  },
 }
 
 
-const navDropDown = {
+// const navDropDown = {
 
-}
+// }
 
 export default Radium(NavBar);
