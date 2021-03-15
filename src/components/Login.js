@@ -3,24 +3,27 @@ import Radium from 'radium'
 
 const Login = (props) => {
   return (
-    <form style={styles.form}>
-      <input style={styles.input} type="text" placeholder="E-mail" required></input>
-      <input style={styles.input} type="password" placeholder="Lösenord" required></input>
-      <button style={styles.button}>Logga in</button>
-      <p>Inget konto?
-        <span style={styles.register} onClick={ props.displayRegisterForm }> Registrera dig här</span>
-      </p>
-    </form>
+    <div>
+      <form style={styles.form}>
+        <input style={styles.input} type="text" placeholder="E-mail" required></input>
+        <input style={styles.input} type="password" placeholder="Lösenord" required></input>
+        <button style={styles.button}>Logga in</button>
+        <p>Inget konto?
+        <span style={styles.register} onClick={props.displayRegisterForm}> Registrera dig här</span>
+        </p>
+      </form>
+    </div>
   );
 }
 
 const styles = {
-form: {
+  form: {
     display: 'grid',
     gridGap: '15px',
     maxWidth: '300px',
-    margin: '100px auto',
-    padding: '10px'
+    margin: '0px auto',
+    padding: '100px'
+
   },
   input: {
     textAlign: 'center',
@@ -44,7 +47,9 @@ form: {
     ':hover': {
       opacity: '50%'
     }
-  }
+  },
+
+
 }
- 
+
 export default Radium(Login);
