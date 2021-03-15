@@ -2,14 +2,17 @@ import React, { useState, useContext, useRef } from 'react';
 import Radium from 'radium'
 import { BookingContext } from '../contexts/BookingContextProvider';
 import DatePicker from "react-datepicker";
+import { useHistory } from 'react-router-dom'
 
 
 const BookingForm = (props) => {
+  const history = useHistory()
   const { addBooking } = useContext(BookingContext)
   const [accommodationId, setAccommodationId] = useState(props.accommodation._id)
   const [accommodationPrice, setAccommodationPrice] = useState(props.accommodation.pricePerNight)
   const [accommodationMaxGuests, setAccommodationMaxGuests] = useState(props.accommodation.maxGuests)
-  const [validation, setValidation] = useState(true)
+  const [validatDates, setValidatDates] = useState(true)
+  const [bookingOk, setBookingOk] = useState(false)
 
   const [arrDate, setArrDate] = useState()
   const [depDate, setDepDate] = useState()
@@ -28,13 +31,17 @@ const BookingForm = (props) => {
       startDate: arrDate.getTime(),
       endDate: depDate.getTime(),
       guests: guests.current.value,
-      // totalPrice: 
+      // totalPrice: accommodationPrice
     }
 
     if (arrDate.getTime() < depDate.getTime()) {
       await addBooking(booking)
+      setBookingOk(true)
+      setValidatDates(true)
+      history.push('/Mina-sidor')
     } else {
-      setValidation(false)
+      setValidatDates(false)
+      setBookingOk(false)
     }
     console.log(booking, 'bokningen')
   }
@@ -52,13 +59,9 @@ const BookingForm = (props) => {
         <DatePicker selected={arrDate} onChange={data => setArrDate(data)} placeholderText="Ankomst" style={styles.input} /> <br />
         <DatePicker selected={depDate} onChange={data => setDepDate(data)} placeholderText="Avresa" style={styles.input} /> <br />
         <button style={styles.button}>Boka</button>
-      {!validation && 
-      <div>
-        <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>
-      </div>
-      }
+        {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>}
+        {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>}
       </form>
-
     </div>
    );
 }
@@ -67,7 +70,6 @@ export default Radium(BookingForm);
 
 const styles = {
   input: {
-    // display: 'block',
     width: '100px',
     height: '25px',
     margin: '10px'
@@ -88,7 +90,14 @@ const styles = {
     padding: '5px',
     margin: '10px auto',
     width: '500px',
-    // border: 'none',
+    borderRadius: '10px'
+  },
+  ok: {
+    backgroundColor: '#65c28c',
+    fontWeight: 'bold',
+    padding: '5px',
+    margin: '10px auto',
+    width: '300px',
     borderRadius: '10px'
   }
 }
