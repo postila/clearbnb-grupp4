@@ -7,7 +7,7 @@ const Login = (props) => {
       <input style={styles.input} type="text" placeholder="E-mail" required></input>
       <input style={styles.input} type="password" placeholder="Lösenord" required></input>
       <button style={styles.button}>Logga in</button>
-      <p>Skapa konto?
+      <p>Inget konto?
         <span style={styles.register} onClick={ props.displayRegisterForm }> Registrera dig här</span>
       </p>
     </form>
@@ -18,25 +18,28 @@ const styles = {
 form: {
     display: 'grid',
     gridGap: '15px',
-    maxWidth: '400px',
-    margin: '20px auto',
+    maxWidth: '300px',
+    margin: '100px auto',
     padding: '10px'
   },
   input: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Quicksand',
   },
   button: {
+    fontFamily: 'Quicksand',
     maxWidth: '100px',
     margin: '0 auto',
     marginTop: '10px',
     cursor: 'pointer',
     border: 'none',
     padding: '10px',
-    borderRadius: '10px'
+    borderRadius: '6px'
   },
   register: {
     cursor: 'pointer',
     fontSize: '10px',
+    fontFamily: 'Quicksand',
     textTransform: 'uppercase',
     ':hover': {
       opacity: '50%'
