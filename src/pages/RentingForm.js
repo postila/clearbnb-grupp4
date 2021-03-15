@@ -1,17 +1,22 @@
 import Radium from 'radium'
 import React from 'react'
-import { useRef, useContext } from 'react'
+import { useRef, useContext, useState } from 'react'
 import Amenities from '../components/Amenities'
+import { AccommodationsContext } from '../contexts/AccommodationsContext'
+import { LocationContext } from '../contexts/locationContextProvider'
 import AmenitiesContext from '../contexts/AmenitiesContext'
 import { useHistory } from 'react-router-dom'
 
 function CreateRentingForm() {
+  const { addAccommodation } = useContext(AccommodationsContext)
   //const history = useHistory()
   // const { addRentingForm } = useContext(AmenitiesContext)
 
   const title = useRef()
   const location = useRef()
   const description = useRef()
+  const maxGuests = useRef()
+  const pricePerNight = useRef()
   const imageUrl = useRef()
   const startDate = useRef()
   const endDate = useRef()
@@ -23,10 +28,15 @@ function CreateRentingForm() {
       title: title.current.value,
       location: location.current.value,
       description: description.current.value,
+      maxGuests: maxGuests.current.value,
+      pricePerNight: pricePerNight.current.value,
       imageUrl: imageUrl.current.value,
-      startDate: startDate.current.value,
-      endDate: endDate.current.value,
+
+      //startDate: startDate.current.value,
+      //endDate: endDate.current.value,
     }
+
+    await addAccommodation(rentingForm)
 
     // addRentingForm(rentingForm)
 
@@ -36,9 +46,28 @@ function CreateRentingForm() {
     location.current.value = ''
     description.current.value = ''
     imageUrl.current.value = ''
-    startDate.current.value = ''
-    endDate.current.value = ''
+    maxGuests.current.value = ''
+    pricePerNight.current.value = ''
+    //startDate.current.value = ''
+    //endDate.current.value = ''
   }
+
+    const { locations } = useContext(LocationContext)
+    
+    const locationItem = location => (
+      
+        <option value={location._id}> {location.name}</option>
+      
+    )
+
+    const [amenitiesList, setAmenities] = useState([
+      
+    ])
+
+    const addToList = (amenity) => {
+      setAmenities([...amenitiesList, {amenity}])
+      console.log(amenitiesList, 'list')
+    }
 
  //const RentingForm = (props) => {
   
@@ -52,8 +81,13 @@ function CreateRentingForm() {
         form="rentingform" type="text" placeholder="Mysig stuga" required></input>
 
       <label style={styles.label} form="rentingform">Ort</label>
-      <input key="3" required ref={location} style={styles.input}
-        form="rentingform" maxLength="100" type="text" placeholder="Lund" required></input>
+
+      <select key="3" required ref={location} style={styles.input}
+        form="rentingform" required>
+      
+        {locations.map(location => locationItem(location))}
+      
+      </select>
       
       <label style={styles.label} form="rentingform">Beskrivning (max 500 tecken)</label>
       <textarea style={styles.description} required ref={description}
@@ -64,6 +98,16 @@ function CreateRentingForm() {
         form="rentingform" type="text" placeholder="http://din.url.här" required></input>
       
       <div style={styles.date_container} >
+      <label style={styles.label} form="rentingform">Max antal gäster</label>
+        <input key="5" style={styles.date} required ref={maxGuests}
+        form="rentingform" type="number" placeholder="8" required></input>
+
+      <label style={styles.label} form="rentingform">Pris per natt</label>
+        <input key="6" style={styles.date} required ref={pricePerNight}
+        form="rentingform" type="text" placeholder="500" required></input>
+      </div>
+      
+      {/* <div style={styles.date_container} >
         <label style={styles.label} form="rentingform">Startdatum</label>
         <input key="5" style={styles.date} required ref={startDate}
           form="rentingform" type="text" placeholder="2021/01/01" required></input>
@@ -71,15 +115,18 @@ function CreateRentingForm() {
         <label style={styles.label} form="rentingform">Slutdatum</label>
         <input key="6" style={styles.date} required ref={endDate}
           form="rentingform" type="text" placeholder="2021/01/02" required></input>
-      </div>
+      </div> */}
 
       <h3 style={{ color: '#839cc1' }}>Bekvämligheter</h3>
       
       <br></br>
-      <Amenities/>
+      <Amenities addToList={addToList}/>
       <div style={styles.buttons_container}>
-      <button style={styles.button}>Färdig</button> 
-        <button style={styles.button}>Rensa</button>
+      <button 
+      style={styles.button}
+      key="7"
+      >Färdig</button> 
+        
       </div>
     </form>
   )
@@ -151,7 +198,6 @@ const styles = {
 
   button: {
     width: '120px',
-    margin: '0 auto',
     marginTop: '10px',
     marginLeft: '10px',
     cursor: 'pointer',

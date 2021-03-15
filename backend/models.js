@@ -24,7 +24,7 @@ const Accommodation = mongoose.model('Accommodation', {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Amenity'
   }],
-  maxGuest: Number,
+  maxGuests: Number,
   pricePerNight: Number,
   description: String,
   bookedDatesList: Array,
