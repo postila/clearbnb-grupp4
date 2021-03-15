@@ -9,6 +9,7 @@ const BookingForm = (props) => {
   const [accommodationId, setAccommodationId] = useState(props.accommodation._id)
   const [accommodationPrice, setAccommodationPrice] = useState(props.accommodation.pricePerNight)
   const [accommodationMaxGuests, setAccommodationMaxGuests] = useState(props.accommodation.maxGuests)
+  const [validation, setValidation] = useState(true)
 
   const [arrDate, setArrDate] = useState()
   const [depDate, setDepDate] = useState()
@@ -30,8 +31,12 @@ const BookingForm = (props) => {
       // totalPrice: 
     }
 
+    if (arrDate.getTime() < depDate.getTime()) {
+      await addBooking(booking)
+    } else {
+      setValidation(false)
+    }
     console.log(booking, 'bokningen')
-    await addBooking(booking)
   }
 
   return (
@@ -47,7 +52,13 @@ const BookingForm = (props) => {
         <DatePicker selected={arrDate} onChange={data => setArrDate(data)} placeholderText="Ankomst" style={styles.input} /> <br />
         <DatePicker selected={depDate} onChange={data => setDepDate(data)} placeholderText="Avresa" style={styles.input} /> <br />
         <button style={styles.button}>Boka</button>
+      {!validation && 
+      <div>
+        <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>
+      </div>
+      }
       </form>
+
     </div>
    );
 }
@@ -66,8 +77,18 @@ const styles = {
     padding: '10px',
     borderRadius: '10px',
     border: 'none',
-    ':hover': {
-      focus: 'none'
+    ':focus': {
+      outline: 'none'
     }
+  },
+  error: {
+    backgroundColor: 'crimson',
+    fontWeight: 'bold',
+    letterSpacing: '0.5px',
+    padding: '5px',
+    margin: '10px auto',
+    width: '500px',
+    // border: 'none',
+    borderRadius: '10px'
   }
 }
