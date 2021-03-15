@@ -24,10 +24,12 @@ const AccommodationsDetails = () => {
   }
 
   return (
+    
     <div style={styles.box} key="1">
       { accommodation &&
         <div>
-        <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id } />
+        <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id} />
+        <div style={styles.infoContainer}>
           <h1>{ accommodation.title }</h1>
           <p>Antal gäster: { accommodation.maxGuests }</p>
           <p>Ort: { accommodation.location.name }</p>
@@ -45,7 +47,7 @@ const AccommodationsDetails = () => {
               </div>
            ))}
           </div>
-
+        </div>
         </div> }
       { !accommodation &&
         <div>
@@ -54,19 +56,26 @@ const AccommodationsDetails = () => {
         </div>
       }
     </div>
-
+    
   );
 }
 
 const styles = {
   box: {
     // display: 'inline-block',
+    fontFamily: 'Quicksand',
     margin: '0 auto',
     maxWidth: '800px',
-    color: 'white'
+    color: 'grey',
+    textAlign: 'center',
+    paddingTop: '1vh'
+  },
+  infoContainer: {
+    textAlign: 'left',
+    paddingTop: '2vh',
   },
   img: {
-    maxWidth: '50vw',
+    maxWidth: '600px',
     marginTop: '50px',
     borderRadius: '10px',
     boxShadow: '1px 1px 10px 10px #202329'
