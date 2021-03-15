@@ -12,7 +12,7 @@ export default function BookingContextProvider(props) {
     })
 
     res = await res.json()
-    console.log(res);
+    console.log(res, 'booking ok');
   }
 
   const values = {

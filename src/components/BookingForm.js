@@ -9,8 +9,6 @@ const BookingForm = (props) => {
   const [accommodationId, setAccommodationId] = useState(props.accommodation._id)
   const [accommodationPrice, setAccommodationPrice] = useState(props.accommodation.pricePerNight)
   const [accommodationMaxGuests, setAccommodationMaxGuests] = useState(props.accommodation.maxGuests)
-  console.log(accommodationPrice);
-  console.log(accommodationMaxGuests);
 
   const [arrDate, setArrDate] = useState()
   const [depDate, setDepDate] = useState()
@@ -23,9 +21,17 @@ const BookingForm = (props) => {
   const createBooking = async e => {
     e.preventDefault()
 
-    console.log(arrDate.getTime(), 'ankomst');
-    console.log(depDate.getTime(), 'avresa');
+    const booking = {
+      // user: 
+      accommodation: accommodationId,
+      startDate: arrDate.getTime(),
+      endDate: depDate.getTime(),
+      guests: guests.current.value,
+      // totalPrice: 
+    }
 
+    console.log(booking, 'bokningen')
+    await addBooking(booking)
   }
 
   return (
@@ -33,13 +39,14 @@ const BookingForm = (props) => {
       <form onSubmit={createBooking}>
         <input
           type="number"
+          ref={guests}
           placeholder="Antal gäster"
           max={accommodationMaxGuests}
           min="1"
-          style={styles.input} />
-        <DatePicker selected={arrDate} onChange={data => setArrDate(data)} />
-        <DatePicker selected={depDate} onChange={data => setDepDate(data)} />
-        <button>Boka</button>
+          style={styles.input} /><br />
+        <DatePicker selected={arrDate} onChange={data => setArrDate(data)} placeholderText="Ankomst" style={styles.input} /> <br />
+        <DatePicker selected={depDate} onChange={data => setDepDate(data)} placeholderText="Avresa" style={styles.input} /> <br />
+        <button style={styles.button}>Boka</button>
       </form>
     </div>
    );
@@ -49,8 +56,18 @@ export default Radium(BookingForm);
 
 const styles = {
   input: {
-    display: 'block',
+    // display: 'block',
     width: '100px',
-    height: '25px'
+    height: '25px',
+    margin: '10px'
+  },
+  button: {
+    margin: '10px',
+    padding: '10px',
+    borderRadius: '10px',
+    border: 'none',
+    ':hover': {
+      focus: 'none'
+    }
   }
 }
