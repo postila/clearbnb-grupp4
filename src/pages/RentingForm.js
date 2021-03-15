@@ -86,91 +86,177 @@ function CreateRentingForm() {
   return (
     <form key="1" style={styles.form} onSubmit={createRentingForm}>
 
-      <h1 style={{ color: '#839cc1' }}>Uthyrningsformulär</h1>
+      <h1 style={styles.headline}>Uthyrningsformulär</h1>
 
       <label style={styles.label} form="rentingform">Titel (max 80 tecken)</label>
-      <input key="2" required ref={title} style={styles.input}
-        form="rentingform" type="text" placeholder="Mysig stuga" required></input>
+      <input
+        key="2"
+        required ref={title}
+        style={styles.input}
+        form="rentingform"
+        type="text"
+        placeholder="Mysig stuga"
+      ></input>
 
       <label style={styles.label} form="rentingform">Ort</label>
 
-      <select key="3" required ref={location} style={styles.input}
-        form="rentingform" required>
-
+      <select
+        key="3"
+        required ref={location}
+        style={styles.input}
+        form="rentingform"
+      >
         {locations.map(location => locationItem(location))}
-
       </select>
 
       <label style={styles.label} form="rentingform">Beskrivning (max 500 tecken)</label>
-      <textarea style={styles.description} required ref={description}
-        form="rentingform" maxLength="500" type="text" placeholder="..." required></textarea>
+      <textarea
+        style={styles.description}
+        required ref={description}
+        form="rentingform"
+        maxLength="500"
+        type="text"
+        placeholder="..."
+        required>
+      </textarea>
 
       <label style={styles.label} form="rentingform">Bild</label>
-      <input key="4" style={styles.input} required ref={imageUrl}
-        form="rentingform" type="text" placeholder="http://din.url.här" required></input>
+      <input
+        key="4"
+        style={styles.input}
+        required ref={imageUrl}
+        form="rentingform"
+        type="text"
+        placeholder="http://din.url.här"
+      ></input>
 
-      <div style={styles.date_container} >
+      <div style={styles.dateContainer} >
         <label style={styles.label} form="rentingform">Max antal gäster</label>
-        <input key="5" style={styles.date} required ref={maxGuests}
-          form="rentingform" type="number" placeholder="8" required></input>
+        <input
+          key="5"
+          style={styles.date}
+          required ref={maxGuests}
+          form="rentingform"
+          type="number"
+          placeholder="8"
+        ></input>
 
         <label style={styles.label} form="rentingform">Pris per natt</label>
-        <input key="6" style={styles.date} required ref={pricePerNight}
-          form="rentingform" type="text" placeholder="500" required></input>
+        <input
+          key="6"
+          style={styles.date}
+          required ref={pricePerNight}
+          form="rentingform"
+          type="text"
+          placeholder="500"
+        ></input>
       </div>
 
-      <h3 style={{ color: '#839cc1' }}>Bekvämligheter</h3>
+      <h3 style={styles.headline}>Bekvämligheter</h3>
 
-      <br></br>
-
-
-      <div style={styles.temp}>
-        <div style={styles.checkBox}>
-          <input key="a1" style={styles.input}
-            form="rentingform" type="checkbox" required ref={Tvättmaskin} value="Tvättmaskin" ></input>
-          <label style={styles.label} form="rentingform">Tvättmaskin</label>
+      <div style={styles.amenities}>
+        <div style={styles.amenityItem}>
+          <input
+            key="a1"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={Tvättmaskin}
+            value="Tvättmaskin"
+          ></input>
+          <img style={styles.icon}src="https://i.imgur.com/ZHG7tWd.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Tvättmaskin</label>
         </div>
 
-        <div style={styles.checkBox}>
-          <input key="a2" style={styles.input}
-            form="rentingform" type="checkbox" required ref={WiFi} value="WiFi" ></input>
-          <label style={styles.label} form="rentingform">WiFi</label>
+        <div style={styles.amenityItem}>
+          <input
+            key="a2"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={WiFi}
+            value="WiFi"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/bEPBdlP.png"></img>
+          <label style={styles.iconLabel} form="rentingform">WiFi</label>
         </div>
 
-        <div style={styles.checkBox}>
-          <input key="a3" style={styles.input}
-            form="rentingform" type="checkbox" required ref={Väsentligheter} value="Väsentligheter" ></input>
-          <label style={styles.label} form="rentingform">Väsentligheter</label>
+        <div style={styles.amenityItem}>
+          <input
+            key="a3"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={Väsentligheter}
+            value="Väsentligheter"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/gcqJNww.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Väsentligheter</label>
         </div>
 
-        <div style={styles.checkBox}>
-          <input key="a4" style={styles.input}
-            form="rentingform" type="checkbox" required ref={Kök} value="Kök" ></input>
-          <label style={styles.label} form="rentingform">Kök</label>
+        <div style={styles.amenityItem}>
+          <input
+            key="a4"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={Kök}
+            value="Kök"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/LvTR8oD.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Kök</label>
         </div>
 
-        <div style={styles.checkBox}>
-          <input key="a5" style={styles.input}
-            form="rentingform" type="checkbox" required ref={TV} value="TV" ></input>
-          <label style={styles.label} form="rentingform">TV</label>
+        <div style={styles.amenityItem}>
+          <input
+            key="a5"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={TV}
+            value="TV"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/o8S2jMk.png"></img>
+          <label style={styles.iconLabel} form="rentingform">TV</label>
         </div>
 
-        <div style={styles.checkBox}>
-          <input key="a6" style={styles.input}
-            form="rentingform" type="checkbox" required ref={Luftkonditionering} value="Luftkonditionering" ></input>
-          <label style={styles.label} form="rentingform">Luftkonditionering</label>
+        <div style={styles.amenityItem}>
+          <input
+            key="a6"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={Luftkonditionering}
+            value="Luftkonditionering"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/bF4klbB.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Luftkonditionering</label>
         </div>
 
-        <div style={styles.checkBox}>
-          <input key="a7" style={styles.input}
-            form="rentingform" type="checkbox" required ref={Strykjärn} value="Strykjärn" ></input>
-          <label style={styles.label} form="rentingform">Strykjärn</label>
+        <div style={styles.amenityItem}>
+          <input
+            key="a7"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={Strykjärn}
+            value="Strykjärn"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/3XShQ5y.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Strykjärn</label>
         </div>
 
-        <div style={styles.checkBox}>
-          <input key="a8" style={styles.input}
-            form="rentingform" type="checkbox" required ref={LåstSkåp} value="Låst skåp" ></input>
-          <label style={styles.label} form="rentingform">Låst skåp</label>
+        <div style={styles.amenityItem}>
+          <input
+            key="a8"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={LåstSkåp}
+            value="Låst skåp"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/FXhmIhX.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Låst skåp</label>
         </div>
 
       </div>
@@ -191,62 +277,72 @@ const styles = {
   form: {
     display: 'grid',
     gridGap: '3px',
-    maxWidth: '500px',
-    margin: '20px auto',
+    maxWidth: '800px',
+    margin: '0px auto',
     textAlign: 'left',
     padding: '10px'
   },
-
-  temp: {
+  amenities: {
     display: 'grid',
     color: 'white',
     justifyContent: 'center',
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridGap: '25px',
+    paddingBottom: '30px'
   },
-
+  headline: {
+    fontFamily: 'Quicksand',
+    color: 'grey',
+    padding: '40px',
+    textAlign: 'center',
+  },
+  label: {
+    textAlign: 'left',
+    verticalAlign: 'text-bottom',
+    lineHeight: '20px',
+    color: 'grey',
+    paddingTop: '15px',
+    paddingBottom: '10px',
+    
+  },
   input: {
     textAlign: 'left',
     height: '50px',
     borderRadius: '7px',
+    border: '1px',
+    backgroundColor: '#eee',
     ':focus': {
       outline: 'none'
     }
   },
-
-  date_container: {
+  description: {
+    fontFamily: 'Quicksand',
+    backgroundColor: '#eee',
+    border: '0',
+    color: 'grey',
+    textAlign: 'left',
+    height: '100px',
+    verticalAlign: 'text-top',
+    resize: 'none',
+    ':focus': {
+      outline: 'none'
+    }
+  },
+  dateContainer: {
     textAlign: 'center',
     height: '50px',
     width: '100%',
     marginTop: '10px',
     marginBottom: '40px'
   },
-
   date: {
     textAlign: 'center',
+    backgroundColor: '#eee',
     height: '50px',
     width: '90px',
+    border: '0',
     borderRadius: '7px',
     margin: '10px 20px 0px 20px',
-    ':focus': {
-      outline: 'none'
-    }
-  },
-
-  label: {
-    textAlign: 'left',
-    verticalAlign: 'text-bottom',
-    lineHeight: '10px',
-    color: 'white',
-    paddingTop: '20px',
-    paddingBottom: '10px',
-  },
-
-  description: {
-    textAlign: 'left',
-    height: '100px',
-    verticalAlign: 'text-top',
-    resize: 'none',
     ':focus': {
       outline: 'none'
     }
@@ -258,7 +354,6 @@ const styles = {
     verticalAlign: 'text-top',
     width: '100%',
   },
-
   button: {
     width: '120px',
     marginTop: '10px',
@@ -271,20 +366,28 @@ const styles = {
     fontWeight: 'bold',
     backgroundColor: '#596982'
   },
-
-  register: {
-    cursor: 'pointer',
-    fontSize: '10px',
-    textTransform: 'uppercase',
-    ':hover': {
-      opacity: '50%'
-    }
+  amenityItem: {
+    fontFamily: 'Quicksand',
+    float: 'right',
+    
   },
   checkBox: {
     float: 'left',
-    marginTop: '10px',
-    marginRight: '7px'
-  }
+    marginTop: '8px',
+  },
+  icon: {
+    width: '30px',
+    marginRight: '15px',
+    float: 'right',
+  },
+  iconLabel: {
+    fontSize: '12px',
+    textAlign: 'left',
+    lineHeight: '0px',
+    color: 'grey',
+    paddingTop: '15px',
+    float: 'left'
+  },
 }
 
 export default Radium(CreateRentingForm)
