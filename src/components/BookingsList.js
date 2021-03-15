@@ -6,7 +6,6 @@ import Radium from 'radium'
 function BookingsList() {
   const { bookings } = useContext(BookingContext)
   const { locations } = useContext(LocationContext)
-  console.log(bookings[0], '[0]')
 
   useEffect(() => {
     
@@ -14,7 +13,7 @@ function BookingsList() {
 
   const card = booking =>
   (
-    <div
+    <div bookings
       style={styles.box}
       className="card"
       key={booking._id}
@@ -24,7 +23,8 @@ function BookingsList() {
         <h3>{booking.accommodation.title}</h3>
         <p>{locations.find(l=>l._id === booking.accommodation.location).name}</p>
         <p>Antal gäster {booking.guests} | {(Math.round((booking.endDate - booking.startDate) / 86400) + 1) * booking.accommodation.pricePerNight} SEK</p>
-        <p>{new Date((booking.startDate) * 1000).toLocaleDateString()} - {new Date((booking.endDate) * 1000).toLocaleDateString()}</p>
+        <p>Ankomst: {new Date((booking.startDate) * 1000).toLocaleDateString()}</p>
+        <p>Avresa: {new Date((booking.endDate) * 1000).toLocaleDateString()}</p>
         <p>{booking.user.name}</p>
         
       </div>
@@ -33,7 +33,10 @@ function BookingsList() {
 
   return (
     <div style={styles.itemsPositions}>
+      {bookings && 
+      <div>
       {bookings.map(booking => card(booking))}
+      </div>}
     </div>
   )
 }

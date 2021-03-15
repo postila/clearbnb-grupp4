@@ -37,8 +37,8 @@ const AccommodationsDetails = () => {
             <div className="description-content">
               <h4>Beskrivning:</h4>
               <p>{ accommodation.description }</p>
+        {/* <BookingForm accommodation={item} /> */}
           </div>
-        <BookingForm accommodation={item} />
           
           <div>
             <h4>Bekvämligheter:</h4>
