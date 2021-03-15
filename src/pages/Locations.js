@@ -13,7 +13,6 @@ const Locations = () => {
   }
   const { id } = useParams()
   const accommodationList = id ? accommodations.filter(a => a.location._id === id) : accommodations
-  
   const card = accommodation => 
   (
     <div
@@ -44,23 +43,34 @@ const styles = {
     gridTemplateColumns: '1fr 1fr',
     gridGap: '20px',
     maxWidth: '800px',
-    background: '#202329',
+    background: '#eee',
     padding: '15px',
-    margin: '10px auto',
-    borderRadius: '15px',
+    margin: '40px auto',
+    borderRadius: '8px',
     ':hover': {
       opacity: '80%',
       cursor: 'pointer'
     }
   },
+
   pictures: {
-    maxWidth: '45vh',
+    resizeMode: 'contain',
+    maxWidth: '40vh',
     borderRadius: '10px',
-    boxShadow: '1px 1px 10px 0.5px #343841'
+    //boxShadow: '1px 1px 10px 0.5px #343841'
   },
+
   text: {
+    fontFamily: 'Quicksand',
     textAlign: 'left',
-    color: 'white'
+    fontSize: '20px',
+    color: 'grey'
+  },
+
+  header: {
+    fontFamily: 'Quicksand',
+    margin: '50px',
+    color: 'grey',
   }
 }
 
