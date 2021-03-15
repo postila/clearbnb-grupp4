@@ -3,6 +3,8 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
 import Amenities from '../components/Amenities'
+import BookingForm from '../components/BookingForm';
+import shadows from '@material-ui/core/styles/shadows';
 
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -10,12 +12,13 @@ const AccommodationsDetails = () => {
   const history = useHistory()
   
   let accommodation = accommodations.find(accommodation => accommodation._id === id)
+  // console.log(accommodation, 'accommodation')
 
-    
   const [item, setItem] = useState(accommodation)
 
   useEffect(() => {
     setItem(accommodation)
+    // console.log(item, 'item från detailj');
   }, [item])
 
   const goBack = () => {
@@ -35,7 +38,17 @@ const AccommodationsDetails = () => {
               <h4>Beskrivning:</h4>
               <p>{ accommodation.description }</p>
           </div>
-          <Amenities />
+        <BookingForm accommodation={item} />
+          
+          <div>
+            <h4>Bekvämligheter:</h4>
+            {accommodation.amenitiesList.map((a) => (
+              <div key={a._id}>
+                {a.Tvättmaskin?'Tvättmaskin, ':''} {a.WiFi?'WiFi, ':''} {a.Väsentligheter?'Väsentligheter, ':''} {a.Kök?'Kök, ':''} {a.TV?'TV, ':''} {a.Luftkonditionering?'Luftkonditionering, ':''} {a.Strykjärn?'Strykjärn, ':''} {a.LåstSkåp?'Låst Skåp, ':''}
+              </div>
+           ))}
+          </div>
+
         </div> }
       { !accommodation &&
         <div>
