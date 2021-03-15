@@ -18,14 +18,14 @@ function CreateRentingForm() {
   const maxGuests = useRef()
   const pricePerNight = useRef()
   const imageUrl = useRef()
-  const Tvättmaskin = useRef()
-  const WiFi = useRef()
-  const Väsentligheter = useRef()
-  const Kök = useRef()
+  const washer = useRef()
+  const wifi = useRef()
+  const essentials = useRef()
+  const kitchen = useRef()
   const TV = useRef()
-  const Luftkonditionering = useRef()
-  const Strykjärn = useRef()
-  const LåstSkåp = useRef()
+  const airConditioning = useRef()
+  const iron = useRef()
+  const safe = useRef()
   const [aList, addAList] = useState([])
 
   const createRentingForm = async e => {
@@ -39,14 +39,14 @@ function CreateRentingForm() {
       pricePerNight: pricePerNight.current.value,
       imageUrl: imageUrl.current.value,
       amenitiesList: {
-        Tvättmaskin: Tvättmaskin.current.checked,
-        WiFi: WiFi.current.checked,
-        Väsentligheter: Väsentligheter.current.checked,
-        Kök: Kök.current.checked,
+        washer: washer.current.checked,
+        wifi: wifi.current.checked,
+        essentials: essentials.current.checked,
+        kitchen: kitchen.current.checked,
         TV: TV.current.checked,
-        Luftkonditionering: Luftkonditionering.current.checked,
-        Strykjärn: Strykjärn.current.checked,
-        LåstSkåp: LåstSkåp.current.checked
+        airConditioning: airConditioning.current.checked,
+        iron: iron.current.checked,
+        safe: safe.current.checked
       }
     }
     console.log(rentingForm)
@@ -62,14 +62,14 @@ function CreateRentingForm() {
     imageUrl.current.value = ''
     maxGuests.current.value = ''
     pricePerNight.current.value = ''
-    Tvättmaskin.current.value = ''
-    WiFi.current.value = ''
-    Väsentligheter.current.value = ''
-    Kök.current.value = ''
+    washer.current.value = ''
+    wifi.current.value = ''
+    essentials.current.value = ''
+    kitchen.current.value = ''
     TV.current.value = ''
-    Luftkonditionering.current.value = ''
-    Strykjärn.current.value = ''
-    LåstSkåp.current.value = ''
+    airConditioning.current.value = ''
+    iron.current.value = ''
+    safe.current.value = ''
 
   }
 
@@ -127,25 +127,25 @@ function CreateRentingForm() {
       <div style={styles.temp}>
         <div style={styles.checkBox}>
           <input key="a1" style={styles.input}
-            form="rentingform" type="checkbox" required ref={Tvättmaskin} value="Tvättmaskin" ></input>
+            form="rentingform" type="checkbox" required ref={washer} value="washer" ></input>
           <label style={styles.label} form="rentingform">Tvättmaskin</label>
         </div>
 
         <div style={styles.checkBox}>
           <input key="a2" style={styles.input}
-            form="rentingform" type="checkbox" required ref={WiFi} value="WiFi" ></input>
+            form="rentingform" type="checkbox" required ref={wifi} value="wifi" ></input>
           <label style={styles.label} form="rentingform">WiFi</label>
         </div>
 
         <div style={styles.checkBox}>
           <input key="a3" style={styles.input}
-            form="rentingform" type="checkbox" required ref={Väsentligheter} value="Väsentligheter" ></input>
+            form="rentingform" type="checkbox" required ref={essentials} value="essentials" ></input>
           <label style={styles.label} form="rentingform">Väsentligheter</label>
         </div>
 
         <div style={styles.checkBox}>
           <input key="a4" style={styles.input}
-            form="rentingform" type="checkbox" required ref={Kök} value="Kök" ></input>
+            form="rentingform" type="checkbox" required ref={kitchen} value="kitchen" ></input>
           <label style={styles.label} form="rentingform">Kök</label>
         </div>
 
@@ -157,19 +157,19 @@ function CreateRentingForm() {
 
         <div style={styles.checkBox}>
           <input key="a6" style={styles.input}
-            form="rentingform" type="checkbox" required ref={Luftkonditionering} value="Luftkonditionering" ></input>
+            form="rentingform" type="checkbox" required ref={airConditioning} value="airConditioning" ></input>
           <label style={styles.label} form="rentingform">Luftkonditionering</label>
         </div>
 
         <div style={styles.checkBox}>
           <input key="a7" style={styles.input}
-            form="rentingform" type="checkbox" required ref={Strykjärn} value="Strykjärn" ></input>
+            form="rentingform" type="checkbox" required ref={iron} value="iron" ></input>
           <label style={styles.label} form="rentingform">Strykjärn</label>
         </div>
 
         <div style={styles.checkBox}>
           <input key="a8" style={styles.input}
-            form="rentingform" type="checkbox" required ref={LåstSkåp} value="Låst skåp" ></input>
+            form="rentingform" type="checkbox" required ref={safe} value="Låst skåp" ></input>
           <label style={styles.label} form="rentingform">Låst skåp</label>
         </div>
 
