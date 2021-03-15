@@ -13,6 +13,16 @@ const User = mongoose.model('User', {
   }
 })
 
+const RentalDate = mongoose.model('RentalDate', {
+  houseId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Accommodation'
+  },
+  startDate: Number,
+  endDate: Number
+})
+
+
 const Accommodation = mongoose.model('Accommodation', {
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -63,5 +73,6 @@ module.exports = {
   accommodations: Accommodation,
   locations: Location,
   amenities: Amenity,
-  bookings: Booking
+  bookings: Booking,
+  rentaldates: RentalDate
 }
