@@ -76,11 +76,18 @@ app.get('/api/accommodationDetails/:id', async (req, res) => {
   res.json(doc)
 })
 
-app.post('/rest/dates', async (req, res) => {
+app.get('/rest/dates', async (req, res) => {
+  let doc = await rentaldates.find()
+  res.json(doc)
+})
+
+app.post('/api/dates', async (req, res) => {
   let doc = new rentaldates(req.body)
   await doc.save()
   res.json(doc)
 })
+
+
 
 app.get('/api/login', async (req, res) => {
   if (session("current-member") != null) {
