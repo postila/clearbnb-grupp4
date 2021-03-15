@@ -1,8 +1,16 @@
-import { createContext } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 export const BookingContext = createContext();
 
 export default function BookingContextProvider(props) {
+
+  const [bookings, setBookings] = useState()
+
+  const fetchBookings = async () => {
+    let res = await fetch('/rest/bookings')
+    res = await res.json()
+    setBookings(res)
+  }
 
   const addBooking = async booking => {
     let res = await fetch('/api/booking', {
@@ -15,7 +23,12 @@ export default function BookingContextProvider(props) {
     console.log(res);
   }
 
+  useEffect(() => {
+    fetchBookings()
+  }, [])
+
   const values = {
+    bookings,
     addBooking
   }
 
