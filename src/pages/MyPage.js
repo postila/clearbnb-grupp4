@@ -1,7 +1,10 @@
 import React from 'react';
 import Login from '../components/Login'
+import Radium from 'radium'
 
 const MyPage = () => {
+
+
   return (
     <div>
       <h1>Mina sidor</h1>
@@ -9,4 +12,4 @@ const MyPage = () => {
   );
 }
 
-export default MyPage;
+export default Radium(MyPage);

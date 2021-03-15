@@ -21,6 +21,7 @@ function NavBar() {
 
     <div>
       <nav style={styles.navbar}>
+        <Link style={styles.button} to="/Mina-sidor">Mina sidor</Link>
         <Link style={styles.button} to="/Om-oss">Om oss</Link>
         <Link style={styles.button} to="/">Hem</Link>
         <Link style={styles.button} to="/Platser">Platser</Link>
@@ -37,6 +38,7 @@ function NavBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
+              <MenuItem onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Mina sidor</MenuItem>
               <MenuItem onClick={() => { history.push('/Platser'); handleClose() }}>Platser</MenuItem>
               <MenuItem onClick={() => { history.push('/'); handleClose() }}>Hem</MenuItem>
               <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Uthyrning</MenuItem>

@@ -47,10 +47,10 @@ const DatePickerr = (props) => {
     }
   };
 
-  useEffect(() => {
-    // setStartDate(props.arrDate)
-    // setEndDate(props.depDate)
-  }, [start, end])
+  // useEffect(() => {
+  //   // setStartDate(props.arrDate)
+  //   // setEndDate(props.depDate)
+  // }, [start, end])
 
   return (
     <div>
