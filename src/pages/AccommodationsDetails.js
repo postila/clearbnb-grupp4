@@ -3,15 +3,16 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
 import Amenities from '../components/Amenities'
+import DatePicker from '../components/DatePicker'
 
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
   const { id } = useParams()
   const history = useHistory()
-  
+
   let accommodation = accommodations.find(accommodation => accommodation._id === id)
 
-    
+
   const [item, setItem] = useState(accommodation)
 
   useEffect(() => {
@@ -26,17 +27,18 @@ const AccommodationsDetails = () => {
     <div style={styles.box} key="1">
       { accommodation &&
         <div>
-        <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id } />
-          <h1>{ accommodation.title }</h1>
-          <p>Antal gäster: { accommodation.maxGuest }</p>
-          <p>Ort: { accommodation.location.name }</p>
-          <p>Pris per natt: { accommodation.pricePerNight }</p>
-            <div className="description-content">
-              <h4>Beskrivning:</h4>
-              <p>{ accommodation.description }</p>
+          <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id} />
+          <h1>{accommodation.title}</h1>
+          <p>Antal gäster: {accommodation.maxGuest}</p>
+          <p>Ort: {accommodation.location.name}</p>
+          <p>Pris per natt: {accommodation.pricePerNight}</p>
+          <div className="description-content">
+            <h4>Beskrivning:</h4>
+            <p>{accommodation.description}</p>
           </div>
+          <DatePicker />
           <Amenities />
-        </div> }
+        </div>}
       { !accommodation &&
         <div>
           <h3>Accommodation not found</h3>
@@ -62,5 +64,5 @@ const styles = {
     boxShadow: '1px 1px 10px 10px #202329'
   }
 }
- 
+
 export default Radium(AccommodationsDetails);

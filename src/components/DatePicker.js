@@ -1,31 +1,46 @@
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { date } from "check-types";
 import { addDays } from "date-fns";
+import { DateContext } from '../contexts/dateContextProvider'
 import React, { useState, useContext } from "react";
+import { useParams } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 const DatePickerr = () => {
 
   const { accommodationId } = useContext(AccommodationsContext)
-  const testDateArray = ["1617259334000", "1617345734000", "1617432134000", "1617518534000", "1617604934000"]
+  const { dates } = useContext(DateContext)
+  //const history = useHistory()
+
+  const { id } = useParams()
+
+  const date = dates.filter(a => a.houseId === id)
+
+
+
   //In order INPUT CUSTOM dates into the datepicker we have to parse the string of the Date
   //Below we do this for two date strings, test 1 for minDate and test2 for maxDate
   //this will exclude all dates OUTSIDE of the selected minDate and maxDate
   const test = Date.parse('Fri Apr 02 2021 08:42:14 GMT+0200 (centraleuropeisk sommartid)')
   const test2 = Date.parse('Fri Apr 05 2021 08:42:14 GMT+0200 (centraleuropeisk sommartid)')
 
-  console.log(test + ' ' + test2 + ' these are the parsed dates')
 
-  console.log(accommodationId)
 
-  const testStartDate = 1614582777
-  const testEndDate = 1615792377
+  // const testStartDate = 1614582777
+  // const testEndDate = 1615792377
 
+  const [minDate, setMinDate] = useState(date.startDate);
+  const [maxDate, setMaxDate] = useState(date.endDate);
+
+  console.log(minDate + ' min date')
+  console.log(maxDate)
+  console.log(dates)
+  console.log(id)
 
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
-  const onChange = dates => {
-    const [start, end] = dates;
+  const onChange = selectionDates => {
+    const [start, end] = selectionDates;
     setStartDate(start);
     setEndDate(end);
     console.log(start + 'this is the new start date')
@@ -66,11 +81,13 @@ const DatePickerr = () => {
           onChange={onChange}
           startDate={startDate}
           endDate={endDate}
+          minDate={minDate}
+          maxDate={maxDate}
           selectsRange
           inline
         />
       </div>
-      <div>
+      {/* <div>
         <DatePicker
           minDate={startDate}
           maxDate={endDate}
@@ -78,7 +95,7 @@ const DatePickerr = () => {
           selectsRange
           inline
         />
-      </div>
+      </div> */}
 
     </div>
 
