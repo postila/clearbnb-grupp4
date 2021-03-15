@@ -28,7 +28,7 @@ function NavBar() {
         <Link style={styles.button} to="/">Hem</Link>
         <Link style={styles.button} to="/Om-oss">Om oss</Link>
         </div>
-              </nav>
+      </nav>
 
         <div style={styles.mypage}>
           <div>
@@ -50,11 +50,8 @@ function NavBar() {
               <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Uthyrning</MenuItem>
             </Menu>
           </div >
-
         </div>
-
     </div>
-
   )
 }
 
@@ -66,7 +63,6 @@ const styles = {
     fontFamily: 'Verdana',
     color: '#eee',
     paddingTop: '15px',
-    paddingRight: '40px'
 
   },
   button: {

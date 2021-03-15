@@ -33,8 +33,10 @@ main{
 }
 
 footer {
- background-color: #8f939b;
+ font-family: Quicksand;
+ background-color: #ebe5db;
  display:flex;
  justify-content: center;
  align-items: center;
+ color: grey;
 }
