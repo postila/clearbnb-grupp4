@@ -1,6 +1,6 @@
 global.mongoose = require('mongoose')
 const express = require('express')
-const { users, locations, accommodations, amenities, rentalDates } = require('./models.js')
+const { users, locations, accommodations, amenities, rentaldates } = require('./models.js')
 const app = express()
 const session = require('express-session')
 
@@ -77,7 +77,7 @@ app.get('/api/accommodationDetails/:id', async (req, res) => {
 })
 
 app.post('/rest/dates', async (req, res) => {
-  let doc = new rentalDates(req.body)
+  let doc = new rentaldates(req.body)
   await doc.save()
   res.json(doc)
 })

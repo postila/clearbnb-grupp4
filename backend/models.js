@@ -58,5 +58,5 @@ module.exports = {
   accommodations: Accommodation,
   locations: Location,
   amenities: Amenity,
-  rentalDates: RentalDate
+  rentaldates: RentalDate
 }

@@ -17,6 +17,8 @@ const DatePickerr = () => {
 
   console.log(accommodationId)
 
+  const testStartDate = 1614582777
+  const testEndDate = 1615792377
 
 
 
