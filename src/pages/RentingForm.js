@@ -26,6 +26,7 @@ function CreateRentingForm() {
   const Luftkonditionering = useRef()
   const Strykjärn = useRef()
   const LåstSkåp = useRef()
+  const [aList, addAList] = useState([])
 
   const createRentingForm = async e => {
     e.preventDefault()
@@ -37,19 +38,16 @@ function CreateRentingForm() {
       maxGuests: maxGuests.current.value,
       pricePerNight: pricePerNight.current.value,
       imageUrl: imageUrl.current.value,
-      // amenitiesList: {
-      //   Tvättmaskin: Tvättmaskin.current.checked,
-      //   WiFi: WiFi.current.checked,
-      //   Väsentligheter: Väsentligheter.current.checked,
-      //   Kök: Kök.current.checked,
-      //   TV: TV.current.checked,
-      //   Luftkonditionering: Luftkonditionering.current.checked,
-      //   Strykjärn: Strykjärn.current.checked,
-      //   LåstSkåp: LåstSkåp.current.checked
-      // }
-
-      //startDate: startDate.current.value,
-      //endDate: endDate.current.value,
+      amenitiesList: {
+        Tvättmaskin: Tvättmaskin.current.checked,
+        WiFi: WiFi.current.checked,
+        Väsentligheter: Väsentligheter.current.checked,
+        Kök: Kök.current.checked,
+        TV: TV.current.checked,
+        Luftkonditionering: Luftkonditionering.current.checked,
+        Strykjärn: Strykjärn.current.checked,
+        LåstSkåp: LåstSkåp.current.checked
+      }
     }
     console.log(rentingForm)
     await addAccommodation(rentingForm)
@@ -64,14 +62,14 @@ function CreateRentingForm() {
     imageUrl.current.value = ''
     maxGuests.current.value = ''
     pricePerNight.current.value = ''
-    // Tvättmaskin.current.value = ''
-    // WiFi.current.value = ''
-    // Väsentligheter.current.value = ''
-    // Kök.current.value = ''
-    // TV.current.value = ''
-    // Luftkonditionering.current.value = ''
-    // Strykjärn.current.value = ''
-    // LåstSkåp.current.value = ''
+    Tvättmaskin.current.value = ''
+    WiFi.current.value = ''
+    Väsentligheter.current.value = ''
+    Kök.current.value = ''
+    TV.current.value = ''
+    Luftkonditionering.current.value = ''
+    Strykjärn.current.value = ''
+    LåstSkåp.current.value = ''
 
   }
 

@@ -21,8 +21,14 @@ const Accommodation = mongoose.model('Accommodation', {
   title: String,
   imageUrl: String,
   amenitiesList: [{
-    type: Boolean,
-    ref: 'Amenity'
+    Tvättmaskin: Boolean,
+    WiFi: Boolean,
+    Väsentligheter: Boolean,
+    Kök: Boolean,
+    TV: Boolean,
+    Luftkonditionering: Boolean,
+    Strykjärn: Boolean,
+    LåstSkåp: Boolean
   }],
   maxGuests: Number,
   pricePerNight: Number,
