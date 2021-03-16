@@ -65,15 +65,41 @@ const BookingForm = (props) => {
     <div>
       {accommodationId &&
       <form onSubmit={createBooking}>
+        <div style={styles.guestContainer}>
+          Antal gäster
         <input
           type="number"
           ref={guests}
-          placeholder="Antal gäster"
+          placeholder="2"
           max={accommodationMaxGuests}
           min="1"
-          style={styles.input} /><br />
-        <DatePicker selected={arrDate} onChange={data => setArrDate(data)} placeholderText="Ankomst" dateFormat="yyyy/MM/dd" /> <br />
-        <DatePicker selected={depDate} onChange={data => setDepDate(data)} placeholderText="Avresa" dateFormat="yyyy/MM/dd" /> <br />
+          style={styles.input} />
+          <br />
+        </div>
+        <div style={styles.dateContainer}>
+          <div key="d1" style={styles.datePicker}>
+            <p>Startdatum</p>
+            <DatePicker
+              wrapperClassName='datePicker'
+              dateFormat="yyyy/MM/dd"
+              placeholderText="Ankomst"
+              selected={arrDate}
+              onChange={(data) => setArrDate(data)}
+            />
+          </div>
+          <div key="d2" style={styles.datePicker}>
+            <p>Slutdatum</p>
+            <DatePicker
+              wrapperClassName='datePicker'
+              dateFormat="yyyy/MM/dd"
+              selected={depDate}
+              placeholderText="Avresa"
+              onChange={(data) => setDepDate(data)}
+            />
+          </div>
+        </div>
+        {/* <DatePicker selected={arrDate} onChange={data => setArrDate(data)} placeholderText="Ankomst" dateFormat="yyyy/MM/dd" /> <br />
+        <DatePicker selected={depDate} onChange={data => setDepDate(data)} placeholderText="Avresa" dateFormat="yyyy/MM/dd" /> <br /> */}
 
         {arrDate && depDate &&
           <div>
@@ -82,10 +108,11 @@ const BookingForm = (props) => {
             <p>Totalpris: {Math.round((price * 1.15))}</p>
           </div>
         }
-
-        <button style={styles.button}>Boka</button>
-        {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>}
-        {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>}
+        <div style={styles.bokaContainer}>
+          <button style={styles.button}>Boka</button>
+          {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>}
+          {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>}
+        </div>
       </form>
           }
     </div>
@@ -96,18 +123,18 @@ export default Radium(BookingForm);
 
 const styles = {
   input: {
-    width: '100px',
+    width: '50px',
     height: '25px',
-    margin: '10px'
-  },
-  button: {
     margin: '10px',
-    padding: '10px',
-    borderRadius: '10px',
-    border: 'none',
-    ':focus': {
-      outline: 'none'
-    }
+    textAlign: 'center'
+    
+  },
+  guestContainer: {
+    fontFamily: 'Quicksand',
+    color: 'grey',
+    padding: '50px',
+    textAlign: 'center',
+
   },
   error: {
     backgroundColor: 'crimson',
@@ -125,5 +152,43 @@ const styles = {
     margin: '10px auto',
     width: '300px',
     borderRadius: '10px'
-  }
+  },
+  dateContainer: {
+    textAlign: 'center',
+    height: '100px',
+    width: '100%',
+    margin: '0 auto',
+  },
+  datePicker: {
+    float: 'left',
+    fontFamily: 'Quicksand',
+    color: 'grey',
+    textAlign: 'left',
+    marginLeft: '22%',
+    lineHeight: '5px',
+    width: '100px',
+    border: '0',
+  },
+  bokaContainer: {
+    textAlign: 'center',
+    height: '50px',
+    width: '100%',
+    margin: '0 auto',
+    
+  },
+  button: {
+    fontFamily: 'Quicksand',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    fontSize: '14px',
+    color: 'grey',
+    width: '100px',
+    margin: '10px',
+    padding: '10px',
+    borderRadius: '8px',
+    border: 'none',
+    ':focus': {
+      outline: 'none'
+    }
+  },
 }

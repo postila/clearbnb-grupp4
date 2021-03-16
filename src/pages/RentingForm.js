@@ -160,7 +160,7 @@ function CreateRentingForm() {
       </div>
       <div style={styles.dateContainer}>
         <div key="d1" style={styles.datePicker}>
-          <p>Start datum</p>
+          <p>Startdatum</p>
           <DatePicker
             wrapperClassName='datePicker'
             dateFormat="yyyy/MM/dd"
@@ -170,7 +170,7 @@ function CreateRentingForm() {
           />
         </div>
         <div key="d2" style={styles.datePicker}>
-          <p>Slut datum</p>
+          <p>Slutdatum</p>
           <DatePicker
             wrapperClassName='datePicker'
             dateFormat="yyyy/MM/dd"
