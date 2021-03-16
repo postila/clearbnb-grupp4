@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <div style={styles.bodyStyle}>
       <div style={styles.left}> <img style={styles.logo} src='https://i.imgur.com/eTEP9yc.png' alt='logo'></img></div>
-      <div style={styles.center } className="login-register-form">
+      <div style={styles.center} className="login-register-form">
         {!register && <Login displayRegisterForm={toggleRegisterForm} />}
         {register && <Register displayRegisterForm={toggleRegisterForm} />}
       </div>
@@ -40,8 +40,6 @@ const styles = {
   logo: {
     paddingTop: '20px',
     width: '100px',
-    
-    
   },
   left: {
     float: 'left',
