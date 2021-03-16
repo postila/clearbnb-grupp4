@@ -24,7 +24,7 @@ function NavBar() {
 
       <nav style={styles.navbar}>
         <div>
-          <Link style={styles.button} to="/Platser">Platser</Link>
+          <Link style={styles.button} to="/Platser">Boenden</Link>
           <Link style={styles.button} to="/">Hem</Link>
           <Link style={styles.button} to="/Om-oss">Om oss</Link>
         </div>
