@@ -164,7 +164,7 @@ function CreateRentingForm() {
           <DatePicker
             wrapperClassName='datePicker'
             dateFormat="yyyy/MM/dd"
-            placeholderText="Ankomst"
+            placeholderText="2020/01/01"
             selected={startDate}
             onChange={(data) => setStartDate(data)}
           />
@@ -175,7 +175,7 @@ function CreateRentingForm() {
             wrapperClassName='datePicker'
             dateFormat="yyyy/MM/dd"
             selected={endDate}
-            placeholderText="Avresa"
+            placeholderText="2020/02/01"
             onChange={(data) => setEndDate(data)}
           />
         </div>
