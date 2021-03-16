@@ -408,7 +408,6 @@ const styles = {
     fontSize: '16px',
     color: 'grey',
     maxWidth: '100px',
-    margin: '10px auto',
     cursor: 'pointer',
     border: 'none',
     padding: '10px',
