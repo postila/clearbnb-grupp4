@@ -63,6 +63,8 @@ const styles = {
     boxShadow: '1px 1px 10px 0.5px #343841'
   },
   text: {
+    fontFamily: 'Quicksand',
+    color: 'grey',
     textAlign: 'left',
     color: 'grey',
   }
