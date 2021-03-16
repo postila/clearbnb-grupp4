@@ -47,7 +47,7 @@ function NavBar() {
           >
             <MenuItem >Mitt konto</MenuItem>
             <MenuItem onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Mina sidor</MenuItem>
-            <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Uthyrning</MenuItem>
+            <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Hyr ut din bostad</MenuItem>
           </Menu>
         </div >
       </div>
