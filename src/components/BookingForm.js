@@ -8,9 +8,9 @@ import { useHistory } from 'react-router-dom'
 const BookingForm = (props) => {
   const history = useHistory()
   const { addBooking } = useContext(BookingContext)
-  const [accommodationId, setAccommodationId] = useState(props.accommodation._id)
-  const [accommodationPrice, setAccommodationPrice] = useState(props.accommodation.pricePerNight)
-  const [accommodationMaxGuests, setAccommodationMaxGuests] = useState(props.accommodation.maxGuests)
+  const [accommodationId, setAccommodationId] = useState(null)
+  const [accommodationPrice, setAccommodationPrice] = useState(null)
+  const [accommodationMaxGuests, setAccommodationMaxGuests] = useState(null)
   const [validatDates, setValidatDates] = useState(true)
   const [bookingOk, setBookingOk] = useState(false)
   const [price, setPrice] = useState()
@@ -50,10 +50,16 @@ const BookingForm = (props) => {
 
   useEffect(() => {
     handlePrice()
-  }, [arrDate, depDate])
+    if (props.accommodation) {
+      setAccommodationId(props.accommodation._id)
+      setAccommodationPrice(props.accommodation.pricePerNight)
+      setAccommodationMaxGuests(props.accommodation.maxGuests)
+    }
+  }, [arrDate, depDate, props])
 
   return (
     <div>
+      {accommodationId &&
       <form onSubmit={createBooking}>
         <input
           type="number"
@@ -77,6 +83,7 @@ const BookingForm = (props) => {
         {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>}
         {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>}
       </form>
+          }
     </div>
    );
 }
