@@ -142,7 +142,7 @@ function CreateRentingForm() {
         <label style={styles.label} form="rentingform">Max antal gäster</label>
         <input
           key="5"
-          style={styles.date}
+          style={styles.guests}
           required ref={maxGuests}
           form="rentingform"
           type="number"
@@ -152,15 +152,15 @@ function CreateRentingForm() {
         <label style={styles.label} form="rentingform">Pris per natt</label>
         <input
           key="6"
-          style={styles.date}
+          style={styles.guests}
           required ref={pricePerNight}
           form="rentingform"
           type="text"
           placeholder="500"
         ></input>
       </div>
-      <DatePicker selected={startDate} onChange={(data) => setStartDate(data)} />
-      <DatePicker selected={endDate} onChange={(data) => setEndDate(data)} />
+      <DatePicker style={styles.datePicker} selected={startDate} onChange={(data) => setStartDate(data)} />
+      <DatePicker style={styles.datePicker} selected={endDate} onChange={(data) => setEndDate(data)} />
       <h3 style={styles.headline}>Bekvämligheter</h3>
 
       <div style={styles.amenities}>
@@ -271,7 +271,7 @@ function CreateRentingForm() {
       </div>
 
 
-      <div style={styles.buttons_container}>
+      <div style={styles.buttonContainer}>
         <button
           style={styles.button}
           key="7"
@@ -345,7 +345,7 @@ const styles = {
     marginTop: '10px',
     marginBottom: '40px'
   },
-  date: {
+  guests: {
     textAlign: 'center',
     backgroundColor: '#eee',
     height: '50px',
@@ -357,8 +357,19 @@ const styles = {
       outline: 'none'
     }
   },
-
-  buttons_container: {
+  datePicker: {
+    textAlign: 'center',
+    backgroundColor: '#eee',
+    height: '50px',
+    width: '90px',
+    border: '0',
+    borderRadius: '7px',
+    margin: '10px 20px 0px 20px',
+    ':focus': {
+      outline: 'none'
+    }
+  },
+  buttonContainer: {
     textAlign: 'center',
     height: '100px',
     verticalAlign: 'text-top',
@@ -366,15 +377,22 @@ const styles = {
   },
   button: {
     width: '120px',
-    marginTop: '10px',
+    marginTop: '40px',
     marginLeft: '10px',
+    fontFamily: 'Quicksand',
+    fontWeight: 'bold',
+    fontSize: '16px',
+    color: 'grey',
+    maxWidth: '100px',
+    margin: '10px auto',
     cursor: 'pointer',
     border: 'none',
     padding: '10px',
-    borderRadius: '7px',
-    color: 'white',
-    fontWeight: 'bold',
-    backgroundColor: '#596982'
+    borderRadius: '6px',
+    textTransform: 'uppercase',
+    ':hover': {
+      background: '#e6e6e6',
+    }
   },
   amenityItem: {
     fontFamily: 'Quicksand',
