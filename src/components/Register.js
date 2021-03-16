@@ -63,17 +63,14 @@ const styles = {
     }
   },
   button: {
-    maxWidth: '150px',
-    margin: '10px',
+    fontFamily: 'Quicksand',
+    maxWidth: '100px',
+    margin: '0 auto',
+    marginTop: '10px',
     cursor: 'pointer',
     border: 'none',
     padding: '10px',
-    borderRadius: '10px',
-    background: '#202329',
-    color: 'white',
-    textTransform: 'uppercase',
-    fontSize: '12px',
-    fontWeight: 'bold'
+    borderRadius: '6px'
   },
   error: {
     background: '#202329',
@@ -87,7 +84,6 @@ const styles = {
   logIn: {
     cursor: 'pointer',
     fontSize: '12px',
-    fontWeight: 'bold',
     textTransform: 'uppercase',
     ':hover': {
       opacity: '50%'

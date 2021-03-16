@@ -56,7 +56,7 @@ const styles = {
   },
   register: {
     cursor: 'pointer',
-    fontSize: '10px',
+    fontSize: '12px',
     textTransform: 'uppercase',
     ':hover': {
       opacity: '50%'
