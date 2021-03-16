@@ -31,13 +31,14 @@ function LocationList() {
 
 const styles = {
   img: {
-    height: '150px',
+    height: '170px',
     borderRadius: '7px',
-    maxWidth: '8vw'
+    maxWidth: '15vw'
     },
   card: {
     color: 'grey',
-    backgroundColor: '#eee',
+    //backgroundColor: '#eee',
+    backgroundColor: 'rgba(255,255,255,0.6)',
     padding: '8px 8px 0px 8px',
     marginBottom: '15px',
     //flex: '1 0 11%',
@@ -50,7 +51,7 @@ const styles = {
       ':hover': {
         transform: 'scale(1.02)',
         backgroundColor: '#f1f1f1',
-        
+      
         // opacity: '40%'
       }
     },
