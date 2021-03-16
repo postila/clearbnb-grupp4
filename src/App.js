@@ -18,6 +18,7 @@ import AccommodationsContextProvider from './contexts/AccommodationsContext'
 import LocationContext from './contexts/locationContextProvider'
 import AmenitiesContextProvider from './contexts/AmenitiesContext'
 import UserContextProvider from './contexts/UserContextProvider'
+import BookingContextProvider from './contexts/BookingContextProvider'
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
       <UserContextProvider>
         <LocationContext>
           <AccommodationsContextProvider>
-            <AmenitiesContextProvider>
+          <AmenitiesContextProvider>
+          <BookingContextProvider>
               <Router>
                 <header className="App-header"><NavBar /></header>
 
@@ -43,6 +45,7 @@ function App() {
 
                 <footer>&copy; Copyright 2021 Group 4</footer>
               </Router>
+            </BookingContextProvider>
             </AmenitiesContextProvider>
           </AccommodationsContextProvider>
         </LocationContext>

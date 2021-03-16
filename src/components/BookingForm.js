@@ -34,7 +34,7 @@ const BookingForm = (props) => {
       // totalPrice: accommodationPrice
     }
 
-    if (arrDate.getTime() < depDate.getTime()) {n
+    if (arrDate.getTime() < depDate.getTime()) {
       await addBooking(booking)
       setBookingOk(true)
       setValidatDates(true)

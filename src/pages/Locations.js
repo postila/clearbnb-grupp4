@@ -25,7 +25,7 @@ const Locations = () => {
         <img style={ styles.pictures } src={ accommodation.imageUrl } alt={'picture' + accommodation._id} />
         <div style={ styles.text }>
           <h3>{ accommodation.title }</h3>
-          <p>Gäster {accommodation.maxGuest} | { accommodation.pricePerNight } SEK</p>
+          <p>Max antal gäster {accommodation.maxGuests} | { accommodation.pricePerNight } SEK</p>
           <p>{ accommodation.location.name }</p>
         </div>
       </div>
