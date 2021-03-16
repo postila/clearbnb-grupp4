@@ -1,7 +1,7 @@
 .App {
   text-align: center;
-   display:grid;
- grid-template-rows: 50px 1fr 40px;
+  display:grid;
+  grid-template-rows: 50px 1fr 40px;
   min-height: 100vh;
 }
 
@@ -28,13 +28,15 @@ nav > a:hover{
   cursor: pointer;
 }
 main{
- background-color: #343841;
+ background-color: #ffffff;
  padding: 20;
 }
 
 footer {
- background-color: #202329;
+ font-family: Quicksand;
+ background-color: #ebe5db;
  display:flex;
  justify-content: center;
  align-items: center;
+ color: grey;
 }

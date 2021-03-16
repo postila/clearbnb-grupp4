@@ -18,7 +18,7 @@ function LocationList() {
         src={ location.imageUrl }
         alt={'picture ' + location._id}
       />
-      <h3>{ location.name }</h3>
+      <p>{ location.name }</p>
     </div>
   )
 
@@ -32,21 +32,25 @@ function LocationList() {
 const styles = {
   img: {
     height: '150px',
-    borderRadius: '10px',
-    maxWidth: '12vw'
+    borderRadius: '7px',
+    maxWidth: '8vw'
     },
   card: {
-    backgroundColor: '#202329',
-    padding: '10px',
+    color: 'grey',
+    backgroundColor: '#eee',
+    padding: '8px 8px 0px 8px',
     marginBottom: '15px',
-    flex: '1 0 21%',
-    borderRadius: '10px',
+    //flex: '1 0 11%',
+    borderRadius: '7px',
     cursor: 'pointer',
-    transition: '200ms',
-    boxShadow: '0 0 6px 2px rgb(22, 22, 22)',
+    transition: '100ms',
+    fontFamily: 'Quicksand',
+    fontWeight: 'bold',
+    boxShadow: '0 0 6px 2px rgb(44, 44, 44,)',
       ':hover': {
-        transform: 'scale(1.03)',
-        backgroundColor: '#252c36'
+        transform: 'scale(1.02)',
+        backgroundColor: '#f1f1f1',
+        
         // opacity: '40%'
       }
     },
@@ -54,7 +58,7 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridGap: '25px',
-    color: 'white'
+    
   }
 }
 

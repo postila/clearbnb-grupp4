@@ -4,6 +4,7 @@ import Radium from 'radium'
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+//import myAccount from '../images/my_account.png';
 
 function NavBar() {
   const history = useHistory()
@@ -20,58 +21,68 @@ function NavBar() {
   return (
 
     <div>
+
       <nav style={styles.navbar}>
-        <Link style={styles.button} to="/Om-oss">Om oss</Link>
-        <Link style={styles.button} to="/">Hem</Link>
-        <Link style={styles.button} to="/Platser">Platser</Link>
-
-        <div style={styles.mypage}>
-          <div>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-              Mina sidor
-            </Button>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={() => { history.push('/Platser'); handleClose() }}>Platser</MenuItem>
-              <MenuItem onClick={() => { history.push('/'); handleClose() }}>Hem</MenuItem>
-              <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Uthyrning</MenuItem>
-            </Menu>
-          </div >
-
+        <div>
+          <Link style={styles.button} to="/Platser">Platser</Link>
+          <Link style={styles.button} to="/">Hem</Link>
+          <Link style={styles.button} to="/Om-oss">Om oss</Link>
         </div>
-
       </nav>
-    </div>
 
+      <div style={styles.mypage}>
+        <div>
+          <Button>
+            <img src="https://i.imgur.com/P0TBhR7.png" style={styles.img}
+              aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
+          </Button>
+
+          <Menu
+            style={styles.dropdown}
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem >Mitt konto</MenuItem>
+            <MenuItem onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Mina sidor</MenuItem>
+            <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Uthyrning</MenuItem>
+          </Menu>
+        </div >
+      </div>
+    </div>
   )
 }
 
 const styles = {
   navbar: {
-    //display: 'flex',
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%',
     fontFamily: 'Verdana',
-    textDecoration: 'none',
     color: '#eee',
-    marginRight: '40px',
-    paddingTop: '15px'
+    paddingTop: '15px',
 
   },
   button: {
-    marginRight: '40px',
+    fontFamily: 'Quicksand',
+    float: 'left',
+    paddingLeft: '20px',
+    textDecoration: 'none',
     color: '#eee',
   },
   mypage: {
     color: '#eee',
     float: 'right',
-
+    marginTop: '-35px'
+  },
+  img: {
+    width: '40px'
+  },
+  dropdown: {
+    marginTop: '30px',
+    paddingRight: '25px'
   },
 
 

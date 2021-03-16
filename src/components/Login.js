@@ -15,24 +15,44 @@ const Login = (props) => {
 }
 
 const styles = {
-form: {
+  form: {
     display: 'grid',
     gridGap: '15px',
-    maxWidth: '400px',
-    margin: '20px auto',
-    padding: '10px'
+    maxWidth: '300px',
+    margin: '0px auto',
+    padding: '100px'
+
   },
   input: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Quicksand',
+    padding: '10px',
+    borderRadius: '10px',
+    border: 'none',
+    ':focus': {
+      outline: 'none'
+    }
   },
   button: {
+    fontFamily: 'Quicksand',
     maxWidth: '100px',
     margin: '0 auto',
     marginTop: '10px',
     cursor: 'pointer',
     border: 'none',
     padding: '10px',
-    borderRadius: '10px'
+    borderRadius: '6px'
+  },
+  register: {
+    cursor: 'pointer',
+    fontSize: '10px',
+    fontFamily: 'Quicksand',
+    borderRadius: '10px',
+    background: '#202329',
+    color: 'white',
+    textTransform: 'uppercase',
+    fontSize: '12px',
+    fontWeight: 'bold'
   },
   register: {
     cursor: 'pointer',
@@ -41,7 +61,9 @@ form: {
     ':hover': {
       opacity: '50%'
     }
-  }
+  },
+
+
 }
- 
+
 export default Radium(Login);

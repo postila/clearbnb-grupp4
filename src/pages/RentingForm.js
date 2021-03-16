@@ -6,11 +6,18 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { LocationContext } from '../contexts/locationContextProvider'
 import AmenitiesContext from '../contexts/AmenitiesContext'
 import { useHistory } from 'react-router-dom'
+import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from '../components/DatePicker'
+import DatePicker from "react-datepicker";
+
 
 function CreateRentingForm() {
   const { addAccommodation } = useContext(AccommodationsContext)
   //const history = useHistory()
   // const { addRentingForm } = useContext(AmenitiesContext)
+
+  const [startDate, setStartDate] = useState()
+  const [endDate, setEndDate] = useState()
 
   const title = useRef()
   const location = useRef()
@@ -18,8 +25,14 @@ function CreateRentingForm() {
   const maxGuests = useRef()
   const pricePerNight = useRef()
   const imageUrl = useRef()
-  const startDate = useRef()
-  const endDate = useRef()
+  const washer = useRef()
+  const wifi = useRef()
+  const essentials = useRef()
+  const kitchen = useRef()
+  const TV = useRef()
+  const airConditioning = useRef()
+  const iron = useRef()
+  const safe = useRef()
 
   const createRentingForm = async e => {
     e.preventDefault()
@@ -30,10 +43,19 @@ function CreateRentingForm() {
       description: description.current.value,
       maxGuests: maxGuests.current.value,
       pricePerNight: pricePerNight.current.value,
+      startDate: startDate.getTime(),
+      endDate: endDate.getTime(),
       imageUrl: imageUrl.current.value,
-
-      //startDate: startDate.current.value,
-      //endDate: endDate.current.value,
+      amenitiesList: {
+        washer: washer.current.checked,
+        wifi: wifi.current.checked,
+        essentials: essentials.current.checked,
+        kitchen: kitchen.current.checked,
+        TV: TV.current.checked,
+        airConditioning: airConditioning.current.checked,
+        iron: iron.current.checked,
+        safe: safe.current.checked
+      }
     }
 
     await addAccommodation(rentingForm)
@@ -48,8 +70,15 @@ function CreateRentingForm() {
     imageUrl.current.value = ''
     maxGuests.current.value = ''
     pricePerNight.current.value = ''
-    //startDate.current.value = ''
-    //endDate.current.value = ''
+    washer.current.value = ''
+    wifi.current.value = ''
+    essentials.current.value = ''
+    kitchen.current.value = ''
+    TV.current.value = ''
+    airConditioning.current.value = ''
+    iron.current.value = ''
+    safe.current.value = ''
+
   }
 
     const { locations } = useContext(LocationContext)
@@ -74,53 +103,183 @@ function CreateRentingForm() {
   return (
     <form key="1" style={styles.form} onSubmit={createRentingForm}>
 
-      <h1 style={{ color: '#839cc1' }}>Uthyrningsformulär</h1>
+      <h1 style={styles.headline}>Uthyrningsformulär</h1>
 
       <label style={styles.label} form="rentingform">Titel (max 80 tecken)</label>
-      <input key="2" required ref={title} style={styles.input}
-        form="rentingform" type="text" placeholder="Mysig stuga" required></input>
+      <input
+        key="2"
+        required ref={title}
+        style={styles.input}
+        form="rentingform"
+        type="text"
+        placeholder="Mysig stuga"
+      ></input>
 
       <label style={styles.label} form="rentingform">Ort</label>
 
-      <select key="3" required ref={location} style={styles.input}
-        form="rentingform" required>
-      
+      <select
+        key="3"
+        required ref={location}
+        style={styles.input}
+        form="rentingform"
+      >
         {locations.map(location => locationItem(location))}
-      
       </select>
       
       <label style={styles.label} form="rentingform">Beskrivning (max 500 tecken)</label>
-      <textarea style={styles.description} required ref={description}
-        form="rentingform" maxLength="500" type="text" placeholder="..." required></textarea>
+      <textarea
+        style={styles.description}
+        required ref={description}
+        form="rentingform"
+        maxLength="500"
+        type="text"
+        placeholder="..."
+        required>
+      </textarea>
 
       <label style={styles.label} form="rentingform">Bild</label>
-      <input key="4" style={styles.input} required ref={imageUrl}
-        form="rentingform" type="text" placeholder="http://din.url.här" required></input>
-      
-      <div style={styles.date_container} >
-      <label style={styles.label} form="rentingform">Max antal gäster</label>
-        <input key="5" style={styles.date} required ref={maxGuests}
-        form="rentingform" type="number" placeholder="8" required></input>
+      <input
+        key="4"
+        style={styles.input}
+        required ref={imageUrl}
+        form="rentingform"
+        type="text"
+        placeholder="http://din.url.här"
+      ></input>
 
-      <label style={styles.label} form="rentingform">Pris per natt</label>
-        <input key="6" style={styles.date} required ref={pricePerNight}
-        form="rentingform" type="text" placeholder="500" required></input>
+      <div style={styles.dateContainer} >
+        <label style={styles.label} form="rentingform">Max antal gäster</label>
+        <input
+          key="5"
+          style={styles.date}
+          required ref={maxGuests}
+          form="rentingform"
+          type="number"
+          placeholder="8"
+        ></input>
+
+        <label style={styles.label} form="rentingform">Pris per natt</label>
+        <input
+          key="6"
+          style={styles.date}
+          required ref={pricePerNight}
+          form="rentingform"
+          type="text"
+          placeholder="500"
+        ></input>
       </div>
-      
-      {/* <div style={styles.date_container} >
-        <label style={styles.label} form="rentingform">Startdatum</label>
-        <input key="5" style={styles.date} required ref={startDate}
-          form="rentingform" type="text" placeholder="2021/01/01" required></input>
+      <DatePicker selected={startDate} onChange={(data) => setStartDate(data)} />
+      <DatePicker selected={endDate} onChange={(data) => setEndDate(data)} />
+      <h3 style={styles.headline}>Bekvämligheter</h3>
 
-        <label style={styles.label} form="rentingform">Slutdatum</label>
-        <input key="6" style={styles.date} required ref={endDate}
-          form="rentingform" type="text" placeholder="2021/01/02" required></input>
-      </div> */}
+      <div style={styles.amenities}>
+        <div style={styles.amenityItem}>
+          <input
+            key="a1"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={washer}
+            value="washer"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/ZHG7tWd.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Tvättmaskin</label>
+        </div>
 
-      <h3 style={{ color: '#839cc1' }}>Bekvämligheter</h3>
-      
-      <br></br>
-      <Amenities addToList={addToList}/>
+        <div style={styles.amenityItem}>
+          <input
+            key="a2"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={wifi}
+            value="wifi"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/bEPBdlP.png"></img>
+          <label style={styles.iconLabel} form="rentingform">WiFi</label>
+        </div>
+
+        <div style={styles.amenityItem}>
+          <input
+            key="a3"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={essentials}
+            value="essentials"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/gcqJNww.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Väsentligheter</label>
+        </div>
+
+        <div style={styles.amenityItem}>
+          <input
+            key="a4"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={kitchen}
+            value="kitchen"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/LvTR8oD.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Kök</label>
+        </div>
+
+        <div style={styles.amenityItem}>
+          <input
+            key="a5"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={TV}
+            value="TV"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/o8S2jMk.png"></img>
+          <label style={styles.iconLabel} form="rentingform">TV</label>
+        </div>
+
+        <div style={styles.amenityItem}>
+          <input
+            key="a6"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={airConditioning}
+            value="airConditioning"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/bF4klbB.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Luftkonditionering</label>
+        </div>
+
+        <div style={styles.amenityItem}>
+          <input
+            key="a7"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={iron}
+            value="iron"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/3XShQ5y.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Strykjärn</label>
+        </div>
+
+        <div style={styles.amenityItem}>
+          <input
+            key="a8"
+            style={styles.checkBox}
+            form="rentingform"
+            type="checkbox"
+            required ref={safe}
+            value="Låst skåp"
+          ></input>
+          <img style={styles.icon} src="https://i.imgur.com/FXhmIhX.png"></img>
+          <label style={styles.iconLabel} form="rentingform">Låst skåp</label>
+        </div>
+
+      </div>
+
+
       <div style={styles.buttons_container}>
       <button 
       style={styles.button}
@@ -136,54 +295,72 @@ const styles = {
   form: {
     display: 'grid',
     gridGap: '3px',
-    maxWidth: '500px',
-    margin: '20px auto',
+    maxWidth: '800px',
+    margin: '0px auto',
     textAlign: 'left',
     padding: '10px'
   },
+  amenities: {
+    display: 'grid',
+    color: 'white',
+    justifyContent: 'center',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridGap: '25px',
+    paddingBottom: '30px'
+  },
+  headline: {
+    fontFamily: 'Quicksand',
+    color: 'grey',
+    padding: '40px',
+    textAlign: 'center',
+  },
+  label: {
+    textAlign: 'left',
+    verticalAlign: 'text-bottom',
+    lineHeight: '20px',
+    color: 'grey',
+    paddingTop: '15px',
+    paddingBottom: '10px',
 
+  },
   input: {
     textAlign: 'left',
     height: '50px',
     borderRadius: '7px',
+    border: '1px',
+    backgroundColor: '#eee',
     ':focus': {
       outline: 'none'
     }
   },
-
-  date_container: {
+  description: {
+    fontFamily: 'Quicksand',
+    backgroundColor: '#eee',
+    border: '0',
+    color: 'grey',
+    textAlign: 'left',
+    height: '100px',
+    verticalAlign: 'text-top',
+    resize: 'none',
+    ':focus': {
+      outline: 'none'
+    }
+  },
+  dateContainer: {
     textAlign: 'center',
     height: '50px',
     width: '100%',
     marginTop: '10px',
     marginBottom: '40px'
   },
-  
   date: {
     textAlign: 'center',
+    backgroundColor: '#eee',
     height: '50px',
     width: '90px',
+    border: '0',
     borderRadius: '7px',
     margin: '10px 20px 0px 20px',
-    ':focus': {
-      outline: 'none'
-    }
-  },
-
-  label: {
-    textAlign: 'left',
-    verticalAlign: 'text-bottom',
-    lineHeight: '10px',
-    color: 'white',
-    paddingTop: '20px',
-    paddingBottom: '10px',
-  },
-
-  description: {
-    textAlign: 'left',
-    height: '100px',
-    verticalAlign: 'text-top',
-    resize: 'none',
     ':focus': {
       outline: 'none'
     }
@@ -195,7 +372,6 @@ const styles = {
     verticalAlign: 'text-top',
     width: '100%',
   },
-
   button: {
     width: '120px',
     marginTop: '10px',
@@ -208,15 +384,28 @@ const styles = {
     fontWeight: 'bold',
     backgroundColor: '#596982'
   },
-  
-  register: {
-    cursor: 'pointer',
-    fontSize: '10px',
-    textTransform: 'uppercase',
-    ':hover': {
-      opacity: '50%'
-    }
-  }
+  amenityItem: {
+    fontFamily: 'Quicksand',
+    float: 'right',
+
+  },
+  checkBox: {
+    float: 'left',
+    marginTop: '8px',
+  },
+  icon: {
+    width: '30px',
+    marginRight: '15px',
+    float: 'right',
+  },
+  iconLabel: {
+    fontSize: '12px',
+    textAlign: 'left',
+    lineHeight: '0px',
+    color: 'grey',
+    paddingTop: '15px',
+    float: 'left'
+  },
 }
 
   export default Radium(CreateRentingForm)
