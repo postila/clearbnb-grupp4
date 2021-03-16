@@ -35,7 +35,8 @@ const AccommodationsDetails = () => {
               <h4>Beskrivning:</h4>
               <p>{ accommodation.description }</p>
           </div>
-          <Amenities />
+        <Amenities />
+        
         </div> }
       { !accommodation &&
         <div>
