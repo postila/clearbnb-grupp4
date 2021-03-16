@@ -6,7 +6,7 @@ const MyPage = () => {
 
   return (
     <div>
-      <h1>Mina bokningar:</h1>
+      <h1 style={{ fontFamily: 'Quicksand', color: 'grey', padding: '40px'}}>Mina bokningar:</h1>
       <div>
         <BookingsList />
       </div >
