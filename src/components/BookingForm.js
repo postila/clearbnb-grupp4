@@ -44,6 +44,7 @@ const BookingForm = (props) => {
       setBookingOk(false)
     }
     console.log(booking, 'bokningen')
+    alert('Du har lagt din bokning!')
   }
 
   return (
@@ -63,9 +64,9 @@ const BookingForm = (props) => {
         {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>}
       </form>
     </div>
-   );
+  );
 }
- 
+
 export default Radium(BookingForm);
 
 const styles = {
@@ -79,6 +80,7 @@ const styles = {
     padding: '10px',
     borderRadius: '10px',
     border: 'none',
+    cursor: 'pointer',
     ':focus': {
       outline: 'none'
     }

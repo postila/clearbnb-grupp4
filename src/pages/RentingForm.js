@@ -79,6 +79,8 @@ function CreateRentingForm() {
     iron.current.value = ''
     safe.current.value = ''
 
+
+    alert('Du har listat ditt objekt!')
   }
 
   const { locations } = useContext(LocationContext)
