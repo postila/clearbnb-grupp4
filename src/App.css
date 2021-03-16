@@ -34,8 +34,8 @@ main{
 
 footer {
  font-family: Quicksand;
- background-color: #ebe5db;
  display:flex;
  justify-content: center;
  align-items: center;
- background-color: #202329;}
+ background-color: #202329;
+}

@@ -38,7 +38,7 @@ const styles = {
   card: {
     color: 'grey',
     //backgroundColor: '#eee',
-    backgroundColor: 'rgba(255,255,255,0.6)',
+    backgroundColor: 'rgba(275,275,275,0.6)',
     padding: '8px 8px 0px 8px',
     marginBottom: '15px',
     //flex: '1 0 11%',
@@ -60,6 +60,9 @@ const styles = {
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridGap: '25px',
     
+  },
+  background: {
+    backgroundImage: ''
   }
 }
 

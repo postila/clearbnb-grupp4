@@ -13,7 +13,8 @@ const Home = () => {
   }
 
   return (
-    <div style={{ backgroundImage: `url(${Background})`, height: '100vh', margin: '0' }}>
+    <div style={{backgroundImage: `url(${Background})`, height: '100vh', margin: '0'}}>
+      <div style={{ backgroundColor: 'rgba(175, 175, 175, 0.7)' }}>
       <div style={{ width: '100%' }}>
           {/* <div style={styles.bodyStyle}> */}
             <div style={styles.left}> <img style={styles.logo} src='https://i.imgur.com/eTEP9yc.png' alt='logo'></img></div>
@@ -24,7 +25,8 @@ const Home = () => {
             <div style={styles.locationList}>
               <LocationList />
             </div>
-          </div >
+        </div >
+        </div>
         {/* </div> */}
         <div style={styles.right}></div>
       </div >
@@ -39,7 +41,7 @@ const styles = {
     width: '100%',
   },
   background: {
-    backgroundImage: '',
+    backgroundImage: ' ',
 
   },
   // bodyStyle:{
