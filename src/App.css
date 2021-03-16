@@ -40,3 +40,11 @@ footer {
  align-items: center;
  color: grey;
 }
+
+.picker {
+  background-color: rgb(255, 0, 0);
+  
+  input {
+    border: none;
+  }
+}

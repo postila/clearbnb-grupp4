@@ -7,8 +7,8 @@ import { LocationContext } from '../contexts/locationContextProvider'
 import AmenitiesContext from '../contexts/AmenitiesContext'
 import { useHistory } from 'react-router-dom'
 import "react-datepicker/dist/react-datepicker.css";
-// import DatePicker from '../components/DatePicker'
 import DatePicker from "react-datepicker";
+import '../App.css';
 
 
 function CreateRentingForm() {
@@ -138,7 +138,7 @@ function CreateRentingForm() {
         placeholder="http://din.url.här"
       ></input>
 
-      <div style={styles.dateContainer} >
+      <div style={styles.guestContainer} >
         <label style={styles.label} form="rentingform">Max antal gäster</label>
         <input
           key="5"
@@ -159,8 +159,28 @@ function CreateRentingForm() {
           placeholder="500"
         ></input>
       </div>
-      <DatePicker style={styles.datePicker} selected={startDate} onChange={(data) => setStartDate(data)} />
-      <DatePicker style={styles.datePicker} selected={endDate} onChange={(data) => setEndDate(data)} />
+      <div style={styles.dateContainer}>
+        <div key="d1" style={styles.datePicker}>
+          <p>Start datum</p>
+          <DatePicker
+            wrapperClassName='datePicker'
+            dateFormat="yyyy/MM/dd"
+            placeholderText="Ankomst"
+            selected={startDate}
+            onChange={(data) => setStartDate(data)}
+          />
+        </div>
+        <div key="d2" style={styles.datePicker}>
+          <p>Slut datum</p>
+          <DatePicker
+            wrapperClassName='datePicker'
+            dateFormat="yyyy/MM/dd"
+            selected={endDate}
+            placeholderText="Avresa"
+            onChange={(data) => setEndDate(data)}
+          />
+        </div>
+      </div>
       <h3 style={styles.headline}>Bekvämligheter</h3>
 
       <div style={styles.amenities}>
@@ -338,7 +358,7 @@ const styles = {
       outline: 'none'
     }
   },
-  dateContainer: {
+  guestContainer: {
     textAlign: 'center',
     height: '50px',
     width: '100%',
@@ -357,18 +377,23 @@ const styles = {
       outline: 'none'
     }
   },
-  datePicker: {
+  dateContainer: {
     textAlign: 'center',
-    backgroundColor: '#eee',
     height: '50px',
-    width: '90px',
-    border: '0',
-    borderRadius: '7px',
-    margin: '10px 20px 0px 20px',
-    ':focus': {
-      outline: 'none'
-    }
+    width: '100%',
+    margin: '0 auto',
   },
+  datePicker: {
+    float: 'left',
+    fontFamily: 'Quicksand',
+    color: 'grey',
+    textAlign: 'left',
+    marginLeft: '22%',
+    lineHeight: '5px',
+    width: '100px',
+    border: '0',
+  },
+
   buttonContainer: {
     textAlign: 'center',
     height: '100px',
