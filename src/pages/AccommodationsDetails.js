@@ -2,8 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
-import Amenities from '../components/Amenities'
-import shadows from '@material-ui/core/styles/shadows';
+import BookingForm from '../components/BookingForm';
 
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -11,13 +10,12 @@ const AccommodationsDetails = () => {
   const history = useHistory()
 
   let accommodation = accommodations.find(accommodation => accommodation._id === id)
-  console.log(accommodation, 'accommodation')
 
   const [item, setItem] = useState(accommodation)
 
   useEffect(() => {
     setItem(accommodation)
-  }, [item])
+  }, [item, accommodation])
 
   const goBack = () => {
     history.go(-1)
@@ -29,26 +27,24 @@ const AccommodationsDetails = () => {
       { accommodation &&
         <div>
           <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id} />
-          <div style={styles.infoContainer}>
-            <h1>{accommodation.title}</h1>
-            <p>Antal gäster: {accommodation.maxGuests}</p>
-            <p>Ort: {accommodation.location.name}</p>
-            <p>Pris per natt: {accommodation.pricePerNight}</p>
-            <div className="description-content">
-              <h4>Beskrivning:</h4>
-              <p>{accommodation.description}</p>
-            </div>
-
-            <div>
-              <h4>Bekvämligheter:</h4>
-              {accommodation.amenitiesList.map((a) => (
-                <div key={a._id}>
-                  {a.washer ? 'Tvättmaskin, ' : ''} {a.wifi ? 'WiFi, ' : ''} {a.essentials ? 'Väsentligheter, ' : ''} {a.kitchen ? 'Kök, ' : ''} {a.TV ? 'TV, ' : ''} {a.airConditioning ? 'Luftkonditionering, ' : ''} {a.iron ? 'Strykjärn, ' : ''} {a.safe ? 'Låst Skåp, ' : ''}
-                </div>
-              ))}
-            </div>
+          <h1>{accommodation.title}</h1>
+          <p>Antal gäster: {accommodation.maxGuests}</p>
+          <p>Ort: {accommodation.location.name}</p>
+          <p>Pris per natt: {accommodation.pricePerNight}</p>
+          <div className="description-content">
+            <h4>Beskrivning:</h4>
+            <p>{accommodation.description}</p>
           </div>
-        </div>}
+          <div>
+            <h4>Bekvämligheter:</h4>
+            {accommodation.amenitiesList.map((a) => (
+              <div key={a._id}>
+                {a.washer ? 'Tvättmaskin, ' : ''} {a.wifi ? 'WiFi, ' : ''} {a.essentials ? 'Väsentligheter, ' : ''} {a.kitchen ? 'Kök, ' : ''} {a.TV ? 'TV, ' : ''} {a.airConditioning ? 'Luftkonditionering, ' : ''} {a.iron ? 'Strykjärn, ' : ''} {a.safe ? 'Låst Skåp, ' : ''}
+              </div>
+            ))}
+          </div>
+           <BookingForm accommodation={item} />
+        </div> }
       { !accommodation &&
         <div>
           <h3>Accommodation not found</h3>

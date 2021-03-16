@@ -16,5 +16,8 @@ body {
 
 header {
   max-height: 100px;
-  
+}
+
+input:focus {
+  outline: none !important;
 }

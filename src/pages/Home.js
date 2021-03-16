@@ -2,21 +2,21 @@ import Radium from 'radium'
 import React, { useState } from 'react';
 import Login from '../components/Login'
 import Register from '../components/Register';
-import { LocationContext } from '../contexts/locationContextProvider'
 import LocationList from '../components/LocationList'
+
 const Home = () => {
   const [register, setRegister] = useState(false)
 
-  const displayRegisterForm = () => {
-    setRegister(true)
+  const toggleRegisterForm = () => {
+    setRegister(valueOf.register = !valueOf.register)
   }
 
   return (
     <div style={styles.bodyStyle}>
       <div style={styles.left}> <img style={styles.logo} src='https://i.imgur.com/eTEP9yc.png' alt='logo'></img></div>
       <div style={styles.center } className="login-register-form">
-        {!register && <Login displayRegisterForm={displayRegisterForm} />}
-        {register && <Register />}
+        {!register && <Login displayRegisterForm={toggleRegisterForm} />}
+        {register && <Register displayRegisterForm={toggleRegisterForm} />}
       </div>
       <div style={styles.locationList}>
         <LocationList />

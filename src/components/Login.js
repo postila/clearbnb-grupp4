@@ -3,16 +3,14 @@ import Radium from 'radium'
 
 const Login = (props) => {
   return (
-    <div>
-      <form style={styles.form}>
-        <input style={styles.input} type="text" placeholder="E-mail" required></input>
-        <input style={styles.input} type="password" placeholder="Lösenord" required></input>
-        <button style={styles.button}>Logga in</button>
-        <p>Inget konto?
-        <span style={styles.register} onClick={props.displayRegisterForm}> Registrera dig här</span>
-        </p>
-      </form>
-    </div>
+    <form key="1" style={styles.form}>
+      <input key="2" style={styles.input} type="text" placeholder="E-mail" required></input>
+      <input key="3" style={styles.input} type="password" placeholder="Lösenord" required></input>
+      <button key="4" style={styles.button}>Logga in</button>
+      <p style={styles.register}>Skapa konto?
+        <span onClick={ props.displayRegisterForm }> Registrera dig här</span>
+      </p>
+    </form>
   );
 }
 
@@ -28,12 +26,18 @@ const styles = {
   input: {
     textAlign: 'center',
     fontFamily: 'Quicksand',
+    padding: '10px',
+    borderRadius: '10px',
+    border: 'none',
+    ':focus': {
+      outline: 'none'
+    }
   },
   button: {
     fontFamily: 'Quicksand',
     maxWidth: '100px',
-    margin: '0 auto',
-    marginTop: '10px',
+    margin: '10px auto',
+    // marginTop: '10px',
     cursor: 'pointer',
     border: 'none',
     padding: '10px',
@@ -43,6 +47,17 @@ const styles = {
     cursor: 'pointer',
     fontSize: '10px',
     fontFamily: 'Quicksand',
+    borderRadius: '10px',
+    background: '#202329',
+    color: 'white',
+    textTransform: 'uppercase',
+    fontSize: '12px',
+    fontWeight: 'bold'
+  },
+  register: {
+    cursor: 'pointer',
+    fontSize: '12px',
+    fontWeight: 'bold',
     textTransform: 'uppercase',
     ':hover': {
       opacity: '50%'
