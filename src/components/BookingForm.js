@@ -20,12 +20,12 @@ const BookingForm = (props) => {
   const [depDate, setDepDate] = useState()
   const guests = useRef()
 
-  const handlePrice = () => {
-    if (arrDate && depDate) {
-      setPrice(((depDate.getTime() - arrDate.getTime() )/ dayInMilliSec) * accommodationPrice)
-      return price
-    }
-  }
+  // const handlePrice = () => {
+  //   if (arrDate && depDate) {
+  //     setPrice(((depDate.getTime() - arrDate.getTime() )/ dayInMilliSec) * accommodationPrice)
+  //     return price
+  //   }
+  // }
  
   const createBooking = async e => {
     e.preventDefault()
@@ -49,13 +49,17 @@ const BookingForm = (props) => {
   }
 
   useEffect(() => {
-    handlePrice()
+      if (arrDate && depDate) {
+        setPrice(((depDate.getTime() - arrDate.getTime()) / dayInMilliSec) * accommodationPrice)
+        return price
+      }
+    
     if (props.accommodation) {
       setAccommodationId(props.accommodation._id)
       setAccommodationPrice(props.accommodation.pricePerNight)
       setAccommodationMaxGuests(props.accommodation.maxGuests)
     }
-  }, [arrDate, depDate, props])
+  }, [arrDate, depDate, price, accommodationPrice, props.accommodation])
 
   return (
     <div>

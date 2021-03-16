@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BookingsList from '../components/BookingsList'
-import Login from '../components/Login'
 import Radium from 'radium'
 
 const MyPage = () => {

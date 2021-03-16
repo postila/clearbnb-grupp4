@@ -32,9 +32,9 @@ function NavBar() {
 
       <div style={styles.mypage}>
         <div>
-          <Button>
+          <Button aria-haspopup="true">
             <img src="https://i.imgur.com/P0TBhR7.png" style={styles.img}
-              aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
+              aria-controls="simple-menu" onClick={handleClick} alt="''" />
           </Button>
 
           <Menu
