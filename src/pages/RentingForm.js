@@ -7,12 +7,17 @@ import { LocationContext } from '../contexts/locationContextProvider'
 import AmenitiesContext from '../contexts/AmenitiesContext'
 import { useHistory } from 'react-router-dom'
 import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from '../components/DatePicker'
+// import DatePicker from '../components/DatePicker'
+import DatePicker from "react-datepicker";
+
 
 function CreateRentingForm() {
   const { addAccommodation } = useContext(AccommodationsContext)
   //const history = useHistory()
   // const { addRentingForm } = useContext(AmenitiesContext)
+
+  const [startDate, setStartDate] = useState()
+  const [endDate, setEndDate] = useState()
 
   const title = useRef()
   const location = useRef()
@@ -39,6 +44,8 @@ function CreateRentingForm() {
       description: description.current.value,
       maxGuests: maxGuests.current.value,
       pricePerNight: pricePerNight.current.value,
+      startDate: startDate.getTime(),
+      endDate: endDate.getTime(),
       imageUrl: imageUrl.current.value,
       amenitiesList: {
         washer: washer.current.checked,
@@ -121,8 +128,8 @@ function CreateRentingForm() {
           form="rentingform" type="text" placeholder="500" required></input>
       </div>
 
-
-      <DatePicker></DatePicker>
+      <DatePicker selected={startDate} onChange={(data) => setStartDate(data)} />
+      <DatePicker selected={endDate} onChange={(data) => setEndDate(data)} />
       <h3 style={{ color: '#839cc1' }}>Bekvämligheter</h3>
 
       <br></br>

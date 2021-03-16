@@ -42,6 +42,8 @@ const Accommodation = mongoose.model('Accommodation', {
   }],
   maxGuests: Number,
   pricePerNight: Number,
+  startDate: Number,
+  endDate: Number,
   description: String,
   bookedDatesList: Array,
   location: {
