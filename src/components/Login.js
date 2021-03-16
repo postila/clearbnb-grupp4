@@ -58,7 +58,7 @@ const styles = {
     ':hover': {
       background: '#e6e6e6',
     }
-  },
+  }
 }
 
 export default Radium(Login);
