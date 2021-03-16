@@ -47,7 +47,8 @@ const styles = {
     gridTemplateColumns: '1fr 1fr',
     gridGap: '20px',
     maxWidth: '800px',
-    background: '#202329',
+    backgroundColor: '#eee',
+    
     padding: '15px',
     margin: '10px auto',
     borderRadius: '15px',
@@ -63,7 +64,7 @@ const styles = {
   },
   text: {
     textAlign: 'left',
-    color: 'white'
+    color: 'grey',
   }
 }
 
