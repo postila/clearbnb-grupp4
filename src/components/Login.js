@@ -7,7 +7,7 @@ const Login = (props) => {
       <input key="2" style={styles.input} type="text" placeholder="E-mail" required></input>
       <input key="3" style={styles.input} type="password" placeholder="Lösenord" required></input>
       <button key="4" style={styles.button}>Logga in</button>
-      <p style={styles.register}>Skapa konto?
+      <p style={styles.register}>Inget konto?
         <span onClick={ props.displayRegisterForm }> Registrera dig här</span>
       </p>
     </form>
@@ -35,36 +35,30 @@ const styles = {
   },
   button: {
     fontFamily: 'Quicksand',
+    fontWeight: 'bold',
+    color: 'grey',
     maxWidth: '100px',
     margin: '10px auto',
-    // marginTop: '10px',
     cursor: 'pointer',
     border: 'none',
     padding: '10px',
-    borderRadius: '6px'
-  },
-  register: {
-    cursor: 'pointer',
-    fontSize: '10px',
-    fontFamily: 'Quicksand',
-    borderRadius: '10px',
-    background: '#202329',
-    color: 'white',
+    borderRadius: '6px',
     textTransform: 'uppercase',
-    fontSize: '12px',
-    fontWeight: 'bold'
   },
   register: {
     cursor: 'pointer',
+    fontFamily: 'Quicksand',
     fontSize: '12px',
     fontWeight: 'bold',
+    borderRadius: '10px',
     textTransform: 'uppercase',
+    padding: '5px',
+    color: 'grey',
+    background: '#eee',
     ':hover': {
-      opacity: '50%'
+      background: '#e6e6e6',
     }
   },
-
-
 }
 
 export default Radium(Login);
