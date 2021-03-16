@@ -110,7 +110,8 @@ const BookingForm = (props) => {
           {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>}
         </div>
       </form>
-          }
+      }
+      <br /><br />
     </div>
    );
 }
