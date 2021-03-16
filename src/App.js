@@ -18,6 +18,7 @@ import AccommodationsContextProvider from './contexts/AccommodationsContext'
 import LocationContext from './contexts/locationContextProvider'
 import AmenitiesContextProvider from './contexts/AmenitiesContext'
 import UserContextProvider, { UserContext } from './contexts/UserContextProvider'
+import BookingContextProvider from './contexts/BookingContextProvider'
 
 function App() {
   return (

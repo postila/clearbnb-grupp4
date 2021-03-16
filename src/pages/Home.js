@@ -14,27 +14,27 @@ const Home = () => {
   }
 
   return (
-    <div style={{ backgroundImage: `url(${Background})`, height: '100vh', margin: '0', marginTop:'-20px' }}>
-    <div style={{ width: '100%' }}>
-      <div className="login-register-form">
-        {!register && <Login displayRegisterForm={displayRegisterForm} />}
-        {register && <Register />}
-    <div style={styles.bodyStyle}>
-      <div style={styles.left}> <img style={styles.logo} src='https://i.imgur.com/eTEP9yc.png' alt='logo'></img></div>
-      <div style={styles.center } className="login-register-form">
-        {!register && <Login displayRegisterForm={toggleRegisterForm} />}
-        {register && <Register displayRegisterForm={toggleRegisterForm} />}
-      </div>
-      <div style={styles.locationList}>
-        <LocationList />
-      </div>
+    <div style={{ backgroundImage: `url(${Background})`, height: '100vh', margin: '0', marginTop: '-20px' }}>
+      <div style={{ width: '100%' }}>
+        <div className="login-register-form">
+          {!register && <Login displayRegisterForm={displayRegisterForm} />}
+          {register && <Register />}
+          <div style={styles.bodyStyle}>
+            <div style={styles.left}> <img style={styles.logo} src='https://i.imgur.com/eTEP9yc.png' alt='logo'></img></div>
+            <div style={styles.center} className="login-register-form">
+              {!register && <Login displayRegisterForm={toggleRegisterForm} />}
+              {register && <Register displayRegisterForm={toggleRegisterForm} />}
+            </div>
+            <div style={styles.locationList}>
+              <LocationList />
+            </div>
+          </div >
+        </div>
+        <div style={styles.right}></div>
       </div >
     </div>
-      <div style={styles.right}></div>
-      </div >
-      </div>
   );
-
+}
 const styles = {
   locationList: {
     display: 'grid',

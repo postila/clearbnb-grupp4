@@ -44,7 +44,7 @@ const AccommodationsDetails = () => {
               </div>
             ))}
           </div>
-           <BookingForm accommodation={item} />
+           {/* <BookingForm accommodation={item} /> */}
         </div> }
       { !accommodation &&
         <div>
