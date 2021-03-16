@@ -18,15 +18,14 @@ function CreateRentingForm() {
   const maxGuests = useRef()
   const pricePerNight = useRef()
   const imageUrl = useRef()
-  const Tvättmaskin = useRef()
-  const WiFi = useRef()
-  const Väsentligheter = useRef()
-  const Kök = useRef()
+  const washer = useRef()
+  const wifi = useRef()
+  const essentials = useRef()
+  const kitchen = useRef()
   const TV = useRef()
-  const Luftkonditionering = useRef()
-  const Strykjärn = useRef()
-  const LåstSkåp = useRef()
-  const [aList, addAList] = useState([])
+  const airConditioning = useRef()
+  const iron = useRef()
+  const safe = useRef()
 
   const createRentingForm = async e => {
     e.preventDefault()
@@ -39,14 +38,14 @@ function CreateRentingForm() {
       pricePerNight: pricePerNight.current.value,
       imageUrl: imageUrl.current.value,
       amenitiesList: {
-        Tvättmaskin: Tvättmaskin.current.checked,
-        WiFi: WiFi.current.checked,
-        Väsentligheter: Väsentligheter.current.checked,
-        Kök: Kök.current.checked,
+        washer: washer.current.checked,
+        wifi: wifi.current.checked,
+        essentials: essentials.current.checked,
+        kitchen: kitchen.current.checked,
         TV: TV.current.checked,
-        Luftkonditionering: Luftkonditionering.current.checked,
-        Strykjärn: Strykjärn.current.checked,
-        LåstSkåp: LåstSkåp.current.checked
+        airConditioning: airConditioning.current.checked,
+        iron: iron.current.checked,
+        safe: safe.current.checked
       }
     }
     console.log(rentingForm)
@@ -62,14 +61,14 @@ function CreateRentingForm() {
     imageUrl.current.value = ''
     maxGuests.current.value = ''
     pricePerNight.current.value = ''
-    Tvättmaskin.current.value = ''
-    WiFi.current.value = ''
-    Väsentligheter.current.value = ''
-    Kök.current.value = ''
+    washer.current.value = ''
+    wifi.current.value = ''
+    essentials.current.value = ''
+    kitchen.current.value = ''
     TV.current.value = ''
-    Luftkonditionering.current.value = ''
-    Strykjärn.current.value = ''
-    LåstSkåp.current.value = ''
+    airConditioning.current.value = ''
+    iron.current.value = ''
+    safe.current.value = ''
 
   }
 
@@ -161,10 +160,10 @@ function CreateRentingForm() {
             style={styles.checkBox}
             form="rentingform"
             type="checkbox"
-            required ref={Tvättmaskin}
-            value="Tvättmaskin"
+            required ref={washer}
+            value="washer"
           ></input>
-          <img style={styles.icon}src="https://i.imgur.com/ZHG7tWd.png"></img>
+          <img style={styles.icon} src="https://i.imgur.com/ZHG7tWd.png"></img>
           <label style={styles.iconLabel} form="rentingform">Tvättmaskin</label>
         </div>
 
@@ -174,8 +173,8 @@ function CreateRentingForm() {
             style={styles.checkBox}
             form="rentingform"
             type="checkbox"
-            required ref={WiFi}
-            value="WiFi"
+            required ref={wifi}
+            value="wifi"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/bEPBdlP.png"></img>
           <label style={styles.iconLabel} form="rentingform">WiFi</label>
@@ -187,8 +186,8 @@ function CreateRentingForm() {
             style={styles.checkBox}
             form="rentingform"
             type="checkbox"
-            required ref={Väsentligheter}
-            value="Väsentligheter"
+            required ref={essentials}
+            value="essentials"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/gcqJNww.png"></img>
           <label style={styles.iconLabel} form="rentingform">Väsentligheter</label>
@@ -200,8 +199,8 @@ function CreateRentingForm() {
             style={styles.checkBox}
             form="rentingform"
             type="checkbox"
-            required ref={Kök}
-            value="Kök"
+            required ref={kitchen}
+            value="kitchen"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/LvTR8oD.png"></img>
           <label style={styles.iconLabel} form="rentingform">Kök</label>
@@ -226,8 +225,8 @@ function CreateRentingForm() {
             style={styles.checkBox}
             form="rentingform"
             type="checkbox"
-            required ref={Luftkonditionering}
-            value="Luftkonditionering"
+            required ref={airConditioning}
+            value="airConditioning"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/bF4klbB.png"></img>
           <label style={styles.iconLabel} form="rentingform">Luftkonditionering</label>
@@ -239,8 +238,8 @@ function CreateRentingForm() {
             style={styles.checkBox}
             form="rentingform"
             type="checkbox"
-            required ref={Strykjärn}
-            value="Strykjärn"
+            required ref={iron}
+            value="iron"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/3XShQ5y.png"></img>
           <label style={styles.iconLabel} form="rentingform">Strykjärn</label>
@@ -252,7 +251,7 @@ function CreateRentingForm() {
             style={styles.checkBox}
             form="rentingform"
             type="checkbox"
-            required ref={LåstSkåp}
+            required ref={safe}
             value="Låst skåp"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/FXhmIhX.png"></img>
@@ -303,7 +302,7 @@ const styles = {
     color: 'grey',
     paddingTop: '15px',
     paddingBottom: '10px',
-    
+
   },
   input: {
     textAlign: 'left',
@@ -369,7 +368,7 @@ const styles = {
   amenityItem: {
     fontFamily: 'Quicksand',
     float: 'right',
-    
+
   },
   checkBox: {
     float: 'left',

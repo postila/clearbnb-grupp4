@@ -29,7 +29,7 @@ export default function AmenitiesContextProvider(props) {
 /*const defaultAmenities = [
   {
     "_id": "6048bd4adc93177f077ef87a",
-    "name": "Tvättmaskin",
+    "name": "washer",
     "iconUrl": "https://www.flaticon.com/svg/vstatic/svg/1414/1414456.svg?token=exp=1615381319~hmac=a14384b50be8427d875c1085bf5c872f"
   },
   {
@@ -39,12 +39,12 @@ export default function AmenitiesContextProvider(props) {
   },
   {
     "_id": "6048c15fdc93177f077ef87f",
-    "name": "Väsentligheter",
+    "name": "essentials",
     "iconUrl": "https://www.flaticon.com/svg/vstatic/svg/1414/1414486.svg?token=exp=1615381319~hmac=a781fca8fae18f827f74074738b355d2"
   },
   {
     "_id": "6048c1aadc93177f077ef880",
-    "name": "Kök",
+    "name": "kitchen",
     "iconUrl": "https://www.flaticon.com/svg/vstatic/svg/1414/1414444.svg?token=exp=1615381319~hmac=ee6b3e1ca6e76c8e9f8a25ed0bd67d07"
   },
   {
@@ -54,12 +54,12 @@ export default function AmenitiesContextProvider(props) {
   },
   {
     "_id": "6048c23edc93177f077ef882",
-    "name": "Luftkonditionering",
+    "name": "airConditioning",
     "iconUrl": "https://www.flaticon.com/svg/vstatic/svg/1414/1414443.svg?token=exp=1615381319~hmac=2298046b5d03f0c0701632263b470280"
   },
   {
     "_id": "6048c287dc93177f077ef883",
-    "name": "Strykjärn",
+    "name": "iron",
     "iconUrl": "https://www.flaticon.com/svg/vstatic/svg/1414/1414458.svg?token=exp=1615381319~hmac=acd9ac3e9f8db0612faec8d7e2a31c94"
   },
   {
