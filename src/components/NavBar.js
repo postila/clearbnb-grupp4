@@ -21,36 +21,36 @@ function NavBar() {
   return (
 
     <div>
-      
+
       <nav style={styles.navbar}>
         <div>
-        <Link style={styles.button} to="/Platser">Platser</Link>
-        <Link style={styles.button} to="/">Hem</Link>
-        <Link style={styles.button} to="/Om-oss">Om oss</Link>
+          <Link style={styles.button} to="/Platser">Platser</Link>
+          <Link style={styles.button} to="/">Hem</Link>
+          <Link style={styles.button} to="/Om-oss">Om oss</Link>
         </div>
       </nav>
 
-        <div style={styles.mypage}>
-          <div>
-            <Button>
-              <img src= "https://i.imgur.com/P0TBhR7.png" style={styles.img}
+      <div style={styles.mypage}>
+        <div>
+          <Button>
+            <img src="https://i.imgur.com/P0TBhR7.png" style={styles.img}
               aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
-            </Button>
+          </Button>
 
           <Menu
-              style={styles.dropdown}
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem >Mitt konto</MenuItem>
-              <MenuItem >Mina bokningar</MenuItem>
-              <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Uthyrning</MenuItem>
-            </Menu>
-          </div >
-        </div>
+            style={styles.dropdown}
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem >Mitt konto</MenuItem>
+            <MenuItem onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Mina sidor</MenuItem>
+            <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Uthyrning</MenuItem>
+          </Menu>
+        </div >
+      </div>
     </div>
   )
 }
