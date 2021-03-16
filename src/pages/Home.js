@@ -2,15 +2,14 @@ import Radium from 'radium'
 import React, { useState } from 'react';
 import Login from '../components/Login'
 import Register from '../components/Register';
-import { LocationContext } from '../contexts/locationContextProvider'
 import LocationList from '../components/LocationList'
 import Background from '../homeBackground.jpg'
 
 const Home = () => {
   const [register, setRegister] = useState(false)
 
-  const displayRegisterForm = () => {
-    setRegister(true)
+  const toggleRegisterForm = () => {
+    setRegister(valueOf.register = !valueOf.register)
   }
 
   return (
