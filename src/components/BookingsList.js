@@ -22,10 +22,10 @@ function BookingsList() {
       <div style={styles.text}>
         <h3>{booking.accommodation.title}</h3>
         <p>{locations.find(l=>l._id === booking.accommodation.location).name}</p>
-        <p>Antal gäster {booking.guests} | {(Math.round((booking.endDate - booking.startDate) / 86400) + 1) * booking.accommodation.pricePerNight} SEK</p>
-        <p>Ankomst: {new Date((booking.startDate) * 1000).toLocaleDateString()}</p>
-        <p>Avresa: {new Date((booking.endDate) * 1000).toLocaleDateString()}</p>
-        <p>{booking.user.name}</p>
+        <p>Antal gäster {booking.guests} | {(Math.round((booking.endDate - booking.startDate) / 86400000) + 1) * booking.accommodation.pricePerNight} SEK</p>
+        <p>Ankomst: {new Date((booking.startDate)).toLocaleDateString()}</p>
+        <p>Avresa: {new Date((booking.endDate)).toLocaleDateString()}</p>
+        {/* <p>{booking.user.name}</p> */}
         
       </div>
     </div>
