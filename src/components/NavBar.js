@@ -55,7 +55,6 @@ function NavBar() {
 
 const styles = {
   navbar: {
-    //display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
@@ -73,15 +72,8 @@ const styles = {
   mypage: {
     color: '#eee',
     float: 'right',
-
   },
-
-
 }
 
-
-const navDropDown = {
-
-}
 
 export default Radium(NavBar);
