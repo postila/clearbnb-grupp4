@@ -155,6 +155,7 @@ function CreateRentingForm() {
           required ref={maxGuests}
           form="rentingform"
           type="number"
+          min="1"
           placeholder="8"
         ></input>
 
@@ -164,7 +165,8 @@ function CreateRentingForm() {
           style={styles.date}
           required ref={pricePerNight}
           form="rentingform"
-          type="text"
+          type="number"
+          min="0"
           placeholder="500"
         ></input>
       </div>
