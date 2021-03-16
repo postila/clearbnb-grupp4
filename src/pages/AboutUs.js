@@ -5,9 +5,8 @@ import background from '../background.jpg'
 
 const AboutUs = () => {
 
-  // const handleClick = useState()
   return (
-    <div style={{ backgroundImage: `url(${background})`, height: '100vh', margin: '0' }}>
+    <div style={styles.background}>
       <div style={styles.box}>
         <p style={styles.content}>Cras facilisis urna ornare ex volutpat, et
         convallis erat elementum. Ut aliquam, ipsum vitae
@@ -30,7 +29,6 @@ const styles = {
     opacity: '30%',
     padding: '30px',
     borderRadius:'10px'
-
   },
   content: {
     color: 'black',
@@ -39,9 +37,9 @@ const styles = {
     letterSpacing:'0.5px'
   },
   background: {
-    backgroundImage:''
+    backgroundImage: '../background.jpg',
+    height: '100vh'
   }
-  
 }
 
 export default Radium(AboutUs);
