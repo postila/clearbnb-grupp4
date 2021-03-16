@@ -3,7 +3,6 @@ import Radium from 'radium'
 import { BookingContext } from '../contexts/BookingContextProvider';
 import DatePicker from "react-datepicker";
 import { useHistory } from 'react-router-dom'
-import { logDOM } from '@testing-library/dom';
 
 
 const BookingForm = (props) => {
@@ -24,7 +23,6 @@ const BookingForm = (props) => {
   const handlePrice = () => {
     if (arrDate && depDate) {
       setPrice(((depDate.getTime() - arrDate.getTime() )/ dayInMilliSec) * accommodationPrice)
-      console.log(price, 'från handlePrice');
       return price
     }
   }
@@ -70,9 +68,8 @@ const BookingForm = (props) => {
         {arrDate && depDate &&
           <div>
             <p>Pris: {Math.round(price)} SEK</p>
-          <p>Serviceavgift: {Math.round((price * 0.15))} SEK</p>
-          <p>Totalpris: {Math.round((price * 1.15))}</p>
-          
+            <p>Serviceavgift: {Math.round((price * 0.15))} SEK</p>
+            <p>Totalpris: {Math.round((price * 1.15))}</p>
           </div>
         }
 
