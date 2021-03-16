@@ -18,7 +18,7 @@ function BookingsList() {
       className="card"
       key={booking._id}
     >
-      <img style={styles.pictures} src={booking.accommodation.imageUrl} />
+      <img style={styles.pictures} src={booking.accommodation.imageUrl} alt="''"/>
       <div style={styles.text}>
         <h3>{booking.accommodation.title}</h3>
         <p>{locations.find(l=>l._id === booking.accommodation.location).name}</p>

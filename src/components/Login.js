@@ -45,26 +45,17 @@ const styles = {
   },
   register: {
     cursor: 'pointer',
-    fontSize: '10px',
     fontFamily: 'Quicksand',
     borderRadius: '10px',
     background: '#202329',
     color: 'white',
     textTransform: 'uppercase',
     fontSize: '12px',
-    fontWeight: 'bold'
-  },
-  register: {
-    cursor: 'pointer',
-    fontSize: '12px',
     fontWeight: 'bold',
-    textTransform: 'uppercase',
     ':hover': {
       opacity: '50%'
     }
-  },
-
-
+  }
 }
 
 export default Radium(Login);

@@ -1,13 +1,9 @@
 import Radium from 'radium'
 import React from 'react'
 import { useRef, useContext, useState } from 'react'
-import Amenities from '../components/Amenities'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { LocationContext } from '../contexts/locationContextProvider'
-import AmenitiesContext from '../contexts/AmenitiesContext'
-import { useHistory } from 'react-router-dom'
 import "react-datepicker/dist/react-datepicker.css";
-// import DatePicker from '../components/DatePicker'
 import DatePicker from "react-datepicker";
 
 
@@ -120,7 +116,7 @@ function CreateRentingForm() {
       <label style={styles.label} form="rentingform">Beskrivning (max 500 tecken)</label>
       <textarea
         style={styles.description}
-        required ref={description}
+        ref={description}
         form="rentingform"
         maxLength="500"
         type="text"
@@ -175,7 +171,7 @@ function CreateRentingForm() {
             required ref={washer}
             value="washer"
           ></input>
-          <img style={styles.icon} src="https://i.imgur.com/ZHG7tWd.png"></img>
+          <img style={styles.icon} src="https://i.imgur.com/ZHG7tWd.png" alt="''"></img>
           <label style={styles.iconLabel} form="rentingform">Tvättmaskin</label>
         </div>
 
@@ -188,7 +184,7 @@ function CreateRentingForm() {
             required ref={wifi}
             value="wifi"
           ></input>
-          <img style={styles.icon} src="https://i.imgur.com/bEPBdlP.png"></img>
+          <img style={styles.icon} src="https://i.imgur.com/bEPBdlP.png" alt="''"></img>
           <label style={styles.iconLabel} form="rentingform">WiFi</label>
         </div>
 
@@ -201,7 +197,7 @@ function CreateRentingForm() {
             required ref={essentials}
             value="essentials"
           ></input>
-          <img style={styles.icon} src="https://i.imgur.com/gcqJNww.png"></img>
+          <img style={styles.icon} src="https://i.imgur.com/gcqJNww.png" alt="''"></img>
           <label style={styles.iconLabel} form="rentingform">Väsentligheter</label>
         </div>
 
@@ -214,7 +210,7 @@ function CreateRentingForm() {
             required ref={kitchen}
             value="kitchen"
           ></input>
-          <img style={styles.icon} src="https://i.imgur.com/LvTR8oD.png"></img>
+          <img style={styles.icon} src="https://i.imgur.com/LvTR8oD.png" alt="''"></img>
           <label style={styles.iconLabel} form="rentingform">Kök</label>
         </div>
 
@@ -227,7 +223,7 @@ function CreateRentingForm() {
             required ref={TV}
             value="TV"
           ></input>
-          <img style={styles.icon} src="https://i.imgur.com/o8S2jMk.png"></img>
+          <img style={styles.icon} src="https://i.imgur.com/o8S2jMk.png" alt="''"></img>
           <label style={styles.iconLabel} form="rentingform">TV</label>
         </div>
 
@@ -240,7 +236,7 @@ function CreateRentingForm() {
             required ref={airConditioning}
             value="airConditioning"
           ></input>
-          <img style={styles.icon} src="https://i.imgur.com/bF4klbB.png"></img>
+          <img style={styles.icon} src="https://i.imgur.com/bF4klbB.png" alt="''"></img>
           <label style={styles.iconLabel} form="rentingform">Luftkonditionering</label>
         </div>
 
@@ -253,7 +249,7 @@ function CreateRentingForm() {
             required ref={iron}
             value="iron"
           ></input>
-          <img style={styles.icon} src="https://i.imgur.com/3XShQ5y.png"></img>
+          <img style={styles.icon} src="https://i.imgur.com/3XShQ5y.png" alt="''"></img>
           <label style={styles.iconLabel} form="rentingform">Strykjärn</label>
         </div>
 
@@ -266,7 +262,7 @@ function CreateRentingForm() {
             required ref={safe}
             value="Låst skåp"
           ></input>
-          <img style={styles.icon} src="https://i.imgur.com/FXhmIhX.png"></img>
+          <img style={styles.icon} src="https://i.imgur.com/FXhmIhX.png" alt="''"></img>
           <label style={styles.iconLabel} form="rentingform">Låst skåp</label>
         </div>
 
