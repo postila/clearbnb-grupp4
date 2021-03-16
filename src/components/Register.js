@@ -1,9 +1,8 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import { UserContext } from '../contexts/UserContextProvider'
 
-const Register = (props) => {
+const Register = () => {
   const { addUser } = useContext(UserContext)
-  const [error, setError] = useState(false)
 
   const name = useRef()
   const email = useRef()
@@ -19,28 +18,19 @@ const Register = (props) => {
       password: password.current.value
     }
 
-    if (password.current.value !== confirmPassword.current.value) {
-      setError(true)
-      name.current.value = ''
-      email.current.value = ''
-      password.current.value = ''
-      confirmPassword.current.value = ''
+    if (password.current.value === confirmPassword.current.value) {
+      await addUser(user)
       return;
     }
-    await addUser(user)
   }
 
   return (
-    <form key="1" style={styles.form} onSubmit={createUser}>
-      <input key="2" ref={ name } style={ styles.input } type="text" placeholder="Namn" required></input>
-      <input key="3" ref={ email } style={ styles.input } type="text" placeholder="E-mail" required></input>
-      <input key="4" ref={ password } style={ styles.input } type="password" placeholder="Lösenord" required></input>
-      <input key="5" ref={confirmPassword} style={styles.input} type="password" placeholder="Bekräfta lösenord" required></input>
-      {error && <p style={styles.error}>Lösenordet matchar inte</p>}
-      <div>
-        <button style={styles.button}>Skapa konto</button>
-        <p style={styles.logIn} onClick={props.displayRegisterForm}>Har du redan ett konto? Logga in här</p>
-      </div>
+    <form style={styles.form} onSubmit={createUser}>
+      <input ref={ name } style={ styles.input } type="text" placeholder="Namn" required></input>
+      <input ref={ email } style={ styles.input } type="text" placeholder="E-mail" required></input>
+      <input ref={ password } style={ styles.input } type="password" placeholder="Lösenord" required></input>
+      <input ref={ confirmPassword } style={ styles.input } type="password" placeholder="Bekräfta lösenord" required></input>
+      <button style={ styles.button }>Skapa konto</button>
     </form>
   );
 }
@@ -54,44 +44,16 @@ const styles = {
     padding: '10px'
   },
   input: {
-    textAlign: 'center',
-    padding: '10px',
-    borderRadius: '10px',
-    border: 'none',
-    ':focus': {
-      outline: 'none'
-    }
+    textAlign: 'center'
   },
   button: {
-    maxWidth: '150px',
-    margin: '10px',
+    maxWidth: '100px',
+    margin: '0 auto',
+    marginTop: '10px',
     cursor: 'pointer',
     border: 'none',
     padding: '10px',
-    borderRadius: '10px',
-    background: '#202329',
-    color: 'white',
-    textTransform: 'uppercase',
-    fontSize: '12px',
-    fontWeight: 'bold'
-  },
-  error: {
-    background: '#202329',
-    color: 'white',
-    padding: '10px',
-    fontWeight: '700',
-    maxWidth: '250px',
-    margin: '10px auto',
     borderRadius: '10px'
-  },
-  logIn: {
-    cursor: 'pointer',
-    fontSize: '12px',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    ':hover': {
-      opacity: '50%'
-    }
   }
 }
 

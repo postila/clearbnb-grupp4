@@ -1,6 +1,6 @@
 global.mongoose = require('mongoose')
 const express = require('express')
-const { users, locations, accommodations, amenities, bookings, rentaldates } = require('./models.js')
+const { users, locations, accommodations, amenities } = require('./models.js')
 const app = express()
 const session = require('express-session')
 
@@ -71,27 +71,10 @@ app.get('/rest/accommodation/:id', async (req, res) => {
   res.json(doc)
 })
 
-app.get('/api/accommodationDetails/:id', async (req, res) => {
+app.get('/api/accommodationDetails/:id'), async (req, res) => {
   let doc = await accommodations.findById(req.params.id)
   res.json(doc)
-})
-
-app.post('/api/booking', async (req, res) => {
-  let booking = new bookings(req.body)
-  await booking.save()
-  res.json(booking)
-})
-
-app.get('/rest/bookings', async (req, res) => {
-  let docs = await bookings.find().populate(['user', 'accommodation']).exec()
-  res.json(docs)
-})
-
-app.post('/rest/dates', async (req, res) => {
-  let doc = new rentaldates(req.body)
-  await doc.save()
-  res.json(doc)
-})
+} 
 
 app.get('/api/login', async (req, res) => {
   if (session("current-member") != null) {

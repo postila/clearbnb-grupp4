@@ -1,9 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { AmenitiesContext } from '../contexts/AmenitiesContext'
+import { useHistory } from 'react-router-dom'
 import Radium from 'radium'
 
 function Amenities(props) {
+
   const { amenities } = useContext(AmenitiesContext)
+  const history = useHistory()
   let [title, setTitle] = useState('')
 
   const handleChange = async (name) => {

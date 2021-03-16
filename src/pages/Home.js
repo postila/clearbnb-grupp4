@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import Login from '../components/Login'
 import Register from '../components/Register';
+import { LocationContext } from '../contexts/locationContextProvider'
 import LocationList from '../components/LocationList'
-
 const Home = () => {
   const [register, setRegister] = useState(false)
 
-  const toggleRegisterForm = () => {
-    setRegister(valueOf.register = !valueOf.register)
+  const displayRegisterForm = () => {
+    setRegister(true)
   }
 
   return (
     <div style={{ width: '100%' }}>
       <div className="login-register-form">
-        {!register && <Login displayRegisterForm={toggleRegisterForm} />}
-        {register && <Register displayRegisterForm={toggleRegisterForm}/>}
+        {!register && <Login displayRegisterForm={displayRegisterForm} />}
+        {register && <Register />}
       </div>
       <div style={locationListStyle}>
         <LocationList />
@@ -22,11 +22,11 @@ const Home = () => {
     </div >
   );
 }
-
 const locationListStyle = {
   display: 'grid',
   gridGap: '10px 10px',
   justifyContent: 'center',
+  //flexWrap: 'wrap',
   width: '100%'
 }
 

@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
-import BookingForm from '../components/BookingForm';
+import Amenities from '../components/Amenities'
 
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -11,11 +11,12 @@ const AccommodationsDetails = () => {
   
   let accommodation = accommodations.find(accommodation => accommodation._id === id)
 
+    
   const [item, setItem] = useState(accommodation)
 
   useEffect(() => {
     setItem(accommodation)
-  }, [item, accommodation])
+  }, [item])
 
   const goBack = () => {
     history.go(-1)
@@ -34,15 +35,7 @@ const AccommodationsDetails = () => {
               <h4>Beskrivning:</h4>
               <p>{ accommodation.description }</p>
           </div>
-          <div>
-            <h4>Bekvämligheter:</h4>
-            {accommodation.amenitiesList.map((a) => (
-              <div key={a._id}>
-                {a.Tvättmaskin?'Tvättmaskin, ':''} {a.WiFi?'WiFi, ':''} {a.Väsentligheter?'Väsentligheter, ':''} {a.Kök?'Kök, ':''} {a.TV?'TV, ':''} {a.Luftkonditionering?'Luftkonditionering, ':''} {a.Strykjärn?'Strykjärn, ':''} {a.LåstSkåp?'Låst Skåp, ':''}
-              </div>
-           ))}
-          </div>
-           <BookingForm accommodation={item} />
+          <Amenities />
         </div> }
       { !accommodation &&
         <div>
