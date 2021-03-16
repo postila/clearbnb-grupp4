@@ -13,6 +13,16 @@ const User = mongoose.model('User', {
   }
 })
 
+const RentalDate = mongoose.model('RentalDate', {
+  houseId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Accommodation'
+  },
+  startDate: Number,
+  endDate: Number
+})
+
+
 const Accommodation = mongoose.model('Accommodation', {
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -32,6 +42,8 @@ const Accommodation = mongoose.model('Accommodation', {
   }],
   maxGuests: Number,
   pricePerNight: Number,
+  startDate: Number,
+  endDate: Number,
   description: String,
   bookedDatesList: Array,
   location: {
@@ -49,9 +61,26 @@ const Amenity = mongoose.model('Amenity', {
   icronUrl: String
 })
 
+const Booking = mongoose.model('Booking', {
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  accommodation: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Accommodation'
+  },
+  startDate: Number,
+  endDate: Number,
+  guests: Number,
+  totalPrice: Number
+})
+
 module.exports = {
   users: User,
   accommodations: Accommodation,
   locations: Location,
-  amenities: Amenity
+  amenities: Amenity,
+  bookings: Booking,
+  rentaldates: RentalDate
 }

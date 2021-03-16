@@ -87,8 +87,4 @@ const styles = {
 }
 
 
-// const navDropDown = {
-
-// }
-
 export default Radium(NavBar);

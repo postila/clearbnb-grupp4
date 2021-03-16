@@ -34,7 +34,7 @@ export default function AmenitiesContextProvider(props) {
   },
   {
     "_id": "6048c012dc93177f077ef87c",
-    "name": "Wifi",
+    "name": "wifi",
     "iconUrl": "https://www.flaticon.com/svg/vstatic/svg/1414/1414469.svg?token=exp=1615381319~hmac=71b90aa0dc2354c6873905595cb0592f"
   },
   {
