@@ -31,7 +31,7 @@ const AccommodationsDetails = () => {
           <h1>{accommodation.title}</h1>
           <p>Max antal gäster: {accommodation.maxGuests}</p>
           <p>Ort: {accommodation.location.name}</p>
-          <p>Pris per natt: {accommodation.pricePerNight}</p>
+          <p>Pris per natt: {accommodation.pricePerNight} SEK</p>
           <div className="description-content">
             <h4>Beskrivning:</h4>
             <p>{accommodation.description}</p>
