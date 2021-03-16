@@ -33,7 +33,7 @@ const Register = (props) => {
   return (
     <form key="1" style={styles.form} onSubmit={createUser}>
       <input key="2" ref={ name } style={ styles.input } type="text" placeholder="Namn" required></input>
-      <input key="3" ref={ email } style={ styles.input } type="text" placeholder="E-mail" required></input>
+      <input key="3" ref={ email } style={ styles.input } type="email" placeholder="E-mail" required></input>
       <input key="4" ref={ password } style={ styles.input } type="password" placeholder="Lösenord" required></input>
       <input key="5" ref={confirmPassword} style={styles.input} type="password" placeholder="Bekräfta lösenord" required></input>
       {error && <p style={styles.error}>Lösenordet matchar inte</p>}

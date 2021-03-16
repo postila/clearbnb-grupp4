@@ -42,7 +42,7 @@ const AccommodationsDetails = () => {
                 {a.washer ? 'Tvättmaskin, ' : ''} {a.wifi ? 'WiFi, ' : ''} {a.essentials ? 'Väsentligheter, ' : ''} {a.kitchen ? 'Kök, ' : ''} {a.TV ? 'TV, ' : ''} {a.airConditioning ? 'Luftkonditionering, ' : ''} {a.iron ? 'Strykjärn, ' : ''} {a.safe ? 'Låst Skåp, ' : ''}
               </div>
             ))}
-          </div>
+        </div>
            <BookingForm accommodation={item} />
         </div> }
       { !accommodation &&
