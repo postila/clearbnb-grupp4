@@ -4,7 +4,7 @@ export const AccommodationsContext = createContext();
 
 export default function AccommodationsContextProvider(props) {
   const [accommodations, setAccommodations] = useState([])
-  const [accommodationId, setAccommodationId] = useState([])
+  const [accommodationId, setAccommodationId] = useState('hallå')
   const fetchAccommodations = async () => {
     let res = await fetch('/rest/accommodations')
     res = await res.json()
@@ -12,6 +12,7 @@ export default function AccommodationsContextProvider(props) {
   }
 
   const addAccommodation = async accommodation => {
+    console.log(accommodation)
     let res = await fetch('/api/accommodations', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -31,7 +32,8 @@ export default function AccommodationsContextProvider(props) {
 
   const values = {
     accommodations,
-    addAccommodation
+    addAccommodation,
+    accommodationId
   }
 
   return (

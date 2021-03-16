@@ -2,8 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
-import Amenities from '../components/Amenities'
-import shadows from '@material-ui/core/styles/shadows';
+import BookingForm from '../components/BookingForm';
 
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -11,13 +10,12 @@ const AccommodationsDetails = () => {
   const history = useHistory()
 
   let accommodation = accommodations.find(accommodation => accommodation._id === id)
-  console.log(accommodation, 'accommodation')
 
   const [item, setItem] = useState(accommodation)
 
   useEffect(() => {
     setItem(accommodation)
-  }, [item])
+  }, [item, accommodation])
 
   const goBack = () => {
     history.go(-1)
@@ -36,7 +34,6 @@ const AccommodationsDetails = () => {
             <h4>Beskrivning:</h4>
             <p>{accommodation.description}</p>
           </div>
-
           <div>
             <h4>Bekvämligheter:</h4>
             {accommodation.amenitiesList.map((a) => (
@@ -45,8 +42,8 @@ const AccommodationsDetails = () => {
               </div>
             ))}
           </div>
-
-        </div>}
+           <BookingForm accommodation={item} />
+        </div> }
       { !accommodation &&
         <div>
           <h3>Accommodation not found</h3>
