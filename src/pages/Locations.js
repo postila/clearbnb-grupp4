@@ -5,34 +5,41 @@ import Radium from 'radium'
 
 const Locations = () => {
   const { accommodations } = useContext(AccommodationsContext)
-  
+
+
   const history = useHistory()
-  
+
   const goToDetailsPage = (id) => {
     history.push('/accommodationDetails/' + id)
   }
   const { id } = useParams()
   const accommodationList = id ? accommodations.filter(a => a.location._id === id) : accommodations
-  const card = accommodation => 
+  const card = accommodation =>
   (
     <div
-    style={ styles.box }
-    className="card"
-    key={ accommodation._id }
-    onClick={() => goToDetailsPage(accommodation._id)}
+      style={styles.box}
+      className="card"
+      key={accommodation._id}
+      onClick={() => goToDetailsPage(accommodation._id)}
     >
-        <img style={ styles.pictures } src={ accommodation.imageUrl } alt={'picture' + accommodation._id} />
-        <div style={ styles.text }>
-          <h3>{ accommodation.title }</h3>
-          <p>Max antal gäster {accommodation.maxGuests} | { accommodation.pricePerNight } SEK</p>
-          <p>{ accommodation.location.name }</p>
-        </div>
+      <img style={styles.pictures} src={accommodation.imageUrl} alt={'picture' + accommodation._id} />
+      <div style={styles.text}>
+        <h3>{accommodation.title}</h3>
+        <p>Max antal gäster {accommodation.maxGuests} | {accommodation.pricePerNight} SEK</p>
+        <p>{accommodation.location.name}</p>
       </div>
+    </div>
   )
-  
+  const handleInput = () => {
+
+  }
+
   return (
     <div>
-      { accommodationList.map(accommodation => card(accommodation)) }
+      <form key="1">
+        <input type="text" key="2" style={styles.input} placeholder="Sök..." />
+        {accommodationList.map(accommodation => card(accommodation))}
+      </form>
     </div>
   );
 }
@@ -71,6 +78,19 @@ const styles = {
     fontFamily: 'Quicksand',
     margin: '50px',
     color: 'grey',
+  },
+  input: {
+    height: '30px',
+    width: '250px',
+    textAlign: 'center',
+    background: '#eee',
+    fontFamily: 'Quicksand',
+    borderRadius: '10px',
+    border: 'none',
+    margin: '5vh 0 0 160vh'
+  },
+  form: {
+   
   }
 }
 
