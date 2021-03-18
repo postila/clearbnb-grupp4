@@ -141,7 +141,7 @@ app.get('/api/whoami', (req, res) => {
   console.log('SE MIG!')
   if (req.session.user) {
     let user = { ...req.session.user }
-    delete user[0].password
+    delete user.password
     res.json(user)
   }
   else {
