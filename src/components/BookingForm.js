@@ -8,8 +8,6 @@ import { useHistory } from 'react-router-dom'
 const BookingForm = (props) => {
   const history = useHistory()
   const { addBooking } = useContext(BookingContext)
-  const [accommodationId, setAccommodationId] = useState(null)
-  const [accommodationPrice, setAccommodationPrice] = useState(null)
   const [accommodation, setAccommodation] = useState(null)
   const [validatDates, setValidatDates] = useState(true)
   const [bookingOk, setBookingOk] = useState(false)
@@ -28,7 +26,7 @@ const BookingForm = (props) => {
     e.preventDefault()
     const booking = {
       // user: 
-      accommodation: accommodationId,
+      accommodation: accommodation._id,
       startDate: arrDate.getTime(),
       endDate: depDate.getTime(),
       guests: guests.current.value,
@@ -47,24 +45,22 @@ const BookingForm = (props) => {
 
   useEffect(() => {
       if (arrDate && depDate) {
-        setPrice(((depDate.getTime() - arrDate.getTime()) / dayInMilliSec) * accommodationPrice)
+        setPrice(((depDate.getTime() - arrDate.getTime()) / dayInMilliSec) * accommodation.pricePerNight)
         return price
       }
     
     if (props.accommodation) {
-      setAccommodationId(props.accommodation._id)
-      setAccommodationPrice(props.accommodation.pricePerNight)
       setAccommodation(props.accommodation)
       if (props.accommodation.startDate > new Date()) {
         setMindate(props.accommodation.startDate)
       }
       setEndDate(props.accommodation.endDate)
     }
-  }, [arrDate, depDate, price, accommodationPrice, props.accommodation])
+  }, [arrDate, depDate, price, props.accommodation])
 
   return (
     <div>
-      {accommodationId &&
+      {accommodation &&
       <form onSubmit={createBooking}>
         <div style={styles.guestContainer}>
           Antal gäster
