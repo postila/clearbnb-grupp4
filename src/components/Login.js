@@ -1,12 +1,49 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Radium from 'radium'
+import { UserContext } from '../contexts/UserContextProvider'
 
 const Login = (props) => {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { login, logout, fetchSession } = useContext(UserContext)
+
+  const logOut = async () => {
+    
+    await logout()
+  }
+
+  const fetchsession = async () => {
+    await fetchSession()
+  }
+
+  const createLogin = async e => {
+    e.preventDefault()
+
+    const account = {
+      email: email,
+      password: password
+    }
+    console.log(account)
+    await login(account)
+
+    setEmail('')
+    setPassword('')
+  }
+
+  useEffect(() => {
+    setEmail(email)
+    setPassword(password)
+  }, [email, password])
+
+
   return (
     <form key="1" style={styles.form}>
-      <input key="2" style={styles.input} type="email" placeholder="E-mail" required></input>
-      <input key="3" style={styles.input} type="password" placeholder="Lösenord" required></input>
-      <button key="4" style={styles.button}>Logga in</button>
+      <input key="2" style={styles.input} type="email" placeholder="E-mail" required onChange={ e => setEmail(e.target.value) } value={email}></input>
+      <input key="3" style={styles.input} type="password" placeholder="Lösenord" required onChange={ p => setPassword(p.target.value)} value={password}></input>
+      <button key="4" style={styles.button} onClick={createLogin}>Logga in</button>
+      
+      <button onClick={fetchsession}>Vem är inloggad?</button>
       <p style={styles.register}>Inget konto?
         <span onClick={ props.displayRegisterForm }> Registrera dig här</span>
       </p>
