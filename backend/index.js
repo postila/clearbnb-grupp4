@@ -31,7 +31,7 @@ app.get('/rest/locations', async (req, res) => {
 
 app.get('/rest/locations/:id', async (req, res) => {
   let doc = await locations.findById(req.params.id)
-  await res.json(doc)
+  res.json(doc)
 })
 
 app.get('/rest/accommodations', async (req, res) => {
@@ -82,6 +82,12 @@ app.post('/api/booking', async (req, res) => {
 app.get('/rest/bookings', async (req, res) => {
   let docs = await bookings.find().populate(['user', 'accommodation']).exec()
   res.json(docs)
+})
+
+app.get('/rest/bookings/:id', async (req, res) => {
+  let accommodation = await accommodations.findById(req.params.id)
+  let doc = await bookings.find({accommodation:accommodation._id})
+  res.json(doc)
 })
 
 
