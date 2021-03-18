@@ -138,7 +138,6 @@ app.delete('/api/logout', async (req, res) => {
 })
 
 app.get('/api/whoami', (req, res) => {
-  console.log('SE MIG!')
   if (req.session.user) {
     let user = { ...req.session.user }
     delete user.password

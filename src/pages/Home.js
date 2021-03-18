@@ -4,8 +4,20 @@ import Login from '../components/Login'
 import Register from '../components/Register';
 import LocationList from '../components/LocationList'
 
+import { UserContext } from '../contexts/UserContextProvider'
+import { useContext } from 'react';
+import { useEffect } from 'react';
+
+
+
 const Home = () => {
   const [register, setRegister] = useState(false)
+  const {userId} = useContext(UserContext)
+  const [id, setId] = useState()
+
+  useEffect(() => {
+    setId(userId)
+  }, [userId])
 
   const toggleRegisterForm = () => {
     setRegister(valueOf.register = !valueOf.register)
@@ -19,7 +31,7 @@ const Home = () => {
         {register && <Register displayRegisterForm={toggleRegisterForm} />}
       </div>
       <div style={styles.locationList}>
-        <LocationList />
+        {userId && <LocationList />}
       </div>
       <div style={styles.right}></div>
     </div >

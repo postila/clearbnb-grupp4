@@ -5,12 +5,13 @@ export const UserContext = createContext()
 export default function UserContextProvider(props) {
 
   const [user, setUser] = useState(null)
+  const [userId, setUserId] = useState(null)
   
   const fetchSession = async () => {
     console.log(user, 'user')
     let res = await fetch('/api/whoami')
     res = await res.json()
-    console.log(res, 'res')
+    setUserId(res._id)
     setUser(res)
   }
   
@@ -23,7 +24,7 @@ export default function UserContextProvider(props) {
     res = await res.json()
     console.log(res)
     setUser(res)
-    
+    fetchSession()
   }
 
   const logout = async () => {
@@ -33,6 +34,7 @@ export default function UserContextProvider(props) {
     res = await res.json()
     console.log(res)
     setUser(null)
+    setUserId(null)
   }
 
   const addUser = async user => {
@@ -49,6 +51,7 @@ export default function UserContextProvider(props) {
   const values = {
     addUser,
     user,
+    userId,
     login,
     fetchSession,
     logout
