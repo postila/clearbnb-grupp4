@@ -24,7 +24,7 @@ const models = require('./models.js')
 const { useParams } = require('react-router-dom')
 
 app.use(session({
-  secret: 'very secret one', 
+  secret: 'asdf', 
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false },
@@ -115,7 +115,7 @@ app.post('/api/login', async (req, res) => {
     return
   }
   
-  const has = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')
+  const hash = crypto.createHmac('sha256').update(req.body.password).digest('hex')
 
   let user = await User.findOne({ email: req.body.email, password: hash })
   if (user) {

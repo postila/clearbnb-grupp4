@@ -6,7 +6,7 @@ export default function UserContextProvider(props) {
 
   const [user, setUser] = useState()
   
-  const tempLogin = async user => {
+  const tempLogin = async () => {
     let res = await fetch('/api/login')
     res = await res.json()
     setUser(res)
