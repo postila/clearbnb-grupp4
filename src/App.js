@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { useContext, useState, useEffect } from 'react'
 
 // pages
 import AboutUs from './pages/AboutUs'

@@ -13,10 +13,8 @@ import { useEffect } from 'react';
 const Home = () => {
   const [register, setRegister] = useState(false)
   const {userId, logout} = useContext(UserContext)
-  const [id, setId] = useState()
 
   useEffect(() => {
-    setId(userId)
   }, [userId])
 
   const toggleRegisterForm = () => {
