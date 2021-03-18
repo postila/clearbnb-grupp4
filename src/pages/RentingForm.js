@@ -162,7 +162,7 @@ function CreateRentingForm() {
         <div key="d1" style={styles.datePicker}>
           <p>Startdatum</p>
           <DatePicker
-            wrapperClassName='datePicker'
+            className='datePicker'
             dateFormat="yyyy/MM/dd"
             placeholderText="2020/01/01"
             selected={startDate}
@@ -172,7 +172,7 @@ function CreateRentingForm() {
         <div key="d2" style={styles.datePicker}>
           <p>Slutdatum</p>
           <DatePicker
-            wrapperClassName='datePicker'
+            className='datePicker'
             dateFormat="yyyy/MM/dd"
             selected={endDate}
             placeholderText="2020/02/01"
@@ -385,7 +385,7 @@ const styles = {
   datePicker: {
     float: 'left',
     fontFamily: 'Quicksand',
-    color: 'grey',
+    color: 'black',
     textAlign: 'left',
     marginLeft: '22%',
     lineHeight: '5px',
