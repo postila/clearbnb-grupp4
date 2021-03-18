@@ -10,23 +10,19 @@ const BookingForm = (props) => {
   const { addBooking } = useContext(BookingContext)
   const [accommodationId, setAccommodationId] = useState(null)
   const [accommodationPrice, setAccommodationPrice] = useState(null)
-  const [accommodationMaxGuests, setAccommodationMaxGuests] = useState(null)
   const [accommodation, setAccommodation] = useState(null)
   const [validatDates, setValidatDates] = useState(true)
   const [bookingOk, setBookingOk] = useState(false)
   const [price, setPrice] = useState()
   const dayInMilliSec = 86400000;
 
-  const [arrDate, setArrDate] = useState()
+  const [minDate, setMindate] = useState(new Date())
+  const [maxDate, setEndDate] = useState(null)
+
+
+  const [arrDate, setArrDate] = useState(new Date())
   const [depDate, setDepDate] = useState()
   const guests = useRef()
-
-  // const handlePrice = () => {
-  //   if (arrDate && depDate) {
-  //     setPrice(((depDate.getTime() - arrDate.getTime() )/ dayInMilliSec) * accommodationPrice)
-  //     return price
-  //   }
-  // }
  
   const createBooking = async e => {
     e.preventDefault()
@@ -58,8 +54,11 @@ const BookingForm = (props) => {
     if (props.accommodation) {
       setAccommodationId(props.accommodation._id)
       setAccommodationPrice(props.accommodation.pricePerNight)
-      setAccommodationMaxGuests(props.accommodation.maxGuests)
       setAccommodation(props.accommodation)
+      if (props.accommodation.startDate > new Date()) {
+        setMindate(props.accommodation.startDate)
+      }
+      setEndDate(props.accommodation.endDate)
     }
   }, [arrDate, depDate, price, accommodationPrice, props.accommodation])
 
@@ -73,7 +72,7 @@ const BookingForm = (props) => {
           type="number"
           ref={guests}
           placeholder="2"
-          max={accommodationMaxGuests}
+          max={accommodation.maxGuests}
           min="1"
           style={styles.input} />
           <br />
@@ -87,7 +86,7 @@ const BookingForm = (props) => {
               placeholderText="Ankomst"
               selected={arrDate}
               onChange={(data) => setArrDate(data)}
-              minDate={new Date()}
+              minDate={minDate}
             />
           </div>
           <div key="d2" style={styles.datePicker}>
@@ -98,13 +97,12 @@ const BookingForm = (props) => {
               selected={depDate}
               placeholderText="Avresa"
               onChange={(data) => setDepDate(data)}
-              maxDate={accommodation.endDate}
+              minDate={arrDate}
+              maxDate={maxDate}
             />
           </div>
         </div>
-        {/* <DatePicker selected={arrDate} onChange={data => setArrDate(data)} placeholderText="Ankomst" dateFormat="yyyy/MM/dd" /> <br />
-        <DatePicker selected={depDate} onChange={data => setDepDate(data)} placeholderText="Avresa" dateFormat="yyyy/MM/dd" /> <br /> */}
-
+       
         {arrDate && depDate &&
           <div>
             <p>Pris: {Math.round(price)} SEK</p>
