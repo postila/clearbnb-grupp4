@@ -4,12 +4,13 @@ export const UserContext = createContext()
 
 export default function UserContextProvider(props) {
 
-  const [user, setUser] = useState()
+  const [user, setUser] = useState(null)
   
-  const tempLogin = async () => {
+  const fetchSession = async () => {
     let res = await fetch('/api/login')
     res = await res.json()
     setUser(res)
+    console.log(user, 'user')
   }
   
   const login = async user => {
@@ -19,6 +20,18 @@ export default function UserContextProvider(props) {
       body: JSON.stringify(user)
     })
     res = await res.json()
+    console.log(res)
+    setUser(res)
+    
+  }
+
+  const logout = async () => {
+    let res = await fetch('/api/login', {
+      method: 'DELETE',
+    })
+    res = await res.json()
+    console.log(res)
+    setUser(null)
   }
 
   const addUser = async user => {
@@ -35,7 +48,9 @@ export default function UserContextProvider(props) {
   const values = {
     addUser,
     user,
-    login
+    login,
+    fetchSession,
+    logout
   }
 
   return (

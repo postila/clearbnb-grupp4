@@ -6,7 +6,6 @@ const session = require('express-session')
 const crypto = require('crypto')
 const connectMongo = require('connect-mongo')(session)
 
-const User = require('./models.js')
 const salt = 'kljkfdjldkönbmnbdmw'
 
 app.use(express.json())
@@ -37,8 +36,8 @@ app.get('/rest/users', async (req, res) => {
 })
 
 app.post('/api/users', async (req, res) => {
-  const hash = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')
-  let user = new User({...req.body, password: hash})
+  const hash = crypto.createHmac('sha256', salt).update(req.body.password).digest('hex')
+  let user = new users({...req.body, password: hash})
   await user.save()
   res.json({success: true})
 })
@@ -115,9 +114,9 @@ app.post('/api/login', async (req, res) => {
     return
   }
   
-  const hash = crypto.createHmac('sha256').update(req.body.password).digest('hex')
+  const hash = crypto.createHmac('sha256', salt).update(req.body.password).digest('hex')
 
-  let user = await User.findOne({ email: req.body.email, password: hash })
+  let user = await users.findOne({ email: req.body.email, password: hash })
   if (user) {
     req.session.user = user
     res.json({success: 'Du är inloggad'})

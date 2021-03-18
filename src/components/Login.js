@@ -6,7 +6,12 @@ const Login = (props) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login } = useContext(UserContext)
+  const { login, logout, fetchSession } = useContext(UserContext)
+
+  const logOut = async () => {
+    
+    await logout()
+  }
 
   const createLogin = async e => {
     e.preventDefault()
@@ -18,8 +23,8 @@ const Login = (props) => {
     console.log(account)
     await login(account)
 
-    email.current.value = ''
-    password.current.value = ''
+    setEmail('')
+    setPassword('')
   }
 
   useEffect(() => {
@@ -33,6 +38,7 @@ const Login = (props) => {
       <input key="2" style={styles.input} type="email" placeholder="E-mail" required onChange={ e => setEmail(e.target.value) } value={email}></input>
       <input key="3" style={styles.input} type="password" placeholder="Lösenord" required onChange={ p => setPassword(p.target.value)} value={password}></input>
       <button key="4" style={styles.button} onClick={createLogin}>Logga in</button>
+      <button onClick={logOut}>Logga ut</button>
       <p style={styles.register}>Inget konto?
         <span onClick={ props.displayRegisterForm }> Registrera dig här</span>
       </p>
