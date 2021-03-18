@@ -11,6 +11,7 @@ const BookingForm = (props) => {
   const [accommodationId, setAccommodationId] = useState(null)
   const [accommodationPrice, setAccommodationPrice] = useState(null)
   const [accommodationMaxGuests, setAccommodationMaxGuests] = useState(null)
+  const [accommodation, setAccommodation] = useState(null)
   const [validatDates, setValidatDates] = useState(true)
   const [bookingOk, setBookingOk] = useState(false)
   const [price, setPrice] = useState()
@@ -58,6 +59,7 @@ const BookingForm = (props) => {
       setAccommodationId(props.accommodation._id)
       setAccommodationPrice(props.accommodation.pricePerNight)
       setAccommodationMaxGuests(props.accommodation.maxGuests)
+      setAccommodation(props.accommodation)
     }
   }, [arrDate, depDate, price, accommodationPrice, props.accommodation])
 
@@ -85,6 +87,7 @@ const BookingForm = (props) => {
               placeholderText="Ankomst"
               selected={arrDate}
               onChange={(data) => setArrDate(data)}
+              minDate={new Date()}
             />
           </div>
           <div key="d2" style={styles.datePicker}>
@@ -95,6 +98,7 @@ const BookingForm = (props) => {
               selected={depDate}
               placeholderText="Avresa"
               onChange={(data) => setDepDate(data)}
+              maxDate={accommodation.endDate}
             />
           </div>
         </div>
