@@ -46,6 +46,7 @@ export default function UserContextProvider(props) {
 
     res = await res.json()
     console.log(res);
+    login(user)
   }
 
   const values = {

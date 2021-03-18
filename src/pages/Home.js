@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 
 const Home = () => {
   const [register, setRegister] = useState(false)
-  const {userId} = useContext(UserContext)
+  const {userId, logout} = useContext(UserContext)
   const [id, setId] = useState()
 
   useEffect(() => {
@@ -23,13 +23,18 @@ const Home = () => {
     setRegister(valueOf.register = !valueOf.register)
   }
 
+  const logOut = async () => {
+    await logout()
+  }
+
   return (
     <div style={styles.bodyStyle}>
       <div style={styles.left}> <img style={styles.logo} src='https://i.imgur.com/eTEP9yc.png' alt='logo'></img></div>
-      <div style={styles.center} className="login-register-form">
+      {!userId && <div style={styles.center} className="login-register-form">
         {!register && <Login displayRegisterForm={toggleRegisterForm} />}
         {register && <Register displayRegisterForm={toggleRegisterForm} />}
-      </div>
+      </div>}
+      <button onClick={logOut}>Logga ut</button>
       <div style={styles.locationList}>
         {userId && <LocationList />}
       </div>
