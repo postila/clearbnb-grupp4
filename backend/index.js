@@ -13,9 +13,6 @@ global.mongoose.connect(atlasUrl, {
   useUnifiedTopology: true
 })
 
-const models = require('./models.js')
-const { useParams } = require('react-router-dom')
-
 app.get('/rest/users', async (req, res) => {
   let docs = await users.find()
   await res.json(docs)
@@ -87,22 +84,5 @@ app.get('/rest/bookings', async (req, res) => {
   res.json(docs)
 })
 
-app.get('/rest/dates', async (req, res) => {
-  let docs = await rentaldates.find()
-  res.json(docs)
-})
-
-app.get('/rest/dates/:id', async (req, res) => {
-  let accommodation = await accommodations.findById(req.params.id)
-  // res.json(accommodation._id)
-  let docs = await rentaldates.find({ houseId: accommodation._id })
-  res.json(docs)
-})
-
-app.post('/rest/dates', async (req, res) => {
-  let doc = new rentaldates(req.body)
-  await doc.save()
-  res.json(doc)
-})
 
 app.listen(3001, () => console.log('Server stated on port 3001'))

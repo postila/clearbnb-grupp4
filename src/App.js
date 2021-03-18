@@ -19,13 +19,11 @@ import LocationContext from './contexts/locationContextProvider'
 import AmenitiesContextProvider from './contexts/AmenitiesContext'
 import UserContextProvider from './contexts/UserContextProvider'
 import BookingContextProvider from './contexts/BookingContextProvider'
-import DatesContextProvider from './contexts/dateContextProvider'
 
 function App() {
   return (
     <div className="App">
       <UserContextProvider>
-        <DatesContextProvider>
           <LocationContext>
             <AccommodationsContextProvider>
               <AmenitiesContextProvider>
@@ -51,7 +49,6 @@ function App() {
               </AmenitiesContextProvider>
             </AccommodationsContextProvider>
           </LocationContext>
-        </DatesContextProvider>
       </UserContextProvider>
     </div>
   );
