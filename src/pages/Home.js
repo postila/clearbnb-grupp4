@@ -34,7 +34,7 @@ const Home = () => {
         {!register && <Login displayRegisterForm={toggleRegisterForm} />}
         {register && <Register displayRegisterForm={toggleRegisterForm} />}
       </div>}
-      <button onClick={logOut}>Logga ut</button>
+      
       <div style={styles.locationList}>
         {userId && <LocationList />}
       </div>
