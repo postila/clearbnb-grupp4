@@ -3,6 +3,7 @@ import React from 'react'
 import { useRef, useContext, useState } from 'react'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { LocationContext } from '../contexts/locationContextProvider'
+import { DateContext } from '../contexts/dateContextProvider'
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import '../App.css';
@@ -10,6 +11,7 @@ import '../App.css';
 
 function CreateRentingForm() {
   const { addAccommodation } = useContext(AccommodationsContext)
+  const { addDates } = useContext(DateContext)
   //const history = useHistory()
   // const { addRentingForm } = useContext(AmenitiesContext)
 
@@ -54,8 +56,14 @@ function CreateRentingForm() {
         safe: safe.current.checked
       }
     }
-    console.log(rentingForm)
     await addAccommodation(rentingForm)
+
+    const dates = {
+      startDate: startDate.getTime(),
+      endDate: endDate.getTime()
+    }
+
+    await addDates(dates)
 
     // addRentingForm(rentingForm)
 

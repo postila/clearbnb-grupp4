@@ -11,12 +11,24 @@ export default function DateContextProvider(props) {
     setDates(res)
   }
 
+  const addDates = async dates => {
+    let res = await fetch('/rest/dates', {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify(dates)
+    })
+
+    res = res.json()
+    console.log(res, 'dates added')
+  }
+
   useEffect(() => {
     fetchDates()
-  }, [])
+  }, [addDates])
 
   const values = {
-    dates
+    dates,
+    addDates
   }
 
   return (
