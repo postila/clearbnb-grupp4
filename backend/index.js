@@ -92,6 +92,13 @@ app.get('/rest/dates', async (req, res) => {
   res.json(docs)
 })
 
+app.get('/rest/dates/:id', async (req, res) => {
+  let accommodation = await accommodations.findById(req.params.id)
+  // res.json(accommodation._id)
+  let docs = await rentaldates.find({ houseId: accommodation._id })
+  res.json(docs)
+})
+
 app.post('/rest/dates', async (req, res) => {
   let doc = new rentaldates(req.body)
   await doc.save()
