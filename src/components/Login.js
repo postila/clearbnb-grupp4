@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Radium from 'radium'
+import { UserContext } from '../contexts/UserContextProvider'
 
 const Login = (props) => {
+
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const { login } = useContext(UserContext)
+
+  const createLogin = async e => {
+    e.preventDefault()
+
+    const account = {
+      email: email,
+      password: password
+    }
+
+    await login(account)
+
+
+  }
+
+
   return (
     <form key="1" style={styles.form}>
-      <input key="2" style={styles.input} type="email" placeholder="E-mail" required></input>
-      <input key="3" style={styles.input} type="password" placeholder="Lösenord" required></input>
-      <button key="4" style={styles.button}>Logga in</button>
+      <input key="2" style={styles.input} type="email" placeholder="E-mail" required onChange={ e=> setEmail(e) }></input>
+      <input key="3" style={styles.input} type="password" placeholder="Lösenord" required onChange={ p => setPassword(p)}></input>
+      <button key="4" style={styles.button} onSubmit={createLogin}>Logga in</button>
       <p style={styles.register}>Inget konto?
         <span onClick={ props.displayRegisterForm }> Registrera dig här</span>
       </p>
