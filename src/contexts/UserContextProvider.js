@@ -7,10 +7,11 @@ export default function UserContextProvider(props) {
   const [user, setUser] = useState(null)
   
   const fetchSession = async () => {
-    let res = await fetch('/api/login')
-    res = await res.json()
-    setUser(res)
     console.log(user, 'user')
+    let res = await fetch('/api/whoami')
+    res = await res.json()
+    console.log(res, 'res')
+    setUser(res)
   }
   
   const login = async user => {
@@ -26,7 +27,7 @@ export default function UserContextProvider(props) {
   }
 
   const logout = async () => {
-    let res = await fetch('/api/login', {
+    let res = await fetch('/api/logout', {
       method: 'DELETE',
     })
     res = await res.json()

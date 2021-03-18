@@ -127,7 +127,7 @@ app.post('/api/login', async (req, res) => {
 
 })
 
-app.delete('/api/login', async (req, res) => {
+app.delete('/api/logout', async (req, res) => {
   if (req.session.user) {
     delete req.session.user;
     res.json({ success: 'Du är utloggad' });
@@ -137,7 +137,8 @@ app.delete('/api/login', async (req, res) => {
   }
 })
 
-app.get('/api/login', (req, res) => {
+app.get('/api/whoami', (req, res) => {
+  console.log('SE MIG!')
   if (req.session.user) {
     let user = { ...req.session.user }
     delete user[0].password

@@ -13,6 +13,10 @@ const Login = (props) => {
     await logout()
   }
 
+  const fetchsession = async () => {
+    await fetchSession()
+  }
+
   const createLogin = async e => {
     e.preventDefault()
 
@@ -39,6 +43,7 @@ const Login = (props) => {
       <input key="3" style={styles.input} type="password" placeholder="Lösenord" required onChange={ p => setPassword(p.target.value)} value={password}></input>
       <button key="4" style={styles.button} onClick={createLogin}>Logga in</button>
       <button onClick={logOut}>Logga ut</button>
+      <button onClick={fetchsession}>Vem är inloggad?</button>
       <p style={styles.register}>Inget konto?
         <span onClick={ props.displayRegisterForm }> Registrera dig här</span>
       </p>
