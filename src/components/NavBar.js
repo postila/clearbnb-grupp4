@@ -1,14 +1,22 @@
 import { Link, useHistory } from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Radium from 'radium'
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { UserContext } from '../contexts/UserContextProvider'
 //import myAccount from '../images/my_account.png';
 
 function NavBar() {
   const history = useHistory()
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const { userId } = useContext(UserContext)
+  const [id, setId] = useState()
+
+  useEffect(() => {
+    setId(userId)
+  }, [userId])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -19,9 +27,9 @@ function NavBar() {
   };
 
   return (
-
     <div>
-
+    {userId && <div>
+      
       <nav style={styles.navbar}>
         <div>
           <Link style={styles.button} to="/Platser">Boenden</Link>
@@ -51,6 +59,8 @@ function NavBar() {
           </Menu>
         </div >
       </div>
+    </div>
+  }
     </div>
   )
 }
