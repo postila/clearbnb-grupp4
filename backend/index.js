@@ -19,8 +19,6 @@ global.mongoose.connect(atlasUrl, {
   useUnifiedTopology: true
 })
 
-const models = require('./models.js')
-
 app.use(session({
   secret: 'asdf', 
   resave: false,
@@ -31,7 +29,7 @@ app.use(session({
 
 app.get('/rest/users', async (req, res) => {
   let docs = await users.find()
-  await res.json(docs)
+  res.json(docs)
 })
 
 app.post('/api/users', async (req, res) => {
@@ -43,7 +41,7 @@ app.post('/api/users', async (req, res) => {
 
 app.get('/rest/locations', async (req, res) => {
   let docs = await locations.find()
-  await res.json(docs)
+  res.json(docs)
 })
 
 app.get('/rest/locations/:id', async (req, res) => {
@@ -64,7 +62,7 @@ app.post('/api/accommodations', async (req, res) => {
 
 app.get('/rest/amenities', async (req, res) => {
   let docs = await amenities.find()
-  await res.json(docs)
+  res.json(docs)
 })
 
 app.put('/api/accommodation/:id', async (req, res) => {

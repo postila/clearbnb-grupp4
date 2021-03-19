@@ -3,7 +3,6 @@ import { createContext, useState, useEffect } from 'react'
 export const BookingContext = createContext();
 
 export default function BookingContextProvider(props) {
-
   const [bookings, setBookings] = useState([])
 
   const fetchBookings = async () => {

@@ -28,7 +28,6 @@ function NavBar() {
 
   return (
     <div>
-    {userId && <div>
       
       <nav style={styles.navbar}>
         <div>
@@ -59,8 +58,6 @@ function NavBar() {
           </Menu>
         </div >
       </div>
-    </div>
-  }
     </div>
   )
 }

@@ -11,19 +11,16 @@ const BookingForm = (props) => {
   const { user } = useContext(UserContext)
   const [accommodation, setAccommodation] = useState(null)
   const [accommodationPrice, setAccommodationPrice] = useState(null)
-  // const [validatDates, setValidatDates] = useState(true)
-  // const [bookingOk, setBookingOk] = useState(false)
   const [price, setPrice] = useState()
   const dayInMilliSec = 86400000;
 
   const [minDate, setMindate] = useState(new Date())
   const [maxDate, setEndDate] = useState(null)
 
-
   const [arrDate, setArrDate] = useState(new Date())
   const [depDate, setDepDate] = useState()
   const guests = useRef()
- 
+
   const createBooking = async e => {
     e.preventDefault()
     const booking = {
@@ -38,14 +35,14 @@ const BookingForm = (props) => {
     if (arrDate.getTime() < depDate.getTime()) {
       await addBooking(booking)
       history.push('/Mina-sidor')
-    } 
+    }
   }
 
   useEffect(() => {
-     if (arrDate && depDate) {
-       setPrice(Math.ceil((depDate.getTime() - arrDate.getTime()) / dayInMilliSec) * accommodationPrice)
-       return price
-      }
+    if (arrDate && depDate) {
+      setPrice(Math.ceil((depDate.getTime() - arrDate.getTime()) / dayInMilliSec) * accommodationPrice)
+      return price
+    }
     if (props.accommodation) {
       setAccommodation(props.accommodation)
       setAccommodationPrice(props.accommodation.pricePerNight)
@@ -59,63 +56,63 @@ const BookingForm = (props) => {
   return (
     <div>
       {accommodation &&
-      <form onSubmit={createBooking}>
-        <div style={styles.guestContainer}>
-          Antal gäster
+        <form onSubmit={createBooking}>
+          <div style={styles.guestContainer}>
+            Antal gäster
         <input
-          type="number"
-          ref={guests}
-          max={accommodation.maxGuests}
-          min="1"
-          style={styles.input}
-          required />
-          <br />
-        </div>
-        <div style={styles.dateContainer}>
-          <div key="d1" style={styles.datePicker}>
-            <p>Startdatum</p>
-            <DatePicker
-              wrapperClassName='datePicker'
-              dateFormat="yyyy/MM/dd"
-              placeholderText="Ankomst"
-              selected={arrDate}
-              onChange={(data) => setArrDate(data)}
-              minDate={minDate}
-            />
+              type="number"
+              ref={guests}
+              max={accommodation.maxGuests}
+              min="1"
+              style={styles.input}
+              required />
+            <br />
           </div>
-          <div key="d2" style={styles.datePicker}>
-            <p>Slutdatum</p>
-            <DatePicker
-              wrapperClassName='datePicker'
-              dateFormat="yyyy/MM/dd"
-              selected={depDate}
-              placeholderText="Avresa"
-              onChange={(data) => setDepDate(data)}
-              minDate={arrDate}
-              maxDate={maxDate}
-            />
+          <div style={styles.dateContainer}>
+            <div key="d1" style={styles.datePicker}>
+              <p>Startdatum</p>
+              <DatePicker
+                wrapperClassName='datePicker'
+                dateFormat="yyyy/MM/dd"
+                placeholderText="Ankomst"
+                selected={arrDate}
+                onChange={(data) => setArrDate(data)}
+                minDate={minDate}
+              />
+            </div>
+            <div key="d2" style={styles.datePicker}>
+              <p>Slutdatum</p>
+              <DatePicker
+                wrapperClassName='datePicker'
+                dateFormat="yyyy/MM/dd"
+                selected={depDate}
+                placeholderText="Avresa"
+                onChange={(data) => setDepDate(data)}
+                minDate={arrDate}
+                maxDate={maxDate}
+              />
+            </div>
           </div>
-        </div>
-       
-        {arrDate && depDate &&
-          <div>
-            <p>Pris: {Math.round(price)} SEK</p>
-            <p>Serviceavgift: {Math.round((price * 0.15))} SEK</p>
-            <p>Totalpris: {Math.round((price * 1.15))}</p>
+
+          {arrDate && depDate &&
+            <div>
+              <p>Pris: {Math.round(price)} SEK</p>
+              <p>Serviceavgift: {Math.round((price * 0.15))} SEK</p>
+              <p>Totalpris: {Math.round((price * 1.15))}</p>
+            </div>
+          }
+          <div style={styles.bokaContainer}>
+            <button style={styles.button}>Boka</button>
+            {/* {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>} */}
+            {/* {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>} */}
           </div>
-        }
-        <div style={styles.bokaContainer}>
-          <button style={styles.button}>Boka</button>
-          {/* {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>} */}
-          {/* {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>} */}
-        </div>
-      </form>
+        </form>
       }
       <br /><br />
     </div>
-   );
+  );
 }
- 
+
 export default Radium(BookingForm);
 
 const styles = {
@@ -124,7 +121,7 @@ const styles = {
     height: '25px',
     margin: '10px',
     textAlign: 'center'
-    
+
   },
   guestContainer: {
     fontFamily: 'Quicksand',
@@ -171,7 +168,7 @@ const styles = {
     height: '50px',
     width: '100%',
     margin: '0 auto',
-    
+
   },
   button: {
     fontFamily: 'Quicksand',

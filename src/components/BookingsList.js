@@ -33,10 +33,9 @@ function BookingsList() {
 
   return (
     <div style={styles.itemsPositions}>
-      {bookings && 
       <div>
       {bookings.map(booking => card(booking))}
-      </div>}
+      </div>
     </div>
   )
 }

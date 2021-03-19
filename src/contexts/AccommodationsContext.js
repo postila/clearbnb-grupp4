@@ -21,7 +21,6 @@ export default function AccommodationsContextProvider(props) {
     })
     res = await res.json()
     setAccommodationId(res._id)
-
     setAccommodations([...accommodations, accommodation])
   }
 
