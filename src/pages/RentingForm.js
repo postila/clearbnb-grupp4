@@ -77,7 +77,7 @@ function CreateRentingForm() {
 
   const locationItem = location => (
 
-    <option value={location._id}> {location.name}</option>
+    <option key={location._id} value={location._id}> {location.name}</option>
 
   )
 
