@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useRef, useState, useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import Radium from 'radium'
+import { LocationContext } from '../contexts/locationContextProvider'
 
 const Locations = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -30,15 +31,36 @@ const Locations = () => {
       </div>
     </div>
   )
-  const handleInput = () => {
 
-  }
+
+  const { locations } = useContext(LocationContext)
+
+  const locationItem = location => (
+
+    <option value={location._id}> {location.name}</option>
+
+  )
+
+
+
+
+        
+      
+  const location = useRef()
 
   return (
     <div>
       <form key="1">
-        <input type="text" key="2" style={styles.input} placeholder="Sök..." />
+        <select
+          key="2"
+          required ref={location}
+          style={styles.input}
+        >
+          {locations.map(location => locationItem(location))}
+        </select>
         {accommodationList.map(accommodation => card(accommodation))}
+        
+        
       </form>
     </div>
   );
@@ -82,15 +104,11 @@ const styles = {
   input: {
     height: '30px',
     width: '250px',
-    textAlign: 'center',
     background: '#eee',
     fontFamily: 'Quicksand',
     borderRadius: '10px',
     border: 'none',
-    margin: '5vh 0 0 160vh'
-  },
-  form: {
-   
+    margin: '5vh 70vh 0 15vh'
   }
 }
 
