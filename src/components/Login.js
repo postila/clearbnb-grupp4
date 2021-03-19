@@ -6,12 +6,7 @@ const Login = (props) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login, logout, fetchSession } = useContext(UserContext)
-
-  const logOut = async () => {
-    
-    await logout()
-  }
+  const { login, fetchSession } = useContext(UserContext)
 
   const fetchsession = async () => {
     await fetchSession()

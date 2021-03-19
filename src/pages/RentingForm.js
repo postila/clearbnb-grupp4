@@ -54,12 +54,7 @@ function CreateRentingForm() {
         safe: safe.current.checked
       }
     }
-    console.log(rentingForm)
     await addAccommodation(rentingForm)
-
-    // addRentingForm(rentingForm)
-
-    //history.push('/AccommodationDetails/' + .id)
 
     title.current.value = ''
     location.current.value = ''
@@ -87,8 +82,6 @@ function CreateRentingForm() {
     <option value={location._id}> {location.name}</option>
 
   )
-
-  //const RentingForm = (props) => {
 
   return (
     <form key="1" style={styles.form} onSubmit={createRentingForm}>

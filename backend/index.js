@@ -20,7 +20,6 @@ global.mongoose.connect(atlasUrl, {
 })
 
 const models = require('./models.js')
-const { useParams } = require('react-router-dom')
 
 app.use(session({
   secret: 'asdf', 
@@ -49,7 +48,7 @@ app.get('/rest/locations', async (req, res) => {
 
 app.get('/rest/locations/:id', async (req, res) => {
   let doc = await locations.findById(req.params.id)
-  await res.json(doc)
+  res.json(doc)
 })
 
 app.get('/rest/accommodations', async (req, res) => {
@@ -102,9 +101,9 @@ app.get('/rest/bookings', async (req, res) => {
   res.json(docs)
 })
 
-app.post('/rest/dates', async (req, res) => {
-  let doc = new rentaldates(req.body)
-  await doc.save()
+app.get('/rest/bookings/:id', async (req, res) => {
+  let accommodation = await accommodations.findById(req.params.id)
+  let doc = await bookings.find({accommodation:accommodation._id})
   res.json(doc)
 })
 

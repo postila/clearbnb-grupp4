@@ -1,12 +1,12 @@
+import { set } from 'mongoose';
 import { useState, createContext} from 'react';
 
 export const UserContext = createContext()
 
 export default function UserContextProvider(props) {
-
   const [user, setUser] = useState(null)
   const [userId, setUserId] = useState(null)
-  
+
   const fetchSession = async () => {
     console.log(user, 'user')
     let res = await fetch('/api/whoami')
@@ -47,6 +47,7 @@ export default function UserContextProvider(props) {
     res = await res.json()
     console.log(res);
     login(user)
+    fetchSession()
   }
 
   const values = {
