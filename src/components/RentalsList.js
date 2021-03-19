@@ -1,19 +1,22 @@
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../contexts/UserContextProvider'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
+import { LocationContext } from '../contexts/locationContextProvider'
 import Radium from 'radium'
-import BookingContextProvider from '../contexts/BookingContextProvider'
 
 
 function RentalList() {
   const { accommodations, fetchAccommodations } = useContext(AccommodationsContext)
-  const { userId } = useContext(UserContext)
-
+  const { locations } = useContext(LocationContext)
+  const { userId, fetchSession } = useContext(UserContext)
+  console.log(accommodations, 'acc')
   const rentalList = accommodations.filter(accommodation => accommodation.user).filter(accommodation => accommodation.user._id === userId)
-
+  // console.log(rentalList, "hej")
+  
   useEffect(() => {
     fetchAccommodations()
-  }, [accommodations])
+    fetchSession()
+  }, [userId])
 
   const card = accommodation =>
   (
@@ -21,7 +24,7 @@ function RentalList() {
       style={styles.box}
       className="card"
       key={accommodation._id}
-      onClick={() => goToDetailsPage(accommodation._id)}
+      // onClick={() => goToDetailsPage(accommodation._id)}
     >
       <img style={styles.pictures} src={accommodation.imageUrl} alt={'picture' + accommodation._id} />
       <div style={styles.text}>
@@ -34,7 +37,10 @@ function RentalList() {
 
   return (
     <div>
-      { rentalList.map(accommodation => card(accommodation))}
+      { accommodations &&
+        <div>
+          {rentalList.map(accommodation => card(accommodation))}
+        </div>}
     </div>
   );
 }
@@ -77,6 +83,3 @@ const styles = {
 }
 
 export default Radium(RentalList);
-
-
- }

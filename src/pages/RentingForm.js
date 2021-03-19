@@ -1,15 +1,17 @@
 import Radium from 'radium'
 import React from 'react'
-import { useRef, useContext, useState } from 'react'
+import { useRef, useContext, useState, useEffect } from 'react'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { LocationContext } from '../contexts/locationContextProvider'
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import '../App.css';
+import { UserContext } from '../contexts/UserContextProvider'
 
 
 function CreateRentingForm() {
   const { addAccommodation } = useContext(AccommodationsContext)
+  const { userId, fetchSession } = useContext(UserContext)
   //const history = useHistory()
   // const { addRentingForm } = useContext(AmenitiesContext)
 
@@ -35,6 +37,7 @@ function CreateRentingForm() {
     e.preventDefault()
 
     const rentingForm = {
+      user: userId,
       title: title.current.value,
       location: location.current.value,
       description: description.current.value,
@@ -72,6 +75,10 @@ function CreateRentingForm() {
     safe.current.value = ''
 
   }
+
+  useEffect(() => {
+    fetchSession()
+  }, [userId])
 
   const { locations } = useContext(LocationContext)
 

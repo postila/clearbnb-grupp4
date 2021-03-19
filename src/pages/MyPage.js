@@ -1,6 +1,6 @@
 import React from 'react';
 import BookingsList from '../components/BookingsList'
-import RentalsList from '../components/BookingsList'
+import RentalsList from '../components/RentalsList'
 import Radium from 'radium'
 
 const MyPage = () => {
