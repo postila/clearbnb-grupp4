@@ -81,38 +81,37 @@ const BookingForm = (props) => {
           <div style={styles.guestContainer}>
             Antal gäster
         <input
-              type="number"
-              ref={guests}
-              max={accommodation.maxGuests}
-              min="1"
-              style={styles.input}
-              required />
-            <br />
+          type="number"
+          ref={guests}
+          max={accommodation.maxGuests}
+          min="1"
+          style={styles.input}
+          required />
+          <br />
+        </div>
+        <div style={styles.dateContainer}>
+          <div key="d1" style={styles.datePicker}>
+            <p>Startdatum</p>
+            <DatePicker
+              className='datePicker'
+              dateFormat="yyyy/MM/dd"
+              placeholderText="Ankomst"
+              selected={arrDate}
+              onChange={(data) => setArrDate(data)}
+              minDate={minDate}
+            />
           </div>
-          <div style={styles.dateContainer}>
-            <div key="d1" style={styles.datePicker}>
-              <p>Startdatum</p>
-              <DatePicker
-                wrapperClassName='datePicker'
-                dateFormat="yyyy/MM/dd"
-                placeholderText="Ankomst"
-                selected={arrDate}
-                onChange={(data) => setArrDate(data)}
-                minDate={minDate}
-              />
-            </div>
-            <div key="d2" style={styles.datePicker}>
-              <p>Slutdatum</p>
-              <DatePicker
-                wrapperClassName='datePicker'
-                dateFormat="yyyy/MM/dd"
-                selected={depDate}
-                placeholderText="Avresa"
-                onChange={(data) => setDepDate(data)}
-                minDate={arrDate}
-                maxDate={maxDate}
-              />
-            </div>
+          <div key="d2" style={styles.datePicker}>
+            <p>Slutdatum</p>
+            <DatePicker
+              className='datePicker'
+              dateFormat="yyyy/MM/dd"
+              selected={depDate}
+              placeholderText="Avresa"
+              onChange={(data) => setDepDate(data)}
+              minDate={arrDate}
+              maxDate={maxDate}
+            />
           </div>
 
           {arrDate && depDate &&
@@ -220,9 +219,9 @@ const styles = {
     textTransform: 'uppercase',
     fontSize: '14px',
     color: 'grey',
-    width: '100px',
+    width: '170px',
     margin: '10px',
-    padding: '10px',
+    padding: '12px',
     borderRadius: '8px',
     border: 'none',
     ':focus': {
