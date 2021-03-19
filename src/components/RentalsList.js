@@ -1,17 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../contexts/UserContextProvider'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
-import { LocationContext } from '../contexts/locationContextProvider'
 import Radium from 'radium'
 
 
 function RentalList() {
   const { accommodations, fetchAccommodations } = useContext(AccommodationsContext)
-  const { locations } = useContext(LocationContext)
   const { userId, fetchSession } = useContext(UserContext)
   console.log(accommodations, 'acc')
   const rentalList = accommodations.filter(accommodation => accommodation.user).filter(accommodation => accommodation.user._id === userId)
-  // console.log(rentalList, "hej")
+
   
   useEffect(() => {
     fetchAccommodations()
