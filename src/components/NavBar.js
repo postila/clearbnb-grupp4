@@ -11,7 +11,7 @@ function NavBar() {
   const history = useHistory()
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const { userId, fetchSession, logout } = useContext(UserContext)
+  const { userId, fetchSession, logout, user } = useContext(UserContext)
 
   const logOut = async () => {
     handleClose()
@@ -20,7 +20,7 @@ function NavBar() {
 
   useEffect(() => {
     fetchSession()
-  }, [userId])
+  }, [userId,user])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -44,6 +44,7 @@ function NavBar() {
 
         <div style={styles.mypage}>
           <div>
+            {user.email}
             <Button aria-haspopup="true">
               <img src="https://i.imgur.com/P0TBhR7.png" style={styles.img}
                 aria-controls="simple-menu" onClick={handleClick} alt="''" />
