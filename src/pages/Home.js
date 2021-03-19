@@ -4,22 +4,39 @@ import Login from '../components/Login'
 import Register from '../components/Register';
 import LocationList from '../components/LocationList'
 
+import { UserContext } from '../contexts/UserContextProvider'
+import { useContext } from 'react';
+import { useEffect } from 'react';
+
+
+
 const Home = () => {
   const [register, setRegister] = useState(false)
+  const {userId, logout} = useContext(UserContext)
+  const [id, setId] = useState()
+
+  useEffect(() => {
+    setId(userId)
+  }, [userId])
 
   const toggleRegisterForm = () => {
     setRegister(valueOf.register = !valueOf.register)
   }
 
+  const logOut = async () => {
+    await logout()
+  }
+
   return (
     <div style={styles.bodyStyle}>
       <div style={styles.left}> <img style={styles.logo} src='https://i.imgur.com/eTEP9yc.png' alt='logo'></img></div>
-      <div style={styles.center } className="login-register-form">
+      {!userId && <div style={styles.center} className="login-register-form">
         {!register && <Login displayRegisterForm={toggleRegisterForm} />}
         {register && <Register displayRegisterForm={toggleRegisterForm} />}
-      </div>
+      </div>}
+      <button onClick={logOut}>Logga ut</button>
       <div style={styles.locationList}>
-        <LocationList />
+        {userId && <LocationList />}
       </div>
       <div style={styles.right}></div>
     </div >
@@ -40,8 +57,6 @@ const styles = {
   logo: {
     paddingTop: '20px',
     width: '100px',
-    
-    
   },
   left: {
     float: 'left',

@@ -34,9 +34,17 @@ main{
 
 footer {
  font-family: Quicksand;
- background-color: #ebe5db;
+ background-color: #eee;
  display:flex;
  justify-content: center;
  align-items: center;
  color: grey;
+}
+
+.picker {
+  background-color: rgb(255, 0, 0);
+  
+  input {
+    border: none;
+  }
 }

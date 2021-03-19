@@ -1,14 +1,22 @@
 import { Link, useHistory } from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Radium from 'radium'
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { UserContext } from '../contexts/UserContextProvider'
 //import myAccount from '../images/my_account.png';
 
 function NavBar() {
   const history = useHistory()
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const { userId } = useContext(UserContext)
+  const [id, setId] = useState()
+
+  useEffect(() => {
+    setId(userId)
+  }, [userId])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -19,12 +27,12 @@ function NavBar() {
   };
 
   return (
-
     <div>
-
+    {userId && <div>
+      
       <nav style={styles.navbar}>
         <div>
-          <Link style={styles.button} to="/Platser">Platser</Link>
+          <Link style={styles.button} to="/Platser">Boenden</Link>
           <Link style={styles.button} to="/">Hem</Link>
           <Link style={styles.button} to="/Om-oss">Om oss</Link>
         </div>
@@ -32,9 +40,9 @@ function NavBar() {
 
       <div style={styles.mypage}>
         <div>
-          <Button>
+          <Button aria-haspopup="true">
             <img src="https://i.imgur.com/P0TBhR7.png" style={styles.img}
-              aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
+              aria-controls="simple-menu" onClick={handleClick} alt="''" />
           </Button>
 
           <Menu
@@ -47,10 +55,12 @@ function NavBar() {
           >
             <MenuItem >Mitt konto</MenuItem>
             <MenuItem onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Mina sidor</MenuItem>
-            <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Uthyrning</MenuItem>
+            <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Hyr ut din bostad</MenuItem>
           </Menu>
         </div >
       </div>
+    </div>
+  }
     </div>
   )
 }

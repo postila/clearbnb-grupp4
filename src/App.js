@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { useContext, useState, useEffect } from 'react'
 
 // pages
 import AboutUs from './pages/AboutUs'
@@ -21,6 +22,7 @@ import UserContextProvider from './contexts/UserContextProvider'
 import BookingContextProvider from './contexts/BookingContextProvider'
 
 function App() {
+  
   return (
     <div className="App">
       <UserContextProvider>

@@ -26,23 +26,25 @@ const AccommodationsDetails = () => {
     <div style={styles.box} key="1">
       { accommodation &&
         <div>
-          <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id} />
+        <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id} />
+        <div style={styles.infoContainer} key="3">
           <h1>{accommodation.title}</h1>
-          <p>Antal gäster: {accommodation.maxGuests}</p>
+          <p>Max antal gäster: {accommodation.maxGuests}</p>
           <p>Ort: {accommodation.location.name}</p>
-          <p>Pris per natt: {accommodation.pricePerNight}</p>
+          <p>Pris per natt: {accommodation.pricePerNight} SEK</p>
           <div className="description-content">
             <h4>Beskrivning:</h4>
             <p>{accommodation.description}</p>
           </div>
-          <div>
+        </div>
+        <div style={styles.infoContainer} key="4">
             <h4>Bekvämligheter:</h4>
             {accommodation.amenitiesList.map((a) => (
               <div key={a._id}>
                 {a.washer ? 'Tvättmaskin, ' : ''} {a.wifi ? 'WiFi, ' : ''} {a.essentials ? 'Väsentligheter, ' : ''} {a.kitchen ? 'Kök, ' : ''} {a.TV ? 'TV, ' : ''} {a.airConditioning ? 'Luftkonditionering, ' : ''} {a.iron ? 'Strykjärn, ' : ''} {a.safe ? 'Låst Skåp, ' : ''}
               </div>
             ))}
-          </div>
+        </div>
            <BookingForm accommodation={item} />
         </div> }
       { !accommodation &&

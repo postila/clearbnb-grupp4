@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BookingsList from '../components/BookingsList'
-import Login from '../components/Login'
 import Radium from 'radium'
 
 const MyPage = () => {
 
   return (
     <div>
-      <h1>Mina bokningar:</h1>
+      <h1 style={{ fontFamily: 'Quicksand', color: 'grey', padding: '40px'}}>Mina bokningar:</h1>
       <div>
         <BookingsList />
       </div >

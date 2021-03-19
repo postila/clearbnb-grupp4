@@ -18,11 +18,11 @@ function BookingsList() {
       className="card"
       key={booking._id}
     >
-      <img style={styles.pictures} src={booking.accommodation.imageUrl} />
+      <img style={styles.pictures} src={booking.accommodation.imageUrl} alt="''"/>
       <div style={styles.text}>
         <h3>{booking.accommodation.title}</h3>
         <p>{locations.find(l=>l._id === booking.accommodation.location).name}</p>
-        <p>Antal gäster {booking.guests} | {(Math.round((booking.endDate - booking.startDate) / 86400000) + 1) * booking.accommodation.pricePerNight} SEK</p>
+        <p>Antal gäster {booking.guests} | {Math.round((Math.round((booking.endDate - booking.startDate) / 86400000) * booking.accommodation.pricePerNight*1.15))} SEK</p>
         <p>Ankomst: {new Date((booking.startDate)).toLocaleDateString()}</p>
         <p>Avresa: {new Date((booking.endDate)).toLocaleDateString()}</p>
         {/* <p>{booking.user.name}</p> */}
@@ -47,7 +47,8 @@ const styles = {
     gridTemplateColumns: '1fr 1fr',
     gridGap: '20px',
     maxWidth: '800px',
-    background: '#202329',
+    backgroundColor: '#eee',
+    
     padding: '15px',
     margin: '10px auto',
     borderRadius: '15px',
@@ -62,8 +63,10 @@ const styles = {
     boxShadow: '1px 1px 10px 0.5px #343841'
   },
   text: {
+    fontFamily: 'Quicksand',
+    color: 'grey',
     textAlign: 'left',
-    color: 'white'
+    color: 'grey',
   }
 }
 

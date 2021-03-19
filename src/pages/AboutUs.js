@@ -1,6 +1,5 @@
 import React from 'react';
 import Radium from 'radium'
-import background from '../background.jpg'
 
 
 const AboutUs = () => {
