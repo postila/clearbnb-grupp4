@@ -41,12 +41,15 @@ const Locations = () => {
     <option value={location._id}> {location.name}</option>
   )
   const accommodationPrice = accommodation => (
- 
+
     <option value={accommodation._id} >{accommodation.pricePerNight}</option>
+  )
+  const guests = accommodation => (
+    <option value={accommodation._id} >{accommodation.maxGuests}</option>
   )
   //const accommodationList = id ? accommodations.filter(a => a.location._id === id) : accommodations
 
-  
+
 
   return (
     <div>
@@ -54,14 +57,21 @@ const Locations = () => {
         <select
           key="2"
           required ref={location}
-          style={styles.input}
-        >
+          style={styles.input}>
           {locations.map(location => locationItem(location))}
         </select>
-        <select key="3" required ref={accommodation} style={styles.input}>
+        <select
+          key="3"
+          required ref={accommodation}
+          style={styles.input}>
           {accommodations.map(accommodation => accommodationPrice(accommodation))}
         </select>
-
+        <select
+          key="4"
+          required ref={accommodation}
+          style={styles.input}>
+          {accommodations.map(accommodation => guests(accommodation))}
+        </select>
       </form>
       {accommodationList.map(accommodation => card(accommodation))}
     </div>
