@@ -11,11 +11,10 @@ function NavBar() {
   const history = useHistory()
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const { userId } = useContext(UserContext)
-  const [id, setId] = useState()
+  const { userId, fetchSession } = useContext(UserContext)
 
   useEffect(() => {
-    setId(userId)
+    fetchSession()
   }, [userId])
 
   const handleClick = (event) => {

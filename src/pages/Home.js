@@ -12,9 +12,10 @@ import { useEffect } from 'react';
 
 const Home = () => {
   const [register, setRegister] = useState(false)
-  const {userId, logout} = useContext(UserContext)
+  const {userId, logout, fetchSession} = useContext(UserContext)
 
   useEffect(() => {
+    fetchSession()
   }, [userId])
 
   const toggleRegisterForm = () => {

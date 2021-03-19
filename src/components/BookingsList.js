@@ -7,14 +7,9 @@ import Radium from 'radium'
 function BookingsList() {
   const { bookings } = useContext(BookingContext)
   const { locations } = useContext(LocationContext)
-  const { fetchSession, userId } = useContext(UserContext)
-  console.log(fetchSession)
+  const { userId } = useContext(UserContext)
   
   const bookingsList = bookings.filter(booking => booking.user._id === userId)
-
-  useEffect(() => {
-    console.log(userId, 'userId')
-  }, [bookings, fetchSession, userId])
 
   const card = booking =>
   (
