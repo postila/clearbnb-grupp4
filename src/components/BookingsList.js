@@ -9,7 +9,7 @@ function BookingsList() {
   const { locations } = useContext(LocationContext)
   const { userId } = useContext(UserContext)
   
-  const bookingsList = bookings.filter(booking => booking.user._id === userId)
+  const bookingsList = bookings.filter(booking => booking.user).filter(booking => booking.user._id === userId)
 
   useEffect(() => {
     fetchBookings()
