@@ -4,8 +4,13 @@ import { BookingContext } from '../contexts/BookingContextProvider';
 import DatePicker from "react-datepicker";
 import { useHistory } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContextProvider';
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 const BookingForm = (props) => {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
   const history = useHistory()
   const { addBooking } = useContext(BookingContext)
   const { user } = useContext(UserContext)
@@ -23,7 +28,17 @@ const BookingForm = (props) => {
   const [arrDate, setArrDate] = useState(new Date())
   const [depDate, setDepDate] = useState()
   const guests = useRef()
- 
+  const body = (
+    <div>
+      <div className={classes.paper}>
+        <h2 id="simple-modal-title">Din bokning är lagd ✔️</h2>
+        {/* <p id="simple-modal-description">
+          Tryck på mina bokningar för att gå vidare
+      </p> */}
+        <Button className="modal-button" style={buttonStyle} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
+      </div>
+    </div>
+  );
   const createBooking = async e => {
     e.preventDefault()
     const booking = {
@@ -37,15 +52,28 @@ const BookingForm = (props) => {
 
     if (arrDate.getTime() < depDate.getTime()) {
       await addBooking(booking)
-      history.push('/Mina-sidor')
-    } 
+      setOpen(true)
+    }
   }
 
+
+
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+
   useEffect(() => {
-     if (arrDate && depDate) {
-       setPrice(Math.ceil((depDate.getTime() - arrDate.getTime()) / dayInMilliSec) * accommodationPrice)
-       return price
-      }
+    if (arrDate && depDate) {
+      setPrice(Math.ceil((depDate.getTime() - arrDate.getTime()) / dayInMilliSec) * accommodationPrice)
+      return price
+    }
     if (props.accommodation) {
       setAccommodation(props.accommodation)
       setAccommodationPrice(props.accommodation.pricePerNight)
@@ -59,57 +87,66 @@ const BookingForm = (props) => {
   return (
     <div>
       {accommodation &&
-      <form onSubmit={createBooking}>
-        <div style={styles.guestContainer}>
-          Antal gäster
+        <form onSubmit={createBooking}>
+          <div style={styles.guestContainer}>
+            Antal gäster
         <input
-          type="number"
-          ref={guests}
-          max={accommodation.maxGuests}
-          min="1"
-          style={styles.input}
-          required />
-          <br />
-        </div>
-        <div style={styles.dateContainer}>
-          <div key="d1" style={styles.datePicker}>
-            <p>Startdatum</p>
-            <DatePicker
-              wrapperClassName='datePicker'
-              dateFormat="yyyy/MM/dd"
-              placeholderText="Ankomst"
-              selected={arrDate}
-              onChange={(data) => setArrDate(data)}
-              minDate={minDate}
-            />
+              type="number"
+              ref={guests}
+              max={accommodation.maxGuests}
+              min="1"
+              style={styles.input}
+              required />
+            <br />
           </div>
-          <div key="d2" style={styles.datePicker}>
-            <p>Slutdatum</p>
-            <DatePicker
-              wrapperClassName='datePicker'
-              dateFormat="yyyy/MM/dd"
-              selected={depDate}
-              placeholderText="Avresa"
-              onChange={(data) => setDepDate(data)}
-              minDate={arrDate}
-              maxDate={maxDate}
-            />
+          <div style={styles.dateContainer}>
+            <div key="d1" style={styles.datePicker}>
+              <p>Startdatum</p>
+              <DatePicker
+                wrapperClassName='datePicker'
+                dateFormat="yyyy/MM/dd"
+                placeholderText="Ankomst"
+                selected={arrDate}
+                onChange={(data) => setArrDate(data)}
+                minDate={minDate}
+              />
+            </div>
+            <div key="d2" style={styles.datePicker}>
+              <p>Slutdatum</p>
+              <DatePicker
+                wrapperClassName='datePicker'
+                dateFormat="yyyy/MM/dd"
+                selected={depDate}
+                placeholderText="Avresa"
+                onChange={(data) => setDepDate(data)}
+                minDate={arrDate}
+                maxDate={maxDate}
+              />
+            </div>
           </div>
-        </div>
-       
-        {arrDate && depDate &&
-          <div>
-            <p>Pris: {Math.round(price)} SEK</p>
-            <p>Serviceavgift: {Math.round((price * 0.15))} SEK</p>
-            <p>Totalpris: {Math.round((price * 1.15))}</p>
+
+          {arrDate && depDate &&
+            <div>
+              <p>Pris: {Math.round(price)} SEK</p>
+              <p>Serviceavgift: {Math.round((price * 0.15))} SEK</p>
+              <p>Totalpris: {Math.round((price * 1.15))}</p>
+            </div>
+          }
+          <div style={styles.bokaContainer}>
+            <button style={styles.button}>Boka</button>
+            {/* {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>} */}
+            {/* {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>} */}
           </div>
-        }
-        <div style={styles.bokaContainer}>
-          <button style={styles.button}>Boka</button>
-          {/* {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>} */}
-          {/* {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>} */}
-        </div>
-      </form>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            disableBackdropClick="false"
+          >
+            {body}
+          </Modal>
+        </form>
       }
       <br /><br />
     </div>
@@ -118,13 +155,29 @@ const BookingForm = (props) => {
 
 export default Radium(BookingForm);
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    margin: '30vh 0 0 80vh',
+  },
+}));
+
+const buttonStyle = {
+  backgroundColor: 'red'
+}
+
 const styles = {
   input: {
     width: '50px',
     height: '25px',
     margin: '10px',
     textAlign: 'center'
-    
+
   },
   guestContainer: {
     fontFamily: 'Quicksand',
@@ -171,7 +224,7 @@ const styles = {
     height: '50px',
     width: '100%',
     margin: '0 auto',
-    
+
   },
   button: {
     fontFamily: 'Quicksand',
