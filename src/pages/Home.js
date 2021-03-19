@@ -12,11 +12,10 @@ import { useEffect } from 'react';
 
 const Home = () => {
   const [register, setRegister] = useState(false)
-  const {userId, logout} = useContext(UserContext)
-  const [id, setId] = useState()
+  const {userId, logout, fetchSession} = useContext(UserContext)
 
   useEffect(() => {
-    setId(userId)
+    fetchSession()
   }, [userId])
 
   const toggleRegisterForm = () => {
@@ -34,7 +33,7 @@ const Home = () => {
         {!register && <Login displayRegisterForm={toggleRegisterForm} />}
         {register && <Register displayRegisterForm={toggleRegisterForm} />}
       </div>}
-      <button onClick={logOut}>Logga ut</button>
+      
       <div style={styles.locationList}>
         {userId && <LocationList />}
       </div>
