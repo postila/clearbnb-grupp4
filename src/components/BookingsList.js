@@ -5,11 +5,15 @@ import { UserContext } from '../contexts/UserContextProvider'
 import Radium from 'radium'
 
 function BookingsList() {
-  const { bookings } = useContext(BookingContext)
+  const { bookings, fetchBookings } = useContext(BookingContext)
   const { locations } = useContext(LocationContext)
   const { userId } = useContext(UserContext)
   
   const bookingsList = bookings.filter(booking => booking.user._id === userId)
+
+  useEffect(() => {
+    fetchBookings()
+  }, [bookings])
 
   const card = booking =>
   (

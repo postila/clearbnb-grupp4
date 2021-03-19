@@ -34,6 +34,7 @@ export default function AccommodationsContextProvider(props) {
     accommodations,
     addAccommodation,
     accommodationId,
+    fetchAccommodations
   }
 
   return (

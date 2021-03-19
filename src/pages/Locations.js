@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import Radium from 'radium'
 
 const Locations = () => {
-  const { accommodations } = useContext(AccommodationsContext)
+  const { accommodations, fetchAccommodations } = useContext(AccommodationsContext)
   
   const history = useHistory()
   
@@ -13,6 +13,11 @@ const Locations = () => {
   }
   const { id } = useParams()
   const accommodationList = id ? accommodations.filter(a => a.location._id === id) : accommodations
+
+  useEffect(() => {
+    fetchAccommodations()
+  }, [accommodations])
+
   const card = accommodation => 
   (
     <div
