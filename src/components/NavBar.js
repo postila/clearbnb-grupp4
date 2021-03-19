@@ -20,7 +20,7 @@ function NavBar() {
 
   useEffect(() => {
     fetchSession()
-  }, [userId,user])
+  }, [userId, user])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

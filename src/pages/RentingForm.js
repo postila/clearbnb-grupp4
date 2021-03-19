@@ -5,8 +5,8 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { LocationContext } from '../contexts/locationContextProvider'
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
-import '../App.css';
 import { UserContext } from '../contexts/UserContextProvider'
+import '../App.css';
 
 
 function CreateRentingForm() {
