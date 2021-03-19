@@ -20,15 +20,11 @@ function CreateRentingForm() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };
   const body = (
-    <div>
+    <div style={styles.modalContainer}>
       <div className={classes.paper}>
         <h2 id="simple-modal-title">Din bostad finns nu ute för bokning ✔️</h2>
          <p id="simple-modal-description">
@@ -320,8 +316,7 @@ function CreateRentingForm() {
           onClose={handleClose}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
-          disableBackdropClick="false"
-          
+          disableScrollLock="false"
         >
           {body}
         </Modal>
@@ -333,13 +328,11 @@ function CreateRentingForm() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
     width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid white',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    margin: '30vh 0 0 80vh',
+    margin: '0 auto'
   },
 }));
 const buttonStyle = {
@@ -482,6 +475,15 @@ const styles = {
     color: 'grey',
     paddingTop: '15px',
     float: 'left'
+  },
+  modalContainer: {
+    width: '100%',
+    height: '100%',
+    textAlign: 'center',
+    paddingTop: '20%',
+    userSelect: 'none',
+    color: 'rgba(0,0,0,0)',
+    textShadow: '0 0 0 #000'
   },
 }
 

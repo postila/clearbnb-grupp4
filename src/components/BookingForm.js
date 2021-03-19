@@ -29,12 +29,9 @@ const BookingForm = (props) => {
   const [depDate, setDepDate] = useState()
   const guests = useRef()
   const body = (
-    <div>
+    <div style={styles.modalContainer}>
       <div className={classes.paper}>
         <h2 id="simple-modal-title">Din bokning är lagd ✔️</h2>
-        {/* <p id="simple-modal-description">
-          Tryck på mina bokningar för att gå vidare
-      </p> */}
         <Button className="modal-button" style={buttonStyle} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
       </div>
     </div>
@@ -55,13 +52,6 @@ const BookingForm = (props) => {
       setOpen(true)
     }
   }
-
-
-
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -137,15 +127,15 @@ const BookingForm = (props) => {
             {/* {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>} */}
             {/* {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>} */}
           </div>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            disableBackdropClick="false"
-          >
-            {body}
-          </Modal>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"     
+          disableScrollLock="false"
+        >
+          {body}
+        </Modal>
         </form>
       }
       <br /><br />
@@ -157,13 +147,11 @@ export default Radium(BookingForm);
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
     width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    margin: '30vh 0 0 80vh',
+    margin: '0 auto'
   },
 }));
 
@@ -240,5 +228,14 @@ const styles = {
     ':focus': {
       outline: 'none'
     }
+  },
+  modalContainer: {
+    width: '100%',
+    height: '100%',
+    textAlign: 'center',
+    paddingTop: '20%',
+    userSelect: 'none',
+    color: 'rgba(0,0,0,0)',
+    textShadow: '0 0 0 #000'
   },
 }
