@@ -65,8 +65,7 @@ const styles = {
   text: {
     fontFamily: 'Quicksand',
     color: 'grey',
-    textAlign: 'left',
-    color: 'grey',
+    textAlign: 'left'
   }
 }
 

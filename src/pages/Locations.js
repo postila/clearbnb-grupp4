@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import React, { useRef, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import Radium from 'radium'
@@ -34,19 +34,19 @@ const Locations = () => {
 
 
   const { locations } = useContext(LocationContext)
+  const location = useRef()
+  const accommodation = useRef()
 
   const locationItem = location => (
-
     <option value={location._id}> {location.name}</option>
-
   )
+  const accommodationPrice = accommodation => (
+ 
+    <option value={accommodation._id} >{accommodation.pricePerNight}</option>
+  )
+  //const accommodationList = id ? accommodations.filter(a => a.location._id === id) : accommodations
 
-
-
-
-        
-      
-  const location = useRef()
+  
 
   return (
     <div>
@@ -58,10 +58,12 @@ const Locations = () => {
         >
           {locations.map(location => locationItem(location))}
         </select>
-        {accommodationList.map(accommodation => card(accommodation))}
-        
-        
+        <select key="3" required ref={accommodation} style={styles.input}>
+          {accommodations.map(accommodation => accommodationPrice(accommodation))}
+        </select>
+
       </form>
+      {accommodationList.map(accommodation => card(accommodation))}
     </div>
   );
 }
@@ -108,7 +110,7 @@ const styles = {
     fontFamily: 'Quicksand',
     borderRadius: '10px',
     border: 'none',
-    margin: '5vh 70vh 0 15vh'
+    margin: '5vh 0 0 0'
   }
 }
 
