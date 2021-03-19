@@ -75,7 +75,7 @@ const BookingForm = (props) => {
           <div key="d1" style={styles.datePicker}>
             <p>Startdatum</p>
             <DatePicker
-              wrapperClassName='datePicker'
+              className='datePicker'
               dateFormat="yyyy/MM/dd"
               placeholderText="Ankomst"
               selected={arrDate}
@@ -86,7 +86,7 @@ const BookingForm = (props) => {
           <div key="d2" style={styles.datePicker}>
             <p>Slutdatum</p>
             <DatePicker
-              wrapperClassName='datePicker'
+              className='datePicker'
               dateFormat="yyyy/MM/dd"
               selected={depDate}
               placeholderText="Avresa"
@@ -179,9 +179,9 @@ const styles = {
     textTransform: 'uppercase',
     fontSize: '14px',
     color: 'grey',
-    width: '100px',
+    width: '170px',
     margin: '10px',
-    padding: '10px',
+    padding: '12px',
     borderRadius: '8px',
     border: 'none',
     ':focus': {
