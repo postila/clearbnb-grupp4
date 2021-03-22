@@ -3,7 +3,7 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
 import BookingForm from '../components/BookingForm';
-import BookingDates from '../components/BookingDates';
+// import BookingDates from '../components/BookingDates';
 
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -46,7 +46,7 @@ const AccommodationsDetails = () => {
               </div>
             ))}
         </div>
-        <BookingDates/>
+        {/* <BookingDates/> */}
         <BookingForm accommodation={item} />
         </div> }
       { !accommodation &&

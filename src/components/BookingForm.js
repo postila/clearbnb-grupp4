@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react';
 import Radium from 'radium'
 import { BookingContext } from '../contexts/BookingContextProvider';
 import DatePicker from "react-datepicker";
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContextProvider';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -12,7 +12,8 @@ const BookingForm = (props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const history = useHistory()
-  const { addBooking } = useContext(BookingContext)
+  const { id } = useParams()
+  const { addBooking, bookings } = useContext(BookingContext)
   const { user } = useContext(UserContext)
   const [accommodation, setAccommodation] = useState(null)
   const [accommodationPrice, setAccommodationPrice] = useState(null)
@@ -36,6 +37,31 @@ const BookingForm = (props) => {
       </div>
     </div>
   );
+
+  const bookingsList = bookings.filter(booking => booking.accommodation).filter(booking => booking.accommodation._id === id)
+
+  let [dates, setDates] = useState([])
+  for (let date of bookingsList) {
+    if (date.endDate > new Date().getTime() && (!dates.includes(date.startDate) || !dates.includes(date.endDate))) {
+      setDates([...dates, date.startDate, date.endDate])
+    }
+  }
+  console.log(dates, 'dates')
+
+  let allDates = []
+  for (let i = 0; i < dates.length - 1; i += 2) {
+    while (dates[i] < dates[i + 1]) {
+      if (!allDates.includes(dates[i]) && dates[i] > new Date().getTime()) {
+        allDates.push(dates[i])
+      }
+      dates[i] += 86400000
+    }
+    if (!allDates.includes(dates[i + 1]))
+      allDates.push(dates[i + 1])
+  }
+  allDates = allDates.sort((a,b) => a > b ? 1 : -1)
+  console.log(allDates, 'allDates')
+
   const createBooking = async e => {
     e.preventDefault()
     const booking = {
@@ -99,6 +125,7 @@ const BookingForm = (props) => {
                 selected={arrDate}
                 onChange={(data) => setArrDate(data)}
                 minDate={minDate}
+                excludeDates={allDates}
               />
             </div>
             <div key="d2" style={styles.datePicker}>
@@ -111,6 +138,7 @@ const BookingForm = (props) => {
                 onChange={(data) => setDepDate(data)}
                 minDate={arrDate}
                 maxDate={maxDate}
+                excludeDates={allDates}
               />
             </div>
           </div>
