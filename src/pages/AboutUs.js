@@ -1,7 +1,6 @@
 import React from 'react';
 import Radium from 'radium'
 
-
 const AboutUs = () => {
 
   return (
@@ -17,28 +16,28 @@ const AboutUs = () => {
     </div >
   );
 }
-
 const styles = {
   box: {
     display: 'inline-block',
-    float:'left',
+    float: 'left',
     margin: '30vh 0 0 20vh',
     maxWidth: '400px',
     backgroundColor: 'white',
     opacity: '30%',
     padding: '30px',
-    borderRadius:'10px'
+    borderRadius: '10px'
   },
   content: {
     color: 'black',
     margin: '0',
     fontWeight: 'bold',
-    letterSpacing:'0.5px'
+    letterSpacing: '0.5px'
   },
   background: {
     backgroundImage: '../background.jpg',
     height: '100vh'
   }
 }
+
 
 export default Radium(AboutUs);

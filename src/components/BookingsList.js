@@ -1,14 +1,18 @@
 import { useContext, useEffect } from 'react'
 import { BookingContext } from '../contexts/BookingContextProvider'
 import { LocationContext } from '../contexts/locationContextProvider'
+import { UserContext } from '../contexts/UserContextProvider'
 import Radium from 'radium'
 
 function BookingsList() {
-  const { bookings } = useContext(BookingContext)
+  const { bookings, fetchBookings } = useContext(BookingContext)
   const { locations } = useContext(LocationContext)
+  const { userId } = useContext(UserContext)
+  
+  const bookingsList = bookings.filter(booking => booking.user).filter(booking => booking.user._id === userId)
 
   useEffect(() => {
-    
+    fetchBookings()
   }, [bookings])
 
   const card = booking =>
@@ -34,7 +38,7 @@ function BookingsList() {
   return (
     <div style={styles.itemsPositions}>
       <div>
-      {bookings.map(booking => card(booking))}
+      {bookingsList.map(booking => card(booking))}
       </div>
     </div>
   )

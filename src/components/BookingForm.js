@@ -4,8 +4,13 @@ import { BookingContext } from '../contexts/BookingContextProvider';
 import DatePicker from "react-datepicker";
 import { useHistory } from 'react-router-dom'
 import { UserContext } from '../contexts/UserContextProvider';
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 const BookingForm = (props) => {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
   const history = useHistory()
   const { addBooking } = useContext(BookingContext)
   const { user } = useContext(UserContext)
@@ -20,7 +25,14 @@ const BookingForm = (props) => {
   const [arrDate, setArrDate] = useState(new Date())
   const [depDate, setDepDate] = useState()
   const guests = useRef()
-
+  const body = (
+    <div style={styles.modalContainer}>
+      <div className={classes.paper}>
+        <h2 id="simple-modal-title">Din bokning är lagd ✔️</h2>
+        <Button className="modal-button" style={buttonStyle} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
+      </div>
+    </div>
+  );
   const createBooking = async e => {
     e.preventDefault()
     const booking = {
@@ -34,9 +46,15 @@ const BookingForm = (props) => {
 
     if (arrDate.getTime() < depDate.getTime()) {
       await addBooking(booking)
-      history.push('/Mina-sidor')
+      setOpen(true)
     }
   }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
 
   useEffect(() => {
     if (arrDate && depDate) {
@@ -72,7 +90,7 @@ const BookingForm = (props) => {
             <div key="d1" style={styles.datePicker}>
               <p>Startdatum</p>
               <DatePicker
-                wrapperClassName='datePicker'
+                className='datePicker'
                 dateFormat="yyyy/MM/dd"
                 placeholderText="Ankomst"
                 selected={arrDate}
@@ -83,7 +101,7 @@ const BookingForm = (props) => {
             <div key="d2" style={styles.datePicker}>
               <p>Slutdatum</p>
               <DatePicker
-                wrapperClassName='datePicker'
+                className='datePicker'
                 dateFormat="yyyy/MM/dd"
                 selected={depDate}
                 placeholderText="Avresa"
@@ -105,7 +123,16 @@ const BookingForm = (props) => {
             <button style={styles.button}>Boka</button>
             {/* {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>} */}
             {/* {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>} */}
-          </div>
+        </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          disableScrollLock={false}
+        >
+          {body}
+        </Modal>
         </form>
       }
       <br /><br />
@@ -114,6 +141,20 @@ const BookingForm = (props) => {
 }
 
 export default Radium(BookingForm);
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    margin: '0 auto'
+  },
+}));
+
+const buttonStyle = {
+  backgroundColor: 'red'
+}
 
 const styles = {
   input: {
@@ -176,13 +217,22 @@ const styles = {
     textTransform: 'uppercase',
     fontSize: '14px',
     color: 'grey',
-    width: '100px',
+    width: '170px',
     margin: '10px',
-    padding: '10px',
+    padding: '12px',
     borderRadius: '8px',
     border: 'none',
     ':focus': {
       outline: 'none'
     }
+  },
+  modalContainer: {
+    width: '100%',
+    height: '100%',
+    textAlign: 'center',
+    paddingTop: '20%',
+    userSelect: 'none',
+    color: 'rgba(0,0,0,0)',
+    textShadow: '0 0 0 #000'
   },
 }

@@ -28,7 +28,8 @@ export default function BookingContextProvider(props) {
 
   const values = {
     bookings,
-    addBooking
+    addBooking,
+    fetchBookings
   }
 
   return (
