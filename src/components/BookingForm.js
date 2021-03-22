@@ -73,6 +73,17 @@ const BookingForm = (props) => {
     }
   }
 
+  const checkAndSetMinDate = async (data) => {
+    await setDepDate(data)
+
+    for (let i = allDates.length - 1; i >= 0; i--){
+      if (allDates[i] < data) {
+        await setMindate(allDates[i])
+        return
+      }
+    }
+  }
+
   const createBooking = async e => {
     e.preventDefault()
     const booking = {
@@ -133,7 +144,8 @@ const BookingForm = (props) => {
                 placeholderText="Ankomst"
                 selected={arrDate}
                 onChange={(data) => checkAndSetMaxDate(data)}
-                minDate={minDate}
+              minDate={minDate}
+              maxDate={depDate}
                 excludeDates={allDates}
               />
             </div>
@@ -144,7 +156,7 @@ const BookingForm = (props) => {
                 dateFormat="yyyy/MM/dd"
                 selected={depDate}
                 placeholderText="Avresa"
-                onChange={(data) => setDepDate(data)}
+                onChange={(data) => checkAndSetMinDate(data)}
                 minDate={arrDate}
                 maxDate={maxDate}
                 excludeDates={allDates}
