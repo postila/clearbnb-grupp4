@@ -132,7 +132,7 @@ const BookingForm = (props) => {
           onClose={handleClose}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
-          disableScrollLock="false"
+          disableScrollLock={false}
         >
           {body}
         </Modal>
