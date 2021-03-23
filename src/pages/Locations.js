@@ -16,7 +16,7 @@ const Locations = () => {
   const { id } = useParams()
   const accommodationList = id ? accommodations.filter(a => a.location._id === id) : accommodations
   const card = accommodation =>
-    
+
   (
     <div
       style={styles.box}
@@ -39,13 +39,15 @@ const Locations = () => {
   // const accommodation = useRef()
   const [select, setSelect] = useState('')
 
- 
+
 
   const locationItem = location => (
     <option value={location._id}> {location.name}</option>
   )
 
-  
+  if (select === accommodation.location) {
+
+  }
   // const accommodationPrice = accommodation => (
 
   //   <option value={accommodation._id} >{accommodation.pricePerNight}</option>
@@ -53,7 +55,7 @@ const Locations = () => {
   // const guests = accommodation => (
   //   <option value={accommodation._id} >{accommodation.maxGuests}</option>
   // )
-  
+
 
 
 
@@ -64,14 +66,14 @@ const Locations = () => {
           key="2"
           required ref={location}
           style={styles.input}
-          options={ locations }
-          onChange= {e => setSelect(e.target.value)}
+          options={locations}
+          onChange={e => setSelect(e.target.value)}
         >
-          
+
           {locations.map(location => locationItem(location))}
-        
+
         </select>
-        <h1>{ select }</h1>
+        <h1>{select}</h1>
         {/* <select
           key="3"
           required ref={accommodation}
