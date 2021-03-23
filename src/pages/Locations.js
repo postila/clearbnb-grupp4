@@ -6,6 +6,8 @@ import { LocationContext } from '../contexts/locationContextProvider'
 
 const Locations = () => {
   const { accommodations } = useContext(AccommodationsContext)
+  const { id } = useParams()
+  const [select, setSelect] = useState(id)
 
 
   const history = useHistory()
@@ -13,8 +15,7 @@ const Locations = () => {
   const goToDetailsPage = (id) => {
     history.push('/accommodationDetails/' + id)
   }
-  const { id } = useParams()
-  const accommodationList = id ? accommodations.filter(a => a.location._id === id) : accommodations
+  const accommodationList = id ? accommodations.filter(a => a.location._id === select) : accommodations
   const card = accommodation =>
 
   (
@@ -37,7 +38,7 @@ const Locations = () => {
   const { locations } = useContext(LocationContext)
   const location = useRef()
   // const accommodation = useRef()
-  const [select, setSelect] = useState('')
+ 
 
 
 
@@ -45,9 +46,9 @@ const Locations = () => {
     <option value={location._id}> {location.name}</option>
   )
 
-  if (select === accommodation.location) {
+  // if (select === accommodation.location) {
 
-  }
+  // }
   // const accommodationPrice = accommodation => (
 
   //   <option value={accommodation._id} >{accommodation.pricePerNight}</option>
