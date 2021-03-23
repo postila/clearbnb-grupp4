@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import Radium from 'radium'
@@ -16,6 +16,7 @@ const Locations = () => {
   const { id } = useParams()
   const accommodationList = id ? accommodations.filter(a => a.location._id === id) : accommodations
   const card = accommodation =>
+    
   (
     <div
       style={styles.box}
@@ -35,19 +36,24 @@ const Locations = () => {
 
   const { locations } = useContext(LocationContext)
   const location = useRef()
-  const accommodation = useRef()
+  // const accommodation = useRef()
+  const [select, setSelect] = useState('')
+
+ 
 
   const locationItem = location => (
     <option value={location._id}> {location.name}</option>
   )
-  const accommodationPrice = accommodation => (
 
-    <option value={accommodation._id} >{accommodation.pricePerNight}</option>
-  )
-  const guests = accommodation => (
-    <option value={accommodation._id} >{accommodation.maxGuests}</option>
-  )
-  //const accommodationList = id ? accommodations.filter(a => a.location._id === id) : accommodations
+  
+  // const accommodationPrice = accommodation => (
+
+  //   <option value={accommodation._id} >{accommodation.pricePerNight}</option>
+  // )
+  // const guests = accommodation => (
+  //   <option value={accommodation._id} >{accommodation.maxGuests}</option>
+  // )
+  
 
 
 
@@ -57,10 +63,16 @@ const Locations = () => {
         <select
           key="2"
           required ref={location}
-          style={styles.input}>
+          style={styles.input}
+          options={ locations }
+          onChange= {e => setSelect(e.target.value)}
+        >
+          
           {locations.map(location => locationItem(location))}
+        
         </select>
-        <select
+        <h1>{ select }</h1>
+        {/* <select
           key="3"
           required ref={accommodation}
           style={styles.input}>
@@ -71,7 +83,7 @@ const Locations = () => {
           required ref={accommodation}
           style={styles.input}>
           {accommodations.map(accommodation => guests(accommodation))}
-        </select>
+        </select> */}
       </form>
       {accommodationList.map(accommodation => card(accommodation))}
     </div>
