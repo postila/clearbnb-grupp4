@@ -72,7 +72,7 @@ const Login = (props) => {
         message="Du har angett felaktig e-postadress eller lösenord"
         action={
           <React.Fragment>
-            <Button color="Primary" size="small" onClick={handleClose}>
+            <Button color="primary" size="small" onClick={handleClose}>
               Okej
             </Button>
             <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
