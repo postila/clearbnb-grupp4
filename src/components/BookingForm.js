@@ -59,27 +59,36 @@ const BookingForm = (props) => {
     if (!allDates.includes(dates[i + 1]))
       allDates.push(dates[i + 1])
   }
-  allDates = allDates.sort((a,b) => a > b ? 1 : -1)
+  allDates = allDates.sort((a, b) => a > b ? 1 : -1)
   console.log(allDates, 'allDates')
-
+  
   const checkAndSetMaxDate = async (data) => {
-    await setArrDate(data)
-
+    await setArrDate(data ? data : new Date())
+    
     for (let date of allDates) {
-      if (date > data) {
+      if (!data) {
+        await setMaxDate(accommodation.endDate)
+      }
+      else if (date > data) {
         await setMaxDate(date)
         return
       }
     }
   }
-
+  
   const checkAndSetMinDate = async (data) => {
-    await setDepDate(data)
-
-    for (let i = allDates.length - 1; i >= 0; i--){
-      if (allDates[i] < data) {
-        await setMindate(allDates[i])
-        return
+    await setDepDate(data ? data : null)
+    
+    if (!data) {
+      await setMindate(new Date())
+      await setArrDate(new Date())
+    } else {
+      for (let i = allDates.length - 1; i >= 0; i--){
+        if (allDates[i] < data) {
+          await setArrDate(allDates[i] + dayInMilliSec)
+          await setMindate(allDates[i] + dayInMilliSec)
+          return
+        }
       }
     }
   }
@@ -107,17 +116,17 @@ const BookingForm = (props) => {
 
   useEffect(() => {
     if (arrDate && depDate) {
-      setPrice(Math.ceil((depDate.getTime() - arrDate.getTime()) / dayInMilliSec) * accommodationPrice)
+      setPrice(Math.ceil((new Date(depDate).getTime() - new Date(arrDate).getTime()) / dayInMilliSec) * accommodationPrice)
       return price
     }
     if (props.accommodation) {
       setAccommodation(props.accommodation)
       setAccommodationPrice(props.accommodation.pricePerNight)
-      if (props.accommodation.startDate > new Date()) {
-        setMindate(props.accommodation.startDate)
+        if (props.accommodation.startDate > new Date()) {
+          setMindate(props.accommodation.startDate)
+        }
+        setMaxDate(props.accommodation.endDate)
       }
-      setMaxDate(props.accommodation.endDate)
-    }
   }, [arrDate, depDate, price, props.accommodation, accommodationPrice])
 
   return (
@@ -144,8 +153,8 @@ const BookingForm = (props) => {
                 placeholderText="Ankomst"
                 selected={arrDate}
                 onChange={(data) => checkAndSetMaxDate(data)}
-              minDate={minDate}
-              maxDate={depDate}
+                minDate={minDate}
+                maxDate={depDate}
                 excludeDates={allDates}
               />
             </div>
