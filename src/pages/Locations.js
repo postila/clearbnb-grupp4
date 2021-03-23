@@ -8,6 +8,8 @@ const Locations = () => {
   const { accommodations } = useContext(AccommodationsContext)
   const { id } = useParams()
   const [selectedLocation, setSelectedLocation] = useState(id)
+  const { locations } = useContext(LocationContext)
+  const location = useRef()
 
 
   const history = useHistory()
@@ -35,8 +37,6 @@ const Locations = () => {
   )
 
 
-  const { locations } = useContext(LocationContext)
-  const location = useRef()
   // const accommodation = useRef()
  
 
@@ -68,8 +68,9 @@ const Locations = () => {
           required ref={location}
           style={styles.input}
           options={locations}
+          value={selectedLocation}
           onChange={e => setSelectedLocation(e.target.value)}
-        >
+          >
 
           {locations.map(location => locationItem(location))}
 
