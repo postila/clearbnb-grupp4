@@ -5,6 +5,10 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { LocationContext } from '../contexts/locationContextProvider'
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom'
 import '../App.css';
 
 
@@ -12,7 +16,24 @@ function CreateRentingForm() {
   const { addAccommodation } = useContext(AccommodationsContext)
   //const history = useHistory()
   // const { addRentingForm } = useContext(AmenitiesContext)
+  const history = useHistory()
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const body = (
+    <div style={styles.modalContainer}>
+      <div className={classes.paper}>
+        <h2 id="simple-modal-title">Din bostad finns nu ute för bokning ✔️</h2>
+         <p id="simple-modal-description">
+          Tack för att du använder clearBnB!
+      </p> 
+        <Button className="modal-button" style={buttonStyle} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
+      </div>
+    </div>
+  );
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
 
@@ -71,6 +92,8 @@ function CreateRentingForm() {
     iron.current.value = ''
     safe.current.value = ''
 
+    setOpen(true)
+    
   }
 
   const { locations } = useContext(LocationContext)
@@ -288,12 +311,33 @@ function CreateRentingForm() {
           style={styles.button}
           key="7"
         >Färdig</button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          disableScrollLock={false}
+        >
+          {body}
+        </Modal>
 
       </div>
     </form >
   )
 }
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    margin: '0 auto'
+  },
+}));
+const buttonStyle = {
+  backgroundColor: 'red'
+}
 
 const styles = {
   form: {
@@ -431,6 +475,15 @@ const styles = {
     color: 'grey',
     paddingTop: '15px',
     float: 'left'
+  },
+  modalContainer: {
+    width: '100%',
+    height: '100%',
+    textAlign: 'center',
+    paddingTop: '20%',
+    userSelect: 'none',
+    color: 'rgba(0,0,0,0)',
+    textShadow: '0 0 0 #000'
   },
 }
 
