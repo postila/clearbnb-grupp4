@@ -25,6 +25,7 @@ export default function UserContextProvider(props) {
     console.log(res)
     setUser(res)
     fetchSession()
+    return res;
   }
 
   const logout = async () => {
