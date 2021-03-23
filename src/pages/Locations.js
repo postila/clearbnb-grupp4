@@ -10,9 +10,14 @@ const Locations = () => {
   const [selectedLocation, setSelectedLocation] = useState(id)
   const { locations } = useContext(LocationContext)
   const location = useRef()
-
-
   const history = useHistory()
+
+  async function handleChange(data)  {
+     await setSelectedLocation(data)
+     await  history.push('/Platser/' + data) 
+     console.log(data)
+  }
+
 
   const goToDetailsPage = (id) => {
     history.push('/accommodationDetails/' + id)
@@ -43,39 +48,43 @@ const Locations = () => {
 
 
   const locationItem = location => (
-    <option value={location._id}> {location.name}</option>
-  )
-
-  // if (select === accommodation.location) {
-
-  // }
-  // const accommodationPrice = accommodation => (
-
-  //   <option value={accommodation._id} >{accommodation.pricePerNight}</option>
-  // )
-  // const guests = accommodation => (
-  //   <option value={accommodation._id} >{accommodation.maxGuests}</option>
-  // )
-
-
-
-
-  return (
-    <div>
+    <option
+    defaultValue='hej'
+    onChange={data => setSelectedLocation(data)}
+    value={location._id}> {location.name}</option>
+    )
+    
+    // if (select === accommodation.location) {
+      
+      // }
+      // const accommodationPrice = accommodation => (
+        
+        //   <option value={accommodation._id} >{accommodation.pricePerNight}</option>
+        // )
+        // const guests = accommodation => (
+          //   <option value={accommodation._id} >{accommodation.maxGuests}</option>
+          // )
+          
+          
+          
+          
+          return (
+            <div>
       <form key="1">
         <select
           key="2"
           required ref={location}
           style={styles.input}
-          options={locations}
           value={selectedLocation}
-          onChange={e => setSelectedLocation(e.target.value)}
+          options={locations}
+          onChange={e => handleChange(e.target.value)}
           >
 
+      <option value="" disabled selected>Välj Ort</option>
           {locations.map(location => locationItem(location))}
 
         </select>
-        {/* <h1>{selectedLocation}</h1> */}
+         {/* <h1>{selectedLocation}</h1> */}
         {/* <select
           key="3"
           required ref={accommodation}
