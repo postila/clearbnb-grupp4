@@ -7,7 +7,7 @@ import { LocationContext } from '../contexts/locationContextProvider'
 const Locations = () => {
   const { accommodations } = useContext(AccommodationsContext)
   const { id } = useParams()
-  const [select, setSelect] = useState(id)
+  const [selectedLocation, setSelectedLocation] = useState(id)
 
 
   const history = useHistory()
@@ -15,7 +15,7 @@ const Locations = () => {
   const goToDetailsPage = (id) => {
     history.push('/accommodationDetails/' + id)
   }
-  const accommodationList = id ? accommodations.filter(a => a.location._id === select) : accommodations
+  const accommodationList = id ? accommodations.filter(a => a.location._id === selectedLocation) : accommodations
   const card = accommodation =>
 
   (
@@ -68,13 +68,13 @@ const Locations = () => {
           required ref={location}
           style={styles.input}
           options={locations}
-          onChange={e => setSelect(e.target.value)}
+          onChange={e => setSelectedLocation(e.target.value)}
         >
 
           {locations.map(location => locationItem(location))}
 
         </select>
-        <h1>{select}</h1>
+        {/* <h1>{selectedLocation}</h1> */}
         {/* <select
           key="3"
           required ref={accommodation}
