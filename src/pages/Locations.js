@@ -12,6 +12,8 @@ const Locations = () => {
   const location = useRef()
   const history = useHistory()
   const [maxGuests, setMaxGuests] = useState()
+  let accommodationList = accommodations
+  const [temp, setTemp] = useState(accommodationList)
 
   async function handleChange(data) {
     await setSelectedLocation(data)
@@ -23,7 +25,7 @@ const Locations = () => {
   const goToDetailsPage = (id) => {
     history.push('/accommodationDetails/' + id)
   }
-  let [accommodationList, setAccommodationList] = useState([...accommodations])
+  
 
 
   const card = accommodation =>
@@ -49,8 +51,15 @@ const Locations = () => {
   useEffect(() => {
     console.log(maxGuests, 'hej')
     console.log(id, 'id')
-    if (id) setAccommodationList([accommodationList.filter(a => a.location._id === selectedLocation)])
-    if (maxGuests) setAccommodationList([accommodationList.filter(a => a.maxGuests >= maxGuests)])
+    if (id) {
+      accommodationList = accommodationList.filter(a => a.location._id === selectedLocation)
+      setTemp(accommodationList)
+    }
+
+    if (maxGuests) {
+      accommodationList = accommodationList.filter(a => a.maxGuests >= maxGuests)
+      setTemp(accommodationList)
+    }
   }, [maxGuests, id, selectedLocation])
 
 
@@ -60,7 +69,7 @@ const Locations = () => {
       value={location._id}> {location.name}</option>
   )
 
-  
+
 
 
   return (
@@ -74,29 +83,11 @@ const Locations = () => {
           options={locations}
           onChange={e => handleChange(e.target.value)}
         >
-
           <option value="" disabled selected>Välj Ort</option>
           {locations.map(location => locationItem(location))}
-
         </select>
-        {/* <h1>{selectedLocation}</h1> */}
-        {/* <select
-          key="3"
-          required ref={accommodation}
-          style={styles.input}>
-          {accommodations.map(accommodation => accommodationPrice(accommodation))}
-        </select>*/}
-        {/* <select
-          key="4"
-          required ref={accommodations}
-          style={styles.input}
-          value={selectedMaxGuests}
-          options={accommodations.maxGuests}
-          onChange={e => handleChange(e.target.value)}>
-          {accommodations.map(accommodation => guests(accommodation))}
-        </select> */}
         <input
-          key="5"
+          key="3"
           style={styles.input}
           value={maxGuests}
           onChange={e => setMaxGuests(e.target.value)}
@@ -105,7 +96,9 @@ const Locations = () => {
           placeholder='Max antal gäster'
         ></input>
       </form>
-      {accommodationList.map(accommodation => card(accommodation))}
+      {temp.map(accommodation => card(accommodation))}
+
+
     </div>
   );
 }
