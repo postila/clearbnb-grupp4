@@ -116,8 +116,12 @@ const BookingForm = (props) => {
   };
 
   useEffect(() => {
-    if (arrDate && depDate) 
-    setPrice(Math.ceil((new Date(depDate).getTime() - new Date(arrDate).getTime()) / dayInMilliSec) * accommodationPrice)
+    if (arrDate && depDate) {
+      setPrice(Math.ceil((new Date(depDate).getTime() - new Date(arrDate).getTime()) / dayInMilliSec) * accommodationPrice)
+    }
+    if(new Date(arrDate).getTime() === new Date(depDate).getTime()) {
+      setDepDate(null)
+    }
   }, [arrDate, depDate, price, accommodationPrice])
 
   useEffect(() => {
