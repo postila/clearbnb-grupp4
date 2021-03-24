@@ -13,27 +13,33 @@ const AboutUs = () => {
       }}>
         <div style={{ backgroundColor: 'rgba(255,255,255,0.6)' }}>
           <div style={styles.box}>
-          <h1 style={styles.header}>Om oss</h1>
-            <p style={styles.content}>ClearBnB skapades 2021. Vårt mål är att ha boenden i hela världen vid 2027. </p><br/>
-            <p style={styles.content}>Hitta oss</p><br/>
+            <h1 style={styles.header}>Om oss</h1>
+            <p style={styles.content}>ClearBnB skapades 2021. Vårt mål är att ha boenden i hela världen vid 2027. </p><br />
+            <p style={styles.content}>Hitta till oss:</p><br />
             <p style={styles.content}>ClearBnB<br />Malmögatan 5<br />541 25 Malmö</p>
-          
-      </div>
-      </div >
+
+          </div>
+        </div >
       </div>
     </div>
   );
 }
 const styles = {
   box: {
-
+    display: 'grid',
     float: 'left',
     margin: '30vh 0 0 20vh',
-    maxWidth: '400px',
+   maxWidth: '400px',
     backgroundColor: 'white',
     opacity: '45%',
     padding: '30px',
-    borderRadius: '10px'
+    borderRadius: '10px',
+    '@media screen and(max - width: 600px)': {
+      '.col - 25, .col - 75, input[type = submit]': {
+        width: '100 %',
+        marginTop: '0'
+      }
+    }
   },
   content: {
     color: 'black',
@@ -41,21 +47,21 @@ const styles = {
     fontWeight: 'bold',
     letterSpacing: '0.5px',
     fontFamily: 'Quicksand',
-     textAlign:'left'
+    textAlign: 'left'
   },
   header: {
     color: 'black',
     margin: '0',
-    paddingBottom:'30px',
+    paddingBottom: '30px',
     fontWeight: 'bold',
     letterSpacing: '0.5px',
     fontFamily: 'Quicksand',
-    textAlign:'left'
+    textAlign: 'left'
 
   },
-  
+
   background: {
-    backgroundImage:''
+    backgroundImage: ''
   }
 }
 
