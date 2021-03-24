@@ -8,10 +8,10 @@ const AboutUs = () => {
   return (
     <div style={styles.background}>
       <div style={{
-        backgroundImage: `url(${Background})`, backgroundSize: 'cover',
+        backgroundImage: `url(${Background})`, backgroundSize: 'cover', filter: 'grayscale(.5) opacity(0.8) ',
         backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed', height: '100vh', margin: '0', backgroundPosition: 'center'
       }}>
-        <div style={{ backgroundColor: 'rgba(255,255,255,0.6)' }}>
+        
           <div style={styles.box}>
             <h1 style={styles.header}>Om oss</h1>
             <p style={styles.content}>ClearBnB skapades 2021. Vårt mål är att ha boenden i hela världen vid 2027. </p><br />
@@ -21,7 +21,6 @@ const AboutUs = () => {
           </div>
         </div >
       </div>
-    </div>
   );
 }
 const styles = {
@@ -34,12 +33,6 @@ const styles = {
     opacity: '45%',
     padding: '30px',
     borderRadius: '10px',
-    '@media screen and(max - width: 600px)': {
-      '.col - 25, .col - 75, input[type = submit]': {
-        width: '100 %',
-        marginTop: '0'
-      }
-    }
   },
   content: {
     color: 'black',
