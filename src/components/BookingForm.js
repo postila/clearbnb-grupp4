@@ -21,7 +21,7 @@ const BookingForm = (props) => {
   const [price, setPrice] = useState()
   const [singelton, setSingelton] = useState(0)
   const guests = useRef()
-  
+
   const dayInMilliSec = 86400000;
   const today = new Date(new Date().toDateString()).getTime()
 
@@ -29,11 +29,11 @@ const BookingForm = (props) => {
   const [maxDate, setMaxDate] = useState(null)
   const [arrDate, setArrDate] = useState(null)
   const [depDate, setDepDate] = useState()
-  
+
   const bookingsList = bookings.filter(booking => booking.accommodation).filter(booking => booking.accommodation._id === id)
   const [dates, setDates] = useState([])
   let [allDates, setAllDates] = useState([])
-  
+
   // Modal after booking is placed
   const body = (
     <div style={styles.modalContainer}>
@@ -81,11 +81,11 @@ const BookingForm = (props) => {
     }
     return date
   }
-  
+
   const checkAndSetMaxDate = data => {
     setArrDate(data)
     setDepDate(null)
-    
+
     for (let date of allDates) {
       if (date > data) {
         setMaxDate(date)
@@ -119,7 +119,7 @@ const BookingForm = (props) => {
     if (arrDate && depDate) {
       setPrice(Math.ceil((new Date(depDate).getTime() - new Date(arrDate).getTime()) / dayInMilliSec) * accommodationPrice)
     }
-    if(new Date(arrDate).getTime() === new Date(depDate).getTime()) {
+    if (new Date(arrDate).getTime() === new Date(depDate).getTime()) {
       setDepDate(null)
     }
   }, [arrDate, depDate, price, accommodationPrice])
@@ -191,17 +191,17 @@ const BookingForm = (props) => {
             </div>
           }
           <div style={styles.bokaContainer}>
-            <button style={styles.button}>Boka</button>
-        </div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          disableScrollLock={false}
-        >
-          {body}
-        </Modal>
+            <button style={[{ cursor: price > 0 ? 'pointer' : 'default' }, styles.button]}>Boka</button>
+          </div>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            disableScrollLock={false}
+          >
+            {body}
+          </Modal>
         </form>
       }
       <br /><br />
@@ -294,6 +294,12 @@ const styles = {
     ':focus': {
       outline: 'none'
     }
+  },
+  pointer: {
+    cursor: 'pointer'
+  },
+  noPointer: {
+    cursor: 'not-allowed'
   },
   modalContainer: {
     width: '100%',
