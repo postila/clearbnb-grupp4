@@ -23,10 +23,11 @@ const BookingForm = (props) => {
   const dayInMilliSec = 86400000;
   const [singelton, setSingelton] = useState(0)
 
-  const [minDate, setMindate] = useState(new Date())
+  const today = new Date(new Date().toDateString()).getTime()
+  const [minDate, setMindate] = useState(today)
   const [maxDate, setMaxDate] = useState(null)
 
-  const [arrDate, setArrDate] = useState(new Date())
+  const [arrDate, setArrDate] = useState(null)
   const [depDate, setDepDate] = useState()
   const guests = useRef()
   const body = (
@@ -39,10 +40,10 @@ const BookingForm = (props) => {
   );
 
   const bookingsList = bookings.filter(booking => booking.accommodation).filter(booking => booking.accommodation._id === id)
-  const today = new Date(new Date().toDateString()).getTime()
   const [dates, setDates] = useState([])
   let [allDates, setAllDates] = useState([])
-  
+  // const [earliestDate, setEarliestDate] = useState(null)
+
   const createAllDatesList = () => {
     for (let date of bookingsList) {
       date.startDate = new Date(new Date(date.startDate).toDateString()).getTime()
@@ -63,9 +64,19 @@ const BookingForm = (props) => {
         setAllDates([...allDates, dates[i + 1]])
     }
     allDates = allDates.sort((a, b) => a > b ? 1 : -1)
+    setMindate(isTodayBooked())
     // console.log(allDates, 'allDates')
   }
 
+  const isTodayBooked = () => {
+    let date = today
+    if (allDates.includes(today)) {
+      while (allDates.includes(date)) {
+        date = new Date(new Date(date + dayInMilliSec).toDateString()).getTime()
+      }
+    }
+    return date
+  }
   
   const checkAndSetMaxDate = async (data) => {
     await setArrDate(data ? data : today)
@@ -81,23 +92,6 @@ const BookingForm = (props) => {
       }
     }
     setMaxDate(accommodation.endDate)
-  }
-  
-  const checkAndSetMinDate = async (data) => {
-    await setDepDate(data ? data : null)
-    
-    if (!data) {
-      await setMindate(today)
-      await setArrDate(today)
-    } else {
-      for (let i = allDates.length - 1; i >= 0; i--){
-        if (allDates[i] < data) {
-          // await setArrDate(allDates[i] + dayInMilliSec)
-          // await setMindate(allDates[i] + dayInMilliSec)
-          return
-        }
-      }
-    }
   }
 
   const createBooking = async e => {
@@ -132,7 +126,7 @@ const BookingForm = (props) => {
     if (props.accommodation && singelton == 0) {
       setAccommodation(props.accommodation)
       setAccommodationPrice(props.accommodation.pricePerNight)
-      if (props.accommodation.startDate > new Date()) {
+      if (props.accommodation.startDate > today) {
         setMindate(props.accommodation.startDate)
       }
       setMaxDate(props.accommodation.endDate)
@@ -167,7 +161,7 @@ const BookingForm = (props) => {
                 placeholderText="Ankomst"
                 selected={arrDate}
                 onChange={(data) => checkAndSetMaxDate(data)}
-                minDate={today}
+                minDate={minDate}
                 maxDate={accommodation.endDate}
                 excludeDates={allDates}
               />
@@ -179,8 +173,8 @@ const BookingForm = (props) => {
                 dateFormat="yyyy/MM/dd"
                 selected={depDate}
                 placeholderText="Avresa"
-                onChange={(data) => checkAndSetMinDate(data)}
-                minDate={arrDate}
+                onChange={(data) => setDepDate(data)}
+                minDate={arrDate || minDate}
                 maxDate={maxDate}
                 excludeDates={allDates}
               />
