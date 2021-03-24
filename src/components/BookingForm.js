@@ -67,6 +67,7 @@ const BookingForm = (props) => {
   
   const checkAndSetMaxDate = async (data) => {
     await setArrDate(data ? data : today)
+    await setDepDate(null)
     
     for (let date of allDates) {
       if (!data) {
@@ -77,6 +78,7 @@ const BookingForm = (props) => {
         return
       }
     }
+    setMaxDate(accommodation.endDate)
   }
   
   const checkAndSetMinDate = async (data) => {
@@ -88,8 +90,8 @@ const BookingForm = (props) => {
     } else {
       for (let i = allDates.length - 1; i >= 0; i--){
         if (allDates[i] < data) {
-          await setArrDate(allDates[i] + dayInMilliSec)
-          await setMindate(allDates[i] + dayInMilliSec)
+          // await setArrDate(allDates[i] + dayInMilliSec)
+          // await setMindate(allDates[i] + dayInMilliSec)
           return
         }
       }
@@ -122,15 +124,18 @@ const BookingForm = (props) => {
       setPrice(Math.ceil((new Date(depDate).getTime() - new Date(arrDate).getTime()) / dayInMilliSec) * accommodationPrice)
       return price
     }
+  }, [arrDate, depDate, price, accommodationPrice])
+
+  useEffect(() => {
     if (props.accommodation) {
       setAccommodation(props.accommodation)
       setAccommodationPrice(props.accommodation.pricePerNight)
-        if (props.accommodation.startDate > new Date()) {
-          setMindate(props.accommodation.startDate)
-        }
-        setMaxDate(props.accommodation.endDate)
+      if (props.accommodation.startDate > new Date()) {
+        setMindate(props.accommodation.startDate)
       }
-  }, [arrDate, depDate, price, props.accommodation, accommodationPrice])
+      setMaxDate(props.accommodation.endDate)
+    }
+  }, [props.accommodation])
 
   return (
     <div>
@@ -156,8 +161,8 @@ const BookingForm = (props) => {
                 placeholderText="Ankomst"
                 selected={arrDate}
                 onChange={(data) => checkAndSetMaxDate(data)}
-                minDate={minDate}
-                maxDate={depDate}
+                minDate={today}
+                maxDate={accommodation.endDate}
                 excludeDates={allDates}
               />
             </div>
