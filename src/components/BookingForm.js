@@ -69,7 +69,7 @@ const BookingForm = (props) => {
     allDates = allDates.sort((a, b) => a > b ? 1 : -1)
 
     // isTodayBooked returns the earliest date that is available for booking
-    setMindate(isTodayBooked())
+    if(props.accommodation.startDate < today)setMindate(isTodayBooked())
   }
 
   const isTodayBooked = () => {
@@ -135,7 +135,7 @@ const BookingForm = (props) => {
       setMaxDate(props.accommodation.endDate)
       setSingelton(1)
     }
-    if (bookingsList) {
+    if (bookingsList && props.accommodation) {
       createAllDatesList()
     }
   }, [props.accommodation, bookingsList, singelton, today])
@@ -189,6 +189,7 @@ const BookingForm = (props) => {
               <p>Pris: {Math.round(price)} SEK</p>
               <p>Serviceavgift: {Math.round((price * 0.15))} SEK</p>
               <p>Totalpris: {Math.round((price * 1.15))}</p>
+              <p>{new Date(accommodation.startDate).toDateString()}</p>
             </div>
           }
           <div style={styles.bokaContainer}>
