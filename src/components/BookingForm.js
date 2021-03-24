@@ -21,10 +21,10 @@ const BookingForm = (props) => {
   // const [bookingOk, setBookingOk] = useState(false)
   const [price, setPrice] = useState()
   const dayInMilliSec = 86400000;
+  const [singelton, setSingelton] = useState(0)
 
   const [minDate, setMindate] = useState(new Date())
   const [maxDate, setMaxDate] = useState(null)
-
 
   const [arrDate, setArrDate] = useState(new Date())
   const [depDate, setDepDate] = useState()
@@ -40,30 +40,32 @@ const BookingForm = (props) => {
 
   const bookingsList = bookings.filter(booking => booking.accommodation).filter(booking => booking.accommodation._id === id)
   const today = new Date(new Date().toDateString()).getTime()
-
-  let [dates, setDates] = useState([])
-  for (let date of bookingsList) {
-    date.startDate = new Date(new Date(date.startDate).toDateString()).getTime()
-    date.endDate = new Date(new Date(date.endDate).toDateString()).getTime()
-    if (date.endDate >= today && (!dates.includes(date.startDate) || !dates.includes(date.endDate))) {
-      setDates([...dates, date.startDate, date.endDate])
-    }
-  }
-  console.log(dates, 'dates')
-
-  let allDates = []
-  for (let i = 0; i < dates.length - 1; i += 2) {
-    while (dates[i] < dates[i + 1]) {
-      if (!allDates.includes(dates[i]) && dates[i] >= today) {
-        allDates.push(dates[i])
+  const [dates, setDates] = useState([])
+  let [allDates, setAllDates] = useState([])
+  
+  const createAllDatesList = () => {
+    for (let date of bookingsList) {
+      date.startDate = new Date(new Date(date.startDate).toDateString()).getTime()
+      date.endDate = new Date(new Date(date.endDate).toDateString()).getTime()
+      if (date.endDate >= today && (!dates.includes(date.startDate) || !dates.includes(date.endDate))) {
+        setDates([...dates, date.startDate, date.endDate])
       }
-      dates[i] = new Date(new Date(dates[i] + dayInMilliSec).toDateString()).getTime()
     }
-    if (!allDates.includes(dates[i + 1]))
-      allDates.push(dates[i + 1])
+    // console.log(dates, 'dates')
+    for (let i = 0; i < dates.length - 1; i += 2) {
+      while (dates[i] < dates[i + 1]) {
+        if (!allDates.includes(dates[i]) && dates[i] >= today) {
+          setAllDates([...allDates, dates[i]])
+        }
+        dates[i] = new Date(new Date(dates[i] + dayInMilliSec).toDateString()).getTime()
+      }
+      if (!allDates.includes(dates[i + 1]))
+        setAllDates([...allDates, dates[i + 1]])
+    }
+    allDates = allDates.sort((a, b) => a > b ? 1 : -1)
+    // console.log(allDates, 'allDates')
   }
-  allDates = allDates.sort((a, b) => a > b ? 1 : -1)
-  console.log(allDates, 'allDates')
+
   
   const checkAndSetMaxDate = async (data) => {
     await setArrDate(data ? data : today)
@@ -127,15 +129,19 @@ const BookingForm = (props) => {
   }, [arrDate, depDate, price, accommodationPrice])
 
   useEffect(() => {
-    if (props.accommodation) {
+    if (props.accommodation && singelton == 0) {
       setAccommodation(props.accommodation)
       setAccommodationPrice(props.accommodation.pricePerNight)
       if (props.accommodation.startDate > new Date()) {
         setMindate(props.accommodation.startDate)
       }
       setMaxDate(props.accommodation.endDate)
+      setSingelton(1)
     }
-  }, [props.accommodation])
+    if (bookingsList) {
+      createAllDatesList()
+    }
+  }, [props.accommodation, bookingsList])
 
   return (
     <div>
@@ -198,7 +204,7 @@ const BookingForm = (props) => {
           onClose={handleClose}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
-          disableScrollLock="false"
+          disableScrollLock={false}
         >
           {body}
         </Modal>
