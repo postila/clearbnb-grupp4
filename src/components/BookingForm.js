@@ -9,27 +9,32 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const BookingForm = (props) => {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const history = useHistory()
-  const { id } = useParams()
-  const { addBooking, bookings } = useContext(BookingContext)
   const { user } = useContext(UserContext)
+  const { id } = useParams()
+  const classes = useStyles();
+  const history = useHistory()
+
+  const { addBooking, bookings } = useContext(BookingContext)
   const [accommodation, setAccommodation] = useState(null)
   const [accommodationPrice, setAccommodationPrice] = useState(null)
-  // const [validatDates, setValidatDates] = useState(true)
-  // const [bookingOk, setBookingOk] = useState(false)
   const [price, setPrice] = useState()
-  const dayInMilliSec = 86400000;
   const [singelton, setSingelton] = useState(0)
-
+  const guests = useRef()
+  
+  const dayInMilliSec = 86400000;
   const today = new Date(new Date().toDateString()).getTime()
+
   const [minDate, setMindate] = useState(today)
   const [maxDate, setMaxDate] = useState(null)
-
   const [arrDate, setArrDate] = useState(null)
   const [depDate, setDepDate] = useState()
-  const guests = useRef()
+  
+  const bookingsList = bookings.filter(booking => booking.accommodation).filter(booking => booking.accommodation._id === id)
+  const [dates, setDates] = useState([])
+  let [allDates, setAllDates] = useState([])
+  
+  // Modal after booking is placed
   const body = (
     <div style={styles.modalContainer}>
       <div className={classes.paper}>
@@ -39,12 +44,9 @@ const BookingForm = (props) => {
     </div>
   );
 
-  const bookingsList = bookings.filter(booking => booking.accommodation).filter(booking => booking.accommodation._id === id)
-  const [dates, setDates] = useState([])
-  let [allDates, setAllDates] = useState([])
-  // const [earliestDate, setEarliestDate] = useState(null)
-
   const createAllDatesList = () => {
+
+    // Adding startDate and endDate to dates
     for (let date of bookingsList) {
       date.startDate = new Date(new Date(date.startDate).toDateString()).getTime()
       date.endDate = new Date(new Date(date.endDate).toDateString()).getTime()
@@ -52,7 +54,8 @@ const BookingForm = (props) => {
         setDates([...dates, date.startDate, date.endDate])
       }
     }
-    // console.log(dates, 'dates')
+
+    // Adding all dates between startDate and endDate to allDates
     for (let i = 0; i < dates.length - 1; i += 2) {
       while (dates[i] < dates[i + 1]) {
         if (!allDates.includes(dates[i]) && dates[i] >= today) {
@@ -64,8 +67,9 @@ const BookingForm = (props) => {
         setAllDates([...allDates, dates[i + 1]])
     }
     allDates = allDates.sort((a, b) => a > b ? 1 : -1)
+
+    // isTodayBooked returns the earliest date that is available for booking
     setMindate(isTodayBooked())
-    // console.log(allDates, 'allDates')
   }
 
   const isTodayBooked = () => {
@@ -78,16 +82,13 @@ const BookingForm = (props) => {
     return date
   }
   
-  const checkAndSetMaxDate = async (data) => {
-    await setArrDate(data ? data : today)
-    await setDepDate(null)
+  const checkAndSetMaxDate = data => {
+    setArrDate(data)
+    setDepDate(null)
     
     for (let date of allDates) {
-      if (!data) {
-        await setMaxDate(accommodation.endDate)
-      }
-      else if (date > data) {
-        await setMaxDate(date)
+      if (date > data) {
+        setMaxDate(date)
         return
       }
     }
@@ -103,7 +104,6 @@ const BookingForm = (props) => {
       endDate: depDate.getTime(),
       guests: guests.current.value,
     }
-    console.log(user)
 
     if (arrDate < depDate) {
       await addBooking(booking)
@@ -116,14 +116,12 @@ const BookingForm = (props) => {
   };
 
   useEffect(() => {
-    if (arrDate && depDate) {
-      setPrice(Math.ceil((new Date(depDate).getTime() - new Date(arrDate).getTime()) / dayInMilliSec) * accommodationPrice)
-      return price
-    }
+    if (arrDate && depDate) 
+    setPrice(Math.ceil((new Date(depDate).getTime() - new Date(arrDate).getTime()) / dayInMilliSec) * accommodationPrice)
   }, [arrDate, depDate, price, accommodationPrice])
 
   useEffect(() => {
-    if (props.accommodation && singelton == 0) {
+    if (props.accommodation && singelton === 0) {
       setAccommodation(props.accommodation)
       setAccommodationPrice(props.accommodation.pricePerNight)
       if (props.accommodation.startDate > today) {
@@ -135,7 +133,7 @@ const BookingForm = (props) => {
     if (bookingsList) {
       createAllDatesList()
     }
-  }, [props.accommodation, bookingsList])
+  }, [props.accommodation, bookingsList, singelton, today])
 
   return (
     <div>
@@ -190,8 +188,6 @@ const BookingForm = (props) => {
           }
           <div style={styles.bokaContainer}>
             <button style={styles.button}>Boka</button>
-            {/* {!validatDates && <p style={styles.error}>Datum för avresa kan inte ske före ankomstdatum.</p>} */}
-            {/* {bookingOk && <p style={styles.ok}>Bokningen genomförds!</p>} */}
         </div>
         <Modal
           open={open}
