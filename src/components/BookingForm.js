@@ -119,6 +119,7 @@ const BookingForm = (props) => {
     if (arrDate && depDate) {
       setPrice(Math.ceil((new Date(depDate).getTime() - new Date(arrDate).getTime()) / dayInMilliSec) * accommodationPrice)
     }
+    else setPrice(0)
     if (new Date(arrDate).getTime() === new Date(depDate).getTime()) {
       setDepDate(null)
     }
