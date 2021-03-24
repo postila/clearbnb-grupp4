@@ -39,10 +39,13 @@ const BookingForm = (props) => {
   );
 
   const bookingsList = bookings.filter(booking => booking.accommodation).filter(booking => booking.accommodation._id === id)
+  const today = new Date(new Date().toDateString()).getTime()
 
   let [dates, setDates] = useState([])
   for (let date of bookingsList) {
-    if (date.endDate > new Date().getTime() && (!dates.includes(date.startDate) || !dates.includes(date.endDate))) {
+    date.startDate = new Date(new Date(date.startDate).toDateString()).getTime()
+    date.endDate = new Date(new Date(date.endDate).toDateString()).getTime()
+    if (date.endDate >= today && (!dates.includes(date.startDate) || !dates.includes(date.endDate))) {
       setDates([...dates, date.startDate, date.endDate])
     }
   }
@@ -51,10 +54,10 @@ const BookingForm = (props) => {
   let allDates = []
   for (let i = 0; i < dates.length - 1; i += 2) {
     while (dates[i] < dates[i + 1]) {
-      if (!allDates.includes(dates[i]) && dates[i] > new Date().getTime()) {
+      if (!allDates.includes(dates[i]) && dates[i] >= today) {
         allDates.push(dates[i])
       }
-      dates[i] += 86400000
+      dates[i] = new Date(new Date(dates[i] + dayInMilliSec).toDateString()).getTime()
     }
     if (!allDates.includes(dates[i + 1]))
       allDates.push(dates[i + 1])
@@ -63,7 +66,7 @@ const BookingForm = (props) => {
   console.log(allDates, 'allDates')
   
   const checkAndSetMaxDate = async (data) => {
-    await setArrDate(data ? data : new Date())
+    await setArrDate(data ? data : today)
     
     for (let date of allDates) {
       if (!data) {
@@ -80,8 +83,8 @@ const BookingForm = (props) => {
     await setDepDate(data ? data : null)
     
     if (!data) {
-      await setMindate(new Date())
-      await setArrDate(new Date())
+      await setMindate(today)
+      await setArrDate(today)
     } else {
       for (let i = allDates.length - 1; i >= 0; i--){
         if (allDates[i] < data) {
@@ -104,7 +107,7 @@ const BookingForm = (props) => {
     }
     console.log(user)
 
-    if (arrDate.getTime() < depDate.getTime()) {
+    if (arrDate < depDate) {
       await addBooking(booking)
       setOpen(true)
     }
