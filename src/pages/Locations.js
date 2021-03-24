@@ -12,6 +12,7 @@ const Locations = () => {
   const location = useRef()
   const history = useHistory()
   const [maxGuests, setMaxGuests] = useState()
+  const [maxCost, setMaxCost] = useState()
   let accommodationList = accommodations
   const [temp, setTemp] = useState(accommodationList)
 
@@ -25,7 +26,7 @@ const Locations = () => {
   const goToDetailsPage = (id) => {
     history.push('/accommodationDetails/' + id)
   }
-  
+
 
 
   const card = accommodation =>
@@ -49,8 +50,6 @@ const Locations = () => {
 
 
   useEffect(() => {
-    console.log(maxGuests, 'hej')
-    console.log(id, 'id')
     if (id) {
       accommodationList = accommodationList.filter(a => a.location._id === selectedLocation)
       setTemp(accommodationList)
@@ -60,17 +59,20 @@ const Locations = () => {
       accommodationList = accommodationList.filter(a => a.maxGuests >= maxGuests)
       setTemp(accommodationList)
     }
-  }, [maxGuests, id, selectedLocation])
+
+    if (maxCost) {
+      accommodationList = accommodationList.filter(a => a.pricePerNight <= maxCost)
+      setTemp(accommodationList)
+    }
+  }, [id, maxGuests, maxCost, selectedLocation])
 
 
   const locationItem = location => (
     <option
+      key={location._id}
       onChange={data => setSelectedLocation(data)}
       value={location._id}> {location.name}</option>
   )
-
-
-
 
   return (
     <div>
@@ -83,9 +85,10 @@ const Locations = () => {
           options={locations}
           onChange={e => handleChange(e.target.value)}
         >
-          <option value="" disabled selected>Välj Ort</option>
+          <option key="a" value="" disabled selected>Välj Ort</option>
           {locations.map(location => locationItem(location))}
         </select>
+
         <input
           key="3"
           style={styles.input}
@@ -94,6 +97,16 @@ const Locations = () => {
           type="number"
           min="1"
           placeholder='Max antal gäster'
+        ></input>
+
+        <input
+          key="4"
+          style={styles.input}
+          value={maxCost}
+          onChange={e => setMaxCost(e.target.value)}
+          type="number"
+          min="0"
+          placeholder='Max kostnad'
         ></input>
       </form>
       {temp.map(accommodation => card(accommodation))}
