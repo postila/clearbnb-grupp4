@@ -167,6 +167,7 @@ const BookingForm = (props) => {
                 minDate={minDate}
                 maxDate={accommodation.endDate}
                 excludeDates={allDates}
+                required
               />
             </div>
             <div key="d2" style={styles.datePicker}>
@@ -180,6 +181,7 @@ const BookingForm = (props) => {
                 minDate={arrDate || minDate}
                 maxDate={maxDate}
                 excludeDates={allDates}
+                required
               />
             </div>
           </div>
@@ -189,7 +191,6 @@ const BookingForm = (props) => {
               <p>Pris: {Math.round(price)} SEK</p>
               <p>Serviceavgift: {Math.round((price * 0.15))} SEK</p>
               <p>Totalpris: {Math.round((price * 1.15))}</p>
-              <p>{new Date(accommodation.startDate).toDateString()}</p>
             </div>
           }
           <div style={styles.bokaContainer}>
