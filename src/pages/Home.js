@@ -7,12 +7,13 @@ import LocationList from '../components/LocationList'
 import { UserContext } from '../contexts/UserContextProvider'
 import { useContext } from 'react';
 import { useEffect } from 'react';
+import { withTheme } from '@material-ui/core';
 
 
 
 const Home = () => {
   const [register, setRegister] = useState(false)
-  const {userId, logout, fetchSession} = useContext(UserContext)
+  const { userName, userId, logout, fetchSession } = useContext(UserContext)
 
   useEffect(() => {
     fetchSession()
@@ -33,9 +34,13 @@ const Home = () => {
         {!register && <Login displayRegisterForm={toggleRegisterForm} />}
         {register && <Register displayRegisterForm={toggleRegisterForm} />}
       </div>}
-      
+
       <div style={styles.locationList}>
-        {userId && <LocationList />}
+        {userId &&
+          <div>
+            <h1>Välkommen {userName}!</h1>
+            <LocationList />
+          </div>}
       </div>
       <div style={styles.right}></div>
     </div >
@@ -49,7 +54,7 @@ const styles = {
     //flexWrap: 'wrap',
     width: '100%'
   },
-  bodyStyle:  {
+  bodyStyle: {
     width: '100%',
     background: 'linear-gradient(#62caed 0%, #ffffff 30%)'
   },
