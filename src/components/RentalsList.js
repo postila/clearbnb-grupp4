@@ -41,12 +41,13 @@ function RentalList() {
 
   return (
     <div>
-      { !accommodations &&
+      { accommodations &&
         <div>
           {rentalList.map(accommodation => card(accommodation))}
         </div>
       }
-      { accommodations &&
+      {/* if (Object.keys(rentalList).length == 0) { */}
+      { !accommodations &&
         <div style={styles.rentalbox} onClick={() => goToRentalForm()}>
           <h3 style={styles.rentalheader}> KLICKA HÄR FÖR ATT HYRA UT EN BOSTAD</h3>
         </div>
