@@ -22,13 +22,15 @@ function RentalList() {
       style={styles.box}
       className="card"
       key={accommodation._id}
-      // onClick={() => goToDetailsPage(accommodation._id)}
     >
       <img style={styles.pictures} src={accommodation.imageUrl} alt={'picture' + accommodation._id} />
       <div style={styles.text}>
         <h3>{accommodation.title}</h3>
         <p>Max antal gäster {accommodation.maxGuests} | {accommodation.pricePerNight} SEK</p>
         <p>{accommodation.location.name}</p>
+        <p>Uthyrningsperiod:</p>
+        <p>Från: {new Date(accommodation.startDate).toLocaleDateString()}</p>
+        <p>Till: {new Date(accommodation.endDate).toLocaleDateString()}</p>
       </div>
     </div>
   )
