@@ -31,7 +31,7 @@ const Home = () => {
       <div style={styles.locationList}>
         {userId &&
           <div>
-          <h1 style={{ textTransform: 'capitalize', fontFamily:'Quicksand', color:'white', opacity:'70%' }}>Välkommen {userName}!</h1>
+          <h1 style={{ textTransform: 'capitalize', fontFamily:'Quicksand', color:'white', opacity:'70%', paddingBottom:'50px'}}>Välkommen {userName}!</h1>
             <LocationList />
           </div>}
       </div>

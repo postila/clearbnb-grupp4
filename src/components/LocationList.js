@@ -31,10 +31,9 @@ function LocationList() {
 
 const styles = {
   img: {
-    height: '150px',
-    width: '175px',
+    height: '170px',
     borderRadius: '7px',
-    //maxWidth: '8vw',
+    maxWidth: '15vw',
 
     },
   card: {
