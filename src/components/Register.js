@@ -9,6 +9,7 @@ const Register = (props) => {
   const [error, setError] = useState(false)
   const { users, fetchUsers } = useContext(UserContext)
   const [showNotification, setShowNotification] = useState(false)
+  const [showPasswordNotification, setShowPasswordNotification] = useState(false)
   const [open, setOpen] = useState(false);
 
   const name = useRef()
@@ -33,11 +34,11 @@ const Register = (props) => {
     }
 
     if (password.current.value !== confirmPassword.current.value) {
-      setError(true)
-      name.current.value = ''
-      email.current.value = ''
+      
       password.current.value = ''
       confirmPassword.current.value = ''
+      setOpen(true)
+      setShowPasswordNotification(true)
       return;
     }
     
@@ -46,6 +47,9 @@ const Register = (props) => {
       await addUser(user)
     }
     else {
+      email.current.value = ''
+      password.current.value = ''
+      confirmPassword.current.value = ''
       setShowNotification(true)
       setOpen(true)
     }
@@ -58,7 +62,29 @@ const Register = (props) => {
         <input key="3" ref={ email } style={ styles.input } type="email" placeholder="E-mail" required></input>
         <input key="4" ref={ password } style={ styles.input } type="password" placeholder="Lösenord" required></input>
         <input key="5" ref={confirmPassword} style={styles.input} type="password" placeholder="Bekräfta lösenord" required></input>
-        {error && <p style={styles.error}>Lösenordet matchar inte</p>}
+        {showPasswordNotification && <div><Snackbar
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={open}
+          //autoHideDuration={2000}
+          onClose={handleClose}
+          message="Lösenorden matchar inte"
+          action={
+            <React.Fragment>
+              <Button color="primary" size="small" onClick={handleClose}>
+                Okej
+            </Button>
+              <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+
+              </IconButton>
+            </React.Fragment>
+          }
+        />
+
+        </div>
+        }
         <div>
           <br></br>
           <button style={styles.button}>Skapa konto</button>
@@ -105,6 +131,7 @@ const styles = {
     padding: '10px',
     borderRadius: '10px',
     border: 'none',
+    backgroundColor: '#eee',
     ':focus': {
       outline: 'none'
     }
@@ -124,15 +151,6 @@ const styles = {
     ':hover': {
       background: '#e6e6e6',
     }
-  },
-  error: {
-    background: '#202329',
-    color: 'white',
-    padding: '10px',
-    fontWeight: '700',
-    maxWidth: '250px',
-    margin: '10px auto',
-    borderRadius: '10px'
   },
   logIn: {
     cursor: 'pointer',

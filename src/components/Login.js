@@ -23,6 +23,7 @@ const Login = (props) => {
   }
 
   const createLogin = async e => {
+    
     e.preventDefault()
 
     const account = {
@@ -37,15 +38,10 @@ const Login = (props) => {
       setOpen(true)
      
     }
-
     setEmail('')
     setPassword('')
+    
   }
-
-  useEffect(() => {
-    setEmail(email)
-    setPassword(password)
-  }, [email, password])
 
 
   return (
@@ -101,6 +97,7 @@ const styles = {
     padding: '10px',
     borderRadius: '10px',
     border: 'none',
+    backgroundColor: '#eee',
     ':focus': {
       outline: 'none'
     }
