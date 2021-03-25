@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { BookingContext } from '../contexts/BookingContextProvider'
 import { LocationContext } from '../contexts/locationContextProvider'
 import { UserContext } from '../contexts/UserContextProvider'
@@ -9,7 +9,7 @@ function BookingsList() {
   const { locations } = useContext(LocationContext)
   const { userId } = useContext(UserContext)
   
-  const bookingsList = bookings.filter(booking => booking.user).filter(booking => booking.user._id === userId)
+  const bookingsList = bookings.filter(booking => booking.user && booking.accommodation).filter(booking => booking.user._id === userId)
 
   useEffect(() => {
     fetchBookings()
@@ -69,8 +69,7 @@ const styles = {
   text: {
     fontFamily: 'Quicksand',
     color: 'grey',
-    textAlign: 'left',
-    color: 'grey',
+    textAlign: 'left'
   }
 }
 

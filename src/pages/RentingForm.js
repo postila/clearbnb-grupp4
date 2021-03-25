@@ -1,10 +1,11 @@
 import Radium from 'radium'
 import React from 'react'
-import { useRef, useContext, useState } from 'react'
+import { useRef, useContext, useState, useEffect } from 'react'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { LocationContext } from '../contexts/locationContextProvider'
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import { UserContext } from '../contexts/UserContextProvider'
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,6 +15,7 @@ import '../App.css';
 
 function CreateRentingForm() {
   const { addAccommodation } = useContext(AccommodationsContext)
+  const { userId, fetchSession } = useContext(UserContext)
   //const history = useHistory()
   // const { addRentingForm } = useContext(AmenitiesContext)
   const history = useHistory()
@@ -56,6 +58,7 @@ function CreateRentingForm() {
     e.preventDefault()
 
     const rentingForm = {
+      user: userId,
       title: title.current.value,
       location: location.current.value,
       description: description.current.value,
@@ -95,6 +98,10 @@ function CreateRentingForm() {
     setOpen(true)
     
   }
+
+  useEffect(() => {
+    fetchSession()
+  }, [userId])
 
   const { locations } = useContext(LocationContext)
 
@@ -316,7 +323,7 @@ function CreateRentingForm() {
           onClose={handleClose}
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
-          disableScrollLock="false"
+          disableScrollLock={false}
         >
           {body}
         </Modal>

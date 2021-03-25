@@ -11,7 +11,7 @@ function NavBar() {
   const history = useHistory()
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const { userId, fetchSession, logout } = useContext(UserContext)
+  const { userId, fetchSession, logout, user } = useContext(UserContext)
 
   const logOut = async () => {
     handleClose()
@@ -20,7 +20,7 @@ function NavBar() {
 
   useEffect(() => {
     fetchSession()
-  }, [userId])
+  }, [userId, user])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

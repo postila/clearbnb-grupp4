@@ -3,7 +3,7 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
 import BookingForm from '../components/BookingForm';
-// import BookingDates from '../components/BookingDates';
+import Amenities2 from '../components/Amenities2'
 
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -40,11 +40,7 @@ const AccommodationsDetails = () => {
         </div>
         <div style={styles.infoContainer} key="4">
             <h4>Bekvämligheter:</h4>
-            {accommodation.amenitiesList.map((a) => (
-              <div key={a._id}>
-                {a.washer ? 'Tvättmaskin, ' : ''} {a.wifi ? 'WiFi, ' : ''} {a.essentials ? 'Väsentligheter, ' : ''} {a.kitchen ? 'Kök, ' : ''} {a.TV ? 'TV, ' : ''} {a.airConditioning ? 'Luftkonditionering, ' : ''} {a.iron ? 'Strykjärn, ' : ''} {a.safe ? 'Låst Skåp, ' : ''}
-              </div>
-            ))}
+            <Amenities2/>
         </div>
         {/* <BookingDates/> */}
         <BookingForm accommodation={item} />

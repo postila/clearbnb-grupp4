@@ -45,6 +45,10 @@ app.get('/rest/locations', async (req, res) => {
   let docs = await locations.find()
   await res.json(docs)
 })
+app.get('/api/users', async (req, res) => {
+  let docs = await users.find()
+  await res.json(docs)
+})
 
 app.get('/rest/locations/:id', async (req, res) => {
   let doc = await locations.findById(req.params.id)
