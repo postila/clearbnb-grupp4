@@ -14,11 +14,13 @@ const Locations = () => {
   const [maxGuests, setMaxGuests] = useState()
   const [maxCost, setMaxCost] = useState()
   let accommodationList = accommodations
-  const [temp, setTemp] = useState(accommodationList)
+  const [filteredAccommodationList, setFilteredAccommodationList] = useState(accommodationList)
+  const [isId, setIsId] = useState(false)
 
   async function handleChange(data) {
     await setSelectedLocation(data)
     await history.push('/Platser/' + data)
+    setIsId(!isId)
     console.log(data)
   }
 
@@ -50,21 +52,37 @@ const Locations = () => {
 
 
   useEffect(() => {
+
     if (id) {
       accommodationList = accommodationList.filter(a => a.location._id === selectedLocation)
-      setTemp(accommodationList)
+      setFilteredAccommodationList(accommodationList)
     }
 
     if (maxGuests) {
       accommodationList = accommodationList.filter(a => a.maxGuests >= maxGuests)
-      setTemp(accommodationList)
+      setFilteredAccommodationList(accommodationList)
     }
 
     if (maxCost) {
       accommodationList = accommodationList.filter(a => a.pricePerNight <= maxCost)
-      setTemp(accommodationList)
+      setFilteredAccommodationList(accommodationList)
     }
-  }, [id, maxGuests, maxCost, selectedLocation])
+
+    if (!id && !maxGuests && !maxCost) {
+      setFilteredAccommodationList(accommodations)
+      
+    }
+
+  }, [id, maxGuests, maxCost, selectedLocation, accommodations, accommodationList])
+
+  useEffect(() => {
+    if (!id && isId) {
+      setSelectedLocation('')
+      setMaxGuests('')
+      setMaxCost('')
+      setIsId(false)
+    }
+  }, [isId, id])
 
 
   const locationItem = location => (
@@ -96,7 +114,7 @@ const Locations = () => {
           onChange={e => setMaxGuests(e.target.value)}
           type="number"
           min="1"
-          placeholder='Max antal gäster'
+          placeholder='Minst antal gäster'
         ></input>
 
         <input
@@ -109,7 +127,7 @@ const Locations = () => {
           placeholder='Max kostnad'
         ></input>
       </form>
-      {temp.map(accommodation => card(accommodation))}
+      {filteredAccommodationList.map(accommodation => card(accommodation))}
 
 
     </div>
