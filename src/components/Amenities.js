@@ -4,7 +4,7 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import Radium from 'radium'
 import { useParams } from 'react-router'
 
-function Amenities2() {
+function Amenities() {
 
   const { amenities } = useContext(AmenitiesContext)
   const { accommodations } = useContext(AccommodationsContext)
@@ -61,4 +61,4 @@ const checkBoxStyle = {
   backGroundColor: 'black'
 }
 
-export default Radium(Amenities2)
+export default Radium(Amenities)

@@ -1,26 +1,22 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import Radium from 'radium'
 import { UserContext } from '../contexts/UserContextProvider'
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
-//import CloseIcon from '@material-ui/icons/Close';
 
 
 const Login = (props) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login, fetchSession } = useContext(UserContext)
+  const { login } = useContext(UserContext)
   const [showNotification, setShowNotification] = useState()
   const [open, setOpen] = useState(false);
   
   const handleClose = () => {
     setOpen(false);
   };
-  const fetchsession = async () => {
-    await fetchSession()
-  }
 
   const createLogin = async e => {
     
@@ -30,17 +26,13 @@ const Login = (props) => {
       email: email,
       password: password
     }
-    console.log(account)
     const test = await login(account)
-    console.log(test, 'this is a test')
     if (test.error) {
       setShowNotification(true)
       setOpen(true)
-     
     }
     setEmail('')
     setPassword('')
-    
   }
 
 
@@ -51,7 +43,6 @@ const Login = (props) => {
         <input key="3" style={styles.input} type="password" placeholder="Lösenord" required onChange={ p => setPassword(p.target.value)} value={password}></input>
         <button key="4" style={styles.button} onClick={createLogin}>Logga in</button>
         
-        <button onClick={fetchsession}>Vem är inloggad?</button>
         <p style={styles.register}>Inget konto?
           <span onClick={ props.displayRegisterForm }> Registrera dig här</span>
         </p>
@@ -63,7 +54,6 @@ const Login = (props) => {
           horizontal: 'right',
         }}
         open={open}
-        //autoHideDuration={2000}
         onClose={handleClose}
         message="Du har angett felaktig e-postadress eller lösenord"
         action={

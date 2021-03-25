@@ -21,7 +21,6 @@ const Locations = () => {
     await setSelectedLocation(data)
     await history.push('/Platser/' + data)
     setIsId(!isId)
-    console.log(data)
   }
 
 

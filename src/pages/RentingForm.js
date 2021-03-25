@@ -1,6 +1,6 @@
 import Radium from 'radium'
 import React from 'react'
-import { useRef, useContext, useState, useEffect } from 'react'
+import { useRef, useContext, useState } from 'react'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { LocationContext } from '../contexts/locationContextProvider'
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,12 +15,11 @@ import '../App.css';
 
 function CreateRentingForm() {
   const { addAccommodation } = useContext(AccommodationsContext)
-  const { userId, fetchSession } = useContext(UserContext)
-  //const history = useHistory()
-  // const { addRentingForm } = useContext(AmenitiesContext)
+  const { userId } = useContext(UserContext)
   const history = useHistory()
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [minDate, setMinDate] = useState(new Date())
 
   const handleClose = () => {
     setOpen(false);
@@ -116,14 +115,13 @@ function CreateRentingForm() {
 
       <h1 style={styles.headline}>Uthyrningsformulär</h1>
 
-      <label style={styles.label} >Titel (max 80 tecken)</label>
+      <label style={styles.label}>Titel </label>
       <input
         key="2"
         required ref={title}
         style={styles.input}
-        
         type="text"
-        placeholder="Mysig stuga"
+        maxLength="80"
       ></input>
 
       <label style={styles.label} >Ort</label>
@@ -132,31 +130,29 @@ function CreateRentingForm() {
         key="3"
         required ref={location}
         style={styles.input}
-        
       >
+        <option key="a" disabled selected></option>
         {locations.map(location => locationItem(location))}
       </select>
 
-      <label style={styles.label} >Beskrivning (max 500 tecken)</label>
+      <label style={styles.label} >Beskrivning</label>
       <textarea
         style={styles.description}
         ref={description}
-        
-        maxLength="500"
+        maxLength="1500"
         type="text"
-        placeholder="..."
         required>
       </textarea>
 
-      <label style={styles.label} >Bild</label>
+      <label style={styles.label} >Bild
+      <span style={styles.url}> (Klistra in en url)</span>
+      </label>
       <input
         key="4"
         style={styles.input}
         required
         ref={imageUrl}
-        
         type="text"
-        placeholder="http://din.url.här"
       ></input>
 
       <div style={styles.guestContainer} >
@@ -165,10 +161,8 @@ function CreateRentingForm() {
           key="5"
           style={styles.guests}
           required ref={maxGuests}
-          
           type="number"
           min="1"
-          placeholder="8"
         ></input>
 
         <label style={styles.label} >Pris per natt</label>
@@ -177,10 +171,8 @@ function CreateRentingForm() {
           style={styles.guests}
           ref={pricePerNight}
           required
-          
           type="number"
           min="0"
-          placeholder="500"
         ></input>
       </div>
       <div style={styles.dateContainer}>
@@ -189,8 +181,8 @@ function CreateRentingForm() {
           <DatePicker
             className='datePicker'
             dateFormat="yyyy/MM/dd"
-            placeholderText="2020/01/01"
             selected={startDate}
+            minDate={new Date()}
             required
             onChange={(data) => setStartDate(data)}
           />
@@ -201,8 +193,8 @@ function CreateRentingForm() {
             className='datePicker'
             dateFormat="yyyy/MM/dd"
             selected={endDate}
+            minDate={startDate || minDate}
             required
-            placeholderText="2020/02/01"
             onChange={(data) => setEndDate(data)}
           />
         </div>
@@ -488,6 +480,10 @@ const styles = {
     color: 'rgba(0,0,0,0)',
     textShadow: '0 0 0 #000'
   },
+  url: {
+    fontSize: '10px',
+    textTransform: 'uppercase'
+  }
 }
 
 export default Radium(CreateRentingForm)
