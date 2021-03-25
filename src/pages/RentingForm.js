@@ -99,9 +99,9 @@ function CreateRentingForm() {
     
   }
 
-  useEffect(() => {
-    fetchSession()
-  }, [userId])
+  // useEffect(() => {
+  //   fetchSession()
+  // }, [userId])
 
   const { locations } = useContext(LocationContext)
 
@@ -116,66 +116,68 @@ function CreateRentingForm() {
 
       <h1 style={styles.headline}>Uthyrningsformulär</h1>
 
-      <label style={styles.label} form="rentingform">Titel (max 80 tecken)</label>
+      <label style={styles.label} >Titel (max 80 tecken)</label>
       <input
         key="2"
         required ref={title}
         style={styles.input}
-        form="rentingform"
+        
         type="text"
         placeholder="Mysig stuga"
       ></input>
 
-      <label style={styles.label} form="rentingform">Ort</label>
+      <label style={styles.label} >Ort</label>
 
       <select
         key="3"
         required ref={location}
         style={styles.input}
-        form="rentingform"
+        
       >
         {locations.map(location => locationItem(location))}
       </select>
 
-      <label style={styles.label} form="rentingform">Beskrivning (max 500 tecken)</label>
+      <label style={styles.label} >Beskrivning (max 500 tecken)</label>
       <textarea
         style={styles.description}
         ref={description}
-        form="rentingform"
+        
         maxLength="500"
         type="text"
         placeholder="..."
         required>
       </textarea>
 
-      <label style={styles.label} form="rentingform">Bild</label>
+      <label style={styles.label} >Bild</label>
       <input
         key="4"
         style={styles.input}
-        required ref={imageUrl}
-        form="rentingform"
+        required
+        ref={imageUrl}
+        
         type="text"
         placeholder="http://din.url.här"
       ></input>
 
       <div style={styles.guestContainer} >
-        <label style={styles.label} form="rentingform">Max antal gäster</label>
+        <label style={styles.label} >Max antal gäster</label>
         <input
           key="5"
           style={styles.guests}
           required ref={maxGuests}
-          form="rentingform"
+          
           type="number"
           min="1"
           placeholder="8"
         ></input>
 
-        <label style={styles.label} form="rentingform">Pris per natt</label>
+        <label style={styles.label} >Pris per natt</label>
         <input
           key="6"
           style={styles.guests}
-          required ref={pricePerNight}
-          form="rentingform"
+          ref={pricePerNight}
+          required
+          
           type="number"
           min="0"
           placeholder="500"
@@ -189,6 +191,7 @@ function CreateRentingForm() {
             dateFormat="yyyy/MM/dd"
             placeholderText="2020/01/01"
             selected={startDate}
+            required
             onChange={(data) => setStartDate(data)}
           />
         </div>
@@ -198,6 +201,7 @@ function CreateRentingForm() {
             className='datePicker'
             dateFormat="yyyy/MM/dd"
             selected={endDate}
+            required
             placeholderText="2020/02/01"
             onChange={(data) => setEndDate(data)}
           />
@@ -210,104 +214,96 @@ function CreateRentingForm() {
           <input
             key="a1"
             style={styles.checkBox}
-            form="rentingform"
             type="checkbox"
-            required ref={washer}
+            ref={washer}
             value="washer"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/ZHG7tWd.png" alt="''"></img>
-          <label style={styles.iconLabel} form="rentingform">Tvättmaskin</label>
+          <label style={styles.iconLabel} >Tvättmaskin</label>
         </div>
 
         <div style={styles.amenityItem}>
           <input
             key="a2"
             style={styles.checkBox}
-            form="rentingform"
             type="checkbox"
-            required ref={wifi}
+            ref={wifi}
             value="wifi"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/bEPBdlP.png" alt="''"></img>
-          <label style={styles.iconLabel} form="rentingform">WiFi</label>
+          <label style={styles.iconLabel} >WiFi</label>
         </div>
 
         <div style={styles.amenityItem}>
           <input
             key="a3"
             style={styles.checkBox}
-            form="rentingform"
             type="checkbox"
-            required ref={essentials}
+            ref={essentials}
             value="essentials"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/gcqJNww.png" alt="''"></img>
-          <label style={styles.iconLabel} form="rentingform">Väsentligheter</label>
+          <label style={styles.iconLabel} >Väsentligheter</label>
         </div>
 
         <div style={styles.amenityItem}>
           <input
             key="a4"
             style={styles.checkBox}
-            form="rentingform"
             type="checkbox"
-            required ref={kitchen}
+            ref={kitchen}
             value="kitchen"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/LvTR8oD.png" alt="''"></img>
-          <label style={styles.iconLabel} form="rentingform">Kök</label>
+          <label style={styles.iconLabel} >Kök</label>
         </div>
 
         <div style={styles.amenityItem}>
           <input
             key="a5"
             style={styles.checkBox}
-            form="rentingform"
             type="checkbox"
-            required ref={TV}
+            ref={TV}
             value="TV"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/o8S2jMk.png" alt="''"></img>
-          <label style={styles.iconLabel} form="rentingform">TV</label>
+          <label style={styles.iconLabel} >TV</label>
         </div>
 
         <div style={styles.amenityItem}>
           <input
             key="a6"
             style={styles.checkBox}
-            form="rentingform"
             type="checkbox"
-            required ref={airConditioning}
+            ref={airConditioning}
             value="airConditioning"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/bF4klbB.png" alt="''"></img>
-          <label style={styles.iconLabel} form="rentingform">Luftkonditionering</label>
+          <label style={styles.iconLabel} >Luftkonditionering</label>
         </div>
 
         <div style={styles.amenityItem}>
           <input
             key="a7"
             style={styles.checkBox}
-            form="rentingform"
             type="checkbox"
-            required ref={iron}
+            ref={iron}
             value="iron"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/3XShQ5y.png" alt="''"></img>
-          <label style={styles.iconLabel} form="rentingform">Strykjärn</label>
+          <label style={styles.iconLabel} >Strykjärn</label>
         </div>
 
         <div style={styles.amenityItem}>
           <input
             key="a8"
             style={styles.checkBox}
-            form="rentingform"
             type="checkbox"
-            required ref={safe}
+            ref={safe}
             value="Låst skåp"
           ></input>
           <img style={styles.icon} src="https://i.imgur.com/FXhmIhX.png" alt="''"></img>
-          <label style={styles.iconLabel} form="rentingform">Låst skåp</label>
+          <label style={styles.iconLabel} >Låst skåp</label>
         </div>
 
       </div>

@@ -23,7 +23,7 @@ const MyPage = () => {
       <div>
         <BookingsList />
       </div >
-      <h1 style={{ fontFamily: 'Quicksand', color: 'grey', padding: '40px' }}>Mina uthyrningar:</h1>
+      <h1 style={{ fontFamily: 'Quicksand', color: 'grey', padding: '40px' }}>{name} uthyrningar:</h1>
       <div>
         <RentalsList />
       </div >

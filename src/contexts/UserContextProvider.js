@@ -10,7 +10,6 @@ export default function UserContextProvider(props) {
   const [userName, setUserName] = useState(null)
 
   const fetchSession = async () => {
-    console.log(user, 'user')
     let res = await fetch('/api/whoami')
     res = await res.json()
     setUserId(res._id)
@@ -21,7 +20,6 @@ export default function UserContextProvider(props) {
     let res = await fetch('/api/users')
     res = await res.json()
     setUsers(res)
-   
   }
   
   const login = async user => {

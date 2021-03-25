@@ -7,24 +7,17 @@ import LocationList from '../components/LocationList'
 import { UserContext } from '../contexts/UserContextProvider'
 import { useContext } from 'react';
 import { useEffect } from 'react';
-import { withTheme } from '@material-ui/core';
-
-
 
 const Home = () => {
   const [register, setRegister] = useState(false)
   const { userName, userId, logout, fetchSession } = useContext(UserContext)
 
-  useEffect(() => {
-    fetchSession()
-  }, [userId])
+  // useEffect(() => {
+  //   fetchSession()
+  // }, [userId])
 
   const toggleRegisterForm = () => {
     setRegister(valueOf.register = !valueOf.register)
-  }
-
-  const logOut = async () => {
-    await logout()
   }
 
   return (
@@ -51,7 +44,6 @@ const styles = {
     display: 'grid',
     gridGap: '10px 10px',
     justifyContent: 'center',
-    //flexWrap: 'wrap',
     width: '100%'
   },
   bodyStyle: {

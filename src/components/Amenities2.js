@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { AmenitiesContext } from '../contexts/AmenitiesContext'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import Radium from 'radium'
