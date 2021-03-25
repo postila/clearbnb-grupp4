@@ -1,15 +1,19 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { UserContext } from '../contexts/UserContextProvider'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import Radium from 'radium'
-
+import { useHistory } from 'react-router-dom'
 
 function RentalList() {
   const { accommodations, fetchAccommodations } = useContext(AccommodationsContext)
   const { userId, fetchSession } = useContext(UserContext)
-  console.log(accommodations, 'acc')
+  const history = useHistory()
+  
   const rentalList = accommodations.filter(accommodation => accommodation.user).filter(accommodation => accommodation.user._id === userId)
 
+  const goToRentalForm = () => {
+    history.push('/Uthyrning')
+  }
   
   useEffect(() => {
     fetchAccommodations()
@@ -37,10 +41,16 @@ function RentalList() {
 
   return (
     <div>
-      { accommodations &&
+      { !accommodations &&
         <div>
           {rentalList.map(accommodation => card(accommodation))}
-        </div>}
+        </div>
+      }
+      { accommodations &&
+        <div style={styles.rentalbox} onClick={() => goToRentalForm()}>
+          <h3 style={styles.rentalheader}> KLICKA HÄR FÖR ATT HYRA UT EN BOSTAD</h3>
+        </div>
+      }
     </div>
   );
 }
@@ -60,12 +70,30 @@ const styles = {
       cursor: 'pointer'
     }
   },
+    rentalbox: {
+    maxWidth: '500px',
+    background: '#eee',
+    padding: '15px',
+    margin: '40px auto',
+    borderRadius: '8px',
+    fontFamily: 'Quicksand',
+    textAlign: 'center',
+    ':hover': {
+      opacity: '80%',
+      cursor: 'pointer'
+    }
+  },
+  rentalheader: {
+    fontFamily: 'Quicksand',
+    margin: '20px',
+    color: 'grey',
+    textAlign: 'center',
+  },
 
   pictures: {
     resizeMode: 'contain',
     maxWidth: '40vh',
     borderRadius: '10px',
-    //boxShadow: '1px 1px 10px 0.5px #343841'
   },
 
   text: {
@@ -79,6 +107,7 @@ const styles = {
     fontFamily: 'Quicksand',
     margin: '50px',
     color: 'grey',
+    textAlign: 'left',
   }
 }
 
