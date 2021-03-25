@@ -4,22 +4,43 @@ import Login from '../components/Login'
 import Register from '../components/Register';
 import LocationList from '../components/LocationList'
 
+import { UserContext } from '../contexts/UserContextProvider'
+import { useContext } from 'react';
+import { useEffect } from 'react';
+import { withTheme } from '@material-ui/core';
+
+
+
 const Home = () => {
   const [register, setRegister] = useState(false)
+  const { userName, userId, logout, fetchSession } = useContext(UserContext)
+
+  useEffect(() => {
+    fetchSession()
+  }, [userId])
 
   const toggleRegisterForm = () => {
     setRegister(valueOf.register = !valueOf.register)
   }
 
+  const logOut = async () => {
+    await logout()
+  }
+
   return (
     <div style={styles.bodyStyle}>
       <div style={styles.left}> <img style={styles.logo} src='https://i.imgur.com/eTEP9yc.png' alt='logo'></img></div>
-      <div style={styles.center} className="login-register-form">
+      {!userId && <div style={styles.center} className="login-register-form">
         {!register && <Login displayRegisterForm={toggleRegisterForm} />}
         {register && <Register displayRegisterForm={toggleRegisterForm} />}
-      </div>
+      </div>}
+
       <div style={styles.locationList}>
-        <LocationList />
+        {userId &&
+          <div>
+            <h1>Välkommen {userName}!</h1>
+            <LocationList />
+          </div>}
       </div>
       <div style={styles.right}></div>
     </div >
@@ -33,7 +54,7 @@ const styles = {
     //flexWrap: 'wrap',
     width: '100%'
   },
-  bodyStyle:  {
+  bodyStyle: {
     width: '100%',
     background: 'linear-gradient(#62caed 0%, #ffffff 30%)'
   },

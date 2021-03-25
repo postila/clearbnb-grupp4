@@ -5,6 +5,7 @@ export const AccommodationsContext = createContext();
 export default function AccommodationsContextProvider(props) {
   const [accommodations, setAccommodations] = useState([])
   const [accommodationId, setAccommodationId] = useState('hallå')
+
   const fetchAccommodations = async () => {
     let res = await fetch('/rest/accommodations')
     res = await res.json()
@@ -19,12 +20,11 @@ export default function AccommodationsContextProvider(props) {
       body: JSON.stringify(accommodation)
     })
     res = await res.json()
-    //console.log(res._id)
     setAccommodationId(res._id)
-    console.log(accommodationId + ' sdfdsf')
 
     setAccommodations([...accommodations, accommodation])
   }
+
 
   useEffect(() => {
     fetchAccommodations()
@@ -33,7 +33,8 @@ export default function AccommodationsContextProvider(props) {
   const values = {
     accommodations,
     addAccommodation,
-    accommodationId
+    accommodationId,
+    fetchAccommodations
   }
 
   return (
