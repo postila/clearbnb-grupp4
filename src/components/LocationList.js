@@ -65,7 +65,7 @@ const styles = {
         transform: 'scale(1.02)',
         backgroundColor: '#f1f1f1',
       }, 
-    '@media (max-width: 480px)': {
+    '@media (max-width: 490px)': {
       padding: '1.5vw 1.5vw 0 1.5vw',
       margiinBottom: '5vw'
     }
@@ -74,7 +74,7 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridGap: '25px',
-    '@media (max-width: 1000px)': {
+    '@media (max-width: 900px)': {
       gridTemplateColumns: 'repeat(2, 1fr)',
       gridGap: '30px',
       margin: '10px'
