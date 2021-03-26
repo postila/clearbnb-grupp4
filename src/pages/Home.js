@@ -49,7 +49,7 @@ const styles = {
   bodyStyle: {
     width: '100%',
     background: 'linear-gradient(#62caed 0%, #ffffff 30%)',
-    backgroundSize: 'cover'
+    //backgroundSize: 'cover'
   },
   logo: {
     paddingTop: '20px',
