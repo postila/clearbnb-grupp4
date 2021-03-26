@@ -17,8 +17,8 @@ function RentalList() {
   
   useEffect(() => {
     fetchAccommodations()
-    fetchSession()
-  }, [userId])
+    // fetchSession()
+  }, [])
 
   const card = accommodation =>
   (
@@ -47,7 +47,7 @@ function RentalList() {
         </div>
       }
       {/* if (Object.keys(rentalList).length == 0) { */}
-      { !accommodations &&
+      { !rentalList &&
         <div style={styles.rentalbox} onClick={() => goToRentalForm()}>
           <h3 style={styles.rentalheader}> KLICKA HÄR FÖR ATT HYRA UT EN BOSTAD</h3>
         </div>
