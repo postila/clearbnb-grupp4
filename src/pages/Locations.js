@@ -41,9 +41,11 @@ const Locations = () => {
     >
       <img style={styles.pictures} src={accommodation.imageUrl} alt={'picture' + accommodation._id} />
       <div style={styles.text}>
-        <h3>{accommodation.title}</h3>
-        <p>Max antal gäster {accommodation.maxGuests} | {accommodation.pricePerNight} SEK</p>
-        <p>{accommodation.location.name}</p>
+        <h3 className="list-title">{accommodation.title}</h3>
+        <p style={styles.textCity}>{accommodation.location.name}</p>
+        <p style={styles.text}>Pris per natt <span style={styles.bold}> · {accommodation.pricePerNight} SEK</span></p>
+        <p style={styles.text}>Max gäster <span style={styles.bold}> · {accommodation.maxGuests} st
+        </span></p>
       </div>
     </div>
   )
@@ -93,7 +95,7 @@ const Locations = () => {
 
   return (
     <div>
-      <form key="1">
+      <form key="1" style={styles.inputWrapper}>
         <select
           key="2"
           required ref={location}
@@ -124,7 +126,7 @@ const Locations = () => {
           type="number"
           min="0"
           placeholder='Max kostnad'
-        ></input>
+          ></input>
       </form>
       {filteredAccommodationList.map(accommodation => card(accommodation))}
 
@@ -138,29 +140,78 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gridGap: '20px',
-    maxWidth: '800px',
+    width: '90vw',
     background: '#eee',
     padding: '15px',
-    margin: '40px auto',
+    margin: '20px auto',
     borderRadius: '8px',
     ':hover': {
       opacity: '80%',
       cursor: 'pointer'
+    },
+    '@media (min-width: 1000px)': {
+      width: '800px',
+    },
+    '@media (max-width: 700px)': {
+      gridTemplateColumns: '1fr',
+      justifyContent: 'center',
+      gridGap: '0'
     }
   },
 
   pictures: {
-    resizeMode: 'contain',
-    maxWidth: '40vh',
     borderRadius: '10px',
-    //boxShadow: '1px 1px 10px 0.5px #343841'
+    width: '40vw',
+    height: '25vh',
+    margin: '0 auto',
+    '@media (min-width: 900px)': {
+      maxWidth: '400px',
+      height: '32vh'
+    },
+    '@media (max-width: 700px)': {
+      gridTemplateColumns: '1fr',
+      justifyContent: 'center',
+      width: '85vw',
+      height: '37vh',
+    },
+    '@media (max-width: 400px)': {
+      gridTemplateColumns: '1fr',
+      justifyContent: 'center',
+      width: '80vw',
+      height: '27vh',
+    }
   },
 
   text: {
     fontFamily: 'Quicksand',
     textAlign: 'left',
-    fontSize: '20px',
-    color: 'grey'
+    fontSize: '1em',
+    color: 'grey',
+    padding: '0',
+    margin: '5px',
+    // textTransform: 'uppercase',
+    opacity: '90%',
+    '@media (max-width: 700px)': {
+      fontSize: '1em',
+      textAlign: 'center',
+      // margin: '20px'
+    }
+  },
+  textCity: {
+    fontFamily: 'Quicksand',
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: '1.1em',
+    margin: '10px 5px',
+    color: 'grey',
+    '@media (max-width: 700px)': {
+      textAlign: 'center',
+      padding: '0',
+      margin: '3px'
+    }
+  },
+  bold: {
+    fontWeight: 'bold'
   },
 
   header: {
@@ -168,15 +219,41 @@ const styles = {
     margin: '50px',
     color: 'grey',
   },
+
   input: {
-    height: '30px',
-    width: '250px',
+    // display: 'grid',
+    // gridTemplateColumns: '1fr 1fr',
+    height: '40px',
+    width: 'fitContent',
     background: '#eee',
     fontFamily: 'Quicksand',
     borderRadius: '10px',
     border: 'none',
-    margin: '5vh 0 0 0'
-  }
+    margin: '15px 10px 15px 10px',
+    paddingLeft: '25px',
+    justifyContent: 'center',
+    '@media (max-width: 900px)': {
+      width: '70vw',
+      justifyContent: 'center',
+      margin: '5px auto',
+      height: '40px'
+    }
+  },
+  inputWrapper: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      width: '80vw',
+      maxWidth: '800px',
+      margin: '2vh auto',
+      justifyContent: 'fitContent',
+      '@media (max-width: 900px)': {
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        width: '75vw',
+        justifyContent: 'center',
+        margin: '5vh auto'
+      },
+    }
 }
 
 export default Radium(Locations);

@@ -21,3 +21,35 @@ header {
 input:focus {
   outline: none !important;
 }
+
+.list-title {
+  margin: 10px 0;
+  font-family: Quicksand;
+  font-size: 1.7em;
+  color: grey;
+}
+/* 
+.locations-form {
+  display: grid;
+  grid-template-columns: repeat(3, 25vw);
+  grid-gap: 2vw;
+  width: 80vw;
+  margin: 5vh auto;
+  justify-content: center;
+}
+
+@media (max-width: 798px){
+  .locations-form {
+    /* grid-template-columns: repeat(1, 1fr); */
+    /* grid-gap: 2vw;
+    margin: 2vh auto;
+    width: 70vw;
+  }
+}
+
+@media (max-width: 480px){
+  .locations-form {
+    grid-template-columns: 1fr;
+    width: 60vw;
+  }
+} */
