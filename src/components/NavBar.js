@@ -46,7 +46,7 @@ function NavBar() {
           <div style={styles.logo}>
             <img
               style={{ height: '20%', width: '20%', paddingTop: '10px', float: 'left', cursor: 'pointer' }}
-              src='https://i.imgur.com/eTEP9yc.png'
+              src='https://i.imgur.com/hPmyjjA.png'
               alt='logo'
               onClick={() => { history.push('/')}}
             ></img>
@@ -54,31 +54,37 @@ function NavBar() {
         </nav>}
         <div style={styles.mypage}>
           <div>
-            <Button aria-haspopup="true">
-              <img src="https://i.imgur.com/P0TBhR7.png" style={styles.img}
-                aria-controls="simple-menu" onClick={handleClick} alt="''" />
-            </Button>
-
+          
             {window.innerWidth <= 700 &&
-              
-              <Menu
-                style={styles.dropdown}
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-              <MenuItem onClick={() => { history.push('/'); handleClose() }}>Hem</MenuItem>
-              <MenuItem onClick={() => { history.push('/Platser'); handleClose() }}>Boenden</MenuItem>
-              <MenuItem onClick={() => { history.push('/Om-oss'); handleClose() }}>Om oss</MenuItem>
-              <MenuItem onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Mina sidor</MenuItem>
-              <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Hyr ut din bostad</MenuItem>
-              <MenuItem onClick={() => { history.push('/'); logOut() }}>Logga ut</MenuItem>
-      
-              </Menu>
+              <div>
+                <Button aria-haspopup="true">
+                <img src="https://i.imgur.com/oIHlsCf.png" style={styles.img}
+                    aria-controls="simple-menu" onClick={handleClick} alt="''" />
+                </Button>
+                <Menu
+                  style={styles.dropdown}
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                <MenuItem onClick={() => { history.push('/'); handleClose() }}>Hem</MenuItem>
+                <MenuItem onClick={() => { history.push('/Platser'); handleClose() }}>Boenden</MenuItem>
+                <MenuItem onClick={() => { history.push('/Om-oss'); handleClose() }}>Om oss</MenuItem>
+                <MenuItem onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Mina sidor</MenuItem>
+                <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Hyr ut din bostad</MenuItem>
+                <MenuItem onClick={() => { history.push('/'); logOut() }}>Logga ut</MenuItem>
+        
+                </Menu>
+              </div>
             }
             {window.innerWidth > 700 &&
+              <div>
+              <Button aria-haspopup="true">
+                <img src="https://i.imgur.com/P0TBhR7.png" style={styles.img}
+                  aria-controls="simple-menu" onClick={handleClick} alt="''" />
+              </Button>
               <Menu
                 style={styles.dropdown}
                 id="simple-menu"
@@ -94,6 +100,7 @@ function NavBar() {
                 <MenuItem onClick={() => { history.push('/'); logOut() }}>Logga ut</MenuItem>
 
               </Menu>
+              </div>
             }
           </div >
         </div>
@@ -147,7 +154,8 @@ const styles = {
     
   },
   img: {
-    width: '40px'
+    width: '40px',
+    filter: 'invert(100 %)'
   },
   dropdown: {
     marginTop: '30px',
