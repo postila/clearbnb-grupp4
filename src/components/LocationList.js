@@ -40,8 +40,12 @@ const styles = {
     borderRadius: '7px',
     //maxWidth: '8vw',
     '@media (max-width: 1000px)': {
-      height: '100px',
-      width: '120px'
+      height: '150px',
+      width: '175px'
+    },
+    '@media (max-width: 480px)': {
+      height: '34.3vw',
+      width: '40vw'
     }
 
     },
@@ -60,7 +64,11 @@ const styles = {
       ':hover': {
         transform: 'scale(1.02)',
         backgroundColor: '#f1f1f1',
-      }
+      }, 
+    '@media (max-width: 480px)': {
+      padding: '1.5vw 1.5vw 0 1.5vw',
+      margiinBottom: '5vw'
+    }
     },
   itemsPositions: {
     display: 'grid',
@@ -68,8 +76,12 @@ const styles = {
     gridGap: '25px',
     '@media (max-width: 1000px)': {
       gridTemplateColumns: 'repeat(2, 1fr)',
-      gridGap: '15px',
+      gridGap: '30px',
       margin: '10px'
+    },
+    '@media (max-width: 480px)': {
+      gridGap: '3vw',
+      marginRight: '5vw'
     }
     
   }
