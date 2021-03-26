@@ -79,8 +79,7 @@ const styles = {
     marginTop: '-20px',
     marginBottom: '70px',
     '@media (max-width: 490px)': {
-      marginTop: '10px',
-      marginBottom: '40px'
+      margin: '40px 0'
     }
   }
 }
