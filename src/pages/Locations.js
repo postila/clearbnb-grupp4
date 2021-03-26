@@ -221,8 +221,6 @@ const styles = {
   },
 
   input: {
-    // display: 'grid',
-    // gridTemplateColumns: '1fr 1fr',
     height: '40px',
     width: 'fitContent',
     background: '#eee',
@@ -251,7 +249,7 @@ const styles = {
         gridTemplateColumns: '1fr',
         width: '75vw',
         justifyContent: 'center',
-        margin: '5vh auto'
+        margin: '3vh auto'
       },
     }
 }
