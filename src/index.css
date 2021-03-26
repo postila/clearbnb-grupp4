@@ -21,3 +21,32 @@ header {
 input:focus {
   outline: none !important;
 }
+
+.register-form {
+    display: grid;
+    grid-gap: 15px;
+    max-width: 500px;
+    margin: -30px auto 0 auto;
+    padding: 100px;
+    
+  }
+
+  @media (max-width: 490px) {
+    .register-form {
+      margin: 90px auto;
+      padding: 10vw
+    }  
+  }
+
+  .register-login {
+    cursor: pointer;
+    color: grey;
+    padding: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .register-login:hover {
+    opacity: 75%;
+  }

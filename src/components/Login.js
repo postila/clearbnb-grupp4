@@ -43,9 +43,10 @@ const Login = (props) => {
         <input key="3" style={styles.input} type="password" placeholder="Lösenord" required onChange={ p => setPassword(p.target.value)} value={password}></input>
         <button key="4" style={styles.button} onClick={createLogin}>Logga in</button>
         
-        <p style={styles.register}>Inget konto?
-          <span onClick={ props.displayRegisterForm }> Registrera dig här</span>
+        <p onClick={props.displayRegisterForm} style={styles.register}>
+          Inget konto? Registrera dig här
         </p>
+        
         
       </form>
       {showNotification && <div><Snackbar
@@ -77,11 +78,15 @@ const styles = {
     display: 'grid',
     gridGap: '15px',
     maxWidth: '500px',
-    margin: '0px auto',
-    padding: '100px'
-
+    margin: '23px auto',
+    padding: '100px',
+    '@media (max-width: 480px)': {
+      margin: '143px auto',
+      padding: '10vw'
+    }
   },
   input: {
+    height: '38px',
     textAlign: 'center',
     fontFamily: 'Quicksand',
     padding: '10px',
@@ -106,16 +111,13 @@ const styles = {
   },
   register: {
     cursor: 'pointer',
-    fontFamily: 'Quicksand',
+    color: 'grey',
+    padding: '20px',
     fontSize: '12px',
     fontWeight: 'bold',
-    borderRadius: '10px',
     textTransform: 'uppercase',
-    padding: '5px',
-    color: 'grey',
-    background: '#eee',
     ':hover': {
-      background: '#e6e6e6',
+      opacity: '75%'
     }
   }
 }
