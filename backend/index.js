@@ -101,7 +101,7 @@ app.post('/api/booking', async (req, res) => {
 })
 
 app.get('/rest/bookings', async (req, res) => {
-  let docs = await bookings.find().populate(['user', 'accommodation']).exec()
+  let docs = await bookings.find().populate(['user', 'accommodation', 'location']).exec()
   res.json(docs)
 })
 

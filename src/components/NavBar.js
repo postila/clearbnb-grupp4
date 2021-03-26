@@ -57,7 +57,7 @@ function NavBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem >Mitt konto</MenuItem>
+              {/* <MenuItem >Mitt konto</MenuItem> */}
               <MenuItem onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Mina sidor</MenuItem>
               <MenuItem onClick={() => { history.push('/Uthyrning'); handleClose() }}>Hyr ut din bostad</MenuItem>
               <MenuItem onClick={() => { history.push('/'); logOut() }}>Logga ut</MenuItem>

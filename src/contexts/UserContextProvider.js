@@ -20,7 +20,6 @@ export default function UserContextProvider(props) {
     let res = await fetch('/api/users')
     res = await res.json()
     setUsers(res)
-   
   }
   
   const login = async user => {
@@ -30,7 +29,6 @@ export default function UserContextProvider(props) {
       body: JSON.stringify(user)
     })
     res = await res.json()
-    console.log(res)
     setUser(res)
     fetchSession()
     return res;
@@ -41,7 +39,6 @@ export default function UserContextProvider(props) {
       method: 'DELETE',
     })
     res = await res.json()
-    console.log(res)
     setUser(null)
     setUserId(null)
     setUserName(null)
@@ -55,7 +52,6 @@ export default function UserContextProvider(props) {
     })
 
     res = await res.json()
-    console.log(res);
     login(user)
     fetchSession()
   }

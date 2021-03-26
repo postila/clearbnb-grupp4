@@ -21,7 +21,6 @@ const Locations = () => {
     await setSelectedLocation(data)
     await history.push('/Platser/' + data)
     setIsId(!isId)
-    console.log(data)
   }
 
 
@@ -103,7 +102,7 @@ const Locations = () => {
           options={locations}
           onChange={e => handleChange(e.target.value)}
         >
-          <option key="a" value="" disabled selected>Välj Ort</option>
+          <option key="a" disabled selected>Välj Ort</option>
           {locations.map(location => locationItem(location))}
         </select>
 
