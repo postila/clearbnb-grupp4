@@ -345,7 +345,7 @@ const styles = {
     gridGap: '3px',
     maxWidth: '800px',
     margin: '0px auto',
-    textAlign: 'left',
+    textAlign: 'center',
     padding: '10px',
     '@media (max-width: 1000px)': {
       padding: '0px',
@@ -368,7 +368,9 @@ const styles = {
   headline: {
     fontFamily: 'Quicksand',
     color: 'grey',
-    padding: '40px',
+    paddingLeft: '40px',
+    paddingRight: '40px',
+    paddingTop: '30px',
     textAlign: 'center',
   },
   label: {
@@ -381,6 +383,8 @@ const styles = {
     '@media (max-width: 1000px)': {
       marginLeft: '10px',
       marginRight: '10px',
+      lineHeight: '30px',
+      
     }
 
   },
@@ -423,16 +427,16 @@ const styles = {
     marginTop: '10px',
     marginBottom: '40px',
     '@media (max-width: 1000px)': {
-      marginLeft: '10%',
-      width: '75%',
-      marginBottom: '80px',
-      marginTop: '4vh'
+      marginLeft: '23%',
+      width: '50%',
+      marginBottom: '17vh',
+      marginTop: '5vh'
     }
   },
   guests: {
     textAlign: 'center',
     backgroundColor: '#eee',
-    height: '50px',
+    height: '40px',
     width: '90px',
     border: '0',
     borderRadius: '7px',
@@ -441,8 +445,9 @@ const styles = {
       outline: 'none'
     },
     '@media (max-width: 1000px)': {
-      width: '85%',
-      marginTop: '1vh'
+      width: '65%',
+      marginTop: '1vh',
+      
     }
   },
   dateContainer: {
@@ -454,13 +459,13 @@ const styles = {
       width: '85%',
       marginTop: '8vh',
       height: '80px',
-      marginBottom: '4vh',
+      marginBottom: '8vh',
     }
   },
   datePicker: {
     float: 'left',
     fontFamily: 'Quicksand',
-    color: 'black',
+    color: 'grey',
     textAlign: 'left',
     marginLeft: '22%',
     lineHeight: '5px',
@@ -478,6 +483,7 @@ const styles = {
       textAlign: 'center',
       width: '100%',
       paddingLeft: '9vw'
+      
     }
   },
   buttonContainer: {
