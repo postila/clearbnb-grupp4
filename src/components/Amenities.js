@@ -52,7 +52,11 @@ const amenitiesListStyle = {
   color: 'white',
   justifyContent: 'center',
   gridTemplateColumns: 'repeat(4, 1fr)',
-  gridGap: '25px'
+  gridGap: '25px',
+  '@media (max-width: 1000px)': {
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridGap: '5px',
+  }
 }
 const checkBoxStyle = {
   float: 'left',

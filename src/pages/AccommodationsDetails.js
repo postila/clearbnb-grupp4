@@ -33,7 +33,6 @@ const AccommodationsDetails = () => {
           <p>Max antal gäster: {accommodation.maxGuests}</p>
           <p>Ort: {accommodation.location.name}</p>
           <p>Pris per natt: {accommodation.pricePerNight} SEK</p>
-          <br />
           <div className="description-content">
             <h4>Beskrivning:</h4>
             <p>{accommodation.description}</p>
@@ -71,7 +70,7 @@ const styles = {
     '@media (max-width: 1000px)': {
       margin: '0 auto',
       fontSize: '8vw',
-      paddingBottom: '20px'
+      paddingBottom: '5px'
     }
   },
   infoContainer: {
