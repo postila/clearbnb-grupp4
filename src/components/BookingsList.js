@@ -54,12 +54,20 @@ const styles = {
     ':hover': {
       opacity: '80%',
       cursor: 'pointer'
+    },
+    '@media (max-width: 1000px)': {
+      height: '100px',
+      width: '120px'
     }
   },
   pictures: {
     maxWidth: '45vh',
     borderRadius: '10px',
-    boxShadow: '1px 1px 10px 0.5px #343841'
+    boxShadow: '1px 1px 10px 0.5px #343841',
+    '@media (max-width: 1000px)': {
+      height: '100px',
+      width: '120px'
+    }
   },
   text: {
     fontFamily: 'Quicksand',

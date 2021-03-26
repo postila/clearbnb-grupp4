@@ -52,31 +52,37 @@ const styles = {
     maxWidth: '800px',
     background: '#eee',
     padding: '15px',
-    margin: '40px auto',
-    borderRadius: '8px',
+    margin: '10px auto',
+    borderRadius: '15px',
     ':hover': {
       opacity: '80%',
       cursor: 'pointer'
+    },
+    '@media (max-width: 1000px)': {
+      height: '100px',
+      width: '120px'
     }
   },
 
   pictures: {
-    resizeMode: 'contain',
-    maxWidth: '40vh',
+    maxWidth: '45vh',
     borderRadius: '10px',
-    //boxShadow: '1px 1px 10px 0.5px #343841'
+    boxShadow: '1px 1px 10px 0.5px #343841',
+    '@media (max-width: 1000px)': {
+      height: '100px',
+      width: '120px'
+    }
   },
 
   text: {
     fontFamily: 'Quicksand',
     textAlign: 'left',
-    fontSize: '20px',
     color: 'grey'
   },
 
   header: {
     fontFamily: 'Quicksand',
-    margin: '50px',
+    textAlign: 'left',
     color: 'grey',
   }
 }
