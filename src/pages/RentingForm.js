@@ -31,7 +31,7 @@ function CreateRentingForm() {
          <p id="simple-modal-description">
           Tack för att du använder clearBnB!
       </p> 
-        <Button className="modal-button" style={buttonStyle} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
+        <Button className="modal-button" style={styles.modalButton} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
       </div>
     </div>
   );
@@ -271,7 +271,7 @@ function CreateRentingForm() {
               value="airConditioning"
             ></input>
             <img style={styles.icon} src="https://i.imgur.com/bF4klbB.png" alt="''"></img>
-            <label style={styles.iconLabel} >Luftkonditionering</label>
+            <label style={styles.iconLabel} >AC</label>
           </div>
 
           <div style={styles.amenityItem}>
@@ -544,7 +544,29 @@ const styles = {
   url: {
     fontSize: '10px',
     textTransform: 'uppercase'
-  }
+  },
+  modalButton: {
+    background: '#eee',
+    marginTop: '40px',
+    fontFamily: 'Quicksand',
+    fontWeight: 'bold',
+    fontSize: '14px',
+    color: 'grey',
+    cursor: 'pointer',
+    border: 'none',
+    padding: '15px',
+    borderRadius: '6px',
+    textTransform: 'uppercase',
+    ':hover': {
+      background: '#e6e6e6',
+    },
+    '@media (max-width: 1000px)': {
+      width: '90%',
+      maxWidth: '200px',
+      padding: '15px',
+    }
+  },
 }
+
 
 export default Radium(CreateRentingForm)
