@@ -20,18 +20,21 @@ import AmenitiesContextProvider from './contexts/AmenitiesContext'
 import UserContextProvider from './contexts/UserContextProvider'
 import BookingContextProvider from './contexts/BookingContextProvider'
 
+import { StyleRoot } from 'radium'
+
 function App() {
-  
+
   return (
     <div className="App">
-      <UserContextProvider>
+      
+        <UserContextProvider>
           <LocationContext>
             <AccommodationsContextProvider>
               <AmenitiesContextProvider>
                 <BookingContextProvider>
                   <Router>
                     <header className="App-header"><NavBar /></header>
-
+                  <StyleRoot>
                     <main>
                       <Switch>
                         <Route exact path="/" component={Home} />
@@ -43,14 +46,15 @@ function App() {
                         <Route exact path="/accommodationDetails/:id" component={AccommodationsDetails} />
                       </Switch>
                     </main>
-
+                  </StyleRoot>
                     <footer>&copy; Copyright 2021 Group 4</footer>
                   </Router>
                 </BookingContextProvider>
               </AmenitiesContextProvider>
             </AccommodationsContextProvider>
           </LocationContext>
-      </UserContextProvider>
+        </UserContextProvider>
+      
     </div>
   );
 }

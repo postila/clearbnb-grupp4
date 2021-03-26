@@ -8,6 +8,7 @@ function LocationList() {
   const history = useHistory()
 
   const locationItem = location => (
+    
     <div
       className="locationItem"
       key={ location._id }
@@ -20,12 +21,15 @@ function LocationList() {
       />
       <p>{ location.name }</p>
     </div>
+   
   )
 
   return (
+    
     <div style={ styles.itemsPositions }>
       {locations.map(location => locationItem(location))}
     </div>
+    
   )
 }
 
@@ -33,7 +37,11 @@ const styles = {
   img: {
     height: '170px',
     borderRadius: '7px',
-    maxWidth: '15vw',
+    //maxWidth: '8vw',
+    '@media (max-width: 1000px)': {
+      height: '100px',
+      width: '120px'
+    }
 
     },
   card: {
@@ -57,6 +65,11 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridGap: '25px',
+    '@media (max-width: 1000px)': {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gridGap: '15px',
+      margin: '10px'
+    }
     
   }
 }
