@@ -28,28 +28,32 @@ input:focus {
   font-size: 1.7em;
   color: grey;
 }
-/* 
-.locations-form {
-  display: grid;
-  grid-template-columns: repeat(3, 25vw);
-  grid-gap: 2vw;
-  width: 80vw;
-  margin: 5vh auto;
-  justify-content: center;
-}
 
-@media (max-width: 798px){
-  .locations-form {
-    /* grid-template-columns: repeat(1, 1fr); */
-    /* grid-gap: 2vw;
-    margin: 2vh auto;
-    width: 70vw;
+.register-form {
+    display: grid;
+    grid-gap: 15px;
+    max-width: 500px;
+    margin: -30px auto 0 auto;
+    padding: 100px;
+    
   }
-}
 
-@media (max-width: 480px){
-  .locations-form {
-    grid-template-columns: 1fr;
-    width: 60vw;
+  @media (max-width: 490px) {
+    .register-form {
+      margin: 90px auto;
+      padding: 10vw
+    }  
   }
-} */
+
+  .register-login {
+    cursor: pointer;
+    color: grey;
+    padding: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .register-login:hover {
+    opacity: 75%;
+  }
