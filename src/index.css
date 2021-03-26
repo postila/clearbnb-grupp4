@@ -23,7 +23,7 @@ input:focus {
 }
 
 .list-title {
-  margin: 10px 0;
+  margin: 10px 0 10px 5px;
   font-family: Quicksand;
   font-size: 1.7em;
   color: grey;

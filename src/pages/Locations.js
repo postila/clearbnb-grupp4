@@ -185,16 +185,14 @@ const styles = {
   text: {
     fontFamily: 'Quicksand',
     textAlign: 'left',
-    fontSize: '1em',
+    fontSize: '1.2em',
     color: 'grey',
     padding: '0',
     margin: '5px',
-    // textTransform: 'uppercase',
     opacity: '90%',
     '@media (max-width: 700px)': {
       fontSize: '1em',
       textAlign: 'center',
-      // margin: '20px'
     }
   },
   textCity: {
@@ -202,6 +200,7 @@ const styles = {
     textAlign: 'left',
     fontWeight: 'bold',
     fontSize: '1.1em',
+    textTransform: 'uppercase',
     margin: '10px 5px',
     color: 'grey',
     '@media (max-width: 700px)': {
