@@ -5,16 +5,21 @@ export const UserContext = createContext()
 
 export default function UserContextProvider(props) {
   const [user, setUser] = useState(null)
+  const [users, setUsers] = useState(null)
   const [userId, setUserId] = useState(null)
   const [userName, setUserName] = useState(null)
 
   const fetchSession = async () => {
-    console.log(user, 'user')
     let res = await fetch('/api/whoami')
     res = await res.json()
     setUserId(res._id)
     setUserName(res.name)
     setUser(res)
+  }
+  const fetchUsers = async () => {
+    let res = await fetch('/api/users')
+    res = await res.json()
+    setUsers(res)
   }
   
   const login = async user => {
@@ -24,9 +29,9 @@ export default function UserContextProvider(props) {
       body: JSON.stringify(user)
     })
     res = await res.json()
-    console.log(res)
     setUser(res)
     fetchSession()
+    return res;
   }
 
   const logout = async () => {
@@ -34,7 +39,6 @@ export default function UserContextProvider(props) {
       method: 'DELETE',
     })
     res = await res.json()
-    console.log(res)
     setUser(null)
     setUserId(null)
     setUserName(null)
@@ -48,7 +52,6 @@ export default function UserContextProvider(props) {
     })
 
     res = await res.json()
-    console.log(res);
     login(user)
     fetchSession()
   }
@@ -60,7 +63,9 @@ export default function UserContextProvider(props) {
     userName,
     login,
     fetchSession,
-    logout
+    logout,
+    users,
+    fetchUsers
   }
 
   return (

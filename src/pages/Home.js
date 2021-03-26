@@ -7,24 +7,17 @@ import LocationList from '../components/LocationList'
 import { UserContext } from '../contexts/UserContextProvider'
 import { useContext } from 'react';
 import { useEffect } from 'react';
-import { withTheme } from '@material-ui/core';
-
-
 
 const Home = () => {
   const [register, setRegister] = useState(false)
   const { userName, userId, logout, fetchSession } = useContext(UserContext)
 
-  useEffect(() => {
-    fetchSession()
-  }, [userId])
+  // useEffect(() => {
+  //   fetchSession()
+  // }, [userId])
 
   const toggleRegisterForm = () => {
     setRegister(valueOf.register = !valueOf.register)
-  }
-
-  const logOut = async () => {
-    await logout()
   }
 
   return (
@@ -38,7 +31,7 @@ const Home = () => {
       <div style={styles.locationList}>
         {userId &&
           <div>
-            <h1>Välkommen {userName}!</h1>
+          <h1 style={{ textTransform: 'capitalize', fontFamily:'Quicksand', color:'white', opacity:'70%' }}>Välkommen {userName}!</h1>
             <LocationList />
           </div>}
       </div>
@@ -51,7 +44,6 @@ const styles = {
     display: 'grid',
     gridGap: '10px 10px',
     justifyContent: 'center',
-    //flexWrap: 'wrap',
     width: '100%'
   },
   bodyStyle: {
@@ -75,6 +67,6 @@ const styles = {
   right: {
     float: 'right',
     width: '10%'
-  },
+  }
 }
 export default Radium(Home);

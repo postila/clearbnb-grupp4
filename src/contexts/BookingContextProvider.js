@@ -18,9 +18,7 @@ export default function BookingContextProvider(props) {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(booking)
     })
-
     res = await res.json()
-    console.log(res, 'booking ok');
   }
 
   useEffect(() => {

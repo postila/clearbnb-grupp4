@@ -13,7 +13,6 @@ export default function AccommodationsContextProvider(props) {
   }
 
   const addAccommodation = async accommodation => {
-    console.log(accommodation)
     let res = await fetch('/api/accommodations', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -21,7 +20,6 @@ export default function AccommodationsContextProvider(props) {
     })
     res = await res.json()
     setAccommodationId(res._id)
-
     setAccommodations([...accommodations, accommodation])
   }
 

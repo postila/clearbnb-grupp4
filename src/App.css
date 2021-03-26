@@ -33,12 +33,12 @@ main{
 }
 
 footer {
- font-family: Quicksand;
- background-color: #eee;
+ font-family: Verdana;
+ background-color: #202329;
  display:flex;
  justify-content: center;
  align-items: center;
- color: grey;
+ color: white;
 }
 
 .datePicker {

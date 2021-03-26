@@ -3,7 +3,7 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import { useParams, useHistory } from 'react-router-dom';
 import Radium from 'radium'
 import BookingForm from '../components/BookingForm';
-import Amenities2 from '../components/Amenities2'
+import Amenities from '../components/Amenities'
 
 const AccommodationsDetails = () => {
   const { accommodations } = useContext(AccommodationsContext)
@@ -40,9 +40,9 @@ const AccommodationsDetails = () => {
         </div>
         <div style={styles.infoContainer} key="4">
             <h4>Bekvämligheter:</h4>
-            <Amenities2/>
+            <Amenities/>
         </div>
-           <BookingForm accommodation={item} />
+        <BookingForm accommodation={item} />
         </div> }
       { !accommodation &&
         <div>
@@ -57,7 +57,6 @@ const AccommodationsDetails = () => {
 
 const styles = {
   box: {
-    // display: 'inline-block',
     fontFamily: 'Quicksand',
     margin: '0 auto',
     maxWidth: '800px',
