@@ -42,9 +42,14 @@ function NavBar() {
             <Link style={styles.button} to="/Om-oss">Om oss</Link>
           </div>
         </nav>}
-        {window.innerWidth <= 700 && <nav style={styles.navbar}>
-          <div style={styles.headerText}>
-            <a>ClearBnB</a>
+        {window.innerWidth <= 700 && <nav style={styles.logo}>
+          <div style={styles.logo}>
+            <img
+              style={{ height: '20%', width: '20%', paddingTop: '10px', float: 'left', cursor: 'pointer' }}
+              src='https://i.imgur.com/eTEP9yc.png'
+              alt='logo'
+              onClick={() => { history.push('/')}}
+            ></img>
           </div>
         </nav>}
         <div style={styles.mypage}>
@@ -55,6 +60,7 @@ function NavBar() {
             </Button>
 
             {window.innerWidth <= 700 &&
+              
               <Menu
                 style={styles.dropdown}
                 id="simple-menu"
@@ -105,6 +111,26 @@ const styles = {
     fontFamily: 'Verdana',
     color: '#eee',
     paddingTop: '15px',
+
+  },
+  navbarSmall: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'Verdana',
+    color: '#eee',
+    paddingTop: '5px',
+
+  },
+  logo: {
+    display: 'flex',
+    //justifyContent: 'center',
+    paddingLeft: '20px',
+    alignItems: 'center',
+    fontFamily: 'Verdana',
+    color: '#eee',
+    
+    //backgroundColor: 'red'
 
   },
   button: {
