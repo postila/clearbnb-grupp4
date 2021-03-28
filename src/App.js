@@ -33,8 +33,9 @@ function App() {
               <AmenitiesContextProvider>
                 <BookingContextProvider>
                   <Router>
-                    <header className="App-header"><NavBar /></header>
+                  <header className="App-header"><NavBar /></header>
                   <StyleRoot>
+                    
                     <main>
                       <Switch>
                         <Route exact path="/" component={Home} />

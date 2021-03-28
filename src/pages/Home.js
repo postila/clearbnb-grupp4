@@ -6,11 +6,10 @@ import LocationList from '../components/LocationList'
 
 import { UserContext } from '../contexts/UserContextProvider'
 import { useContext } from 'react';
-import { useEffect } from 'react';
 
 const Home = () => {
   const [register, setRegister] = useState(false)
-  const { userName, userId, logout, fetchSession } = useContext(UserContext)
+  const { userName, userId } = useContext(UserContext)
 
   // useEffect(() => {
   //   fetchSession()
@@ -31,7 +30,7 @@ const Home = () => {
       <div style={styles.locationList}>
         {userId &&
           <div>
-          <h1 style={{ textTransform: 'capitalize', fontFamily:'Quicksand', color:'white', opacity:'70%', paddingBottom:'50px'}}>Välkommen {userName}!</h1>
+          <h1 className="welcome-text" style={styles.welcome}>Välkommen {userName}!</h1>
             <LocationList />
           </div>}
       </div>
@@ -44,20 +43,26 @@ const styles = {
     display: 'grid',
     gridGap: '10px 10px',
     justifyContent: 'center',
-    width: '100%'
+    width: '100%',
   },
   bodyStyle: {
     width: '100%',
-    background: 'linear-gradient(#62caed 0%, #ffffff 30%)'
+    background: 'linear-gradient(#62caed 0%, #ffffff 25vh)'
   },
   logo: {
     paddingTop: '20px',
     width: '100px',
+    '@media (max-width: 490px)': {
+      opacity: '0%'
+    }
   },
   left: {
     float: 'left',
     width: '10%',
-    background: 'transparent'
+    background: 'transparent',
+    '@media (max-width: 700px)': {
+      display: 'none'
+    }
   },
   center: {
     float: 'left',
@@ -66,6 +71,16 @@ const styles = {
   right: {
     float: 'right',
     width: '10%'
+  },
+  welcome: {
+    textTransform: 'capitalize', 
+    fontFamily: 'Quicksand', 
+    color: 'white', 
+    marginTop: '-20px',
+    marginBottom: '70px',
+    '@media (max-width: 490px)': {
+      margin: '40px 0'
+    }
   }
 }
 export default Radium(Home);

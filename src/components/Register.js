@@ -56,12 +56,12 @@ const Register = (props) => {
   }
 
   return (
-    <div>
-      <form key="1" style={styles.form} onSubmit={createUser}>
+    <div style={styles.container}>
+      <form className="register-form" key="1" onSubmit={createUser}>
         <input key="2" ref={ name } style={ styles.input } type="text" placeholder="Namn" required></input>
         <input key="3" ref={ email } style={ styles.input } type="email" placeholder="E-mail" required></input>
         <input key="4" ref={ password } style={ styles.input } type="password" placeholder="Lösenord" required></input>
-        <input key="5" ref={confirmPassword} style={styles.input} type="password" placeholder="Bekräfta lösenord" required></input>
+        <input key="5" ref={confirmPassword} style={styles.input} type="password" placeholder="Bekräfta Lösenord" required></input>
         {showPasswordNotification && <div><Snackbar
           anchorOrigin={{
             vertical: 'top',
@@ -88,7 +88,7 @@ const Register = (props) => {
         <div>
           <br></br>
           <button style={styles.button}>Skapa konto</button>
-          <p style={styles.logIn} onClick={props.displayRegisterForm}>Har du redan ett konto? Logga in här</p>
+          <p className="register-login" onClick={props.displayRegisterForm}>Har du redan ett konto? Logga in här</p>
         </div>
       </form>
       {showNotification && <div><Snackbar
@@ -119,15 +119,11 @@ const Register = (props) => {
 }
 
 const styles = {
-  form: {
-    display: 'grid',
-    gridGap: '15px',
-    maxWidth: '400px',
-    margin: '20px auto',
-    padding: '10px'
-  },
+ 
   input: {
+    height: '38px',
     textAlign: 'center',
+    fontFamily: 'Quicksand',
     padding: '10px',
     borderRadius: '10px',
     border: 'none',
@@ -159,9 +155,6 @@ const styles = {
     fontSize: '12px',
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    ':hover': {
-      opacity: '50%'
-    }
   }
 }
 
