@@ -9,9 +9,12 @@ const MyPage = () => {
   const [name, setName] = useState('Mina')
 
   const endNameWithS = e => {
-    e +=(e[e.length-1] === 's') ? '':'s'
+    e += (e[e.length - 1] === 's') ? '' : 's'
+    
     setName(e)
   }
+
+ 
 
   useEffect(() => {
     if(userName) endNameWithS(userName)  
@@ -19,16 +22,25 @@ const MyPage = () => {
 
   return (
     <div>
-      <h1 style={{ fontFamily: 'Quicksand', color: 'grey', padding: '40px'}}>{name} bokningar:</h1>
+      <h1 style={styles.text}>{ name.charAt(0).toUpperCase() + name.slice(1)} bokningar:</h1>
       <div>
         <BookingsList />
       </div >
-      <h1 style={{ fontFamily: 'Quicksand', color: 'grey', padding: '40px' }}>{name} uthyrningar:</h1>
+      <h1 style={styles.text}>{name.charAt(0).toUpperCase() + name.slice(1)} uthyrningar:</h1>
       <div>
         <RentalsList />
       </div >
     </div>
   );
+}
+
+const styles = {
+  text: {
+    fontFamily: 'Quicksand',
+    color: 'grey',
+    padding: '40px'
+    
+  }
 }
 
 
