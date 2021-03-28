@@ -95,11 +95,13 @@ const styles = {
     padding: '0',
     margin: '5px',
     opacity: '90%',
+    lineHeight:'0.9',
     '@media (max-width: 700px)': {
       fontSize: '1em',
       textAlign: 'center',
     }
   },
+
 }
 
 export default Radium(RentalList);
