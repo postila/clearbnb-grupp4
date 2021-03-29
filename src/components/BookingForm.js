@@ -39,7 +39,7 @@ const BookingForm = (props) => {
     <div style={styles.modalContainer}>
       <div className={classes.paper}>
         <h2 id="simple-modal-title">Din bokning är lagd ✔️</h2>
-        <Button className="modal-button" style={buttonStyle} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
+        <Button className="modal-button" style={styles.modalButton} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
       </div>
     </div>
   );
@@ -318,6 +318,7 @@ const styles = {
     cursor: 'not-allowed'
   },
   modalContainer: {
+    fontFamily: 'Quicksand',
     width: '100%',
     height: '100%',
     textAlign: 'center',
@@ -325,5 +326,26 @@ const styles = {
     userSelect: 'none',
     color: 'rgba(0,0,0,0)',
     textShadow: '0 0 0 #000'
+  },
+  modalButton: {
+    background: '#eee',
+    marginTop: '40px',
+    fontFamily: 'Quicksand',
+    fontWeight: 'bold',
+    fontSize: '14px',
+    color: 'grey',
+    cursor: 'pointer',
+    border: 'none',
+    padding: '15px',
+    borderRadius: '6px',
+    textTransform: 'uppercase',
+    ':hover': {
+      background: '#e6e6e6',
+    },
+    '@media (max-width: 1000px)': {
+      width: '90%',
+      maxWidth: '200px',
+      padding: '15px',
+    }
   },
 }
