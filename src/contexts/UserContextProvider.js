@@ -1,4 +1,5 @@
 import { set } from 'mongoose';
+import { useEffect } from 'react';
 import { useState, createContext} from 'react';
 
 export const UserContext = createContext()
@@ -55,6 +56,10 @@ export default function UserContextProvider(props) {
     login(user)
     fetchSession()
   }
+
+  useEffect(() => {
+    fetchUsers()
+  },[])
 
   const values = {
     addUser,
