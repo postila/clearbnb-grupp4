@@ -41,7 +41,8 @@ const styles = {
     fontWeight: 'bold',
     letterSpacing: '0.5px',
     fontFamily: 'Quicksand',
-    textAlign: 'left'
+    textAlign: 'left',
+    fontSize: '1.2em',
   },
   header: {
     color: 'black',
@@ -50,7 +51,8 @@ const styles = {
     fontWeight: 'bold',
     letterSpacing: '0.5px',
     fontFamily: 'Quicksand',
-    textAlign: 'left'
+    textAlign: 'left',
+    fontSize: '2.3em',
 
   },
 
