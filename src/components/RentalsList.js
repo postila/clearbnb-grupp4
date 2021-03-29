@@ -97,6 +97,25 @@ const styles = {
 
   pictures: {
     borderRadius: '10px',
+    width: '40vw',
+    height: '25vh',
+    margin: '0 auto',
+    '@media (min-width: 900px)': {
+      maxWidth: '400px',
+      height: '32vh'
+    },
+    '@media (max-width: 700px)': {
+      gridTemplateColumns: '1fr',
+      justifyContent: 'center',
+      width: '85vw',
+      height: '37vh',
+    },
+    '@media (max-width: 400px)': {
+      gridTemplateColumns: '1fr',
+      justifyContent: 'center',
+      width: '80vw',
+      height: '27vh',
+    }
   },
 
   text: {
@@ -113,13 +132,6 @@ const styles = {
       textAlign: 'center',
     }
   },
-
-  header: {
-    fontFamily: 'Quicksand',
-    margin: '50px',
-    color: 'grey',
-    textAlign: 'left',
-  }
 }
 
 export default Radium(RentalList);
