@@ -22,11 +22,11 @@ const MyPage = () => {
 
   return (
     <div>
-      <h1 style={styles.text}>{ name.charAt(0).toUpperCase() + name.slice(1)} bokningar:</h1>
+      <h1 style={{ fontFamily: 'Quicksand', color: 'grey', padding: '40px'}}>{name} bokningar</h1>
       <div>
         <BookingsList />
       </div >
-      <h1 style={styles.text}>{name.charAt(0).toUpperCase() + name.slice(1)} uthyrningar:</h1>
+      <h1 style={{ fontFamily: 'Quicksand', color: 'grey', padding: '40px' }}>{name} uthyrningar</h1>
       <div>
         <RentalsList />
       </div >

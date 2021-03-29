@@ -7,12 +7,22 @@ import Radium from 'radium'
 function BookingsList() {
   const { bookings } = useContext(BookingContext)
   const { locations } = useContext(LocationContext)
-  const { userId } = useContext(UserContext)
-  
+  const { users, userId } = useContext(UserContext)
+ 
   const bookingsList = bookings.filter(booking => booking.user && booking.accommodation).filter(booking => booking.user._id === userId)
 
+  const calculateUser = booking => {
+    let us = booking.accommodation.user
+    let i = 0
+    for(i = 0; i < users.length; i++) {
+      if (users[i]._id === us) {
+        break;
+      }
+    }
+    return i
+  }
 
-  const card = booking =>
+  const card = booking => 
   (
     <div bookings
       style={styles.box}
@@ -26,13 +36,15 @@ function BookingsList() {
         <p>Antal gäster {booking.guests} | {Math.round((Math.round((booking.endDate - booking.startDate) / 86400000) * booking.accommodation.pricePerNight*1.15))} SEK</p>
         <p>Ankomst: {new Date((booking.startDate)).toLocaleDateString()}</p>
         <p>Avresa: {new Date((booking.endDate)).toLocaleDateString()}</p>
+        <p>Värd: {users[calculateUser(booking)].name}</p>
+        <p>E-mail: {users[calculateUser(booking)].email}</p>  
       </div>
     </div>
   )
 
   return (
     <div style={styles.itemsPositions}>
-      {bookings && locations && 
+      {bookings && locations && users &&
       <div>
       {bookingsList.map(booking => card(booking))}
       </div>}

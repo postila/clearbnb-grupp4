@@ -1,19 +1,24 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { UserContext } from '../contexts/UserContextProvider'
 import { AccommodationsContext } from '../contexts/AccommodationsContext'
 import Radium from 'radium'
-
+import { useHistory } from 'react-router-dom'
 
 function RentalList() {
   const { accommodations, fetchAccommodations } = useContext(AccommodationsContext)
   const { userId, fetchSession } = useContext(UserContext)
+  const history = useHistory()
+  
   const rentalList = accommodations.filter(accommodation => accommodation.user).filter(accommodation => accommodation.user._id === userId)
 
+  const goToRentalForm = () => {
+    history.push('/Uthyrning')
+  }
   
   useEffect(() => {
     fetchAccommodations()
     // fetchSession()
-  }, [userId])
+  }, [])
 
   const card = accommodation =>
   (
@@ -34,12 +39,19 @@ function RentalList() {
     </div>
   )
 
+ 
   return (
     <div>
       { accommodations &&
         <div>
           {rentalList.map(accommodation => card(accommodation))}
-        </div>}
+        </div>
+      }
+      { rentalList.length === 0 &&
+        <div style={styles.rentalbox} onClick={() => goToRentalForm()}>
+          <h3 style={styles.rentalheader}> KLICKA HÄR FÖR ATT HYRA UT EN BOSTAD</h3>
+        </div>
+      }
     </div>
   );
 }
@@ -63,28 +75,28 @@ const styles = {
       gridGap: '0'
     }
   },
+    rentalbox: {
+    maxWidth: '500px',
+    background: '#eee',
+    padding: '15px',
+    margin: '40px auto',
+    borderRadius: '8px',
+    fontFamily: 'Quicksand',
+    textAlign: 'center',
+    ':hover': {
+      opacity: '80%',
+      cursor: 'pointer'
+    }
+  },
+  rentalheader: {
+    fontFamily: 'Quicksand',
+    margin: '20px',
+    color: 'grey',
+    textAlign: 'center',
+  },
 
   pictures: {
     borderRadius: '10px',
-    width: '40vw',
-    height: '25vh',
-    margin: '0 auto',
-    '@media (min-width: 900px)': {
-      maxWidth: '400px',
-      height: '32vh'
-    },
-    '@media (max-width: 700px)': {
-      gridTemplateColumns: '1fr',
-      justifyContent: 'center',
-      width: '85vw',
-      height: '37vh',
-    },
-    '@media (max-width: 400px)': {
-      gridTemplateColumns: '1fr',
-      justifyContent: 'center',
-      width: '80vw',
-      height: '27vh',
-    }
   },
 
   text: {
@@ -102,6 +114,12 @@ const styles = {
     }
   },
 
+  header: {
+    fontFamily: 'Quicksand',
+    margin: '50px',
+    color: 'grey',
+    textAlign: 'left',
+  }
 }
 
 export default Radium(RentalList);
