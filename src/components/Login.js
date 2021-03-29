@@ -79,11 +79,7 @@ const styles = {
     gridGap: '15px',
     maxWidth: '500px',
     margin: '23px auto',
-    padding: '100px',
-    '@media (max-width: 480px)': {
-      margin: '143px auto',
-      padding: '10vw'
-    }
+    padding: '100px'
   },
   input: {
     height: '38px',

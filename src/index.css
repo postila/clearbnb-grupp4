@@ -38,13 +38,6 @@ input:focus {
     
   }
 
-  @media (max-width: 490px) {
-    .register-form {
-      margin: 90px auto;
-      padding: 10vw
-    }  
-  }
-
   .register-login {
     cursor: pointer;
     color: grey;
