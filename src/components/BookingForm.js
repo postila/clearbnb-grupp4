@@ -241,6 +241,10 @@ const styles = {
     color: 'grey',
     padding: '50px',
     textAlign: 'center',
+    '@media (max-width: 1000px)': {
+      marginBottom: '0vh',
+      padding: '5vh',
+    }
 
   },
   error: {
@@ -264,7 +268,11 @@ const styles = {
     textAlign: 'center',
     height: '100px',
     width: '100%',
-    margin: '0 auto',
+    '@media (max-width: 1000px)': {
+      marginBottom: '10vh',
+      width: '90%',
+      marginLeft: '9vw'
+    }
   },
   datePicker: {
     float: 'left',
@@ -296,6 +304,11 @@ const styles = {
     border: 'none',
     ':focus': {
       outline: 'none'
+    },
+    '@media (max-width: 1000px)': {
+      marginTop: '2vh',
+      width: '70%',
+      
     }
   },
   pointer: {
