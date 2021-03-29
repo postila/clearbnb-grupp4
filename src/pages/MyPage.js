@@ -21,13 +21,13 @@ const MyPage = () => {
   }, [userName])
 
   return (
-    <div>
-      <h1 style={styles.text}>{name.charAt(0).toUpperCase() + name.slice(1)} bokningar</h1>
+    <div style={styles.wrapper}>
       <div>
+      <h1 style={styles.text}>{name.charAt(0).toUpperCase() + name.slice(1)} bokningar</h1>
         <BookingsList />
       </div >
-      <h1 style={styles.text}>{ name.charAt(0).toUpperCase() + name.slice(1)} uthyrningar</h1>
       <div>
+      <h1 style={styles.text}>{ name.charAt(0).toUpperCase() + name.slice(1)} uthyrningar</h1>
         <RentalsList />
       </div >
     </div>
@@ -39,7 +39,20 @@ const styles = {
     fontFamily: 'Quicksand',
     color: 'grey',
     padding: '40px'
-    
+  },
+  wrapper: {
+    display: 'flex',
+    clear: 'none',
+    gridGap:'50px',
+    justifyContent: 'center',
+    '@media (max-width: 1650px)': {
+      display: 'grid',
+      gridTemplateColumns: '1fr',
+      width: '75vw',
+      justifyContent: 'center',
+      margin: '3vh auto'
+    }
+  
   }
 }
 
