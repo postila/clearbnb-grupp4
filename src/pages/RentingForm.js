@@ -31,7 +31,7 @@ function CreateRentingForm() {
          <p id="simple-modal-description">
           Tack för att du använder clearBnB!
       </p> 
-        <Button className="modal-button" style={buttonStyle} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
+        <Button className="modal-button" style={styles.modalButton} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
       </div>
     </div>
   );
@@ -111,214 +111,212 @@ function CreateRentingForm() {
   )
 
   return (
-    <form key="1" style={styles.form} onSubmit={createRentingForm}>
+    <div style={styles.outerContainer}>
+      <form key="1" style={styles.form} onSubmit={createRentingForm}>
+        <h1 style={styles.headline}>Uthyrningsformulär</h1>
 
-      <h1 style={styles.headline}>Uthyrningsformulär</h1>
-
-      <label style={styles.label}>Titel </label>
-      <input
-        key="2"
-        required ref={title}
-        style={styles.input}
-        type="text"
-        maxLength="80"
-      ></input>
-
-      <label style={styles.label} >Ort</label>
-
-      <select
-        key="3"
-        required ref={location}
-        style={styles.input}
-      >
-        <option key="a" disabled selected></option>
-        {locations.map(location => locationItem(location))}
-      </select>
-
-      <label style={styles.label} >Beskrivning</label>
-      <textarea
-        style={styles.description}
-        ref={description}
-        maxLength="1500"
-        type="text"
-        required>
-      </textarea>
-
-      <label style={styles.label} >Bild
-      <span style={styles.url}> (Klistra in en url)</span>
-      </label>
-      <input
-        key="4"
-        style={styles.input}
-        required
-        ref={imageUrl}
-        type="text"
-      ></input>
-
-      <div style={styles.guestContainer} >
-        <label style={styles.label} >Max antal gäster</label>
+        <label style={styles.label}>Titel </label>
         <input
-          key="5"
-          style={styles.guests}
-          required ref={maxGuests}
-          type="number"
-          min="1"
+          key="2"
+          required ref={title}
+          style={styles.input}
+          type="text"
+          maxLength="80"
         ></input>
 
-        <label style={styles.label} >Pris per natt</label>
-        <input
-          key="6"
-          style={styles.guests}
-          ref={pricePerNight}
-          required
-          type="number"
-          min="0"
-        ></input>
-      </div>
-      <div style={styles.dateContainer}>
-        <div key="d1" style={styles.datePicker}>
-          <p>Startdatum</p>
-          <DatePicker
-            className='datePicker'
-            dateFormat="yyyy/MM/dd"
-            selected={startDate}
-            minDate={new Date()}
-            required
-            onChange={(data) => setStartDate(data)}
-          />
-        </div>
-        <div key="d2" style={styles.datePicker}>
-          <p>Slutdatum</p>
-          <DatePicker
-            className='datePicker'
-            dateFormat="yyyy/MM/dd"
-            selected={endDate}
-            minDate={startDate || minDate}
-            required
-            onChange={(data) => setEndDate(data)}
-          />
-        </div>
-      </div>
-      <h3 style={styles.headline}>Bekvämligheter</h3>
+        <label style={styles.label} >Ort</label>
 
-      <div style={styles.amenities}>
-        <div style={styles.amenityItem}>
-          <input
-            key="a1"
-            style={styles.checkBox}
-            type="checkbox"
-            ref={washer}
-            value="washer"
-          ></input>
-          <img style={styles.icon} src="https://i.imgur.com/ZHG7tWd.png" alt="''"></img>
-          <label style={styles.iconLabel} >Tvättmaskin</label>
-        </div>
-
-        <div style={styles.amenityItem}>
-          <input
-            key="a2"
-            style={styles.checkBox}
-            type="checkbox"
-            ref={wifi}
-            value="wifi"
-          ></input>
-          <img style={styles.icon} src="https://i.imgur.com/bEPBdlP.png" alt="''"></img>
-          <label style={styles.iconLabel} >WiFi</label>
-        </div>
-
-        <div style={styles.amenityItem}>
-          <input
-            key="a3"
-            style={styles.checkBox}
-            type="checkbox"
-            ref={essentials}
-            value="essentials"
-          ></input>
-          <img style={styles.icon} src="https://i.imgur.com/gcqJNww.png" alt="''"></img>
-          <label style={styles.iconLabel} >Väsentligheter</label>
-        </div>
-
-        <div style={styles.amenityItem}>
-          <input
-            key="a4"
-            style={styles.checkBox}
-            type="checkbox"
-            ref={kitchen}
-            value="kitchen"
-          ></input>
-          <img style={styles.icon} src="https://i.imgur.com/LvTR8oD.png" alt="''"></img>
-          <label style={styles.iconLabel} >Kök</label>
-        </div>
-
-        <div style={styles.amenityItem}>
-          <input
-            key="a5"
-            style={styles.checkBox}
-            type="checkbox"
-            ref={TV}
-            value="TV"
-          ></input>
-          <img style={styles.icon} src="https://i.imgur.com/o8S2jMk.png" alt="''"></img>
-          <label style={styles.iconLabel} >TV</label>
-        </div>
-
-        <div style={styles.amenityItem}>
-          <input
-            key="a6"
-            style={styles.checkBox}
-            type="checkbox"
-            ref={airConditioning}
-            value="airConditioning"
-          ></input>
-          <img style={styles.icon} src="https://i.imgur.com/bF4klbB.png" alt="''"></img>
-          <label style={styles.iconLabel} >Luftkonditionering</label>
-        </div>
-
-        <div style={styles.amenityItem}>
-          <input
-            key="a7"
-            style={styles.checkBox}
-            type="checkbox"
-            ref={iron}
-            value="iron"
-          ></input>
-          <img style={styles.icon} src="https://i.imgur.com/3XShQ5y.png" alt="''"></img>
-          <label style={styles.iconLabel} >Strykjärn</label>
-        </div>
-
-        <div style={styles.amenityItem}>
-          <input
-            key="a8"
-            style={styles.checkBox}
-            type="checkbox"
-            ref={safe}
-            value="Låst skåp"
-          ></input>
-          <img style={styles.icon} src="https://i.imgur.com/FXhmIhX.png" alt="''"></img>
-          <label style={styles.iconLabel} >Låst skåp</label>
-        </div>
-
-      </div>
-
-
-      <div style={styles.buttonContainer}>
-        <button
-          style={styles.button}
-          key="7"
-        >Färdig</button>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          disableScrollLock={false}
+        <select
+          key="3"
+          required ref={location}
+          style={styles.input}
         >
-          {body}
-        </Modal>
+          <option key="a" disabled selected></option>
+          {locations.map(location => locationItem(location))}
+        </select>
 
-      </div>
-    </form >
-  )
+        <label style={styles.label} >Beskrivning</label>
+        <textarea
+          style={styles.description}
+          ref={description}
+          maxLength="1500"
+          type="text"
+          required>
+        </textarea>
+
+        <label style={styles.label} >Bild
+        <span style={styles.url}> (Klistra in en url)</span>
+        </label>
+        <input
+          key="4"
+          style={styles.input}
+          required
+          ref={imageUrl}
+          type="text"
+        ></input>
+
+        <div style={styles.guestContainer} >
+          <label style={styles.label} >Max antal gäster</label>
+          <input
+            key="5"
+            style={styles.guests}
+            required ref={maxGuests}
+            type="number"
+            min="1"
+          ></input>
+
+          <label style={styles.label} >Pris per natt</label>
+          <input
+            key="6"
+            style={styles.guests}
+            ref={pricePerNight}
+            required
+            type="number"
+            min="0"
+          ></input>
+        </div>
+        <div style={styles.dateContainer}>
+          <div key="d1" style={styles.datePicker}>
+            <p style={styles.dateLabel}>Startdatum</p>
+            <DatePicker
+              className='datePicker'
+              dateFormat="yyyy/MM/dd"
+              selected={startDate}
+              minDate={new Date()}
+              required
+              onChange={(data) => setStartDate(data)}
+            />
+          </div>
+          <div key="d2" style={styles.datePicker}>
+            <p style={styles.dateLabel}>Slutdatum</p>
+            <DatePicker
+              className='datePicker'
+              dateFormat="yyyy/MM/dd"
+              selected={endDate}
+              minDate={startDate || minDate}
+              required
+              onChange={(data) => setEndDate(data)}
+            />
+          </div>
+        </div>
+        <h3 style={styles.headline}>Bekvämligheter</h3>
+
+        <div style={styles.amenities}>
+          <div style={styles.amenityItem}>
+            <input
+              key="a1"
+              style={styles.checkBox}
+              type="checkbox"
+              ref={washer}
+              value="washer"
+            ></input>
+            <img style={styles.icon} src="https://i.imgur.com/ZHG7tWd.png" alt="''"></img>
+            <label style={styles.iconLabel} >Tvättmaskin</label>
+          </div>
+
+          <div style={styles.amenityItem}>
+            <input
+              key="a2"
+              style={styles.checkBox}
+              type="checkbox"
+              ref={wifi}
+              value="wifi"
+            ></input>
+            <img style={styles.icon} src="https://i.imgur.com/bEPBdlP.png" alt="''"></img>
+            <label style={styles.iconLabel} >WiFi</label>
+          </div>
+
+          <div style={styles.amenityItem}>
+            <input
+              key="a3"
+              style={styles.checkBox}
+              type="checkbox"
+              ref={essentials}
+              value="essentials"
+            ></input>
+            <img style={styles.icon} src="https://i.imgur.com/gcqJNww.png" alt="''"></img>
+            <label style={styles.iconLabel} >Väsentligheter</label>
+          </div>
+
+          <div style={styles.amenityItem}>
+            <input
+              key="a4"
+              style={styles.checkBox}
+              type="checkbox"
+              ref={kitchen}
+              value="kitchen"
+            ></input>
+            <img style={styles.icon} src="https://i.imgur.com/LvTR8oD.png" alt="''"></img>
+            <label style={styles.iconLabel} >Kök</label>
+          </div>
+
+          <div style={styles.amenityItem}>
+            <input
+              key="a5"
+              style={styles.checkBox}
+              type="checkbox"
+              ref={TV}
+              value="TV"
+            ></input>
+            <img style={styles.icon} src="https://i.imgur.com/o8S2jMk.png" alt="''"></img>
+            <label style={styles.iconLabel} >TV</label>
+          </div>
+
+          <div style={styles.amenityItem}>
+            <input
+              key="a6"
+              style={styles.checkBox}
+              type="checkbox"
+              ref={airConditioning}
+              value="airConditioning"
+            ></input>
+            <img style={styles.icon} src="https://i.imgur.com/bF4klbB.png" alt="''"></img>
+            <label style={styles.iconLabel} >AC</label>
+          </div>
+
+          <div style={styles.amenityItem}>
+            <input
+              key="a7"
+              style={styles.checkBox}
+              type="checkbox"
+              ref={iron}
+              value="iron"
+            ></input>
+            <img style={styles.icon} src="https://i.imgur.com/3XShQ5y.png" alt="''"></img>
+            <label style={styles.iconLabel} >Strykjärn</label>
+          </div>
+
+          <div style={styles.amenityItem}>
+            <input
+              key="a8"
+              style={styles.checkBox}
+              type="checkbox"
+              ref={safe}
+              value="Låst skåp"
+            ></input>
+            <img style={styles.icon} src="https://i.imgur.com/FXhmIhX.png" alt="''"></img>
+            <label style={styles.iconLabel} >Låst skåp</label>
+          </div>
+
+        </div>
+
+
+        <div style={styles.buttonContainer}>
+          <button style={styles.button} key="7">Färdig</button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            disableScrollLock={false}
+          >
+            {body}
+          </Modal>
+
+        </div>
+      </form >
+  </div>
+    )
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -335,13 +333,23 @@ const buttonStyle = {
 }
 
 const styles = {
+  outerContainer: {
+    '@media (max-width: 1000px)': {
+      width: '80%'
+    }
+
+  },
+
   form: {
     display: 'grid',
     gridGap: '3px',
     maxWidth: '800px',
     margin: '0px auto',
-    textAlign: 'left',
-    padding: '10px'
+    textAlign: 'center',
+    padding: '10px',
+    '@media (max-width: 1000px)': {
+      padding: '0px',
+    }
   },
   amenities: {
     display: 'grid',
@@ -349,12 +357,20 @@ const styles = {
     justifyContent: 'center',
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridGap: '25px',
-    paddingBottom: '30px'
+    paddingBottom: '30px',
+    '@media (max-width: 1000px)': {
+      padding: '0px',
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      marginLeft: '10px',
+      marginRight: '10px',
+    }
   },
   headline: {
     fontFamily: 'Quicksand',
     color: 'grey',
-    padding: '40px',
+    paddingLeft: '40px',
+    paddingRight: '40px',
+    paddingTop: '30px',
     textAlign: 'center',
   },
   label: {
@@ -364,6 +380,12 @@ const styles = {
     color: 'grey',
     paddingTop: '15px',
     paddingBottom: '10px',
+    '@media (max-width: 1000px)': {
+      marginLeft: '10px',
+      marginRight: '10px',
+      lineHeight: '30px',
+      
+    }
 
   },
   input: {
@@ -374,6 +396,10 @@ const styles = {
     backgroundColor: '#eee',
     ':focus': {
       outline: 'none'
+    },
+    '@media (max-width: 1000px)': {
+      marginLeft: '10px',
+      marginRight: '10px',
     }
   },
   description: {
@@ -387,6 +413,11 @@ const styles = {
     resize: 'none',
     ':focus': {
       outline: 'none'
+    },
+    '@media (max-width: 1000px)': {
+      marginLeft: '10px',
+      marginRight: '10px',
+      height: '200px',
     }
   },
   guestContainer: {
@@ -394,18 +425,29 @@ const styles = {
     height: '50px',
     width: '100%',
     marginTop: '10px',
-    marginBottom: '40px'
+    marginBottom: '40px',
+    '@media (max-width: 1000px)': {
+      marginLeft: '23%',
+      width: '50%',
+      marginBottom: '17vh',
+      marginTop: '5vh'
+    }
   },
   guests: {
     textAlign: 'center',
     backgroundColor: '#eee',
-    height: '50px',
+    height: '40px',
     width: '90px',
     border: '0',
     borderRadius: '7px',
     margin: '10px 20px 0px 20px',
     ':focus': {
       outline: 'none'
+    },
+    '@media (max-width: 1000px)': {
+      width: '65%',
+      marginTop: '1vh',
+      
     }
   },
   dateContainer: {
@@ -413,28 +455,47 @@ const styles = {
     height: '50px',
     width: '100%',
     margin: '0 auto',
+    '@media (max-width: 1000px)': {
+      width: '85%',
+      marginTop: '8vh',
+      height: '80px',
+      marginBottom: '8vh',
+    }
   },
   datePicker: {
     float: 'left',
     fontFamily: 'Quicksand',
-    color: 'black',
+    color: 'grey',
     textAlign: 'left',
     marginLeft: '22%',
     lineHeight: '5px',
     width: '100px',
     border: '0',
+    '@media (max-width: 1000px)': {
+      textAlign: 'center',
+      marginLeft: '25%',
+      width: '90px',
+    }
   },
-
+  dateLabel: {
+    
+    '@media (max-width: 1000px)': {
+      textAlign: 'center',
+      width: '100%',
+      paddingLeft: '9vw'
+      
+    }
+  },
   buttonContainer: {
     textAlign: 'center',
     height: '100px',
     verticalAlign: 'text-top',
     width: '100%',
+    marginBottom: '40px',
   },
   button: {
     width: '120px',
     marginTop: '40px',
-    marginLeft: '10px',
     fontFamily: 'Quicksand',
     fontWeight: 'bold',
     fontSize: '16px',
@@ -447,6 +508,11 @@ const styles = {
     textTransform: 'uppercase',
     ':hover': {
       background: '#e6e6e6',
+    },
+    '@media (max-width: 1000px)': {
+      width: '200px',
+      maxWidth: '200px',
+      padding: '15px',
     }
   },
   amenityItem: {
@@ -472,6 +538,7 @@ const styles = {
     float: 'left'
   },
   modalContainer: {
+    fontFamily: 'Quicksand',
     width: '100%',
     height: '100%',
     textAlign: 'center',
@@ -483,7 +550,29 @@ const styles = {
   url: {
     fontSize: '10px',
     textTransform: 'uppercase'
-  }
+  },
+  modalButton: {
+    background: '#eee',
+    marginTop: '40px',
+    fontFamily: 'Quicksand',
+    fontWeight: 'bold',
+    fontSize: '14px',
+    color: 'grey',
+    cursor: 'pointer',
+    border: 'none',
+    padding: '15px',
+    borderRadius: '6px',
+    textTransform: 'uppercase',
+    ':hover': {
+      background: '#e6e6e6',
+    },
+    '@media (max-width: 1000px)': {
+      width: '90%',
+      maxWidth: '200px',
+      padding: '15px',
+    }
+  },
 }
+
 
 export default Radium(CreateRentingForm)
