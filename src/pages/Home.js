@@ -30,7 +30,7 @@ const Home = () => {
       <div style={styles.locationList}>
         {userId &&
           <div>
-          <h1 style={styles.welcome}>Välkommen {userName}!</h1>
+          <h1 className="welcome-text" style={styles.welcome}>Välkommen {userName}!</h1>
             <LocationList />
           </div>}
       </div>
@@ -59,7 +59,10 @@ const styles = {
   left: {
     float: 'left',
     width: '10%',
-    background: 'transparent'
+    background: 'transparent',
+    '@media (max-width: 700px)': {
+      display: 'none'
+    }
   },
   center: {
     float: 'left',
@@ -76,8 +79,7 @@ const styles = {
     marginTop: '-20px',
     marginBottom: '70px',
     '@media (max-width: 490px)': {
-      marginTop: '10px',
-      marginBottom: '40px'
+      margin: '40px 0'
     }
   }
 }

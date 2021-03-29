@@ -29,7 +29,7 @@ const AccommodationsDetails = () => {
         <div>
         <img style={styles.img} key="2" src={accommodation.imageUrl} alt={'picture ' + id} />
         <div style={styles.infoContainer} key="3">
-          <h1>{accommodation.title}</h1>
+          <h1 style={styles.title}>{accommodation.title}</h1>
           <p>Max antal gäster: {accommodation.maxGuests}</p>
           <p>Ort: {accommodation.location.name}</p>
           <p>Pris per natt: {accommodation.pricePerNight} SEK</p>
@@ -62,17 +62,35 @@ const styles = {
     maxWidth: '800px',
     color: 'grey',
     textAlign: 'center',
-    paddingTop: '1vh'
+    '@media (max-width: 1000px)': { 
+    }
+  },
+  title: {
+    textAlign: 'left',
+    '@media (max-width: 1000px)': {
+      margin: '0 auto',
+      fontSize: '8vw',
+      paddingBottom: '5px'
+    }
   },
   infoContainer: {
     textAlign: 'left',
     paddingTop: '2vh',
+    '@media (max-width: 1000px)': {
+      maxWidth: '92%',
+      margin: '0 auto',
+    }
   },
   img: {
     maxWidth: '600px',
     marginTop: '50px',
     borderRadius: '10px',
-    boxShadow: '1px 1px 10px 10px #202329'
+    boxShadow: '1px 1px 10px 10px #202329',
+    '@media (max-width: 1000px)': {
+      maxWidth: '92%',
+      boxShadow: '1px 1px 3px 3px #4b4d51',
+
+    }
   }
 }
 
