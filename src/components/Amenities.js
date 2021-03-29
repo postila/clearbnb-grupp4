@@ -11,6 +11,10 @@ function Amenities() {
   const { id } = useParams()
   const accommodation = accommodations.find(a => a._id === id)
 
+  for(let i in amenities) {
+    amenities[i].name = amenities[i].name == 'Luftkonditionering' ? 'AC' : amenities[i].name
+  }
+
   let AmenitiesList = []
 
   if (accommodation.amenitiesList.map(a => a.washer).includes(true))  AmenitiesList.push(amenities.find(x => x.name === 'Tvättmaskin'))
@@ -18,7 +22,7 @@ function Amenities() {
   if (accommodation.amenitiesList.map(a => a.essentials).includes(true))  AmenitiesList.push(amenities.find(x => x.name === 'Väsentligheter')) 
   if (accommodation.amenitiesList.map(a => a.kitchen).includes(true))  AmenitiesList.push(amenities.find(x => x.name === 'Kök')) 
   if (accommodation.amenitiesList.map(a => a.TV).includes(true))  AmenitiesList.push(amenities.find(x => x.name === 'TV')) 
-  if (accommodation.amenitiesList.map(a => a.airConditioning).includes(true))  AmenitiesList.push(amenities.find(x => x.name === 'Luftkonditionering')) 
+  if (accommodation.amenitiesList.map(a => a.airConditioning).includes(true))  AmenitiesList.push(amenities.find(x => x.name === 'AC')) 
   if (accommodation.amenitiesList.map(a => a.iron).includes(true))  AmenitiesList.push(amenities.find(x => x.name === 'Strykjärn')) 
   if (accommodation.amenitiesList.map(a => a.safe).includes(true))  AmenitiesList.push(amenities.find(x => x.name === 'Låst skåp')) 
   
