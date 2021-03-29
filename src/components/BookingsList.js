@@ -31,9 +31,9 @@ function BookingsList() {
     >
       <img style={styles.pictures} src={booking.accommodation.imageUrl} alt="''"/>
       <div style={styles.text}>
-        <h3>{booking.accommodation.title}</h3>
-        <p>{locations.find(l=>l._id === booking.accommodation.location).name}</p>
-        <p>Antal gäster {booking.guests} | {Math.round((Math.round((booking.endDate - booking.startDate) / 86400000) * booking.accommodation.pricePerNight*1.15))} SEK</p>
+        <h3 style={styles.title}>{booking.accommodation.title}</h3>
+        <p style={styles.textCity}>{locations.find(l=>l._id === booking.accommodation.location).name}</p>
+        <p>Antal gäster: {booking.guests} | {Math.round((Math.round((booking.endDate - booking.startDate) / 86400000) * booking.accommodation.pricePerNight*1.15))} SEK totalt</p>
         <p>Ankomst: {new Date((booking.startDate)).toLocaleDateString()}</p>
         <p>Avresa: {new Date((booking.endDate)).toLocaleDateString()}</p>
         <p>Värd: {users[calculateUser(booking)].name}</p>
@@ -101,12 +101,39 @@ const styles = {
     padding: '0',
     margin: '5px',
     opacity: '90%',
-    lineHeight:'0.9',
+    lineHeight: '0.9',
     '@media (max-width: 700px)': {
       fontSize: '1em',
       textAlign: 'center',
     }
+  },
+  textCity: {
+    fontFamily: 'Quicksand',
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: '1em',
+    textTransform: 'uppercase',
+    margin: '10px 5px',
+    color: 'grey',
+    '@media (max-width: 700px)': {
+      textAlign: 'center',
+      padding: '0',
+      margin: '3px'
+    }
+  },
+  title: {
+    fontFamily: 'Quicksand',
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: '1.3em',
+    margin: '10px 5px',
+    color: 'grey',
+    marginBottom:'20px',
+    '@media (max-width: 700px)': {
+      textAlign: 'center',
+      padding: '0',
+      margin: '3px'
+    }
   }
 }
-
 export default Radium(BookingsList)

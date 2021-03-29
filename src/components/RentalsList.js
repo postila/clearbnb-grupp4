@@ -29,9 +29,9 @@ function RentalList() {
     >
       <img style={styles.pictures} src={accommodation.imageUrl} alt={'picture' + accommodation._id} />
       <div style={styles.text}>
-        <h3>{accommodation.title}</h3>
-        <p>Max antal gäster {accommodation.maxGuests} | {accommodation.pricePerNight} SEK</p>
-        <p>{accommodation.location.name}</p>
+        <h3 style={styles.title}>{accommodation.title}</h3>
+        <p style={styles.textCity}>{accommodation.location.name}</p>
+        <p>Max antal gäster {accommodation.maxGuests} | {accommodation.pricePerNight} SEK per natt</p>
         <p>Uthyrningsperiod:</p>
         <p>Från: {new Date(accommodation.startDate).toLocaleDateString()}</p>
         <p>Till: {new Date(accommodation.endDate).toLocaleDateString()}</p>
@@ -132,6 +132,34 @@ const styles = {
       textAlign: 'center',
     }
   },
+  textCity: {
+    fontFamily: 'Quicksand',
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: '1em',
+    textTransform: 'uppercase',
+    margin: '10px 5px',
+    color: 'grey',
+    '@media (max-width: 700px)': {
+      textAlign: 'center',
+      padding: '0',
+      margin: '3px'
+    }
+  },
+  title: {
+    fontFamily: 'Quicksand',
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: '1.3em',
+    margin: '10px 5px',
+    color: 'grey',
+    marginBottom: '20px',
+    '@media (max-width: 700px)': {
+      textAlign: 'center',
+      padding: '0',
+      margin: '3px'
+    }
+  }
 }
 
 export default Radium(RentalList);
