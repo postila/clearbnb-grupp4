@@ -39,6 +39,7 @@ function RentalList() {
     </div>
   )
 
+ 
   return (
     <div>
       { accommodations &&
@@ -47,7 +48,7 @@ function RentalList() {
         </div>
       }
       {/* if (Object.keys(rentalList).length == 0) { */}
-      { rentalList &&
+      { rentalList.length === 0 &&
         <div style={styles.rentalbox} onClick={() => goToRentalForm()}>
           <h3 style={styles.rentalheader}> KLICKA HÄR FÖR ATT HYRA UT EN BOSTAD</h3>
         </div>
