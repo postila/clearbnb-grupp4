@@ -161,12 +161,9 @@ const styles = {
 
   pictures: {
     borderRadius: '10px',
-    width: '40vw',
-    height: '25vh',
+    maxWidth: '400px',
     margin: '0 auto',
     '@media (min-width: 900px)': {
-      maxWidth: '400px',
-      height: '32vh'
     },
     '@media (max-width: 700px)': {
       gridTemplateColumns: '1fr',

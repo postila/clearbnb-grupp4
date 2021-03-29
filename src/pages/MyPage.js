@@ -3,10 +3,12 @@ import BookingsList from '../components/BookingsList'
 import RentalsList from '../components/RentalsList'
 import Radium from 'radium'
 import { UserContext } from '../contexts/UserContextProvider'
+import { BookingContext } from '../contexts/BookingContextProvider'
 
 const MyPage = () => {
   const {userName} = useContext(UserContext)
   const [name, setName] = useState('Mina')
+  const { fetchBookings } = useContext(BookingContext)
 
   const endNameWithS = e => {
     e += (e[e.length - 1] === 's') ? '' : 's'
@@ -15,6 +17,10 @@ const MyPage = () => {
   }
 
  
+
+  useEffect(() => {
+    fetchBookings()
+  }, [])
 
   useEffect(() => {
     if(userName) endNameWithS(userName)  
