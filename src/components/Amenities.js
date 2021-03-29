@@ -28,11 +28,11 @@ function Amenities() {
       key={amenity._id}
     >
       <img
-        style={{maxHeight: '30px'}}
+        style={amenityItemStyle}
         src={amenity.iconUrl}
         alt={'picture ' + amenity._id}
       />
-      <p style={{color: 'black'}}>{amenity.name}</p>
+      <span style={{color: 'black'}}> {amenity.name}</span>
     </div>
   )
   
@@ -43,16 +43,23 @@ function Amenities() {
   )
 }
 
+
+
 const amenityItemStyle = {
-  width: '150px',
-  fontSize: '10px'
+  width: '25px',
+  fontSize: '8px',
+  
 }
 const amenitiesListStyle = {
   display: 'grid',
   color: 'white',
   justifyContent: 'center',
   gridTemplateColumns: 'repeat(4, 1fr)',
-  gridGap: '25px'
+  gridGap: '25px',
+  '@media (max-width: 1000px)': {
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gridGap: '20px',
+  }
 }
 const checkBoxStyle = {
   float: 'left',
