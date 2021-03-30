@@ -188,9 +188,9 @@ const BookingForm = (props) => {
 
           {arrDate && depDate &&
             <div>
-              <p>Pris: {Math.round(price)} SEK</p>
-              <p>Serviceavgift: {Math.round((price * 0.15))} SEK</p>
-              <p>Totalpris: {Math.round((price * 1.15))}</p>
+          <p>Pris: { Intl.NumberFormat().format(Math.round(price))} SEK</p>
+          <p>Serviceavgift: {Intl.NumberFormat().format(Math.round((price * 0.15)))} SEK</p>
+          <p>Totalpris: {Intl.NumberFormat().format(Math.round((price * 1.15)))}</p>
             </div>
           }
           <div style={styles.bokaContainer}>
