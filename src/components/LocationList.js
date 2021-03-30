@@ -35,15 +35,15 @@ function LocationList() {
 
 const styles = {
   img: {
-    height: '170px',
+    height: '12vw',
     borderRadius: '7px',
-    //maxWidth: '8vw',
-    '@media (max-width: 1000px)': {
-      height: '150px',
-      width: '175px'
+    width: '13vw',
+    '@media (max-width: 1200px)': {
+      height: '17vw',
+      width: '19vw'
     },
-    '@media (max-width: 480px)': {
-      height: '34.3vw',
+    '@media (max-width: 900px)': {
+      height: '36.9vw',
       width: '40vw'
     }
 
@@ -52,7 +52,7 @@ const styles = {
     color: 'grey',
     backgroundColor: '#eee',
     padding: '8px 8px 0px 8px',
-    marginBottom: '20px',
+    marginBottom: '10px',
     borderRadius: '6px',
     cursor: 'pointer',
     transition: '100ms',
@@ -72,7 +72,7 @@ const styles = {
   itemsPositions: {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
-    gridGap: '25px',
+    gridGap: '1vw',
     '@media (max-width: 900px)': {
       gridTemplateColumns: 'repeat(2, 1fr)',
       gridGap: '30px',

@@ -38,6 +38,14 @@ input:focus {
     
   }
 
+  @media (max-width: 700px) {
+    .register-form {
+      max-width: 550px;
+      margin: 12px auto;
+      padding: 50px;
+    }
+  }
+
   .register-login {
     cursor: pointer;
     color: grey;
@@ -51,8 +59,8 @@ input:focus {
     opacity: 75%;
   }
 
-@media (max-width: 700px){
+/* @media (max-width: 700px){
   .welcome-text {
     margin-top: 70px !important;
   }
-}
+} */

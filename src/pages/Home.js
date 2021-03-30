@@ -52,7 +52,7 @@ const styles = {
   logo: {
     paddingTop: '20px',
     width: '100px',
-    '@media (max-width: 490px)': {
+    '@media (max-width: 700px)': {
       opacity: '0%'
     }
   },
@@ -60,9 +60,6 @@ const styles = {
     float: 'left',
     width: '10%',
     background: 'transparent',
-    '@media (max-width: 700px)': {
-      display: 'none'
-    }
   },
   center: {
     float: 'left',
@@ -78,9 +75,9 @@ const styles = {
     color: 'white', 
     marginTop: '-20px',
     marginBottom: '70px',
-    '@media (max-width: 490px)': {
-      margin: '40px 0'
-    }
+    // '@media (max-width: 700px)': {
+    //   margin: '-20px 0 70px 0'
+    // }
   }
 }
 export default Radium(Home);

@@ -44,7 +44,7 @@ const Login = (props) => {
         <button key="4" style={styles.button} onClick={createLogin}>Logga in</button>
         
         <p onClick={props.displayRegisterForm} style={styles.register}>
-          Inget konto? Registrera dig här
+          Inget konto? <br/> Registrera dig här
         </p>
         
         
@@ -79,7 +79,12 @@ const styles = {
     gridGap: '15px',
     maxWidth: '500px',
     margin: '23px auto',
-    padding: '100px'
+    padding: '100px',
+    '@media (max-width: 700px)': {
+      maxWidth: '550px',
+      margin: '65px auto',
+      padding: '50px',
+    }
   },
   input: {
     height: '38px',

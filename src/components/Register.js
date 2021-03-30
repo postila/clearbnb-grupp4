@@ -88,7 +88,7 @@ const Register = (props) => {
         <div>
           <br></br>
           <button style={styles.button}>Skapa konto</button>
-          <p className="register-login" onClick={props.displayRegisterForm}>Har du redan ett konto? Logga in här</p>
+          <p className="register-login" onClick={props.displayRegisterForm}>Har du redan ett konto?<br/>Logga in här</p>
         </div>
       </form>
       {showNotification && <div><Snackbar
