@@ -30,7 +30,10 @@ function RentalList() {
       <div style={styles.text}>
         <h3 style={styles.title}>{accommodation.title}</h3>
         <p style={styles.textCity}>{accommodation.location.name}</p>
-        <p>Max antal gäster {accommodation.maxGuests} | {accommodation.pricePerNight} SEK per natt</p>
+        <p>Max antal gäster {accommodation.maxGuests} | {Intl.NumberFormat("sv-SE", {
+          style: "decimal",
+          currency: "SEK"
+        }).format(accommodation.pricePerNight)} SEK per natt</p>
         <p>Uthyrningsperiod:</p>
         <p>Från: {new Date(accommodation.startDate).toLocaleDateString()}</p>
         <p>Till: {new Date(accommodation.endDate).toLocaleDateString()}</p>

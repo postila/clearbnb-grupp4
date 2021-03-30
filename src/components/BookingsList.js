@@ -33,7 +33,10 @@ function BookingsList() {
       <div style={styles.text}>
         <h3 style={styles.title}>{booking.accommodation.title}</h3>
         <p style={styles.textCity}>{locations.find(l=>l._id === booking.accommodation.location).name}</p>
-        <p>Antal gäster: {booking.guests} | {Math.round((Math.round((booking.endDate - booking.startDate) / 86400000) * booking.accommodation.pricePerNight*1.15))} SEK totalt</p>
+        <p>Antal gäster: {booking.guests} | {Intl.NumberFormat("sv-SE", {
+          style: "decimal",
+          currency: "SEK"
+        }).format(Math.round((Math.round((booking.endDate - booking.startDate) / 86400000) * booking.accommodation.pricePerNight*1.15)))} SEK totalt</p>
         <p>Ankomst: {new Date((booking.startDate)).toLocaleDateString()}</p>
         <p>Avresa: {new Date((booking.endDate)).toLocaleDateString()}</p>
         <p>Värd: {users[calculateUser(booking)].name}</p>
