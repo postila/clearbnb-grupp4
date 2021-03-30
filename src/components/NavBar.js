@@ -19,6 +19,7 @@ function NavBar() {
 
   useEffect(() => {
     fetchSession()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, user])
 
   const handleClick = (event) => {
