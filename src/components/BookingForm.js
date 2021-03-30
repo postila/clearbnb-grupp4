@@ -190,7 +190,7 @@ const BookingForm = (props) => {
             <div>
               <p>Pris: {Math.round(price)} SEK</p>
               <p>Serviceavgift: {Math.round((price * 0.15))} SEK</p>
-              <p>Totalpris: {Math.round((price * 1.15))}</p>
+              <p>Totalpris: {Math.round((price * 1.15))} SEK</p>
             </div>
           }
           <div style={styles.bokaContainer}>
