@@ -18,6 +18,7 @@ const Register = (props) => {
 
   useLayoutEffect(() => {
     fetchUsers()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleClose = () => {

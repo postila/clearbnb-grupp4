@@ -138,6 +138,7 @@ const BookingForm = (props) => {
     if (bookingsList && props.accommodation) {
       createAllDatesList()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.accommodation, bookingsList, singelton, today])
 
   return (

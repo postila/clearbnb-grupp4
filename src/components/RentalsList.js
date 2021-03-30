@@ -17,6 +17,7 @@ function RentalList() {
   
   useEffect(() => {
     fetchAccommodations()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const card = accommodation =>
