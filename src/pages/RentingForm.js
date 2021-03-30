@@ -31,7 +31,7 @@ function CreateRentingForm() {
          <p id="simple-modal-description">
           Tack för att du använder clearBnB!
       </p> 
-        <Button className="modal-button" style={styles.modalButton} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina bokningar</Button>
+        <Button className="modal-button" style={styles.modalButton} onClick={() => { history.push('/Mina-sidor'); handleClose() }}>Gå till mina uthyrningar</Button>
       </div>
     </div>
   );
@@ -98,12 +98,7 @@ function CreateRentingForm() {
     
   }
 
-  // useEffect(() => {
-  //   fetchSession()
-  // }, [userId])
-
   const { locations } = useContext(LocationContext)
-
   const locationItem = location => (
 
     <option key={location._id} value={location._id}> {location.name}</option>
@@ -116,203 +111,103 @@ function CreateRentingForm() {
         <h1 style={styles.headline}>Uthyrningsformulär</h1>
 
         <label style={styles.label}>Titel </label>
-        <input
-          key="2"
-          required ref={title}
-          style={styles.input}
-          type="text"
-          maxLength="80"
-        ></input>
+        <input key="2" required ref={title} style={styles.input} type="text" maxLength="80"></input>
 
         <label style={styles.label} >Ort</label>
-
-        <select
-          key="3"
-          required ref={location}
-          style={styles.input}
-        >
+        <select key="3" required ref={location} style={styles.input}>
           <option key="o" disabled selected></option>
           {locations.map(location => locationItem(location))}
         </select>
 
         <label style={styles.label} >Beskrivning</label>
-        <textarea
-          style={styles.description}
-          ref={description}
-          maxLength="1500"
-          type="text"
-          required>
+        <textarea style={styles.description} ref={description} maxLength="1500" type="text" required>
         </textarea>
 
         <label style={styles.label} >Bild
         <span style={styles.url}> (Klistra in en url)</span>
         </label>
-        <input
-          key="4"
-          style={styles.input}
-          required
-          ref={imageUrl}
-          type="text"
-        ></input>
+        <input key="4" style={styles.input} ref={imageUrl} type="text" required></input>
 
         <div style={styles.guestContainer} >
-          <label style={styles.label} >Max antal gäster</label>
-          <input
-            key="5"
-            style={styles.guests}
-            required ref={maxGuests}
-            type="number"
-            min="1"
-          ></input>
+          <div style={styles.maxGuests}>
+            <span>Max antal gäster</span>
+            <input key="5" style={styles.guests} ref={maxGuests} type="number" min="1" required></input>
+          </div>
 
-          <label style={styles.label} >Pris per natt</label>
-          <input
-            key="6"
-            style={styles.guests}
-            ref={pricePerNight}
-            required
-            type="number"
-            min="0"
-          ></input>
+          <div style={styles.priceNight}>
+          <span>Pris per natt</span>
+            <input key="6" style={styles.guests} ref={pricePerNight} type="number" min="0" required></input>
+          </div>
         </div>
+
         <div style={styles.dateContainer}>
           <div key="d1" style={styles.datePicker}>
             <p style={styles.dateLabel}>Startdatum</p>
-            <DatePicker
-              className='datePicker'
-              dateFormat="yyyy/MM/dd"
-              selected={startDate}
-              minDate={new Date()}
-              required
-              onChange={(data) => setStartDate(data)}
-            />
+            <DatePicker className='datePicker' dateFormat="yyyy/MM/dd" selected={startDate} minDate={new Date()} required onChange={(data) => setStartDate(data)}/>
           </div>
+
           <div key="d2" style={styles.datePicker}>
             <p style={styles.dateLabel}>Slutdatum</p>
-            <DatePicker
-              className='datePicker'
-              dateFormat="yyyy/MM/dd"
-              selected={endDate}
-              minDate={startDate || minDate}
-              required
-              onChange={(data) => setEndDate(data)}
-            />
+            <DatePicker className='datePicker' dateFormat="yyyy/MM/dd" selected={endDate} minDate={startDate || minDate} required onChange={(data) => setEndDate(data)}/>
           </div>
         </div>
         <h3 style={styles.headline}>Bekvämligheter</h3>
 
         <div style={styles.amenities}>
           <div style={styles.amenityItem}>
-            <input
-              key="a1"
-              style={styles.checkBox}
-              type="checkbox"
-              ref={washer}
-              value="washer"
-            ></input>
+            <input key="a1" style={styles.checkBox} type="checkbox" ref={washer} value="washer"></input>
             <img key="i1" style={styles.icon} src="https://i.imgur.com/ZHG7tWd.png" alt="''"></img>
             <label style={styles.iconLabel} >Tvättmaskin</label>
           </div>
 
           <div style={styles.amenityItem}>
-            <input
-              key="a2"
-              style={styles.checkBox}
-              type="checkbox"
-              ref={wifi}
-              value="wifi"
-            ></input>
+            <input key="a2" style={styles.checkBox} type="checkbox" ref={wifi} value="wifi"></input>
             <img key="i2" style={styles.icon} src="https://i.imgur.com/bEPBdlP.png" alt="''"></img>
             <label style={styles.iconLabel} >WiFi</label>
           </div>
 
           <div style={styles.amenityItem}>
-            <input
-              key="a3"
-              style={styles.checkBox}
-              type="checkbox"
-              ref={essentials}
-              value="essentials"
-            ></input>
+            <input key="a3" style={styles.checkBox} type="checkbox" ref={essentials} value="essentials"></input>
             <img key="i3" style={styles.icon} src="https://i.imgur.com/gcqJNww.png" alt="''"></img>
             <label style={styles.iconLabel} >Väsentligheter</label>
           </div>
 
           <div style={styles.amenityItem}>
-            <input
-              key="a4"
-              style={styles.checkBox}
-              type="checkbox"
-              ref={kitchen}
-              value="kitchen"
-            ></input>
+            <input key="a4" style={styles.checkBox} type="checkbox" ref={kitchen} value="kitchen"></input>
             <img key="i4" style={styles.icon} src="https://i.imgur.com/LvTR8oD.png" alt="''"></img>
             <label style={styles.iconLabel} >Kök</label>
           </div>
 
           <div style={styles.amenityItem}>
-            <input
-              key="a5"
-              style={styles.checkBox}
-              type="checkbox"
-              ref={TV}
-              value="TV"
-            ></input>
+            <input key="a5" style={styles.checkBox} type="checkbox" ref={TV} value="TV"></input>
             <img key="i5" style={styles.icon} src="https://i.imgur.com/o8S2jMk.png" alt="''"></img>
             <label style={styles.iconLabel} >TV</label>
           </div>
 
           <div style={styles.amenityItem}>
-            <input
-              key="a6"
-              style={styles.checkBox}
-              type="checkbox"
-              ref={airConditioning}
-              value="airConditioning"
-            ></input>
+            <input key="a6" style={styles.checkBox} type="checkbox" ref={airConditioning} value="airConditioning"></input>
             <img key="i6" style={styles.icon} src="https://i.imgur.com/bF4klbB.png" alt="''"></img>
             <label style={styles.iconLabel} >AC</label>
           </div>
 
           <div style={styles.amenityItem}>
-            <input
-              key="a7"
-              style={styles.checkBox}
-              type="checkbox"
-              ref={iron}
-              value="iron"
-            ></input>
+            <input key="a7" style={styles.checkBox} type="checkbox" ref={iron} value="iron"></input>
             <img key="i7" style={styles.icon} src="https://i.imgur.com/3XShQ5y.png" alt="''"></img>
             <label style={styles.iconLabel} >Strykjärn</label>
           </div>
 
           <div style={styles.amenityItem}>
-            <input
-              key="a8"
-              style={styles.checkBox}
-              type="checkbox"
-              ref={safe}
-              value="Låst skåp"
-            ></input>
+            <input key="a8" style={styles.checkBox} type="checkbox" ref={safe} value="Låst skåp"></input>
             <img key="i8" style={styles.icon} src="https://i.imgur.com/FXhmIhX.png" alt="''"></img>
             <label style={styles.iconLabel} >Låst skåp</label>
           </div>
-
         </div>
-
 
         <div style={styles.buttonContainer}>
           <button style={styles.button} key="7">Färdig</button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            disableScrollLock={false}
-          >
+          <Modal open={open} onClose={handleClose} aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" disableScrollLock={false}>
             {body}
           </Modal>
-
         </div>
       </form >
   </div>
@@ -332,7 +227,7 @@ const useStyles = makeStyles((theme) => ({
 const styles = {
   outerContainer: {
     '@media (max-width: 1000px)': {
-      width: '80%'
+      width: '100%'
     }
 
   },
@@ -345,21 +240,7 @@ const styles = {
     textAlign: 'center',
     padding: '10px',
     '@media (max-width: 1000px)': {
-      padding: '0px',
-    }
-  },
-  amenities: {
-    display: 'grid',
-    color: 'white',
-    justifyContent: 'center',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gridGap: '25px',
-    paddingBottom: '30px',
-    '@media (max-width: 1000px)': {
-      padding: '0px',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      marginLeft: '10px',
-      marginRight: '10px',
+      
     }
   },
   headline: {
@@ -418,18 +299,30 @@ const styles = {
     }
   },
   guestContainer: {
+    margin: '0 auto',
     textAlign: 'center',
     height: '50px',
-    width: '100%',
-    marginTop: '10px',
+    width: '25vw',
+    marginTop: '20px',
     marginBottom: '40px',
-    '@media (max-width: 1000px)': {
-      marginLeft: '23%',
-      width: '50%',
-      marginBottom: '17vh',
+    '@media (max-width: 900px)': {
+      width: '75vw',
       marginTop: '5vh'
     }
   },
+  maxGuests: {
+    float: 'left',
+    fontFamily: 'Quicksand',
+    fontSize: '13px',
+    width: '120px',
+  },
+  priceNight: {
+    float: 'right',
+    fontFamily: 'Quicksand',
+    fontSize: '13px',
+    width: '120px',
+  },
+  
   guests: {
     textAlign: 'center',
     backgroundColor: '#eee',
@@ -452,11 +345,11 @@ const styles = {
     height: '50px',
     width: '100%',
     margin: '0 auto',
+    marginTop: '2vh',
     '@media (max-width: 1000px)': {
       width: '85%',
-      marginTop: '8vh',
       height: '80px',
-      marginBottom: '8vh',
+      marginBottom: '4vh',
     }
   },
   datePicker: {
@@ -469,18 +362,10 @@ const styles = {
     width: '100px',
     border: '0',
     '@media (max-width: 1000px)': {
-      textAlign: 'center',
-      marginLeft: '25%',
-      width: '90px',
     }
   },
   dateLabel: {
-    
     '@media (max-width: 1000px)': {
-      textAlign: 'center',
-      width: '100%',
-      paddingLeft: '9vw'
-      
     }
   },
   buttonContainer: {
@@ -512,10 +397,23 @@ const styles = {
       padding: '15px',
     }
   },
+  amenities: {
+    display: 'grid',
+    color: 'white',
+    justifyContent: 'center',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridGap: '25px',
+    paddingBottom: '30px',
+    '@media (max-width: 900px)': {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      marginLeft: '10px',
+      marginRight: '10px',
+    }
+  },
   amenityItem: {
     fontFamily: 'Quicksand',
     float: 'right',
-
+    
   },
   checkBox: {
     float: 'left',
@@ -544,10 +442,6 @@ const styles = {
     color: 'rgba(0,0,0,0)',
     textShadow: '0 0 0 #000'
   },
-  url: {
-    fontSize: '10px',
-    textTransform: 'uppercase'
-  },
   modalButton: {
     background: '#eee',
     marginTop: '40px',
@@ -568,6 +462,10 @@ const styles = {
       maxWidth: '200px',
       padding: '15px',
     }
+  },
+  url: {
+    fontSize: '10px',
+    textTransform: 'uppercase'
   },
 }
 
