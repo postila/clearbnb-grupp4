@@ -36,7 +36,7 @@ function Amenities() {
         src={amenity.iconUrl}
         alt={'picture ' + amenity._id}
       />
-      <span style={{color: 'black'}}> {amenity.name}</span>
+      <span style={{color: 'black', paddingLeft: '5px'}}> {amenity.name}</span>
     </div>
   )
   
@@ -52,17 +52,16 @@ function Amenities() {
 const amenityItemStyle = {
   width: '25px',
   fontSize: '8px',
-  
+  verticalAlign: 'middle',  
 }
 const amenitiesListStyle = {
   display: 'grid',
   color: 'white',
   justifyContent: 'center',
   gridTemplateColumns: 'repeat(4, 1fr)',
-  gridGap: '25px',
-  '@media (max-width: 1000px)': {
+  gridGap: '20px',
+  '@media (max-width: 900px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
-    gridGap: '20px',
   }
 }
 

@@ -74,9 +74,7 @@ const Locations = () => {
 
     if (!id && !maxGuests && !maxCost) {
       setFilteredAccommodationList(accommodations)
-      
     }
-
   }, [id, maxGuests, maxCost, selectedLocation, accommodations, accommodationList])
 
   useEffect(() => {
