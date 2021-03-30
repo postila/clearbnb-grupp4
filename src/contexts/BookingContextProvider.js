@@ -20,6 +20,12 @@ export default function BookingContextProvider(props) {
     })
   }
 
+  const deleteBooking = async (id) => {
+    await fetch('/rest/booking/' + id, {
+      method: 'DELETE'
+    })
+  }
+
   useEffect(() => {
     fetchBookings()
   }, [])
@@ -27,7 +33,8 @@ export default function BookingContextProvider(props) {
   const values = {
     bookings,
     addBooking,
-    fetchBookings
+    fetchBookings,
+    deleteBooking
   }
 
   return (

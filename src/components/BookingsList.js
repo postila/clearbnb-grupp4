@@ -5,7 +5,7 @@ import { UserContext } from '../contexts/UserContextProvider'
 import Radium from 'radium'
 
 function BookingsList() {
-  const { bookings } = useContext(BookingContext)
+  const { bookings, deleteBooking, fetchBookings } = useContext(BookingContext)
   const { locations } = useContext(LocationContext)
   const { users, userId } = useContext(UserContext)
  
@@ -20,6 +20,11 @@ function BookingsList() {
       }
     }
     return i
+  }
+
+  const cancelBooking = async id => {
+    await deleteBooking(id) 
+    await fetchBookings()
   }
 
   const card = booking => 
@@ -38,6 +43,7 @@ function BookingsList() {
         <p>Avresa: {new Date((booking.endDate)).toLocaleDateString()}</p>
         <p>Värd: {users[calculateUser(booking)].name}</p>
         <p>E-mail: {users[calculateUser(booking)].email}</p>  
+        <button onClick={() => cancelBooking(booking._id)}>Avboka</button>
       </div>
     </div>
   )

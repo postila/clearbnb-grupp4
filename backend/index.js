@@ -111,6 +111,21 @@ app.get('/rest/bookings/:id', async (req, res) => {
   res.json(doc)
 })
 
+app.delete('/rest/booking/:id', async (req, res) => {
+  let booking = await bookings.findById(req.params.id)
+  
+  try {
+    bookings
+      .remove(booking)
+      .exec() 
+      .then(data => {
+        res.json(data);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+})
+
 app.post('/api/login', async (req, res) => {
   if (req.session.user) {
     res.json({ error: 'Någon är redan inloggad' })
