@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { UserContext } from '../contexts/UserContextProvider'
-//import myAccount from '../images/my_account.png';
 
 function NavBar() {
   const history = useHistory()

@@ -12,7 +12,7 @@ function Amenities() {
   const accommodation = accommodations.find(a => a._id === id)
 
   for(let i in amenities) {
-    amenities[i].name = amenities[i].name == 'Luftkonditionering' ? 'AC' : amenities[i].name
+    amenities[i].name = amenities[i].name === 'Luftkonditionering' ? 'AC' : amenities[i].name
   }
 
   let AmenitiesList = []
@@ -64,12 +64,6 @@ const amenitiesListStyle = {
     gridTemplateColumns: 'repeat(2, 1fr)',
     gridGap: '20px',
   }
-}
-const checkBoxStyle = {
-  float: 'left',
-  marginRight: '10px',
-  marginTop: '7px',
-  backGroundColor: 'black'
 }
 
 export default Radium(Amenities)

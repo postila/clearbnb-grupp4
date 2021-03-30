@@ -224,10 +224,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const buttonStyle = {
-  backgroundColor: 'red'
-}
-
 const styles = {
   input: {
     width: '50px',

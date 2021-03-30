@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 
 const Register = (props) => {
   const { addUser } = useContext(UserContext)
-  const [error, setError] = useState(false)
   const { users, fetchUsers } = useContext(UserContext)
   const [showNotification, setShowNotification] = useState(false)
   const [showPasswordNotification, setShowPasswordNotification] = useState(false)
@@ -43,7 +42,7 @@ const Register = (props) => {
     }
     
     const check = users.filter(a => a.email === user.email)
-    if (check.length == 0) {
+    if (check.length === 0) {
       await addUser(user)
     }
     else {

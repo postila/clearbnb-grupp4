@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 
 function RentalList() {
   const { accommodations, fetchAccommodations } = useContext(AccommodationsContext)
-  const { userId, fetchSession } = useContext(UserContext)
+  const { userId } = useContext(UserContext)
   const history = useHistory()
   
   const rentalList = accommodations.filter(accommodation => accommodation.user).filter(accommodation => accommodation.user._id === userId)
@@ -17,7 +17,6 @@ function RentalList() {
   
   useEffect(() => {
     fetchAccommodations()
-    // fetchSession()
   }, [])
 
   const card = accommodation =>
@@ -151,9 +150,8 @@ const styles = {
     textAlign: 'left',
     fontWeight: 'bold',
     fontSize: '1.3em',
-    margin: '10px 5px',
+    margin: '10px 5px 20px 5px',
     color: 'grey',
-    marginBottom: '20px',
     '@media (max-width: 700px)': {
       textAlign: 'center',
       padding: '0',

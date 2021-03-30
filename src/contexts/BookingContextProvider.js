@@ -13,12 +13,11 @@ export default function BookingContextProvider(props) {
   }
 
   const addBooking = async booking => {
-    let res = await fetch('/api/booking', {
+    await fetch('/api/booking', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(booking)
     })
-    res = await res.json()
   }
 
   useEffect(() => {

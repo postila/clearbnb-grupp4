@@ -19,7 +19,7 @@ function CreateRentingForm() {
   const history = useHistory()
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [minDate, setMinDate] = useState(new Date())
+  const minDate = new Date()
 
   const handleClose = () => {
     setOpen(false);
@@ -106,7 +106,7 @@ function CreateRentingForm() {
 
   const locationItem = location => (
 
-    <option value={location._id}> {location.name}</option>
+    <option key={location._id} value={location._id}> {location.name}</option>
 
   )
 
@@ -131,7 +131,7 @@ function CreateRentingForm() {
           required ref={location}
           style={styles.input}
         >
-          <option key="a" disabled selected></option>
+          <option key="o" disabled selected></option>
           {locations.map(location => locationItem(location))}
         </select>
 
@@ -210,7 +210,7 @@ function CreateRentingForm() {
               ref={washer}
               value="washer"
             ></input>
-            <img style={styles.icon} src="https://i.imgur.com/ZHG7tWd.png" alt="''"></img>
+            <img key="i1" style={styles.icon} src="https://i.imgur.com/ZHG7tWd.png" alt="''"></img>
             <label style={styles.iconLabel} >Tvättmaskin</label>
           </div>
 
@@ -222,7 +222,7 @@ function CreateRentingForm() {
               ref={wifi}
               value="wifi"
             ></input>
-            <img style={styles.icon} src="https://i.imgur.com/bEPBdlP.png" alt="''"></img>
+            <img key="i2" style={styles.icon} src="https://i.imgur.com/bEPBdlP.png" alt="''"></img>
             <label style={styles.iconLabel} >WiFi</label>
           </div>
 
@@ -234,7 +234,7 @@ function CreateRentingForm() {
               ref={essentials}
               value="essentials"
             ></input>
-            <img style={styles.icon} src="https://i.imgur.com/gcqJNww.png" alt="''"></img>
+            <img key="i3" style={styles.icon} src="https://i.imgur.com/gcqJNww.png" alt="''"></img>
             <label style={styles.iconLabel} >Väsentligheter</label>
           </div>
 
@@ -246,7 +246,7 @@ function CreateRentingForm() {
               ref={kitchen}
               value="kitchen"
             ></input>
-            <img style={styles.icon} src="https://i.imgur.com/LvTR8oD.png" alt="''"></img>
+            <img key="i4" style={styles.icon} src="https://i.imgur.com/LvTR8oD.png" alt="''"></img>
             <label style={styles.iconLabel} >Kök</label>
           </div>
 
@@ -258,7 +258,7 @@ function CreateRentingForm() {
               ref={TV}
               value="TV"
             ></input>
-            <img style={styles.icon} src="https://i.imgur.com/o8S2jMk.png" alt="''"></img>
+            <img key="i5" style={styles.icon} src="https://i.imgur.com/o8S2jMk.png" alt="''"></img>
             <label style={styles.iconLabel} >TV</label>
           </div>
 
@@ -270,7 +270,7 @@ function CreateRentingForm() {
               ref={airConditioning}
               value="airConditioning"
             ></input>
-            <img style={styles.icon} src="https://i.imgur.com/bF4klbB.png" alt="''"></img>
+            <img key="i6" style={styles.icon} src="https://i.imgur.com/bF4klbB.png" alt="''"></img>
             <label style={styles.iconLabel} >AC</label>
           </div>
 
@@ -282,7 +282,7 @@ function CreateRentingForm() {
               ref={iron}
               value="iron"
             ></input>
-            <img style={styles.icon} src="https://i.imgur.com/3XShQ5y.png" alt="''"></img>
+            <img key="i7" style={styles.icon} src="https://i.imgur.com/3XShQ5y.png" alt="''"></img>
             <label style={styles.iconLabel} >Strykjärn</label>
           </div>
 
@@ -294,7 +294,7 @@ function CreateRentingForm() {
               ref={safe}
               value="Låst skåp"
             ></input>
-            <img style={styles.icon} src="https://i.imgur.com/FXhmIhX.png" alt="''"></img>
+            <img key="i8" style={styles.icon} src="https://i.imgur.com/FXhmIhX.png" alt="''"></img>
             <label style={styles.iconLabel} >Låst skåp</label>
           </div>
 
@@ -328,9 +328,6 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto'
   },
 }));
-const buttonStyle = {
-  backgroundColor: 'red'
-}
 
 const styles = {
   outerContainer: {

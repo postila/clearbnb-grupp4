@@ -24,7 +24,7 @@ function BookingsList() {
 
   const card = booking => 
   (
-    <div bookings
+    <div
       style={styles.box}
       className="card"
       key={booking._id}
@@ -126,9 +126,8 @@ const styles = {
     textAlign: 'left',
     fontWeight: 'bold',
     fontSize: '1.3em',
-    margin: '10px 5px',
+    margin: '10px 5px 20px 5px',
     color: 'grey',
-    marginBottom:'20px',
     '@media (max-width: 700px)': {
       textAlign: 'center',
       padding: '0',

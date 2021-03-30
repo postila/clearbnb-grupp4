@@ -1,4 +1,3 @@
-import { set } from 'mongoose';
 import { useEffect } from 'react';
 import { useState, createContext} from 'react';
 
@@ -36,23 +35,20 @@ export default function UserContextProvider(props) {
   }
 
   const logout = async () => {
-    let res = await fetch('/api/logout', {
+    await fetch('/api/logout', {
       method: 'DELETE',
     })
-    res = await res.json()
     setUser(null)
     setUserId(null)
     setUserName(null)
   }
 
   const addUser = async user => {
-    let res = await fetch('/api/users', {
+    await fetch('/api/users', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(user)
     })
-
-    res = await res.json()
     login(user)
     fetchSession()
   }
