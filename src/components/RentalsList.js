@@ -36,8 +36,8 @@ function RentalList() {
           currency: "SEK"
         }).format(accommodation.pricePerNight)} SEK per natt</p>
         <p>Uthyrningsperiod:</p>
-        <p>Från: {new Date(accommodation.startDate).toLocaleDateString()}</p>
-        <p>Till: {new Date(accommodation.endDate).toLocaleDateString()}</p>
+        <p style={styles.dates}>Från {new Date(accommodation.startDate).toLocaleDateString()}</p>
+        <p style={styles.dates}>Till {new Date(accommodation.endDate).toLocaleDateString()}</p>
       </div>
     </div>
   )
@@ -111,13 +111,13 @@ const styles = {
       gridTemplateColumns: '1fr',
       justifyContent: 'center',
       width: '85vw',
-      height: '37vh',
+      // height: '37vh',
     },
     '@media (max-width: 400px)': {
       gridTemplateColumns: '1fr',
       justifyContent: 'center',
       width: '80vw',
-      height: '27vh',
+      // height: '27vh',
     }
   },
 
@@ -126,7 +126,6 @@ const styles = {
     textAlign: 'left',
     fontSize: '1.2em',
     color: 'grey',
-    padding: '0',
     margin: '5px',
     opacity: '90%',
     lineHeight:'0.9',
@@ -141,7 +140,19 @@ const styles = {
     fontWeight: 'bold',
     fontSize: '1em',
     textTransform: 'uppercase',
-    margin: '10px 5px',
+    margin: '10px 0px',
+    color: 'grey',
+    '@media (max-width: 700px)': {
+      textAlign: 'center',
+      padding: '0',
+      margin: '3px'
+    }
+  },
+  dates: {
+    fontFamily: 'Quicksand',
+    textAlign: 'left',
+    fontSize: '0.8em',
+    margin: '10px 0px',
     color: 'grey',
     '@media (max-width: 700px)': {
       textAlign: 'center',
@@ -154,7 +165,7 @@ const styles = {
     textAlign: 'left',
     fontWeight: 'bold',
     fontSize: '1.3em',
-    margin: '10px 5px 20px 5px',
+    margin: '10px 5px 20px 0px',
     color: 'grey',
     '@media (max-width: 700px)': {
       textAlign: 'center',

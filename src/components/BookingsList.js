@@ -37,10 +37,10 @@ function BookingsList() {
           style: "decimal",
           currency: "SEK"
         }).format(Math.round((Math.round((booking.endDate - booking.startDate) / 86400000) * booking.accommodation.pricePerNight*1.15)))} SEK totalt</p>
-        <p>Ankomst: {new Date((booking.startDate)).toLocaleDateString()}</p>
-        <p>Avresa: {new Date((booking.endDate)).toLocaleDateString()}</p>
-        <p>Värd: {users[calculateUser(booking)].name}</p>
-        <p>E-mail: {users[calculateUser(booking)].email}</p>  
+        <p style={styles.dates}>Ankomst: {new Date((booking.startDate)).toLocaleDateString()}</p>
+        <p style={styles.dates}>Avresa: {new Date((booking.endDate)).toLocaleDateString()}</p>
+        <p style={styles.host}>Värd: {users[calculateUser(booking)].name} <span style={{ fontWeight: 'bold'}}> · </span> {users[calculateUser(booking)].email} </p>
+        {/* <p style={styles.host}>E-mail: {users[calculateUser(booking)].email}</p> */}
       </div>
     </div>
   )
@@ -101,7 +101,6 @@ const styles = {
     textAlign: 'left',
     fontSize: '1.2em',
     color: 'grey',
-    padding: '0',
     margin: '5px',
     opacity: '90%',
     lineHeight: '0.9',
@@ -116,7 +115,31 @@ const styles = {
     fontWeight: 'bold',
     fontSize: '1em',
     textTransform: 'uppercase',
-    margin: '10px 5px',
+    margin: '10px 0px',
+    color: 'grey',
+    '@media (max-width: 700px)': {
+      textAlign: 'center',
+      padding: '0',
+      margin: '3px'
+    }
+  },
+  dates: {
+    fontFamily: 'Quicksand',
+    textAlign: 'left',
+    fontSize: '0.8em',
+    margin: '10px 0px',
+    color: 'grey',
+    '@media (max-width: 700px)': {
+      textAlign: 'center',
+      padding: '0',
+      margin: '3px'
+    }
+  },
+  host: {
+    fontFamily: 'Quicksand',
+    textAlign: 'left',
+    fontSize: '0.8em',
+    margin: '10px 0px',
     color: 'grey',
     '@media (max-width: 700px)': {
       textAlign: 'center',
@@ -129,7 +152,7 @@ const styles = {
     textAlign: 'left',
     fontWeight: 'bold',
     fontSize: '1.3em',
-    margin: '10px 5px 20px 5px',
+    margin: '10px 5px 20px 0px',
     color: 'grey',
     '@media (max-width: 700px)': {
       textAlign: 'center',
