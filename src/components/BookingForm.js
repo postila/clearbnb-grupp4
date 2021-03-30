@@ -188,9 +188,18 @@ const BookingForm = (props) => {
 
           {arrDate && depDate &&
             <div>
-          <p>Pris: { Intl.NumberFormat().format(Math.round(price))} SEK</p>
-          <p>Serviceavgift: {Intl.NumberFormat().format(Math.round((price * 0.15)))} SEK</p>
-          <p>Totalpris: {Intl.NumberFormat().format(Math.round((price * 1.15)))}</p>
+          <p>Pris: {Intl.NumberFormat("sv-SE", {
+            style: "decimal",
+            currency: "SEK"
+          }).format(Math.round(price))} SEK</p>
+          <p>Serviceavgift: {Intl.NumberFormat("sv-SE", {
+            style: "decimal",
+            currency: "SEK"
+          }).format(Math.round((price * 0.15)))} SEK</p>
+          <p>Totalpris: {Intl.NumberFormat("sv-SE", {
+            style: "decimal",
+            currency: "SEK"
+          }).format(Math.round((price * 1.15)))} SEK</p>
             </div>
           }
           <div style={styles.bokaContainer}>

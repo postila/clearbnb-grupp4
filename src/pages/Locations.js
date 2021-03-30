@@ -43,7 +43,10 @@ const Locations = () => {
       <div style={styles.text}>
         <h3 className="list-title">{accommodation.title}</h3>
         <p style={styles.textCity}>{accommodation.location.name}</p>
-        <p style={styles.text}>Pris per natt <span style={styles.bold}> · {accommodation.pricePerNight} SEK</span></p>
+        <p style={styles.text}>Pris per natt <span style={styles.bold}> · {Intl.NumberFormat("sv-SE", {
+          style: "decimal",
+          currency: "SEK"
+        }).format(accommodation.pricePerNight)} SEK</span></p>
         <p style={styles.text}>Max gäster <span style={styles.bold}> · {accommodation.maxGuests} st
         </span></p>
       </div>
