@@ -124,7 +124,7 @@ const styles = {
   text: {
     fontFamily: 'Quicksand',
     textAlign: 'left',
-    fontSize: '1.2em',
+    fontSize: '1em',
     color: 'grey',
     margin: '5px',
     opacity: '90%',
