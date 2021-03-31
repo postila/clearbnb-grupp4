@@ -276,8 +276,9 @@ const styles = {
     width: '100%',
     '@media (max-width: 1000px)': {
       marginBottom: '10vh',
-      width: '90%',
-      marginLeft: '9vw'
+      width: '80%',
+      paddingLeft: '20vw',
+      paddingRight: '20vw'
     }
   },
   datePicker: {
